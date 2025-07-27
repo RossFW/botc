@@ -6,55 +6,97 @@
       {
         "name": "Ross_Williams",
         "role": "Tea_Lady",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Tea_Lady"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Eitan_Ghelman",
         "role": "Gossip",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Gossip"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sam_Reissing",
         "role": "Minstrel",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Minstrel"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Alex_West",
         "role": "Professor",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Professor"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Justin_Cobb",
         "role": "Exorcist",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Exorcist"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Grandmother",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Grandmother"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Simone_Jarvis",
         "role": "Devil's_Advocate",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Devil's_Advocate"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Rachel_West",
         "role": "Shabaloth",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Shabaloth"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Michael_Dell",
         "role": "Goon",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Goon"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Kevin_Stankiewicz",
         "role": "Godfather",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Godfather"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "Bad Moon Rising`",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 2,
@@ -63,50 +105,88 @@
       {
         "name": "Eliza_Kang",
         "role": "Gambler",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Gambler"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Simone_Jarvis",
         "role": "Lunatic",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Lunatic"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Eitan_Ghelman",
         "role": "Tinker",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Tinker"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Ross_Williams",
         "role": "Chambermaid",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Chambermaid"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Innkeeper",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Innkeeper"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sam_Reissing",
         "role": "Moonchild",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Moonchild"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Alex_West",
         "role": "Sailor",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Sailor"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Godfather",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Godfather"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Rachel_West",
         "role": "Zombuul",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Zombuul"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Good"
+    "winning_team": "Good",
+    "game_mode": "Bad Moon Rising",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 3,
@@ -115,55 +195,95 @@
       {
         "name": "Zoe_Diamond",
         "role": "",
-        "team": "Good"
+        "team": "Good",
+        "roles": [],
+        "initial_team": "Good"
       },
       {
         "name": "Ross_Williams",
         "role": "Chambermaid",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Chambermaid"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Marlie_Horewitz",
         "role": "Professor",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Professor"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Simon_Miller",
         "role": "Courtier",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Courtier"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Sailor",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Sailor"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Justin_Cobb",
         "role": "Pacifist",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Pacifist"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sam_Reissing",
         "role": "Tea_Lady",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Tea_Lady"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Alex_West",
         "role": "Devil's_Advocate",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Devil's_Advocate"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Will_Shertzer",
         "role": "Mastermind",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Mastermind"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Alex_Heller",
         "role": "Po",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Po"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "Bad Moon Rising",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 4,
@@ -172,50 +292,88 @@
       {
         "name": "Marlie_Horewitz",
         "role": "Moonchild",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Moonchild"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Simon_Miller",
         "role": "Professor",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Professor"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Justin_Cobb",
         "role": "Gambler",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Gambler"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sam_Reissing",
         "role": "Gossip",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Gossip"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Will_Shertzer",
         "role": "Grandmother",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Grandmother"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Alex_Heller",
         "role": "Goon",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Goon"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Ross_Williams",
         "role": "Fool",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Fool"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Pukka",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Pukka"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Alex_West",
         "role": "Assassin",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Assassin"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "Bad Moon Rising",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 5,
@@ -224,75 +382,133 @@
       {
         "name": "Evan_Grant",
         "role": "Spy",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Spy"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Jacob_Danzig",
         "role": "Imp",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Imp"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Paula_Grueninger",
         "role": "Scarlet_Woman",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Scarlet_Woman"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Gus_Eckstein",
         "role": "Baron",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Baron"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Amelia_Swenson",
         "role": "Recluse",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Recluse"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Elizabeth_Nemeti",
         "role": "Librarian",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Librarian"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Noe_Lepez",
         "role": "Monk",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Monk"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Devon_Boatright",
         "role": "Empath",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Empath"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Matt_Kalin",
         "role": "Chef",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Chef"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Kelsey_Macke",
         "role": "Saint",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Saint"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Electra_Szmukler",
         "role": "Investigator",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Investigator"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Nick_Grueninger",
         "role": "Butler",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Butler"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Hannah_Swanner",
         "role": "Undertaker",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Undertaker"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Virgin",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Virgin"
+        ],
+        "initial_team": "Good"
       }
     ],
-    "winning_team": "Good"
+    "winning_team": "Good",
+    "game_mode": "Trouble Brewing",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 6,
@@ -301,75 +517,133 @@
       {
         "name": "Zoe_Diamond",
         "role": "Recluse",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Recluse"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Evan_Grant",
         "role": "Slayer",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Slayer"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Elizabeth_Nemeti",
         "role": "Undertaker",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Undertaker"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Matt_Kalin",
         "role": "Mayor",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Mayor"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Devon_Boatright",
         "role": "Monk",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Monk"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Amelia_Swenson",
         "role": "Investigator",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Investigator"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Kelsey_Macke",
         "role": "Virgin",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Virgin"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Electra_Szmukler",
         "role": "Empath",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Empath"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Nick_Grueninger",
         "role": "Chef",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Chef"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Hannah_Swanner",
         "role": "Fortune_Teller",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Fortune_Teller"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Jacob_Danzig",
         "role": "Scarlet_Woman",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Scarlet_Woman"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Paula_Grueninger",
         "role": "Imp",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Imp"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Gus_Eckstein",
         "role": "Spy",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Spy"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Noe_Lepez",
         "role": "Poisoner",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Poisoner"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "Trouble Brewing",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 7,
@@ -378,85 +652,149 @@
       {
         "name": "Ross_Williams",
         "role": "Drunk",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Drunk"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sam_Reissing",
         "role": "Ravenkeeper",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Ravenkeeper"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Alex_Heller",
         "role": "Virgin",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Virgin"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Levi_Durham",
         "role": "Fortune_Teller",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Fortune_Teller"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Amelia_Swenson",
         "role": "Investigator",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Investigator"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Eitan_Ghelman",
         "role": "Butler",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Butler"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Librarian",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Librarian"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Noe_Lepez",
         "role": "Saint",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Saint"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Elizabeth_Nemeti",
         "role": "Slayer",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Slayer"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Washerwoman",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Washerwoman"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Nate_Peterson",
         "role": "",
-        "team": "Good"
+        "team": "Good",
+        "roles": [],
+        "initial_team": "Good"
       },
       {
         "name": "Justin_Cobb",
         "role": "Poisoner",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Poisoner"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Rachael_Friedman",
         "role": "Baron",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Baron"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Max_Friedman",
         "role": "Scarlet_Woman",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Scarlet_Woman"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Simone_Jarvis",
         "role": "Imp",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Imp"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Ana_Zaremski",
         "role": "Bureaucrat",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Bureaucrat"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Good"
+    "winning_team": "Good",
+    "game_mode": "Trouble Brewing",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 8,
@@ -465,40 +803,70 @@
       {
         "name": "Michael_Dell",
         "role": "Imp",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Imp"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Jeremy_Colton",
         "role": "Poisoner",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Poisoner"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Sam_Reissing",
         "role": "Empath",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Empath"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Eitan_Ghelman",
         "role": "Slayer",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Slayer"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Ross_Williams",
         "role": "Ravenkeeper",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Ravenkeeper"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Kevin_Hopper",
         "role": "Virgin",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Virgin"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Josh_Lipton",
         "role": "Washerwoman",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Washerwoman"
+        ],
+        "initial_team": "Good"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "Trouble Brewing",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 9,
@@ -507,45 +875,79 @@
       {
         "name": "Eitan_Ghelman",
         "role": "Imp",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Imp"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Ross_Williams",
         "role": "Poisoner",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Poisoner"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Jeremy_Colton",
         "role": "Washerwoman",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Washerwoman"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Kevin_Hopper",
-        "role": "Fortune_teller",
-        "team": "Good"
+        "role": "Fortune_Teller",
+        "team": "Good",
+        "roles": [
+          "Fortune_Teller"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Josh_Lipton",
         "role": "Empath",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Empath"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Monk",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Monk"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Justin_Cobb",
         "role": "Chef",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Chef"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sam_Reissing",
         "role": "Butler",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Butler"
+        ],
+        "initial_team": "Good"
       }
     ],
-    "winning_team": "Good"
+    "winning_team": "Good",
+    "game_mode": "Trouble Brewing",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 10,
@@ -554,35 +956,61 @@
       {
         "name": "Ross_Williams",
         "role": "Imp",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Imp"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Kevin_Hopper",
-        "role": "Scarlet_woman",
-        "team": "Evil"
+        "role": "Scarlet_Woman",
+        "team": "Evil",
+        "roles": [
+          "Scarlet_Woman"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Sam_Reissing",
         "role": "Artist",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Artist"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Klutz",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Klutz"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Chambermaid",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Chambermaid"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Jeremy_Colton",
         "role": "Clockmaker",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Clockmaker"
+        ],
+        "initial_team": "Good"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "No Greater Joy",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 11,
@@ -591,35 +1019,61 @@
       {
         "name": "Ross_Williams",
         "role": "Imp",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Imp"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Jeremy_Colton",
         "role": "Baron",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Baron"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Kevin_Hopper",
         "role": "Empath",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Empath"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sam_Reissing",
         "role": "Sage",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Sage"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Investigator",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Investigator"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Klutz",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Klutz"
+        ],
+        "initial_team": "Good"
       }
     ],
-    "winning_team": "Good"
+    "winning_team": "Good",
+    "game_mode": "No Greater Joy",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 12,
@@ -627,36 +1081,62 @@
     "players": [
       {
         "name": "Ross_Williams",
-        "role": "Scarlet_woman",
-        "team": "Evil"
+        "role": "Scarlet_Woman",
+        "team": "Evil",
+        "roles": [
+          "Scarlet_Woman"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Imp",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Imp"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Jeremy_Colton",
         "role": "Artist",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Artist"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Clockmaker",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Clockmaker"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Kevin_Hopper",
         "role": "Drunk",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Drunk"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sam_Reissing",
         "role": "Chambermaid",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Chambermaid"
+        ],
+        "initial_team": "Good"
       }
     ],
-    "winning_team": "Good"
+    "winning_team": "Good",
+    "game_mode": "No Greater Joy",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 13,
@@ -665,80 +1145,142 @@
       {
         "name": "Kelsey_Macke",
         "role": "Empath",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Empath"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Electra_Szmukler",
         "role": "Drunk",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Drunk"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Hannah_Swanner",
         "role": "Slayer",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Slayer"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sam_Reissing",
         "role": "Undertaker",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Undertaker"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Olivia_Provost",
         "role": "Virgin",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Virgin"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Will_Shertzer",
         "role": "Recluse",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Recluse"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Butler",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Butler"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Elizabeth_Nemeti",
         "role": "Chef",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Chef"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Noe_Lepez",
         "role": "Librarian",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Librarian"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Ross_Williams",
         "role": "Ravenkeeper",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Ravenkeeper"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Gus_Eckstein",
         "role": "Saint",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Saint"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Geoffery_Dodd",
         "role": "Spy",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Spy"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Kevin_Stankiewicz",
         "role": "Baron",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Baron"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Devon_Boatright",
         "role": "Imp",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Imp"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Matt_Kalin",
         "role": "Poisoner",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Poisoner"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "Trouble Brewing",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 14,
@@ -747,85 +1289,151 @@
       {
         "name": "Zoe_Diamond",
         "role": "Mayor",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Mayor"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Elizabeth_Nemeti",
         "role": "Undertaker",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Undertaker"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Noe_Lepez",
         "role": "Butler",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Butler"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Jack_Valladeres",
         "role": "Monk",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Monk"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
-        "role": "Bone_collector",
-        "team": "Good"
+        "role": "Bone_Collector",
+        "team": "Good",
+        "roles": [
+          "Bone_Collector"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Hannah_Swanner",
         "role": "Virgin",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Virgin"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Simon_Miller",
         "role": "Librarian",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Librarian"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Kevin_Stankiewicz",
         "role": "Saint",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Saint"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Jacob_Danzig",
         "role": "Investigator",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Investigator"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Olivia_Huddleston",
         "role": "Empath",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Empath"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Alex_Heller",
         "role": "Chef",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Chef"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Ross_Williams",
         "role": "Ravenkeeper",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Ravenkeeper"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Simone_Jarvis",
         "role": "Cerenovus",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Cerenovus"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Grace_Englert",
         "role": "Witch",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Witch"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Electra_Szmukler",
         "role": "Vigormortis",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Vigormortis"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Geoffery_Dodd",
-        "role": "Evil_twin",
-        "team": "Evil"
+        "role": "Evil_Twin",
+        "team": "Evil",
+        "roles": [
+          "Evil_Twin"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Good"
+    "winning_team": "Good",
+    "game_mode": "Trouble in Violets",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 15,
@@ -834,75 +1442,137 @@
       {
         "name": "Zoe_Diamond",
         "role": "Empath",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Empath"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Alex_Heller",
         "role": "Librarian",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Librarian"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Simone_Jarvis",
-        "role": "Mayor+Saint",
-        "team": "Good"
+        "role": "Saint",
+        "team": "Good",
+        "roles": [
+          "Mayor",
+          "Saint"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Olivia_Huddleston",
         "role": "Soldier",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Soldier"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Kevin_Stankiewicz",
-        "role": "Drunk+Recluse",
-        "team": "Good"
+        "role": "Recluse",
+        "team": "Good",
+        "roles": [
+          "Drunk",
+          "Recluse"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Simon_Miller",
         "role": "Slayer",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Slayer"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Geoffery_Dodd",
         "role": "Chef",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Chef"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Hannah_Swanner",
         "role": "Investigator",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Investigator"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Electra_Szmukler",
-        "role": "Fortune_teller",
-        "team": "Good"
+        "role": "Fortune_Teller",
+        "team": "Good",
+        "roles": [
+          "Fortune_Teller"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Noe_Lepez",
-        "role": "Undertaker+Evil_twin",
-        "team": "Good"
+        "role": "Evil_Twin",
+        "team": "Good",
+        "roles": [
+          "Undertaker",
+          "Evil_Twin"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Ross_Williams",
-        "role": "Pit-hag+No_dashi",
-        "team": "Evil"
+        "role": "No_Dashi",
+        "team": "Evil",
+        "roles": [
+          "Pit-hag",
+          "No_Dashi"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Jacob_Danzig",
         "role": "Vortox",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Vortox"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Michael_Dell",
         "role": "Cerenovus",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Cerenovus"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Elizabeth_Nemeti",
         "role": "Witch",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Witch"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "Sects & Violets",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 16,
@@ -911,35 +1581,61 @@
       {
         "name": "Zoe_Diamond",
         "role": "Klutz",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Klutz"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Eitan_Ghelman",
         "role": "Artist",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Artist"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Empath",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Empath"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Simone_Jarvis",
         "role": "Investigator",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Investigator"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Ross_Williams",
         "role": "Imp",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Imp"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Simon_Miller",
-        "role": "Scarlet_woman",
-        "team": "Evil"
+        "role": "Scarlet_Woman",
+        "team": "Evil",
+        "roles": [
+          "Scarlet_Woman"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "No Greater Joy",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 17,
@@ -948,65 +1644,115 @@
       {
         "name": "Devon_Boatright",
         "role": "Courtier",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Courtier"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Kevin_Stankiewicz",
         "role": "Tinker",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Tinker"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Chambermaid",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Chambermaid"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sam_Reissing",
         "role": "Gossip",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Gossip"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Colin_Calvert",
         "role": "Exorcist",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Exorcist"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Levi_Durham",
         "role": "Lunatic",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Lunatic"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Marlie_Horewitz",
         "role": "Grandmother",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Grandmother"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Geoffery_Dodd",
         "role": "Fool",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Fool"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Hannah_Swanner",
         "role": "Goon",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Goon"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sierra_Houang",
         "role": "Zombuul",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Zombuul"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Gus_Eckstein",
         "role": "Assassin",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Assassin"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Michael_Dell",
         "role": "Godfather",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Godfather"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Good"
+    "winning_team": "Good",
+    "game_mode": "Bad Moon Rising",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 18,
@@ -1015,65 +1761,115 @@
       {
         "name": "Sierra_Houang",
         "role": "Exorcist",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Exorcist"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Kevin_Stankiewicz",
         "role": "Moonchild",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Moonchild"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
-        "role": "Tea_lady",
-        "team": "Good"
+        "role": "Tea_Lady",
+        "team": "Good",
+        "roles": [
+          "Tea_Lady"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Levi_Durham",
         "role": "Goon",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Goon"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Gambler",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Gambler"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Gus_Eckstein",
         "role": "Tinker",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Tinker"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Geoffery_Dodd",
         "role": "Sailor",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Sailor"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sam_Reissing",
         "role": "Pacifist",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Pacifist"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Devon_Boatright",
         "role": "Professor",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Professor"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Marlie_Horewitz",
         "role": "Godfather",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Godfather"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Hannah_Swanner",
         "role": "Po",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Po"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Colin_Calvert",
         "role": "Assassin",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Assassin"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "Bad Moon Rising",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 19,
@@ -1082,35 +1878,61 @@
       {
         "name": "Zoe_Diamond",
         "role": "Recluse",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Recluse"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Kevin_Stankiewicz",
         "role": "Lunatic",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Lunatic"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Colin_Calvert",
         "role": "Clockmaker",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Clockmaker"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Grandmother",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Grandmother"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sam_Reissing",
         "role": "Imp",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Imp"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Levi_Durham",
         "role": "Godfather",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Godfather"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "Over the River",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 20,
@@ -1119,70 +1941,124 @@
       {
         "name": "Sam_Reissing",
         "role": "Mastermind",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Mastermind"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Geoffery_Dodd",
         "role": "Assassin",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Assassin"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Hannah_Swanner",
         "role": "Devil's_Advocate",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Devil's_Advocate"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Jacob_Danzig",
         "role": "Shabaloth",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Shabaloth"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Elizabeth_Nemeti",
         "role": "Innkeeper",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Innkeeper"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Noe_Lepez",
         "role": "Gambler",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Gambler"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Josh_Lipton",
         "role": "Professor",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Professor"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Marlie_Horewitz",
         "role": "Grandmother",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Grandmother"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Minstrel",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Minstrel"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Ham_Liu",
         "role": "Chambermaid",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Chambermaid"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Tony_Liu",
         "role": "Fool",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Fool"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Ross_Williams",
         "role": "Sailor",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Sailor"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Eliza_Kang",
         "role": "Gossip",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Gossip"
+        ],
+        "initial_team": "Good"
       }
     ],
-    "winning_team": "Good"
+    "winning_team": "Good",
+    "game_mode": "Bad Moon Rising",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 21,
@@ -1191,45 +2067,79 @@
       {
         "name": "Ross_Williams",
         "role": "Shabaloth",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Shabaloth"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Eliza_Kang",
         "role": "Devil's_Advocate",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Devil's_Advocate"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Hannah_Swanner",
         "role": "Goon",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Goon"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Marlie_Horewitz",
         "role": "Exorcist",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Exorcist"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Josh_Lipton",
         "role": "Pacifist",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Pacifist"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Sam_Reissing",
         "role": "Chambermaid",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Chambermaid"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Gambler",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Gambler"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Geoffery_Dodd",
         "role": "Gossip",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Gossip"
+        ],
+        "initial_team": "Good"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "Bad Moon Rising",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 22,
@@ -1238,70 +2148,126 @@
       {
         "name": "Ross_Williams",
         "role": "Dreamer",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Dreamer"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Alex_West",
         "role": "Sage",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Sage"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Marlie_Horewitz",
-        "role": "Town_Crier+Sweetheart",
-        "team": "Good"
+        "role": "Sweetheart",
+        "team": "Good",
+        "roles": [
+          "Town_Crier",
+          "Sweetheart"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Eliza_Kang",
         "role": "Savant",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Savant"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
-        "role": "Snake_charmer",
-        "team": "Good"
+        "role": "Snake_Charmer",
+        "team": "Good",
+        "roles": [
+          "Snake_Charmer"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Rachel_West",
         "role": "Clockmaker",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Clockmaker"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Hannah_Swanner",
         "role": "Mutant",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Mutant"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Simone_Jarvis",
         "role": "Juggler",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Juggler"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Josh_Lipton",
         "role": "Mathematician",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Mathematician"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Geoffery_Dodd",
-        "role": "Pit-Hag",
-        "team": "Evil"
+        "role": "Pit-hag",
+        "team": "Evil",
+        "roles": [
+          "Pit-hag"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Simon_Miller",
-        "role": "Witch+Vortox",
-        "team": "Evil"
+        "role": "Vortox",
+        "team": "Evil",
+        "roles": [
+          "Witch",
+          "Vortox"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Eitan_Ghelman",
         "role": "Evil_Twin",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Evil_Twin"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Michael_Dell",
         "role": "Vigormortis",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Vigormortis"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Good"
+    "winning_team": "Good",
+    "game_mode": "Sects & Violets",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 23,
@@ -1310,35 +2276,61 @@
       {
         "name": "Ross_Williams",
         "role": "Goblin",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Goblin"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Leviathan",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Leviathan"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Rachel_West",
         "role": "Balloonist",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Balloonist"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Alex_West",
         "role": "Amnesiac",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Amnesiac"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Eliza_Kang",
         "role": "Lunatic",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Lunatic"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Mutant",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Mutant"
+        ],
+        "initial_team": "Good"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "Laissez un Faire",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 24,
@@ -1347,55 +2339,97 @@
       {
         "name": "Zoe_Diamond",
         "role": "Town_Crier",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Town_Crier"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Ross_Williams",
         "role": "Oracle",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Oracle"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Eliza_Kang",
         "role": "Artist",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Artist"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Kevin_Stankiewicz",
-        "role": "Snake_charmer",
-        "team": "Good"
+        "role": "Snake_Charmer",
+        "team": "Good",
+        "roles": [
+          "Snake_Charmer"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Noe_Lepez",
         "role": "Flowergirl",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Flowergirl"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Levi_Durham",
         "role": "Philosopher",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Philosopher"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Hannah_Swanner",
         "role": "Mathematician",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Mathematician"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Max_Friedman",
         "role": "Cerenovous",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Cerenovous"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Geoffery_Dodd",
-        "role": "Evil_twin",
-        "team": "Evil"
+        "role": "Evil_Twin",
+        "team": "Evil",
+        "roles": [
+          "Evil_Twin"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Electra_Szmukler",
         "role": "No_Dashi",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "No_Dashi"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Evil"
+    "winning_team": "Evil",
+    "game_mode": "Sects & Violets",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 25,
@@ -1404,60 +2438,106 @@
       {
         "name": "Ross_Williams",
         "role": "Flowergirl",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Flowergirl"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Hannah_Swanner",
         "role": "Barber",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Barber"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Simone_Jarvis",
-        "role": "Snake_charmer",
-        "team": "Good"
+        "role": "Snake_Charmer",
+        "team": "Good",
+        "roles": [
+          "Snake_Charmer"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Mutant",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Mutant"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Noe_Lepez",
         "role": "Philosopher",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Philosopher"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Savant",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Savant"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Marlie_Horewitz",
         "role": "Sweetheart",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Sweetheart"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Geoffery_Dodd",
         "role": "Sage",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Sage"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Eitan_Ghelman",
-        "role": "Fang_gu",
-        "team": "Evil"
+        "role": "Fang_Gu",
+        "team": "Evil",
+        "roles": [
+          "Fang_Gu"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Alex_West",
         "role": "Pit-hag",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Pit-hag"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Rachel_West",
         "role": "Witch",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Witch"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Good"
+    "winning_team": "Good",
+    "game_mode": "Sects & Violets",
+    "story_teller": "Matan_Diamond"
   },
   {
     "game_id": 26,
@@ -1466,59 +2546,105 @@
       {
         "name": "Ross_Williams",
         "role": "Barber",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Barber"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Marlie_Horewitz",
         "role": "Artist",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Artist"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Geoffery_Dodd",
         "role": "Savant",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Savant"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Rachel_West",
-        "role": "Snake_charmer",
-        "team": "Good"
+        "role": "Snake_Charmer",
+        "team": "Good",
+        "roles": [
+          "Snake_Charmer"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Michael_Dell",
         "role": "Seamstress",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Seamstress"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Eitan_Ghelman",
         "role": "Clockmaker",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Clockmaker"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Zoe_Diamond",
         "role": "Juggler",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Juggler"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Simone_Jarvis",
         "role": "Oracle",
-        "team": "Good"
+        "team": "Good",
+        "roles": [
+          "Oracle"
+        ],
+        "initial_team": "Good"
       },
       {
         "name": "Alex_West",
-        "role": "Evil_twin",
-        "team": "Evil"
+        "role": "Evil_Twin",
+        "team": "Evil",
+        "roles": [
+          "Evil_Twin"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Hannah_Swanner",
         "role": "Cerenovus",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Cerenovus"
+        ],
+        "initial_team": "Evil"
       },
       {
         "name": "Noe_Lepez",
         "role": "Vortox",
-        "team": "Evil"
+        "team": "Evil",
+        "roles": [
+          "Vortox"
+        ],
+        "initial_team": "Evil"
       }
     ],
-    "winning_team": "Good"
+    "winning_team": "Good",
+    "game_mode": "Sects & Violets",
+    "story_teller": "Matan_Diamond"
   }
 ]

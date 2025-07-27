@@ -180,7 +180,11 @@
         "role": "Tea_Lady",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.0
+        "rating_after": 1484.0,
+        "initial_team": "Good",
+        "roles": [
+          "Tea_Lady"
+        ]
       },
       {
         "game_number": 2,
@@ -189,7 +193,11 @@
         "role": "Chambermaid",
         "win": true,
         "rating_before": 1484.0,
-        "rating_after": 1501.155854337658
+        "rating_after": 1501.155854337658,
+        "initial_team": "Good",
+        "roles": [
+          "Chambermaid"
+        ]
       },
       {
         "game_number": 3,
@@ -198,7 +206,11 @@
         "role": "Chambermaid",
         "win": false,
         "rating_before": 1501.155854337658,
-        "rating_after": 1485.2636484566606
+        "rating_after": 1485.2636484566606,
+        "initial_team": "Good",
+        "roles": [
+          "Chambermaid"
+        ]
       },
       {
         "game_number": 4,
@@ -207,7 +219,11 @@
         "role": "Fool",
         "win": false,
         "rating_before": 1485.2636484566606,
-        "rating_after": 1469.7204616876058
+        "rating_after": 1469.7204616876058,
+        "initial_team": "Good",
+        "roles": [
+          "Fool"
+        ]
       },
       {
         "game_number": 7,
@@ -216,7 +232,11 @@
         "role": "Drunk",
         "win": true,
         "rating_before": 1469.7204616876058,
-        "rating_after": 1485.7783012551433
+        "rating_after": 1485.7783012551433,
+        "initial_team": "Good",
+        "roles": [
+          "Drunk"
+        ]
       },
       {
         "game_number": 8,
@@ -225,7 +245,11 @@
         "role": "Ravenkeeper",
         "win": false,
         "rating_before": 1485.7783012551433,
-        "rating_after": 1469.8589292918311
+        "rating_after": 1469.8589292918311,
+        "initial_team": "Good",
+        "roles": [
+          "Ravenkeeper"
+        ]
       },
       {
         "game_number": 9,
@@ -234,7 +258,11 @@
         "role": "Poisoner",
         "win": false,
         "rating_before": 1469.8589292918311,
-        "rating_after": 1453.7968804817303
+        "rating_after": 1453.7968804817303,
+        "initial_team": "Evil",
+        "roles": [
+          "Poisoner"
+        ]
       },
       {
         "game_number": 10,
@@ -243,7 +271,11 @@
         "role": "Imp",
         "win": true,
         "rating_before": 1453.7968804817303,
-        "rating_after": 1471.5957957856872
+        "rating_after": 1471.5957957856872,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
       },
       {
         "game_number": 11,
@@ -252,16 +284,24 @@
         "role": "Imp",
         "win": false,
         "rating_before": 1471.5957957856872,
-        "rating_after": 1455.8928085842763
+        "rating_after": 1455.8928085842763,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
       },
       {
         "game_number": 12,
         "date": "2025-05-10 18:46:32",
         "team": "Evil",
-        "role": "Scarlet_woman",
+        "role": "Scarlet_Woman",
         "win": false,
         "rating_before": 1455.8928085842763,
-        "rating_after": 1441.1045125005173
+        "rating_after": 1441.1045125005173,
+        "initial_team": "Evil",
+        "roles": [
+          "Scarlet_Woman"
+        ]
       },
       {
         "game_number": 13,
@@ -270,7 +310,11 @@
         "role": "Ravenkeeper",
         "win": false,
         "rating_before": 1441.1045125005173,
-        "rating_after": 1425.0742337733016
+        "rating_after": 1425.0742337733016,
+        "initial_team": "Good",
+        "roles": [
+          "Ravenkeeper"
+        ]
       },
       {
         "game_number": 14,
@@ -279,16 +323,25 @@
         "role": "Ravenkeeper",
         "win": true,
         "rating_before": 1425.0742337733016,
-        "rating_after": 1441.3184387115734
+        "rating_after": 1441.3184387115734,
+        "initial_team": "Good",
+        "roles": [
+          "Ravenkeeper"
+        ]
       },
       {
         "game_number": 15,
         "date": "2025-05-26 10:56:55",
         "team": "Evil",
-        "role": "Pit_hag+No_dashi",
+        "role": "No_Dashi",
         "win": true,
         "rating_before": 1441.3184387115734,
-        "rating_after": 1457.6351835897876
+        "rating_after": 1457.6351835897876,
+        "initial_team": "Evil",
+        "roles": [
+          "Pit-hag",
+          "No_Dashi"
+        ]
       },
       {
         "game_number": 16,
@@ -297,7 +350,11 @@
         "role": "Imp",
         "win": true,
         "rating_before": 1457.6351835897876,
-        "rating_after": 1475.658320317514
+        "rating_after": 1475.658320317514,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
       },
       {
         "game_number": 20,
@@ -306,7 +363,11 @@
         "role": "Sailor",
         "win": true,
         "rating_before": 1475.658320317514,
-        "rating_after": 1491.9129780782966
+        "rating_after": 1491.9129780782966,
+        "initial_team": "Good",
+        "roles": [
+          "Sailor"
+        ]
       },
       {
         "game_number": 21,
@@ -315,7 +376,11 @@
         "role": "Shabaloth",
         "win": true,
         "rating_before": 1491.9129780782966,
-        "rating_after": 1507.2116417611526
+        "rating_after": 1507.2116417611526,
+        "initial_team": "Evil",
+        "roles": [
+          "Shabaloth"
+        ]
       },
       {
         "game_number": 22,
@@ -324,7 +389,11 @@
         "role": "Dreamer",
         "win": true,
         "rating_before": 1507.2116417611526,
-        "rating_after": 1521.850161686393
+        "rating_after": 1521.850161686393,
+        "initial_team": "Good",
+        "roles": [
+          "Dreamer"
+        ]
       },
       {
         "game_number": 23,
@@ -333,7 +402,11 @@
         "role": "Goblin",
         "win": true,
         "rating_before": 1521.850161686393,
-        "rating_after": 1538.9780339348717
+        "rating_after": 1538.9780339348717,
+        "initial_team": "Evil",
+        "roles": [
+          "Goblin"
+        ]
       },
       {
         "game_number": 24,
@@ -342,7 +415,11 @@
         "role": "Oracle",
         "win": false,
         "rating_before": 1538.9780339348717,
-        "rating_after": 1519.6800471737934
+        "rating_after": 1519.6800471737934,
+        "initial_team": "Good",
+        "roles": [
+          "Oracle"
+        ]
       },
       {
         "game_number": 25,
@@ -351,7 +428,11 @@
         "role": "Flowergirl",
         "win": true,
         "rating_before": 1519.6800471737934,
-        "rating_after": 1535.625114658419
+        "rating_after": 1535.625114658419,
+        "initial_team": "Good",
+        "roles": [
+          "Flowergirl"
+        ]
       },
       {
         "game_number": 26,
@@ -360,7 +441,11 @@
         "role": "Barber",
         "win": true,
         "rating_before": 1535.625114658419,
-        "rating_after": 1553.3678874775783
+        "rating_after": 1553.3678874775783,
+        "initial_team": "Good",
+        "roles": [
+          "Barber"
+        ]
       }
     ]
   },
@@ -449,7 +534,11 @@
         "role": "Gossip",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.0
+        "rating_after": 1484.0,
+        "initial_team": "Good",
+        "roles": [
+          "Gossip"
+        ]
       },
       {
         "game_number": 2,
@@ -458,7 +547,11 @@
         "role": "Tinker",
         "win": true,
         "rating_before": 1484.0,
-        "rating_after": 1501.155854337658
+        "rating_after": 1501.155854337658,
+        "initial_team": "Good",
+        "roles": [
+          "Tinker"
+        ]
       },
       {
         "game_number": 7,
@@ -467,7 +560,11 @@
         "role": "Butler",
         "win": true,
         "rating_before": 1501.155854337658,
-        "rating_after": 1517.2136939051954
+        "rating_after": 1517.2136939051954,
+        "initial_team": "Good",
+        "roles": [
+          "Butler"
+        ]
       },
       {
         "game_number": 8,
@@ -476,7 +573,11 @@
         "role": "Slayer",
         "win": false,
         "rating_before": 1517.2136939051954,
-        "rating_after": 1501.2943219418833
+        "rating_after": 1501.2943219418833,
+        "initial_team": "Good",
+        "roles": [
+          "Slayer"
+        ]
       },
       {
         "game_number": 9,
@@ -485,7 +586,11 @@
         "role": "Imp",
         "win": false,
         "rating_before": 1501.2943219418833,
-        "rating_after": 1485.2322731317824
+        "rating_after": 1485.2322731317824,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
       },
       {
         "game_number": 16,
@@ -494,7 +599,11 @@
         "role": "Artist",
         "win": false,
         "rating_before": 1485.2322731317824,
-        "rating_after": 1467.2091364040562
+        "rating_after": 1467.2091364040562,
+        "initial_team": "Good",
+        "roles": [
+          "Artist"
+        ]
       },
       {
         "game_number": 22,
@@ -503,16 +612,24 @@
         "role": "Evil_Twin",
         "win": false,
         "rating_before": 1467.2091364040562,
-        "rating_after": 1452.5706164788157
+        "rating_after": 1452.5706164788157,
+        "initial_team": "Evil",
+        "roles": [
+          "Evil_Twin"
+        ]
       },
       {
         "game_number": 25,
         "date": "2025-07-13 12:55:11",
         "team": "Evil",
-        "role": "Fang_gu",
+        "role": "Fang_Gu",
         "win": false,
         "rating_before": 1452.5706164788157,
-        "rating_after": 1436.62554899419
+        "rating_after": 1436.62554899419,
+        "initial_team": "Evil",
+        "roles": [
+          "Fang_Gu"
+        ]
       },
       {
         "game_number": 26,
@@ -521,7 +638,11 @@
         "role": "Clockmaker",
         "win": true,
         "rating_before": 1436.62554899419,
-        "rating_after": 1454.3683218133492
+        "rating_after": 1454.3683218133492,
+        "initial_team": "Good",
+        "roles": [
+          "Clockmaker"
+        ]
       }
     ]
   },
@@ -666,7 +787,11 @@
         "role": "Minstrel",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.0
+        "rating_after": 1484.0,
+        "initial_team": "Good",
+        "roles": [
+          "Minstrel"
+        ]
       },
       {
         "game_number": 2,
@@ -675,7 +800,11 @@
         "role": "Moonchild",
         "win": true,
         "rating_before": 1484.0,
-        "rating_after": 1501.155854337658
+        "rating_after": 1501.155854337658,
+        "initial_team": "Good",
+        "roles": [
+          "Moonchild"
+        ]
       },
       {
         "game_number": 3,
@@ -684,7 +813,11 @@
         "role": "Tea_Lady",
         "win": false,
         "rating_before": 1501.155854337658,
-        "rating_after": 1485.2636484566606
+        "rating_after": 1485.2636484566606,
+        "initial_team": "Good",
+        "roles": [
+          "Tea_Lady"
+        ]
       },
       {
         "game_number": 4,
@@ -693,7 +826,11 @@
         "role": "Gossip",
         "win": false,
         "rating_before": 1485.2636484566606,
-        "rating_after": 1469.7204616876058
+        "rating_after": 1469.7204616876058,
+        "initial_team": "Good",
+        "roles": [
+          "Gossip"
+        ]
       },
       {
         "game_number": 7,
@@ -702,7 +839,11 @@
         "role": "Ravenkeeper",
         "win": true,
         "rating_before": 1469.7204616876058,
-        "rating_after": 1485.7783012551433
+        "rating_after": 1485.7783012551433,
+        "initial_team": "Good",
+        "roles": [
+          "Ravenkeeper"
+        ]
       },
       {
         "game_number": 8,
@@ -711,7 +852,11 @@
         "role": "Empath",
         "win": false,
         "rating_before": 1485.7783012551433,
-        "rating_after": 1469.8589292918311
+        "rating_after": 1469.8589292918311,
+        "initial_team": "Good",
+        "roles": [
+          "Empath"
+        ]
       },
       {
         "game_number": 9,
@@ -720,7 +865,11 @@
         "role": "Butler",
         "win": true,
         "rating_before": 1469.8589292918311,
-        "rating_after": 1485.920978101932
+        "rating_after": 1485.920978101932,
+        "initial_team": "Good",
+        "roles": [
+          "Butler"
+        ]
       },
       {
         "game_number": 10,
@@ -729,7 +878,11 @@
         "role": "Artist",
         "win": false,
         "rating_before": 1485.920978101932,
-        "rating_after": 1468.122062797975
+        "rating_after": 1468.122062797975,
+        "initial_team": "Good",
+        "roles": [
+          "Artist"
+        ]
       },
       {
         "game_number": 11,
@@ -738,7 +891,11 @@
         "role": "Sage",
         "win": true,
         "rating_before": 1468.122062797975,
-        "rating_after": 1483.825049999386
+        "rating_after": 1483.825049999386,
+        "initial_team": "Good",
+        "roles": [
+          "Sage"
+        ]
       },
       {
         "game_number": 12,
@@ -747,7 +904,11 @@
         "role": "Chambermaid",
         "win": true,
         "rating_before": 1483.825049999386,
-        "rating_after": 1498.613346083145
+        "rating_after": 1498.613346083145,
+        "initial_team": "Good",
+        "roles": [
+          "Chambermaid"
+        ]
       },
       {
         "game_number": 13,
@@ -756,7 +917,11 @@
         "role": "Undertaker",
         "win": false,
         "rating_before": 1498.613346083145,
-        "rating_after": 1482.5830673559292
+        "rating_after": 1482.5830673559292,
+        "initial_team": "Good",
+        "roles": [
+          "Undertaker"
+        ]
       },
       {
         "game_number": 17,
@@ -765,7 +930,11 @@
         "role": "Gossip",
         "win": true,
         "rating_before": 1482.5830673559292,
-        "rating_after": 1499.1958753881293
+        "rating_after": 1499.1958753881293,
+        "initial_team": "Good",
+        "roles": [
+          "Gossip"
+        ]
       },
       {
         "game_number": 18,
@@ -774,7 +943,11 @@
         "role": "Pacifist",
         "win": false,
         "rating_before": 1499.1958753881293,
-        "rating_after": 1482.7712275264282
+        "rating_after": 1482.7712275264282,
+        "initial_team": "Good",
+        "roles": [
+          "Pacifist"
+        ]
       },
       {
         "game_number": 19,
@@ -783,7 +956,11 @@
         "role": "Imp",
         "win": true,
         "rating_before": 1482.7712275264282,
-        "rating_after": 1499.431826697843
+        "rating_after": 1499.431826697843,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
       },
       {
         "game_number": 20,
@@ -792,7 +969,11 @@
         "role": "Mastermind",
         "win": false,
         "rating_before": 1499.431826697843,
-        "rating_after": 1483.1771689370603
+        "rating_after": 1483.1771689370603,
+        "initial_team": "Evil",
+        "roles": [
+          "Mastermind"
+        ]
       },
       {
         "game_number": 21,
@@ -801,7 +982,11 @@
         "role": "Chambermaid",
         "win": false,
         "rating_before": 1483.1771689370603,
-        "rating_after": 1467.8785052542044
+        "rating_after": 1467.8785052542044,
+        "initial_team": "Good",
+        "roles": [
+          "Chambermaid"
+        ]
       }
     ]
   },
@@ -882,7 +1067,11 @@
         "role": "Professor",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.0
+        "rating_after": 1484.0,
+        "initial_team": "Good",
+        "roles": [
+          "Professor"
+        ]
       },
       {
         "game_number": 2,
@@ -891,7 +1080,11 @@
         "role": "Sailor",
         "win": true,
         "rating_before": 1484.0,
-        "rating_after": 1501.155854337658
+        "rating_after": 1501.155854337658,
+        "initial_team": "Good",
+        "roles": [
+          "Sailor"
+        ]
       },
       {
         "game_number": 3,
@@ -900,7 +1093,11 @@
         "role": "Devil's_Advocate",
         "win": true,
         "rating_before": 1501.155854337658,
-        "rating_after": 1517.0480602186553
+        "rating_after": 1517.0480602186553,
+        "initial_team": "Evil",
+        "roles": [
+          "Devil's_Advocate"
+        ]
       },
       {
         "game_number": 4,
@@ -909,7 +1106,11 @@
         "role": "Assassin",
         "win": true,
         "rating_before": 1517.0480602186553,
-        "rating_after": 1532.59124698771
+        "rating_after": 1532.59124698771,
+        "initial_team": "Evil",
+        "roles": [
+          "Assassin"
+        ]
       },
       {
         "game_number": 22,
@@ -918,7 +1119,11 @@
         "role": "Sage",
         "win": true,
         "rating_before": 1532.59124698771,
-        "rating_after": 1547.2297669129505
+        "rating_after": 1547.2297669129505,
+        "initial_team": "Good",
+        "roles": [
+          "Sage"
+        ]
       },
       {
         "game_number": 23,
@@ -927,7 +1132,11 @@
         "role": "Amnesiac",
         "win": false,
         "rating_before": 1547.2297669129505,
-        "rating_after": 1530.1018946644717
+        "rating_after": 1530.1018946644717,
+        "initial_team": "Good",
+        "roles": [
+          "Amnesiac"
+        ]
       },
       {
         "game_number": 25,
@@ -936,16 +1145,24 @@
         "role": "Pit-hag",
         "win": false,
         "rating_before": 1530.1018946644717,
-        "rating_after": 1514.156827179846
+        "rating_after": 1514.156827179846,
+        "initial_team": "Evil",
+        "roles": [
+          "Pit-hag"
+        ]
       },
       {
         "game_number": 26,
         "date": "2025-07-13 13:02:59",
         "team": "Evil",
-        "role": "Evil_twin",
+        "role": "Evil_Twin",
         "win": false,
         "rating_before": 1514.156827179846,
-        "rating_after": 1496.4140543606868
+        "rating_after": 1496.4140543606868,
+        "initial_team": "Evil",
+        "roles": [
+          "Evil_Twin"
+        ]
       }
     ]
   },
@@ -1002,7 +1219,11 @@
         "role": "Exorcist",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.0
+        "rating_after": 1484.0,
+        "initial_team": "Good",
+        "roles": [
+          "Exorcist"
+        ]
       },
       {
         "game_number": 3,
@@ -1011,7 +1232,11 @@
         "role": "Pacifist",
         "win": false,
         "rating_before": 1484.0,
-        "rating_after": 1468.1077941190026
+        "rating_after": 1468.1077941190026,
+        "initial_team": "Good",
+        "roles": [
+          "Pacifist"
+        ]
       },
       {
         "game_number": 4,
@@ -1020,7 +1245,11 @@
         "role": "Gambler",
         "win": false,
         "rating_before": 1468.1077941190026,
-        "rating_after": 1452.564607349948
+        "rating_after": 1452.564607349948,
+        "initial_team": "Good",
+        "roles": [
+          "Gambler"
+        ]
       },
       {
         "game_number": 7,
@@ -1029,7 +1258,11 @@
         "role": "Poisoner",
         "win": false,
         "rating_before": 1452.564607349948,
-        "rating_after": 1436.5067677824104
+        "rating_after": 1436.5067677824104,
+        "initial_team": "Evil",
+        "roles": [
+          "Poisoner"
+        ]
       },
       {
         "game_number": 9,
@@ -1038,7 +1271,11 @@
         "role": "Chef",
         "win": true,
         "rating_before": 1436.5067677824104,
-        "rating_after": 1452.5688165925112
+        "rating_after": 1452.5688165925112,
+        "initial_team": "Good",
+        "roles": [
+          "Chef"
+        ]
       }
     ]
   },
@@ -1239,7 +1476,11 @@
         "role": "Grandmother",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.0
+        "rating_after": 1484.0,
+        "initial_team": "Good",
+        "roles": [
+          "Grandmother"
+        ]
       },
       {
         "game_number": 2,
@@ -1248,7 +1489,11 @@
         "role": "Innkeeper",
         "win": true,
         "rating_before": 1484.0,
-        "rating_after": 1501.155854337658
+        "rating_after": 1501.155854337658,
+        "initial_team": "Good",
+        "roles": [
+          "Innkeeper"
+        ]
       },
       {
         "game_number": 3,
@@ -1257,7 +1502,9 @@
         "role": "",
         "win": false,
         "rating_before": 1501.155854337658,
-        "rating_after": 1485.2636484566606
+        "rating_after": 1485.2636484566606,
+        "initial_team": "Good",
+        "roles": []
       },
       {
         "game_number": 4,
@@ -1266,7 +1513,11 @@
         "role": "Pukka",
         "win": true,
         "rating_before": 1485.2636484566606,
-        "rating_after": 1500.8068352257153
+        "rating_after": 1500.8068352257153,
+        "initial_team": "Evil",
+        "roles": [
+          "Pukka"
+        ]
       },
       {
         "game_number": 5,
@@ -1275,7 +1526,11 @@
         "role": "Virgin",
         "win": true,
         "rating_before": 1500.8068352257153,
-        "rating_after": 1516.8031196122556
+        "rating_after": 1516.8031196122556,
+        "initial_team": "Good",
+        "roles": [
+          "Virgin"
+        ]
       },
       {
         "game_number": 6,
@@ -1284,7 +1539,11 @@
         "role": "Recluse",
         "win": false,
         "rating_before": 1516.8031196122556,
-        "rating_after": 1499.8429063090382
+        "rating_after": 1499.8429063090382,
+        "initial_team": "Good",
+        "roles": [
+          "Recluse"
+        ]
       },
       {
         "game_number": 7,
@@ -1293,7 +1552,11 @@
         "role": "Washerwoman",
         "win": true,
         "rating_before": 1499.8429063090382,
-        "rating_after": 1515.9007458765757
+        "rating_after": 1515.9007458765757,
+        "initial_team": "Good",
+        "roles": [
+          "Washerwoman"
+        ]
       },
       {
         "game_number": 10,
@@ -1302,7 +1565,11 @@
         "role": "Chambermaid",
         "win": false,
         "rating_before": 1515.9007458765757,
-        "rating_after": 1498.1018305726188
+        "rating_after": 1498.1018305726188,
+        "initial_team": "Good",
+        "roles": [
+          "Chambermaid"
+        ]
       },
       {
         "game_number": 11,
@@ -1311,7 +1578,11 @@
         "role": "Klutz",
         "win": true,
         "rating_before": 1498.1018305726188,
-        "rating_after": 1513.8048177740297
+        "rating_after": 1513.8048177740297,
+        "initial_team": "Good",
+        "roles": [
+          "Klutz"
+        ]
       },
       {
         "game_number": 12,
@@ -1320,7 +1591,11 @@
         "role": "Imp",
         "win": false,
         "rating_before": 1513.8048177740297,
-        "rating_after": 1499.0165216902708
+        "rating_after": 1499.0165216902708,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
       },
       {
         "game_number": 14,
@@ -1329,7 +1604,11 @@
         "role": "Mayor",
         "win": true,
         "rating_before": 1499.0165216902708,
-        "rating_after": 1515.2607266285427
+        "rating_after": 1515.2607266285427,
+        "initial_team": "Good",
+        "roles": [
+          "Mayor"
+        ]
       },
       {
         "game_number": 15,
@@ -1338,7 +1617,11 @@
         "role": "Empath",
         "win": false,
         "rating_before": 1515.2607266285427,
-        "rating_after": 1498.9439817503285
+        "rating_after": 1498.9439817503285,
+        "initial_team": "Good",
+        "roles": [
+          "Empath"
+        ]
       },
       {
         "game_number": 16,
@@ -1347,7 +1630,11 @@
         "role": "Klutz",
         "win": false,
         "rating_before": 1498.9439817503285,
-        "rating_after": 1480.9208450226022
+        "rating_after": 1480.9208450226022,
+        "initial_team": "Good",
+        "roles": [
+          "Klutz"
+        ]
       },
       {
         "game_number": 17,
@@ -1356,16 +1643,24 @@
         "role": "Chambermaid",
         "win": true,
         "rating_before": 1480.9208450226022,
-        "rating_after": 1497.5336530548022
+        "rating_after": 1497.5336530548022,
+        "initial_team": "Good",
+        "roles": [
+          "Chambermaid"
+        ]
       },
       {
         "game_number": 18,
         "date": "2025-06-05 17:01:32",
         "team": "Good",
-        "role": "Tea_lady",
+        "role": "Tea_Lady",
         "win": false,
         "rating_before": 1497.5336530548022,
-        "rating_after": 1481.1090051931012
+        "rating_after": 1481.1090051931012,
+        "initial_team": "Good",
+        "roles": [
+          "Tea_Lady"
+        ]
       },
       {
         "game_number": 19,
@@ -1374,7 +1669,11 @@
         "role": "Recluse",
         "win": false,
         "rating_before": 1481.1090051931012,
-        "rating_after": 1464.4484060216864
+        "rating_after": 1464.4484060216864,
+        "initial_team": "Good",
+        "roles": [
+          "Recluse"
+        ]
       },
       {
         "game_number": 20,
@@ -1383,7 +1682,11 @@
         "role": "Minstrel",
         "win": true,
         "rating_before": 1464.4484060216864,
-        "rating_after": 1480.7030637824691
+        "rating_after": 1480.7030637824691,
+        "initial_team": "Good",
+        "roles": [
+          "Minstrel"
+        ]
       },
       {
         "game_number": 21,
@@ -1392,16 +1695,24 @@
         "role": "Gambler",
         "win": false,
         "rating_before": 1480.7030637824691,
-        "rating_after": 1465.4044000996132
+        "rating_after": 1465.4044000996132,
+        "initial_team": "Good",
+        "roles": [
+          "Gambler"
+        ]
       },
       {
         "game_number": 22,
         "date": "2025-06-23 11:01:35",
         "team": "Good",
-        "role": "Snake_charmer",
+        "role": "Snake_Charmer",
         "win": true,
         "rating_before": 1465.4044000996132,
-        "rating_after": 1480.0429200248536
+        "rating_after": 1480.0429200248536,
+        "initial_team": "Good",
+        "roles": [
+          "Snake_Charmer"
+        ]
       },
       {
         "game_number": 23,
@@ -1410,7 +1721,11 @@
         "role": "Leviathan",
         "win": true,
         "rating_before": 1480.0429200248536,
-        "rating_after": 1497.1707922733324
+        "rating_after": 1497.1707922733324,
+        "initial_team": "Evil",
+        "roles": [
+          "Leviathan"
+        ]
       },
       {
         "game_number": 24,
@@ -1419,7 +1734,11 @@
         "role": "Town_Crier",
         "win": false,
         "rating_before": 1497.1707922733324,
-        "rating_after": 1477.872805512254
+        "rating_after": 1477.872805512254,
+        "initial_team": "Good",
+        "roles": [
+          "Town_Crier"
+        ]
       },
       {
         "game_number": 25,
@@ -1428,7 +1747,11 @@
         "role": "Mutant",
         "win": true,
         "rating_before": 1477.872805512254,
-        "rating_after": 1493.8178729968797
+        "rating_after": 1493.8178729968797,
+        "initial_team": "Good",
+        "roles": [
+          "Mutant"
+        ]
       },
       {
         "game_number": 26,
@@ -1437,7 +1760,11 @@
         "role": "Juggler",
         "win": true,
         "rating_before": 1493.8178729968797,
-        "rating_after": 1511.560645816039
+        "rating_after": 1511.560645816039,
+        "initial_team": "Good",
+        "roles": [
+          "Juggler"
+        ]
       }
     ]
   },
@@ -1526,7 +1853,11 @@
         "role": "Devil's_Advocate",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1516.0
+        "rating_after": 1516.0,
+        "initial_team": "Evil",
+        "roles": [
+          "Devil's_Advocate"
+        ]
       },
       {
         "game_number": 2,
@@ -1535,7 +1866,11 @@
         "role": "Lunatic",
         "win": true,
         "rating_before": 1516.0,
-        "rating_after": 1533.155854337658
+        "rating_after": 1533.155854337658,
+        "initial_team": "Good",
+        "roles": [
+          "Lunatic"
+        ]
       },
       {
         "game_number": 7,
@@ -1544,7 +1879,11 @@
         "role": "Imp",
         "win": false,
         "rating_before": 1533.155854337658,
-        "rating_after": 1517.0980147701205
+        "rating_after": 1517.0980147701205,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
       },
       {
         "game_number": 14,
@@ -1553,16 +1892,25 @@
         "role": "Cerenovus",
         "win": false,
         "rating_before": 1517.0980147701205,
-        "rating_after": 1500.8538098318486
+        "rating_after": 1500.8538098318486,
+        "initial_team": "Evil",
+        "roles": [
+          "Cerenovus"
+        ]
       },
       {
         "game_number": 15,
         "date": "2025-05-26 10:56:55",
         "team": "Good",
-        "role": "Mayor+Saint",
+        "role": "Saint",
         "win": false,
         "rating_before": 1500.8538098318486,
-        "rating_after": 1484.5370649536344
+        "rating_after": 1484.5370649536344,
+        "initial_team": "Good",
+        "roles": [
+          "Mayor",
+          "Saint"
+        ]
       },
       {
         "game_number": 16,
@@ -1571,7 +1919,11 @@
         "role": "Investigator",
         "win": false,
         "rating_before": 1484.5370649536344,
-        "rating_after": 1466.513928225908
+        "rating_after": 1466.513928225908,
+        "initial_team": "Good",
+        "roles": [
+          "Investigator"
+        ]
       },
       {
         "game_number": 22,
@@ -1580,16 +1932,24 @@
         "role": "Juggler",
         "win": true,
         "rating_before": 1466.513928225908,
-        "rating_after": 1481.1524481511485
+        "rating_after": 1481.1524481511485,
+        "initial_team": "Good",
+        "roles": [
+          "Juggler"
+        ]
       },
       {
         "game_number": 25,
         "date": "2025-07-13 12:55:11",
         "team": "Good",
-        "role": "Snakecharmer",
+        "role": "Snake_Charmer",
         "win": true,
         "rating_before": 1481.1524481511485,
-        "rating_after": 1497.0975156357742
+        "rating_after": 1497.0975156357742,
+        "initial_team": "Good",
+        "roles": [
+          "Snake_Charmer"
+        ]
       },
       {
         "game_number": 26,
@@ -1598,7 +1958,11 @@
         "role": "Oracle",
         "win": true,
         "rating_before": 1497.0975156357742,
-        "rating_after": 1514.8402884549334
+        "rating_after": 1514.8402884549334,
+        "initial_team": "Good",
+        "roles": [
+          "Oracle"
+        ]
       }
     ]
   },
@@ -1663,7 +2027,11 @@
         "role": "Shabaloth",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1516.0
+        "rating_after": 1516.0,
+        "initial_team": "Evil",
+        "roles": [
+          "Shabaloth"
+        ]
       },
       {
         "game_number": 2,
@@ -1672,7 +2040,11 @@
         "role": "Zombuul",
         "win": false,
         "rating_before": 1516.0,
-        "rating_after": 1498.844145662342
+        "rating_after": 1498.844145662342,
+        "initial_team": "Evil",
+        "roles": [
+          "Zombuul"
+        ]
       },
       {
         "game_number": 22,
@@ -1681,7 +2053,11 @@
         "role": "Clockmaker",
         "win": true,
         "rating_before": 1498.844145662342,
-        "rating_after": 1513.4826655875825
+        "rating_after": 1513.4826655875825,
+        "initial_team": "Good",
+        "roles": [
+          "Clockmaker"
+        ]
       },
       {
         "game_number": 23,
@@ -1690,7 +2066,11 @@
         "role": "Balloonist",
         "win": false,
         "rating_before": 1513.4826655875825,
-        "rating_after": 1496.3547933391037
+        "rating_after": 1496.3547933391037,
+        "initial_team": "Good",
+        "roles": [
+          "Balloonist"
+        ]
       },
       {
         "game_number": 25,
@@ -1699,16 +2079,24 @@
         "role": "Witch",
         "win": false,
         "rating_before": 1496.3547933391037,
-        "rating_after": 1480.409725854478
+        "rating_after": 1480.409725854478,
+        "initial_team": "Evil",
+        "roles": [
+          "Witch"
+        ]
       },
       {
         "game_number": 26,
         "date": "2025-07-13 13:02:59",
         "team": "Good",
-        "role": "Snake_charmer",
+        "role": "Snake_Charmer",
         "win": true,
         "rating_before": 1480.409725854478,
-        "rating_after": 1498.1524986736372
+        "rating_after": 1498.1524986736372,
+        "initial_team": "Good",
+        "roles": [
+          "Snake_Charmer"
+        ]
       }
     ]
   },
@@ -1885,7 +2273,11 @@
         "role": "Goon",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1516.0
+        "rating_after": 1516.0,
+        "initial_team": "Evil",
+        "roles": [
+          "Goon"
+        ]
       },
       {
         "game_number": 2,
@@ -1894,7 +2286,11 @@
         "role": "Godfather",
         "win": false,
         "rating_before": 1516.0,
-        "rating_after": 1498.844145662342
+        "rating_after": 1498.844145662342,
+        "initial_team": "Evil",
+        "roles": [
+          "Godfather"
+        ]
       },
       {
         "game_number": 3,
@@ -1903,7 +2299,11 @@
         "role": "Sailor",
         "win": false,
         "rating_before": 1498.844145662342,
-        "rating_after": 1482.9519397813447
+        "rating_after": 1482.9519397813447,
+        "initial_team": "Good",
+        "roles": [
+          "Sailor"
+        ]
       },
       {
         "game_number": 7,
@@ -1912,7 +2312,11 @@
         "role": "Librarian",
         "win": true,
         "rating_before": 1482.9519397813447,
-        "rating_after": 1499.0097793488821
+        "rating_after": 1499.0097793488821,
+        "initial_team": "Good",
+        "roles": [
+          "Librarian"
+        ]
       },
       {
         "game_number": 8,
@@ -1921,7 +2325,11 @@
         "role": "Imp",
         "win": true,
         "rating_before": 1499.0097793488821,
-        "rating_after": 1514.9291513121943
+        "rating_after": 1514.9291513121943,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
       },
       {
         "game_number": 9,
@@ -1930,7 +2338,11 @@
         "role": "Monk",
         "win": true,
         "rating_before": 1514.9291513121943,
-        "rating_after": 1530.9912001222951
+        "rating_after": 1530.9912001222951,
+        "initial_team": "Good",
+        "roles": [
+          "Monk"
+        ]
       },
       {
         "game_number": 10,
@@ -1939,7 +2351,11 @@
         "role": "Klutz",
         "win": false,
         "rating_before": 1530.9912001222951,
-        "rating_after": 1513.1922848183383
+        "rating_after": 1513.1922848183383,
+        "initial_team": "Good",
+        "roles": [
+          "Klutz"
+        ]
       },
       {
         "game_number": 11,
@@ -1948,7 +2364,11 @@
         "role": "Investigator",
         "win": true,
         "rating_before": 1513.1922848183383,
-        "rating_after": 1528.8952720197492
+        "rating_after": 1528.8952720197492,
+        "initial_team": "Good",
+        "roles": [
+          "Investigator"
+        ]
       },
       {
         "game_number": 12,
@@ -1957,7 +2377,11 @@
         "role": "Clockmaker",
         "win": true,
         "rating_before": 1528.8952720197492,
-        "rating_after": 1543.6835681035082
+        "rating_after": 1543.6835681035082,
+        "initial_team": "Good",
+        "roles": [
+          "Clockmaker"
+        ]
       },
       {
         "game_number": 13,
@@ -1966,16 +2390,24 @@
         "role": "Butler",
         "win": false,
         "rating_before": 1543.6835681035082,
-        "rating_after": 1527.6532893762924
+        "rating_after": 1527.6532893762924,
+        "initial_team": "Good",
+        "roles": [
+          "Butler"
+        ]
       },
       {
         "game_number": 14,
         "date": "2025-05-26 10:44:53",
         "team": "Good",
-        "role": "Bone_collector",
+        "role": "Bone_Collector",
         "win": true,
         "rating_before": 1527.6532893762924,
-        "rating_after": 1543.8974943145643
+        "rating_after": 1543.8974943145643,
+        "initial_team": "Good",
+        "roles": [
+          "Bone_Collector"
+        ]
       },
       {
         "game_number": 15,
@@ -1984,7 +2416,11 @@
         "role": "Cerenovus",
         "win": true,
         "rating_before": 1543.8974943145643,
-        "rating_after": 1560.2142391927785
+        "rating_after": 1560.2142391927785,
+        "initial_team": "Evil",
+        "roles": [
+          "Cerenovus"
+        ]
       },
       {
         "game_number": 16,
@@ -1993,7 +2429,11 @@
         "role": "Empath",
         "win": false,
         "rating_before": 1560.2142391927785,
-        "rating_after": 1542.1911024650522
+        "rating_after": 1542.1911024650522,
+        "initial_team": "Good",
+        "roles": [
+          "Empath"
+        ]
       },
       {
         "game_number": 17,
@@ -2002,7 +2442,11 @@
         "role": "Godfather",
         "win": false,
         "rating_before": 1542.1911024650522,
-        "rating_after": 1525.578294432852
+        "rating_after": 1525.578294432852,
+        "initial_team": "Evil",
+        "roles": [
+          "Godfather"
+        ]
       },
       {
         "game_number": 18,
@@ -2011,7 +2455,11 @@
         "role": "Gambler",
         "win": false,
         "rating_before": 1525.578294432852,
-        "rating_after": 1509.153646571151
+        "rating_after": 1509.153646571151,
+        "initial_team": "Good",
+        "roles": [
+          "Gambler"
+        ]
       },
       {
         "game_number": 19,
@@ -2020,7 +2468,11 @@
         "role": "Grandmother",
         "win": false,
         "rating_before": 1509.153646571151,
-        "rating_after": 1492.4930473997363
+        "rating_after": 1492.4930473997363,
+        "initial_team": "Good",
+        "roles": [
+          "Grandmother"
+        ]
       },
       {
         "game_number": 22,
@@ -2029,7 +2481,11 @@
         "role": "Vigormortis",
         "win": false,
         "rating_before": 1492.4930473997363,
-        "rating_after": 1477.8545274744959
+        "rating_after": 1477.8545274744959,
+        "initial_team": "Evil",
+        "roles": [
+          "Vigormortis"
+        ]
       },
       {
         "game_number": 23,
@@ -2038,7 +2494,11 @@
         "role": "Mutant",
         "win": false,
         "rating_before": 1477.8545274744959,
-        "rating_after": 1460.726655226017
+        "rating_after": 1460.726655226017,
+        "initial_team": "Good",
+        "roles": [
+          "Mutant"
+        ]
       },
       {
         "game_number": 25,
@@ -2047,7 +2507,11 @@
         "role": "Savant",
         "win": true,
         "rating_before": 1460.726655226017,
-        "rating_after": 1476.6717227106428
+        "rating_after": 1476.6717227106428,
+        "initial_team": "Good",
+        "roles": [
+          "Savant"
+        ]
       },
       {
         "game_number": 26,
@@ -2056,7 +2520,11 @@
         "role": "Seamstress",
         "win": true,
         "rating_before": 1476.6717227106428,
-        "rating_after": 1494.414495529802
+        "rating_after": 1494.414495529802,
+        "initial_team": "Good",
+        "roles": [
+          "Seamstress"
+        ]
       }
     ]
   },
@@ -2137,7 +2605,11 @@
         "role": "Godfather",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1516.0
+        "rating_after": 1516.0,
+        "initial_team": "Evil",
+        "roles": [
+          "Godfather"
+        ]
       },
       {
         "game_number": 13,
@@ -2146,7 +2618,11 @@
         "role": "Baron",
         "win": true,
         "rating_before": 1516.0,
-        "rating_after": 1532.0302787272158
+        "rating_after": 1532.0302787272158,
+        "initial_team": "Evil",
+        "roles": [
+          "Baron"
+        ]
       },
       {
         "game_number": 14,
@@ -2155,16 +2631,25 @@
         "role": "Saint",
         "win": true,
         "rating_before": 1532.0302787272158,
-        "rating_after": 1548.2744836654877
+        "rating_after": 1548.2744836654877,
+        "initial_team": "Good",
+        "roles": [
+          "Saint"
+        ]
       },
       {
         "game_number": 15,
         "date": "2025-05-26 10:56:55",
         "team": "Good",
-        "role": "Drunk+Recluse",
+        "role": "Recluse",
         "win": false,
         "rating_before": 1548.2744836654877,
-        "rating_after": 1531.9577387872735
+        "rating_after": 1531.9577387872735,
+        "initial_team": "Good",
+        "roles": [
+          "Drunk",
+          "Recluse"
+        ]
       },
       {
         "game_number": 17,
@@ -2173,7 +2658,11 @@
         "role": "Tinker",
         "win": true,
         "rating_before": 1531.9577387872735,
-        "rating_after": 1548.5705468194735
+        "rating_after": 1548.5705468194735,
+        "initial_team": "Good",
+        "roles": [
+          "Tinker"
+        ]
       },
       {
         "game_number": 18,
@@ -2182,7 +2671,11 @@
         "role": "Moonchild",
         "win": false,
         "rating_before": 1548.5705468194735,
-        "rating_after": 1532.1458989577725
+        "rating_after": 1532.1458989577725,
+        "initial_team": "Good",
+        "roles": [
+          "Moonchild"
+        ]
       },
       {
         "game_number": 19,
@@ -2191,7 +2684,11 @@
         "role": "Lunatic",
         "win": false,
         "rating_before": 1532.1458989577725,
-        "rating_after": 1515.4852997863577
+        "rating_after": 1515.4852997863577,
+        "initial_team": "Good",
+        "roles": [
+          "Lunatic"
+        ]
       },
       {
         "game_number": 24,
@@ -2200,7 +2697,11 @@
         "role": "Snake_Charmer",
         "win": false,
         "rating_before": 1515.4852997863577,
-        "rating_after": 1496.1873130252793
+        "rating_after": 1496.1873130252793,
+        "initial_team": "Good",
+        "roles": [
+          "Snake_Charmer"
+        ]
       }
     ]
   },
@@ -2265,7 +2766,11 @@
         "role": "Gambler",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1517.155854337658
+        "rating_after": 1517.155854337658,
+        "initial_team": "Good",
+        "roles": [
+          "Gambler"
+        ]
       },
       {
         "game_number": 20,
@@ -2274,7 +2779,11 @@
         "role": "Gossip",
         "win": true,
         "rating_before": 1517.155854337658,
-        "rating_after": 1533.4105120984407
+        "rating_after": 1533.4105120984407,
+        "initial_team": "Good",
+        "roles": [
+          "Gossip"
+        ]
       },
       {
         "game_number": 21,
@@ -2283,7 +2792,11 @@
         "role": "Devil's_Advocate",
         "win": true,
         "rating_before": 1533.4105120984407,
-        "rating_after": 1548.7091757812966
+        "rating_after": 1548.7091757812966,
+        "initial_team": "Evil",
+        "roles": [
+          "Devil's_Advocate"
+        ]
       },
       {
         "game_number": 22,
@@ -2292,7 +2805,11 @@
         "role": "Savant",
         "win": true,
         "rating_before": 1548.7091757812966,
-        "rating_after": 1563.347695706537
+        "rating_after": 1563.347695706537,
+        "initial_team": "Good",
+        "roles": [
+          "Savant"
+        ]
       },
       {
         "game_number": 23,
@@ -2301,7 +2818,11 @@
         "role": "Lunatic",
         "win": false,
         "rating_before": 1563.347695706537,
-        "rating_after": 1546.2198234580583
+        "rating_after": 1546.2198234580583,
+        "initial_team": "Good",
+        "roles": [
+          "Lunatic"
+        ]
       },
       {
         "game_number": 24,
@@ -2310,7 +2831,11 @@
         "role": "Artist",
         "win": false,
         "rating_before": 1546.2198234580583,
-        "rating_after": 1526.9218366969799
+        "rating_after": 1526.9218366969799,
+        "initial_team": "Good",
+        "roles": [
+          "Artist"
+        ]
       }
     ]
   },
@@ -2399,7 +2924,11 @@
         "role": "Professor",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.1077941190026
+        "rating_after": 1484.1077941190026,
+        "initial_team": "Good",
+        "roles": [
+          "Professor"
+        ]
       },
       {
         "game_number": 4,
@@ -2408,7 +2937,11 @@
         "role": "Moonchild",
         "win": false,
         "rating_before": 1484.1077941190026,
-        "rating_after": 1468.564607349948
+        "rating_after": 1468.564607349948,
+        "initial_team": "Good",
+        "roles": [
+          "Moonchild"
+        ]
       },
       {
         "game_number": 17,
@@ -2417,7 +2950,11 @@
         "role": "Grandmother",
         "win": true,
         "rating_before": 1468.564607349948,
-        "rating_after": 1485.177415382148
+        "rating_after": 1485.177415382148,
+        "initial_team": "Good",
+        "roles": [
+          "Grandmother"
+        ]
       },
       {
         "game_number": 18,
@@ -2426,7 +2963,11 @@
         "role": "Godfather",
         "win": true,
         "rating_before": 1485.177415382148,
-        "rating_after": 1501.602063243849
+        "rating_after": 1501.602063243849,
+        "initial_team": "Evil",
+        "roles": [
+          "Godfather"
+        ]
       },
       {
         "game_number": 20,
@@ -2435,7 +2976,11 @@
         "role": "Grandmother",
         "win": true,
         "rating_before": 1501.602063243849,
-        "rating_after": 1517.8567210046317
+        "rating_after": 1517.8567210046317,
+        "initial_team": "Good",
+        "roles": [
+          "Grandmother"
+        ]
       },
       {
         "game_number": 21,
@@ -2444,16 +2989,25 @@
         "role": "Exorcist",
         "win": false,
         "rating_before": 1517.8567210046317,
-        "rating_after": 1502.5580573217758
+        "rating_after": 1502.5580573217758,
+        "initial_team": "Good",
+        "roles": [
+          "Exorcist"
+        ]
       },
       {
         "game_number": 22,
         "date": "2025-06-23 11:01:35",
         "team": "Good",
-        "role": "Town_Crier+Sweetheart",
+        "role": "Sweetheart",
         "win": true,
         "rating_before": 1502.5580573217758,
-        "rating_after": 1517.1965772470162
+        "rating_after": 1517.1965772470162,
+        "initial_team": "Good",
+        "roles": [
+          "Town_Crier",
+          "Sweetheart"
+        ]
       },
       {
         "game_number": 25,
@@ -2462,7 +3016,11 @@
         "role": "Sweetheart",
         "win": true,
         "rating_before": 1517.1965772470162,
-        "rating_after": 1533.141644731642
+        "rating_after": 1533.141644731642,
+        "initial_team": "Good",
+        "roles": [
+          "Sweetheart"
+        ]
       },
       {
         "game_number": 26,
@@ -2471,7 +3029,11 @@
         "role": "Artist",
         "win": true,
         "rating_before": 1533.141644731642,
-        "rating_after": 1550.8844175508011
+        "rating_after": 1550.8844175508011,
+        "initial_team": "Good",
+        "roles": [
+          "Artist"
+        ]
       }
     ]
   },
@@ -2536,7 +3098,11 @@
         "role": "Courtier",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.1077941190026
+        "rating_after": 1484.1077941190026,
+        "initial_team": "Good",
+        "roles": [
+          "Courtier"
+        ]
       },
       {
         "game_number": 4,
@@ -2545,7 +3111,11 @@
         "role": "Professor",
         "win": false,
         "rating_before": 1484.1077941190026,
-        "rating_after": 1468.564607349948
+        "rating_after": 1468.564607349948,
+        "initial_team": "Good",
+        "roles": [
+          "Professor"
+        ]
       },
       {
         "game_number": 14,
@@ -2554,7 +3124,11 @@
         "role": "Librarian",
         "win": true,
         "rating_before": 1468.564607349948,
-        "rating_after": 1484.8088122882198
+        "rating_after": 1484.8088122882198,
+        "initial_team": "Good",
+        "roles": [
+          "Librarian"
+        ]
       },
       {
         "game_number": 15,
@@ -2563,25 +3137,38 @@
         "role": "Slayer",
         "win": false,
         "rating_before": 1484.8088122882198,
-        "rating_after": 1468.4920674100056
+        "rating_after": 1468.4920674100056,
+        "initial_team": "Good",
+        "roles": [
+          "Slayer"
+        ]
       },
       {
         "game_number": 16,
         "date": "2025-05-26 10:59:30",
         "team": "Evil",
-        "role": "Scarlet_woman",
+        "role": "Scarlet_Woman",
         "win": true,
         "rating_before": 1468.4920674100056,
-        "rating_after": 1486.5152041377319
+        "rating_after": 1486.5152041377319,
+        "initial_team": "Evil",
+        "roles": [
+          "Scarlet_Woman"
+        ]
       },
       {
         "game_number": 22,
         "date": "2025-06-23 11:01:35",
         "team": "Evil",
-        "role": "Witch+Vortox",
+        "role": "Vortox",
         "win": false,
         "rating_before": 1486.5152041377319,
-        "rating_after": 1471.8766842124915
+        "rating_after": 1471.8766842124915,
+        "initial_team": "Evil",
+        "roles": [
+          "Witch",
+          "Vortox"
+        ]
       }
     ]
   },
@@ -2622,7 +3209,11 @@
         "role": "Mastermind",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1515.8922058809974
+        "rating_after": 1515.8922058809974,
+        "initial_team": "Evil",
+        "roles": [
+          "Mastermind"
+        ]
       },
       {
         "game_number": 4,
@@ -2631,7 +3222,11 @@
         "role": "Grandmother",
         "win": false,
         "rating_before": 1515.8922058809974,
-        "rating_after": 1500.3490191119427
+        "rating_after": 1500.3490191119427,
+        "initial_team": "Good",
+        "roles": [
+          "Grandmother"
+        ]
       },
       {
         "game_number": 13,
@@ -2640,7 +3235,11 @@
         "role": "Recluse",
         "win": false,
         "rating_before": 1500.3490191119427,
-        "rating_after": 1484.3187403847269
+        "rating_after": 1484.3187403847269,
+        "initial_team": "Good",
+        "roles": [
+          "Recluse"
+        ]
       }
     ]
   },
@@ -2697,7 +3296,11 @@
         "role": "Po",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1515.8922058809974
+        "rating_after": 1515.8922058809974,
+        "initial_team": "Evil",
+        "roles": [
+          "Po"
+        ]
       },
       {
         "game_number": 4,
@@ -2706,7 +3309,11 @@
         "role": "Goon",
         "win": false,
         "rating_before": 1515.8922058809974,
-        "rating_after": 1500.3490191119427
+        "rating_after": 1500.3490191119427,
+        "initial_team": "Good",
+        "roles": [
+          "Goon"
+        ]
       },
       {
         "game_number": 7,
@@ -2715,7 +3322,11 @@
         "role": "Virgin",
         "win": true,
         "rating_before": 1500.3490191119427,
-        "rating_after": 1516.4068586794801
+        "rating_after": 1516.4068586794801,
+        "initial_team": "Good",
+        "roles": [
+          "Virgin"
+        ]
       },
       {
         "game_number": 14,
@@ -2724,7 +3335,11 @@
         "role": "Chef",
         "win": true,
         "rating_before": 1516.4068586794801,
-        "rating_after": 1532.651063617752
+        "rating_after": 1532.651063617752,
+        "initial_team": "Good",
+        "roles": [
+          "Chef"
+        ]
       },
       {
         "game_number": 15,
@@ -2733,7 +3348,11 @@
         "role": "Librarian",
         "win": false,
         "rating_before": 1532.651063617752,
-        "rating_after": 1516.3343187395378
+        "rating_after": 1516.3343187395378,
+        "initial_team": "Good",
+        "roles": [
+          "Librarian"
+        ]
       }
     ]
   },
@@ -2766,7 +3385,11 @@
         "role": "Spy",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.0037156134597
+        "rating_after": 1484.0037156134597,
+        "initial_team": "Evil",
+        "roles": [
+          "Spy"
+        ]
       },
       {
         "game_number": 6,
@@ -2775,7 +3398,11 @@
         "role": "Slayer",
         "win": false,
         "rating_before": 1484.0037156134597,
-        "rating_after": 1467.0435023102423
+        "rating_after": 1467.0435023102423,
+        "initial_team": "Good",
+        "roles": [
+          "Slayer"
+        ]
       }
     ]
   },
@@ -2832,7 +3459,11 @@
         "role": "Imp",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.0037156134597
+        "rating_after": 1484.0037156134597,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
       },
       {
         "game_number": 6,
@@ -2841,7 +3472,11 @@
         "role": "Scarlet_Woman",
         "win": true,
         "rating_before": 1484.0037156134597,
-        "rating_after": 1500.963928916677
+        "rating_after": 1500.963928916677,
+        "initial_team": "Evil",
+        "roles": [
+          "Scarlet_Woman"
+        ]
       },
       {
         "game_number": 14,
@@ -2850,7 +3485,11 @@
         "role": "Investigator",
         "win": true,
         "rating_before": 1500.963928916677,
-        "rating_after": 1517.208133854949
+        "rating_after": 1517.208133854949,
+        "initial_team": "Good",
+        "roles": [
+          "Investigator"
+        ]
       },
       {
         "game_number": 15,
@@ -2859,7 +3498,11 @@
         "role": "Vortox",
         "win": true,
         "rating_before": 1517.208133854949,
-        "rating_after": 1533.5248787331632
+        "rating_after": 1533.5248787331632,
+        "initial_team": "Evil",
+        "roles": [
+          "Vortox"
+        ]
       },
       {
         "game_number": 20,
@@ -2868,7 +3511,11 @@
         "role": "Shabaloth",
         "win": false,
         "rating_before": 1533.5248787331632,
-        "rating_after": 1517.2702209723805
+        "rating_after": 1517.2702209723805,
+        "initial_team": "Evil",
+        "roles": [
+          "Shabaloth"
+        ]
       }
     ]
   },
@@ -2901,7 +3548,11 @@
         "role": "Scarlet_Woman",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.0037156134597
+        "rating_after": 1484.0037156134597,
+        "initial_team": "Evil",
+        "roles": [
+          "Scarlet_Woman"
+        ]
       },
       {
         "game_number": 6,
@@ -2910,7 +3561,11 @@
         "role": "Imp",
         "win": true,
         "rating_before": 1484.0037156134597,
-        "rating_after": 1500.963928916677
+        "rating_after": 1500.963928916677,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
       }
     ]
   },
@@ -2967,7 +3622,11 @@
         "role": "Baron",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.0037156134597
+        "rating_after": 1484.0037156134597,
+        "initial_team": "Evil",
+        "roles": [
+          "Baron"
+        ]
       },
       {
         "game_number": 6,
@@ -2976,7 +3635,11 @@
         "role": "Spy",
         "win": true,
         "rating_before": 1484.0037156134597,
-        "rating_after": 1500.963928916677
+        "rating_after": 1500.963928916677,
+        "initial_team": "Evil",
+        "roles": [
+          "Spy"
+        ]
       },
       {
         "game_number": 13,
@@ -2985,7 +3648,11 @@
         "role": "Saint",
         "win": false,
         "rating_before": 1500.963928916677,
-        "rating_after": 1484.9336501894613
+        "rating_after": 1484.9336501894613,
+        "initial_team": "Good",
+        "roles": [
+          "Saint"
+        ]
       },
       {
         "game_number": 17,
@@ -2994,7 +3661,11 @@
         "role": "Assassin",
         "win": false,
         "rating_before": 1484.9336501894613,
-        "rating_after": 1468.3208421572613
+        "rating_after": 1468.3208421572613,
+        "initial_team": "Evil",
+        "roles": [
+          "Assassin"
+        ]
       },
       {
         "game_number": 18,
@@ -3003,7 +3674,11 @@
         "role": "Tinker",
         "win": false,
         "rating_before": 1468.3208421572613,
-        "rating_after": 1451.8961942955602
+        "rating_after": 1451.8961942955602,
+        "initial_team": "Good",
+        "roles": [
+          "Tinker"
+        ]
       }
     ]
   },
@@ -3044,7 +3719,11 @@
         "role": "Recluse",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1515.9962843865403
+        "rating_after": 1515.9962843865403,
+        "initial_team": "Good",
+        "roles": [
+          "Recluse"
+        ]
       },
       {
         "game_number": 6,
@@ -3053,7 +3732,11 @@
         "role": "Investigator",
         "win": false,
         "rating_before": 1515.9962843865403,
-        "rating_after": 1499.036071083323
+        "rating_after": 1499.036071083323,
+        "initial_team": "Good",
+        "roles": [
+          "Investigator"
+        ]
       },
       {
         "game_number": 7,
@@ -3062,7 +3745,11 @@
         "role": "Investigator",
         "win": true,
         "rating_before": 1499.036071083323,
-        "rating_after": 1515.0939106508604
+        "rating_after": 1515.0939106508604,
+        "initial_team": "Good",
+        "roles": [
+          "Investigator"
+        ]
       }
     ]
   },
@@ -3135,7 +3822,11 @@
         "role": "Librarian",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1515.9962843865403
+        "rating_after": 1515.9962843865403,
+        "initial_team": "Good",
+        "roles": [
+          "Librarian"
+        ]
       },
       {
         "game_number": 6,
@@ -3144,7 +3835,11 @@
         "role": "Undertaker",
         "win": false,
         "rating_before": 1515.9962843865403,
-        "rating_after": 1499.036071083323
+        "rating_after": 1499.036071083323,
+        "initial_team": "Good",
+        "roles": [
+          "Undertaker"
+        ]
       },
       {
         "game_number": 7,
@@ -3153,7 +3848,11 @@
         "role": "Slayer",
         "win": true,
         "rating_before": 1499.036071083323,
-        "rating_after": 1515.0939106508604
+        "rating_after": 1515.0939106508604,
+        "initial_team": "Good",
+        "roles": [
+          "Slayer"
+        ]
       },
       {
         "game_number": 13,
@@ -3162,7 +3861,11 @@
         "role": "Chef",
         "win": false,
         "rating_before": 1515.0939106508604,
-        "rating_after": 1499.0636319236446
+        "rating_after": 1499.0636319236446,
+        "initial_team": "Good",
+        "roles": [
+          "Chef"
+        ]
       },
       {
         "game_number": 14,
@@ -3171,7 +3874,11 @@
         "role": "Undertaker",
         "win": true,
         "rating_before": 1499.0636319236446,
-        "rating_after": 1515.3078368619165
+        "rating_after": 1515.3078368619165,
+        "initial_team": "Good",
+        "roles": [
+          "Undertaker"
+        ]
       },
       {
         "game_number": 15,
@@ -3180,7 +3887,11 @@
         "role": "Witch",
         "win": true,
         "rating_before": 1515.3078368619165,
-        "rating_after": 1531.6245817401307
+        "rating_after": 1531.6245817401307,
+        "initial_team": "Evil",
+        "roles": [
+          "Witch"
+        ]
       },
       {
         "game_number": 20,
@@ -3189,7 +3900,11 @@
         "role": "Innkeeper",
         "win": true,
         "rating_before": 1531.6245817401307,
-        "rating_after": 1547.8792395009134
+        "rating_after": 1547.8792395009134,
+        "initial_team": "Good",
+        "roles": [
+          "Innkeeper"
+        ]
       }
     ]
   },
@@ -3286,7 +4001,11 @@
         "role": "Monk",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1515.9962843865403
+        "rating_after": 1515.9962843865403,
+        "initial_team": "Good",
+        "roles": [
+          "Monk"
+        ]
       },
       {
         "game_number": 6,
@@ -3295,7 +4014,11 @@
         "role": "Poisoner",
         "win": true,
         "rating_before": 1515.9962843865403,
-        "rating_after": 1532.9564976897577
+        "rating_after": 1532.9564976897577,
+        "initial_team": "Evil",
+        "roles": [
+          "Poisoner"
+        ]
       },
       {
         "game_number": 7,
@@ -3304,7 +4027,11 @@
         "role": "Saint",
         "win": true,
         "rating_before": 1532.9564976897577,
-        "rating_after": 1549.0143372572952
+        "rating_after": 1549.0143372572952,
+        "initial_team": "Good",
+        "roles": [
+          "Saint"
+        ]
       },
       {
         "game_number": 13,
@@ -3313,7 +4040,11 @@
         "role": "Librarian",
         "win": false,
         "rating_before": 1549.0143372572952,
-        "rating_after": 1532.9840585300794
+        "rating_after": 1532.9840585300794,
+        "initial_team": "Good",
+        "roles": [
+          "Librarian"
+        ]
       },
       {
         "game_number": 14,
@@ -3322,16 +4053,25 @@
         "role": "Butler",
         "win": true,
         "rating_before": 1532.9840585300794,
-        "rating_after": 1549.2282634683513
+        "rating_after": 1549.2282634683513,
+        "initial_team": "Good",
+        "roles": [
+          "Butler"
+        ]
       },
       {
         "game_number": 15,
         "date": "2025-05-26 10:56:55",
         "team": "Good",
-        "role": "Undertaker+Evil_twin",
+        "role": "Evil_Twin",
         "win": false,
         "rating_before": 1549.2282634683513,
-        "rating_after": 1532.9115185901371
+        "rating_after": 1532.9115185901371,
+        "initial_team": "Good",
+        "roles": [
+          "Undertaker",
+          "Evil_Twin"
+        ]
       },
       {
         "game_number": 20,
@@ -3340,7 +4080,11 @@
         "role": "Gambler",
         "win": true,
         "rating_before": 1532.9115185901371,
-        "rating_after": 1549.1661763509198
+        "rating_after": 1549.1661763509198,
+        "initial_team": "Good",
+        "roles": [
+          "Gambler"
+        ]
       },
       {
         "game_number": 24,
@@ -3349,7 +4093,11 @@
         "role": "Flowergirl",
         "win": false,
         "rating_before": 1549.1661763509198,
-        "rating_after": 1529.8681895898414
+        "rating_after": 1529.8681895898414,
+        "initial_team": "Good",
+        "roles": [
+          "Flowergirl"
+        ]
       },
       {
         "game_number": 25,
@@ -3358,7 +4106,11 @@
         "role": "Philosopher",
         "win": true,
         "rating_before": 1529.8681895898414,
-        "rating_after": 1545.8132570744672
+        "rating_after": 1545.8132570744672,
+        "initial_team": "Good",
+        "roles": [
+          "Philosopher"
+        ]
       },
       {
         "game_number": 26,
@@ -3367,7 +4119,11 @@
         "role": "Vortox",
         "win": false,
         "rating_before": 1545.8132570744672,
-        "rating_after": 1528.070484255308
+        "rating_after": 1528.070484255308,
+        "initial_team": "Evil",
+        "roles": [
+          "Vortox"
+        ]
       }
     ]
   },
@@ -3424,7 +4180,11 @@
         "role": "Empath",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1515.9962843865403
+        "rating_after": 1515.9962843865403,
+        "initial_team": "Good",
+        "roles": [
+          "Empath"
+        ]
       },
       {
         "game_number": 6,
@@ -3433,7 +4193,11 @@
         "role": "Monk",
         "win": false,
         "rating_before": 1515.9962843865403,
-        "rating_after": 1499.036071083323
+        "rating_after": 1499.036071083323,
+        "initial_team": "Good",
+        "roles": [
+          "Monk"
+        ]
       },
       {
         "game_number": 13,
@@ -3442,7 +4206,11 @@
         "role": "Imp",
         "win": true,
         "rating_before": 1499.036071083323,
-        "rating_after": 1515.0663498105387
+        "rating_after": 1515.0663498105387,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
       },
       {
         "game_number": 17,
@@ -3451,7 +4219,11 @@
         "role": "Courtier",
         "win": true,
         "rating_before": 1515.0663498105387,
-        "rating_after": 1531.6791578427387
+        "rating_after": 1531.6791578427387,
+        "initial_team": "Good",
+        "roles": [
+          "Courtier"
+        ]
       },
       {
         "game_number": 18,
@@ -3460,7 +4232,11 @@
         "role": "Professor",
         "win": false,
         "rating_before": 1531.6791578427387,
-        "rating_after": 1515.2545099810377
+        "rating_after": 1515.2545099810377,
+        "initial_team": "Good",
+        "roles": [
+          "Professor"
+        ]
       }
     ]
   },
@@ -3501,7 +4277,11 @@
         "role": "Chef",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1515.9962843865403
+        "rating_after": 1515.9962843865403,
+        "initial_team": "Good",
+        "roles": [
+          "Chef"
+        ]
       },
       {
         "game_number": 6,
@@ -3510,7 +4290,11 @@
         "role": "Mayor",
         "win": false,
         "rating_before": 1515.9962843865403,
-        "rating_after": 1499.036071083323
+        "rating_after": 1499.036071083323,
+        "initial_team": "Good",
+        "roles": [
+          "Mayor"
+        ]
       },
       {
         "game_number": 13,
@@ -3519,7 +4303,11 @@
         "role": "Poisoner",
         "win": true,
         "rating_before": 1499.036071083323,
-        "rating_after": 1515.0663498105387
+        "rating_after": 1515.0663498105387,
+        "initial_team": "Evil",
+        "roles": [
+          "Poisoner"
+        ]
       }
     ]
   },
@@ -3560,7 +4348,11 @@
         "role": "Saint",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1515.9962843865403
+        "rating_after": 1515.9962843865403,
+        "initial_team": "Good",
+        "roles": [
+          "Saint"
+        ]
       },
       {
         "game_number": 6,
@@ -3569,7 +4361,11 @@
         "role": "Virgin",
         "win": false,
         "rating_before": 1515.9962843865403,
-        "rating_after": 1499.036071083323
+        "rating_after": 1499.036071083323,
+        "initial_team": "Good",
+        "roles": [
+          "Virgin"
+        ]
       },
       {
         "game_number": 13,
@@ -3578,7 +4374,11 @@
         "role": "Empath",
         "win": false,
         "rating_before": 1499.036071083323,
-        "rating_after": 1483.0057923561071
+        "rating_after": 1483.0057923561071,
+        "initial_team": "Good",
+        "roles": [
+          "Empath"
+        ]
       }
     ]
   },
@@ -3643,7 +4443,11 @@
         "role": "Investigator",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1515.9962843865403
+        "rating_after": 1515.9962843865403,
+        "initial_team": "Good",
+        "roles": [
+          "Investigator"
+        ]
       },
       {
         "game_number": 6,
@@ -3652,7 +4456,11 @@
         "role": "Empath",
         "win": false,
         "rating_before": 1515.9962843865403,
-        "rating_after": 1499.036071083323
+        "rating_after": 1499.036071083323,
+        "initial_team": "Good",
+        "roles": [
+          "Empath"
+        ]
       },
       {
         "game_number": 13,
@@ -3661,7 +4469,11 @@
         "role": "Drunk",
         "win": false,
         "rating_before": 1499.036071083323,
-        "rating_after": 1483.0057923561071
+        "rating_after": 1483.0057923561071,
+        "initial_team": "Good",
+        "roles": [
+          "Drunk"
+        ]
       },
       {
         "game_number": 14,
@@ -3670,16 +4482,24 @@
         "role": "Vigormortis",
         "win": false,
         "rating_before": 1483.0057923561071,
-        "rating_after": 1466.7615874178352
+        "rating_after": 1466.7615874178352,
+        "initial_team": "Evil",
+        "roles": [
+          "Vigormortis"
+        ]
       },
       {
         "game_number": 15,
         "date": "2025-05-26 10:56:55",
         "team": "Good",
-        "role": "Fortune_teller",
+        "role": "Fortune_Teller",
         "win": false,
         "rating_before": 1466.7615874178352,
-        "rating_after": 1450.444842539621
+        "rating_after": 1450.444842539621,
+        "initial_team": "Good",
+        "roles": [
+          "Fortune_Teller"
+        ]
       },
       {
         "game_number": 24,
@@ -3688,7 +4508,11 @@
         "role": "No_Dashi",
         "win": true,
         "rating_before": 1450.444842539621,
-        "rating_after": 1469.7428293006994
+        "rating_after": 1469.7428293006994,
+        "initial_team": "Evil",
+        "roles": [
+          "No_Dashi"
+        ]
       }
     ]
   },
@@ -3721,7 +4545,11 @@
         "role": "Butler",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1515.9962843865403
+        "rating_after": 1515.9962843865403,
+        "initial_team": "Good",
+        "roles": [
+          "Butler"
+        ]
       },
       {
         "game_number": 6,
@@ -3730,7 +4558,11 @@
         "role": "Chef",
         "win": false,
         "rating_before": 1515.9962843865403,
-        "rating_after": 1499.036071083323
+        "rating_after": 1499.036071083323,
+        "initial_team": "Good",
+        "roles": [
+          "Chef"
+        ]
       }
     ]
   },
@@ -3851,7 +4683,11 @@
         "role": "Undertaker",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1515.9962843865403
+        "rating_after": 1515.9962843865403,
+        "initial_team": "Good",
+        "roles": [
+          "Undertaker"
+        ]
       },
       {
         "game_number": 6,
@@ -3860,7 +4696,11 @@
         "role": "Fortune_Teller",
         "win": false,
         "rating_before": 1515.9962843865403,
-        "rating_after": 1499.036071083323
+        "rating_after": 1499.036071083323,
+        "initial_team": "Good",
+        "roles": [
+          "Fortune_Teller"
+        ]
       },
       {
         "game_number": 13,
@@ -3869,7 +4709,11 @@
         "role": "Slayer",
         "win": false,
         "rating_before": 1499.036071083323,
-        "rating_after": 1483.0057923561071
+        "rating_after": 1483.0057923561071,
+        "initial_team": "Good",
+        "roles": [
+          "Slayer"
+        ]
       },
       {
         "game_number": 14,
@@ -3878,7 +4722,11 @@
         "role": "Virgin",
         "win": true,
         "rating_before": 1483.0057923561071,
-        "rating_after": 1499.249997294379
+        "rating_after": 1499.249997294379,
+        "initial_team": "Good",
+        "roles": [
+          "Virgin"
+        ]
       },
       {
         "game_number": 15,
@@ -3887,7 +4735,11 @@
         "role": "Investigator",
         "win": false,
         "rating_before": 1499.249997294379,
-        "rating_after": 1482.9332524161648
+        "rating_after": 1482.9332524161648,
+        "initial_team": "Good",
+        "roles": [
+          "Investigator"
+        ]
       },
       {
         "game_number": 17,
@@ -3896,7 +4748,11 @@
         "role": "Goon",
         "win": true,
         "rating_before": 1482.9332524161648,
-        "rating_after": 1499.5460604483649
+        "rating_after": 1499.5460604483649,
+        "initial_team": "Good",
+        "roles": [
+          "Goon"
+        ]
       },
       {
         "game_number": 18,
@@ -3905,7 +4761,11 @@
         "role": "Po",
         "win": true,
         "rating_before": 1499.5460604483649,
-        "rating_after": 1515.970708310066
+        "rating_after": 1515.970708310066,
+        "initial_team": "Evil",
+        "roles": [
+          "Po"
+        ]
       },
       {
         "game_number": 20,
@@ -3914,7 +4774,11 @@
         "role": "Devil's_Advocate",
         "win": false,
         "rating_before": 1515.970708310066,
-        "rating_after": 1499.7160505492832
+        "rating_after": 1499.7160505492832,
+        "initial_team": "Evil",
+        "roles": [
+          "Devil's_Advocate"
+        ]
       },
       {
         "game_number": 21,
@@ -3923,7 +4787,11 @@
         "role": "Goon",
         "win": true,
         "rating_before": 1499.7160505492832,
-        "rating_after": 1515.014714232139
+        "rating_after": 1515.014714232139,
+        "initial_team": "Evil",
+        "roles": [
+          "Goon"
+        ]
       },
       {
         "game_number": 22,
@@ -3932,7 +4800,11 @@
         "role": "Mutant",
         "win": true,
         "rating_before": 1515.014714232139,
-        "rating_after": 1529.6532341573795
+        "rating_after": 1529.6532341573795,
+        "initial_team": "Good",
+        "roles": [
+          "Mutant"
+        ]
       },
       {
         "game_number": 24,
@@ -3941,7 +4813,11 @@
         "role": "Mathematician",
         "win": false,
         "rating_before": 1529.6532341573795,
-        "rating_after": 1510.3552473963011
+        "rating_after": 1510.3552473963011,
+        "initial_team": "Good",
+        "roles": [
+          "Mathematician"
+        ]
       },
       {
         "game_number": 25,
@@ -3950,7 +4826,11 @@
         "role": "Barber",
         "win": true,
         "rating_before": 1510.3552473963011,
-        "rating_after": 1526.3003148809269
+        "rating_after": 1526.3003148809269,
+        "initial_team": "Good",
+        "roles": [
+          "Barber"
+        ]
       },
       {
         "game_number": 26,
@@ -3959,7 +4839,11 @@
         "role": "Cerenovus",
         "win": false,
         "rating_before": 1526.3003148809269,
-        "rating_after": 1508.5575420617677
+        "rating_after": 1508.5575420617677,
+        "initial_team": "Evil",
+        "roles": [
+          "Cerenovus"
+        ]
       }
     ]
   },
@@ -4016,7 +4900,11 @@
         "role": "Fortune_Teller",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1516.0578395675375
+        "rating_after": 1516.0578395675375,
+        "initial_team": "Good",
+        "roles": [
+          "Fortune_Teller"
+        ]
       },
       {
         "game_number": 17,
@@ -4025,7 +4913,11 @@
         "role": "Lunatic",
         "win": true,
         "rating_before": 1516.0578395675375,
-        "rating_after": 1532.6706475997375
+        "rating_after": 1532.6706475997375,
+        "initial_team": "Good",
+        "roles": [
+          "Lunatic"
+        ]
       },
       {
         "game_number": 18,
@@ -4034,7 +4926,11 @@
         "role": "Goon",
         "win": false,
         "rating_before": 1532.6706475997375,
-        "rating_after": 1516.2459997380365
+        "rating_after": 1516.2459997380365,
+        "initial_team": "Good",
+        "roles": [
+          "Goon"
+        ]
       },
       {
         "game_number": 19,
@@ -4043,7 +4939,11 @@
         "role": "Godfather",
         "win": true,
         "rating_before": 1516.2459997380365,
-        "rating_after": 1532.9065989094513
+        "rating_after": 1532.9065989094513,
+        "initial_team": "Evil",
+        "roles": [
+          "Godfather"
+        ]
       },
       {
         "game_number": 24,
@@ -4052,7 +4952,11 @@
         "role": "Philosopher",
         "win": false,
         "rating_before": 1532.9065989094513,
-        "rating_after": 1513.608612148373
+        "rating_after": 1513.608612148373,
+        "initial_team": "Good",
+        "roles": [
+          "Philosopher"
+        ]
       }
     ]
   },
@@ -4077,7 +4981,9 @@
         "role": "",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1516.0578395675375
+        "rating_after": 1516.0578395675375,
+        "initial_team": "Good",
+        "roles": []
       }
     ]
   },
@@ -4102,7 +5008,11 @@
         "role": "Baron",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1483.9421604324625
+        "rating_after": 1483.9421604324625,
+        "initial_team": "Evil",
+        "roles": [
+          "Baron"
+        ]
       }
     ]
   },
@@ -4135,7 +5045,11 @@
         "role": "Scarlet_Woman",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1483.9421604324625
+        "rating_after": 1483.9421604324625,
+        "initial_team": "Evil",
+        "roles": [
+          "Scarlet_Woman"
+        ]
       },
       {
         "game_number": 24,
@@ -4144,7 +5058,11 @@
         "role": "Cerenovous",
         "win": true,
         "rating_before": 1483.9421604324625,
-        "rating_after": 1503.240147193541
+        "rating_after": 1503.240147193541,
+        "initial_team": "Evil",
+        "roles": [
+          "Cerenovous"
+        ]
       }
     ]
   },
@@ -4169,7 +5087,11 @@
         "role": "Bureaucrat",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1483.9421604324625
+        "rating_after": 1483.9421604324625,
+        "initial_team": "Evil",
+        "roles": [
+          "Bureaucrat"
+        ]
       }
     ]
   },
@@ -4226,7 +5148,11 @@
         "role": "Poisoner",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1515.9193719633122
+        "rating_after": 1515.9193719633122,
+        "initial_team": "Evil",
+        "roles": [
+          "Poisoner"
+        ]
       },
       {
         "game_number": 9,
@@ -4235,7 +5161,11 @@
         "role": "Washerwoman",
         "win": true,
         "rating_before": 1515.9193719633122,
-        "rating_after": 1531.981420773413
+        "rating_after": 1531.981420773413,
+        "initial_team": "Good",
+        "roles": [
+          "Washerwoman"
+        ]
       },
       {
         "game_number": 10,
@@ -4244,7 +5174,11 @@
         "role": "Clockmaker",
         "win": false,
         "rating_before": 1531.981420773413,
-        "rating_after": 1514.1825054694561
+        "rating_after": 1514.1825054694561,
+        "initial_team": "Good",
+        "roles": [
+          "Clockmaker"
+        ]
       },
       {
         "game_number": 11,
@@ -4253,7 +5187,11 @@
         "role": "Baron",
         "win": false,
         "rating_before": 1514.1825054694561,
-        "rating_after": 1498.4795182680452
+        "rating_after": 1498.4795182680452,
+        "initial_team": "Evil",
+        "roles": [
+          "Baron"
+        ]
       },
       {
         "game_number": 12,
@@ -4262,7 +5200,11 @@
         "role": "Artist",
         "win": true,
         "rating_before": 1498.4795182680452,
-        "rating_after": 1513.2678143518042
+        "rating_after": 1513.2678143518042,
+        "initial_team": "Good",
+        "roles": [
+          "Artist"
+        ]
       }
     ]
   },
@@ -4319,25 +5261,37 @@
         "role": "Virgin",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.0806280366878
+        "rating_after": 1484.0806280366878,
+        "initial_team": "Good",
+        "roles": [
+          "Virgin"
+        ]
       },
       {
         "game_number": 9,
         "date": "2025-05-10 18:38:19",
         "team": "Good",
-        "role": "Fortune_teller",
+        "role": "Fortune_Teller",
         "win": true,
         "rating_before": 1484.0806280366878,
-        "rating_after": 1500.1426768467886
+        "rating_after": 1500.1426768467886,
+        "initial_team": "Good",
+        "roles": [
+          "Fortune_Teller"
+        ]
       },
       {
         "game_number": 10,
         "date": "2025-05-10 18:43:19",
         "team": "Evil",
-        "role": "Scarlet_woman",
+        "role": "Scarlet_Woman",
         "win": true,
         "rating_before": 1500.1426768467886,
-        "rating_after": 1517.9415921507455
+        "rating_after": 1517.9415921507455,
+        "initial_team": "Evil",
+        "roles": [
+          "Scarlet_Woman"
+        ]
       },
       {
         "game_number": 11,
@@ -4346,7 +5300,11 @@
         "role": "Empath",
         "win": true,
         "rating_before": 1517.9415921507455,
-        "rating_after": 1533.6445793521564
+        "rating_after": 1533.6445793521564,
+        "initial_team": "Good",
+        "roles": [
+          "Empath"
+        ]
       },
       {
         "game_number": 12,
@@ -4355,7 +5313,11 @@
         "role": "Drunk",
         "win": true,
         "rating_before": 1533.6445793521564,
-        "rating_after": 1548.4328754359153
+        "rating_after": 1548.4328754359153,
+        "initial_team": "Good",
+        "roles": [
+          "Drunk"
+        ]
       }
     ]
   },
@@ -4412,7 +5374,11 @@
         "role": "Washerwoman",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1484.0806280366878
+        "rating_after": 1484.0806280366878,
+        "initial_team": "Good",
+        "roles": [
+          "Washerwoman"
+        ]
       },
       {
         "game_number": 9,
@@ -4421,7 +5387,11 @@
         "role": "Empath",
         "win": true,
         "rating_before": 1484.0806280366878,
-        "rating_after": 1500.1426768467886
+        "rating_after": 1500.1426768467886,
+        "initial_team": "Good",
+        "roles": [
+          "Empath"
+        ]
       },
       {
         "game_number": 20,
@@ -4430,7 +5400,11 @@
         "role": "Professor",
         "win": true,
         "rating_before": 1500.1426768467886,
-        "rating_after": 1516.3973346075713
+        "rating_after": 1516.3973346075713,
+        "initial_team": "Good",
+        "roles": [
+          "Professor"
+        ]
       },
       {
         "game_number": 21,
@@ -4439,7 +5413,11 @@
         "role": "Pacifist",
         "win": false,
         "rating_before": 1516.3973346075713,
-        "rating_after": 1501.0986709247154
+        "rating_after": 1501.0986709247154,
+        "initial_team": "Good",
+        "roles": [
+          "Pacifist"
+        ]
       },
       {
         "game_number": 22,
@@ -4448,7 +5426,11 @@
         "role": "Mathematician",
         "win": true,
         "rating_before": 1501.0986709247154,
-        "rating_after": 1515.7371908499558
+        "rating_after": 1515.7371908499558,
+        "initial_team": "Good",
+        "roles": [
+          "Mathematician"
+        ]
       }
     ]
   },
@@ -4473,7 +5455,11 @@
         "role": "Virgin",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1483.9697212727842
+        "rating_after": 1483.9697212727842,
+        "initial_team": "Good",
+        "roles": [
+          "Virgin"
+        ]
       }
     ]
   },
@@ -4578,16 +5564,24 @@
         "role": "Spy",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1516.0302787272158
+        "rating_after": 1516.0302787272158,
+        "initial_team": "Evil",
+        "roles": [
+          "Spy"
+        ]
       },
       {
         "game_number": 14,
         "date": "2025-05-26 10:44:53",
         "team": "Evil",
-        "role": "Evil_twin",
+        "role": "Evil_Twin",
         "win": false,
         "rating_before": 1516.0302787272158,
-        "rating_after": 1499.786073788944
+        "rating_after": 1499.786073788944,
+        "initial_team": "Evil",
+        "roles": [
+          "Evil_Twin"
+        ]
       },
       {
         "game_number": 15,
@@ -4596,7 +5590,11 @@
         "role": "Chef",
         "win": false,
         "rating_before": 1499.786073788944,
-        "rating_after": 1483.4693289107297
+        "rating_after": 1483.4693289107297,
+        "initial_team": "Good",
+        "roles": [
+          "Chef"
+        ]
       },
       {
         "game_number": 17,
@@ -4605,7 +5603,11 @@
         "role": "Fool",
         "win": true,
         "rating_before": 1483.4693289107297,
-        "rating_after": 1500.0821369429298
+        "rating_after": 1500.0821369429298,
+        "initial_team": "Good",
+        "roles": [
+          "Fool"
+        ]
       },
       {
         "game_number": 18,
@@ -4614,7 +5616,11 @@
         "role": "Sailor",
         "win": false,
         "rating_before": 1500.0821369429298,
-        "rating_after": 1483.6574890812287
+        "rating_after": 1483.6574890812287,
+        "initial_team": "Good",
+        "roles": [
+          "Sailor"
+        ]
       },
       {
         "game_number": 20,
@@ -4623,7 +5629,11 @@
         "role": "Assassin",
         "win": false,
         "rating_before": 1483.6574890812287,
-        "rating_after": 1467.402831320446
+        "rating_after": 1467.402831320446,
+        "initial_team": "Evil",
+        "roles": [
+          "Assassin"
+        ]
       },
       {
         "game_number": 21,
@@ -4632,25 +5642,37 @@
         "role": "Gossip",
         "win": false,
         "rating_before": 1467.402831320446,
-        "rating_after": 1452.10416763759
+        "rating_after": 1452.10416763759,
+        "initial_team": "Good",
+        "roles": [
+          "Gossip"
+        ]
       },
       {
         "game_number": 22,
         "date": "2025-06-23 11:01:35",
         "team": "Evil",
-        "role": "Pit-Hag",
+        "role": "Pit-hag",
         "win": false,
         "rating_before": 1452.10416763759,
-        "rating_after": 1437.4656477123497
+        "rating_after": 1437.4656477123497,
+        "initial_team": "Evil",
+        "roles": [
+          "Pit-hag"
+        ]
       },
       {
         "game_number": 24,
         "date": "2025-06-27 13:25:33",
         "team": "Evil",
-        "role": "Evil_twin",
+        "role": "Evil_Twin",
         "win": true,
         "rating_before": 1437.4656477123497,
-        "rating_after": 1456.763634473428
+        "rating_after": 1456.763634473428,
+        "initial_team": "Evil",
+        "roles": [
+          "Evil_Twin"
+        ]
       },
       {
         "game_number": 25,
@@ -4659,7 +5681,11 @@
         "role": "Sage",
         "win": true,
         "rating_before": 1456.763634473428,
-        "rating_after": 1472.7087019580538
+        "rating_after": 1472.7087019580538,
+        "initial_team": "Good",
+        "roles": [
+          "Sage"
+        ]
       },
       {
         "game_number": 26,
@@ -4668,7 +5694,11 @@
         "role": "Savant",
         "win": true,
         "rating_before": 1472.7087019580538,
-        "rating_after": 1490.451474777213
+        "rating_after": 1490.451474777213,
+        "initial_team": "Good",
+        "roles": [
+          "Savant"
+        ]
       }
     ]
   },
@@ -4693,7 +5723,11 @@
         "role": "Monk",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1516.2442049382719
+        "rating_after": 1516.2442049382719,
+        "initial_team": "Good",
+        "roles": [
+          "Monk"
+        ]
       }
     ]
   },
@@ -4726,7 +5760,11 @@
         "role": "Empath",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1516.2442049382719
+        "rating_after": 1516.2442049382719,
+        "initial_team": "Good",
+        "roles": [
+          "Empath"
+        ]
       },
       {
         "game_number": 15,
@@ -4735,7 +5773,11 @@
         "role": "Soldier",
         "win": false,
         "rating_before": 1516.2442049382719,
-        "rating_after": 1499.9274600600577
+        "rating_after": 1499.9274600600577,
+        "initial_team": "Good",
+        "roles": [
+          "Soldier"
+        ]
       }
     ]
   },
@@ -4760,7 +5802,11 @@
         "role": "Witch",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1483.7557950617281
+        "rating_after": 1483.7557950617281,
+        "initial_team": "Evil",
+        "roles": [
+          "Witch"
+        ]
       }
     ]
   },
@@ -4801,7 +5847,11 @@
         "role": "Exorcist",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1516.6128080322
+        "rating_after": 1516.6128080322,
+        "initial_team": "Good",
+        "roles": [
+          "Exorcist"
+        ]
       },
       {
         "game_number": 18,
@@ -4810,7 +5860,11 @@
         "role": "Assassin",
         "win": true,
         "rating_before": 1516.6128080322,
-        "rating_after": 1533.037455893901
+        "rating_after": 1533.037455893901,
+        "initial_team": "Evil",
+        "roles": [
+          "Assassin"
+        ]
       },
       {
         "game_number": 19,
@@ -4819,7 +5873,11 @@
         "role": "Clockmaker",
         "win": false,
         "rating_before": 1533.037455893901,
-        "rating_after": 1516.3768567224863
+        "rating_after": 1516.3768567224863,
+        "initial_team": "Good",
+        "roles": [
+          "Clockmaker"
+        ]
       }
     ]
   },
@@ -4852,7 +5910,11 @@
         "role": "Zombuul",
         "win": false,
         "rating_before": 1500,
-        "rating_after": 1483.3871919678
+        "rating_after": 1483.3871919678,
+        "initial_team": "Evil",
+        "roles": [
+          "Zombuul"
+        ]
       },
       {
         "game_number": 18,
@@ -4861,7 +5923,11 @@
         "role": "Exorcist",
         "win": false,
         "rating_before": 1483.3871919678,
-        "rating_after": 1466.962544106099
+        "rating_after": 1466.962544106099,
+        "initial_team": "Good",
+        "roles": [
+          "Exorcist"
+        ]
       }
     ]
   },
@@ -4886,7 +5952,11 @@
         "role": "Chambermaid",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1516.2546577607827
+        "rating_after": 1516.2546577607827,
+        "initial_team": "Good",
+        "roles": [
+          "Chambermaid"
+        ]
       }
     ]
   },
@@ -4911,7 +5981,11 @@
         "role": "Fool",
         "win": true,
         "rating_before": 1500,
-        "rating_after": 1516.2546577607827
+        "rating_after": 1516.2546577607827,
+        "initial_team": "Good",
+        "roles": [
+          "Fool"
+        ]
       }
     ]
   }
