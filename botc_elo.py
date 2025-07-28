@@ -300,7 +300,8 @@ class EloTrackerApp:
             "Trouble in Violets",
             "No Greater Joy",
             "Over the River",
-            "Laissez un Faire"
+            "Laissez un Faire",
+            "Trouble in Legion"
         ]
         # Game Mode selection
         frame_game_mode = tk.LabelFrame(self.frame_submit, text="Game Mode")

@@ -1459,7 +1459,7 @@
       },
       {
         "name": "Simone_Jarvis",
-        "role": "Saint",
+        "role": "Mayor",
         "team": "Good",
         "roles": [
           "Mayor",
@@ -1478,7 +1478,7 @@
       },
       {
         "name": "Kevin_Stankiewicz",
-        "role": "Recluse",
+        "role": "Drunk",
         "team": "Good",
         "roles": [
           "Drunk",
@@ -1524,7 +1524,7 @@
       },
       {
         "name": "Noe_Lepez",
-        "role": "Evil_Twin",
+        "role": "Undertaker",
         "team": "Good",
         "roles": [
           "Undertaker",
@@ -1534,7 +1534,7 @@
       },
       {
         "name": "Ross_Williams",
-        "role": "No_Dashi",
+        "role": "Pit-hag",
         "team": "Evil",
         "roles": [
           "Pit-hag",
@@ -2165,7 +2165,7 @@
       },
       {
         "name": "Marlie_Horewitz",
-        "role": "Sweetheart",
+        "role": "Town_Crier",
         "team": "Good",
         "roles": [
           "Town_Crier",
@@ -2238,7 +2238,7 @@
       },
       {
         "name": "Simon_Miller",
-        "role": "Vortox",
+        "role": "Witch",
         "team": "Evil",
         "roles": [
           "Witch",
@@ -2645,6 +2645,368 @@
     ],
     "winning_team": "Good",
     "game_mode": "Sects & Violets",
+    "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 27,
+    "date": "2025-07-28 10:58:42",
+    "players": [
+      {
+        "name": "Noah_Diamond",
+        "roles": [
+          "Soldier"
+        ],
+        "role": "Soldier",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Matan_Diamond",
+        "roles": [
+          "Chef"
+        ],
+        "role": "Chef",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ham_Liu",
+        "roles": [
+          "Fortune_Teller"
+        ],
+        "role": "Fortune_Teller",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Josh_Landsman",
+        "roles": [
+          "Ravenkeeper"
+        ],
+        "role": "Ravenkeeper",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Sydney_Siegel",
+        "roles": [
+          "Saint"
+        ],
+        "role": "Saint",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Lee_Margolit",
+        "roles": [
+          "Washerwoman"
+        ],
+        "role": "Washerwoman",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Justin_Cobb",
+        "roles": [
+          "Undertaker"
+        ],
+        "role": "Undertaker",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Harrison_Faerman",
+        "roles": [
+          "Drunk"
+        ],
+        "role": "Drunk",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Hannah_Faerman",
+        "roles": [
+          "Slayer"
+        ],
+        "role": "Slayer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Maddy_Barth",
+        "roles": [
+          "Baron"
+        ],
+        "role": "Baron",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Jaylen_Spears",
+        "roles": [
+          "Poisoner"
+        ],
+        "role": "Poisoner",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Marin_Londe",
+        "roles": [
+          "Scarlet_Woman",
+          "Imp"
+        ],
+        "role": "Scarlet_Woman",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Tony_Liu",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Trouble Brewing",
+    "story_teller": "Zoe_Diamond+Ross_Williams"
+  },
+  {
+    "game_id": 28,
+    "date": "2025-07-28 11:03:03",
+    "players": [
+      {
+        "name": "Maddy_Barth",
+        "roles": [
+          "Investigator"
+        ],
+        "role": "Investigator",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Noah_Diamond",
+        "roles": [
+          "Chef"
+        ],
+        "role": "Chef",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Matan_Diamond",
+        "roles": [
+          "Recluse"
+        ],
+        "role": "Recluse",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Josh_Landsman",
+        "roles": [
+          "Empath"
+        ],
+        "role": "Empath",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Marin_Londe",
+        "roles": [
+          "Monk"
+        ],
+        "role": "Monk",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Tony_Liu",
+        "roles": [
+          "Slayer"
+        ],
+        "role": "Slayer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Harrison_Faerman",
+        "roles": [
+          "Virgin"
+        ],
+        "role": "Virgin",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Hannah_Faerman",
+        "roles": [
+          "Fortune_Teller"
+        ],
+        "role": "Fortune_Teller",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Lee_Margolit",
+        "roles": [
+          "Spy"
+        ],
+        "role": "Spy",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Jaylen_Spears",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Ham_Liu",
+        "roles": [
+          "Poisoner"
+        ],
+        "role": "Poisoner",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Trouble Brewing",
+    "story_teller": "Zoe_Diamond+Ross_Williams"
+  },
+  {
+    "game_id": 29,
+    "date": "2025-07-28 11:07:16",
+    "players": [
+      {
+        "name": "Tony_Liu",
+        "roles": [
+          "Klutz"
+        ],
+        "role": "Klutz",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ham_Liu",
+        "roles": [
+          "Clockmaker"
+        ],
+        "role": "Clockmaker",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Empath"
+        ],
+        "role": "Empath",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Maddy_Barth",
+        "roles": [
+          "Sage"
+        ],
+        "role": "Sage",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Jaylen_Spears",
+        "roles": [
+          "Scarlet_Woman"
+        ],
+        "role": "Scarlet_Woman",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Evil",
+    "game_mode": "No Greater Joy",
+    "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 30,
+    "date": "2025-07-28 11:10:30",
+    "players": [
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Sage"
+        ],
+        "role": "Sage",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Drunk"
+        ],
+        "role": "Drunk",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ham_Liu",
+        "roles": [
+          "Artist"
+        ],
+        "role": "Artist",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Tony_Liu",
+        "roles": [
+          "Chambermaid"
+        ],
+        "role": "Chambermaid",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Jaylen_Spears",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Maddy_Barth",
+        "roles": [
+          "Scarlet_Woman",
+          "Imp"
+        ],
+        "role": "Scarlet_Woman",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "No Greater Joy",
     "story_teller": "Matan_Diamond"
   }
 ]

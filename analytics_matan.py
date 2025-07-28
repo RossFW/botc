@@ -61,6 +61,7 @@ NORMAL_SCRIPTS = {
     "bad moon rising",
     "sects & violets",
     "trouble in violets",
+    "trouble in legion"
 }
 
 # Names of JSON files; these must exist in the working directory. Only
@@ -428,16 +429,23 @@ class AnalyticsUI:
             else:
                 games = [g for g in self.analytics.games if (g.get("game_mode", "") or "") == selection]
             # Aggregate statistics per character
+            # Use a set to ensure a role is counted only once per game, even if multiple players have the same role (e.g. Legion)
             char_stats: Dict[str, Dict[str, float]] = {}
             for game in games:
                 winning_team = game.get("winning_team")
+                # Map each role in this game to the list of teams for players with that role
+                role_teams: Dict[str, List[str]] = {}
                 for p in game.get("players", []):
                     role = p.get("role") or ""
                     if not role:
                         continue
+                    role_teams.setdefault(role, []).append(p.get("team"))
+                # Update stats per unique role
+                for role, teams in role_teams.items():
                     entry = char_stats.setdefault(role, {"games": 0, "wins": 0})
                     entry["games"] += 1
-                    if p.get("team") == winning_team:
+                    # Count a win if any instance of the role was on the winning team
+                    if winning_team in teams:
                         entry["wins"] += 1
             # Build data list: (role, win_pct, wins, games)
             data_list = []
@@ -523,16 +531,14 @@ class AnalyticsUI:
         lbl_evil_games = tk.Label(summary_frame, text="Evil games: 0")
         lbl_evil_games.pack(anchor="w")
         # Treeview columns for per‑script breakdown
+        # Counts of wins are omitted – only percentages and game counts are displayed.
         cols = (
             "Script",
             "Win %",
-            "Wins",
             "Games",
             "Good Win %",
-            "Good Wins",
             "Good Games",
             "Evil Win %",
-            "Evil Wins",
             "Evil Games",
         )
         tree = ttk.Treeview(frame, columns=cols, show="headings")
@@ -631,13 +637,10 @@ class AnalyticsUI:
                 (
                     "All",
                     overall_pct,
-                    w,
                     g,
                     good_pct,
-                    gw,
                     gg,
                     evil_pct,
-                    ew,
                     eg,
                 )
             )
@@ -656,17 +659,14 @@ class AnalyticsUI:
                     (
                         script or "(Unknown)",
                         overall_scr_pct,
-                        w_scr,
                         g_scr,
                         good_scr_pct,
-                        gw_scr,
                         gg_scr,
                         evil_scr_pct,
-                        ew_scr,
                         eg_scr,
                     )
                 )
-            # Sort scripts by Win % descending after the first row if desired
+            # Sort scripts by Win % descending after the first row
             script_rows = rows[1:]
             script_rows.sort(key=lambda x: x[1], reverse=True)
             combined = [rows[0]] + script_rows
@@ -679,28 +679,23 @@ class AnalyticsUI:
                         row[0],
                         f"{row[1]:.1f}%",
                         row[2],
-                        row[3],
-                        f"{row[4]:.1f}%",
-                        row[5],
+                        f"{row[3]:.1f}%",
+                        row[4],
+                        f"{row[5]:.1f}%",
                         row[6],
-                        f"{row[7]:.1f}%",
-                        row[8],
-                        row[9],
                     ),
                 )
 
         # Sort function for columns
         def sort_by(col: str) -> None:
+            # Mapping of column names to index in displayed row values
             idx_map = {
                 "Win %": 1,
-                "Wins": 2,
-                "Games": 3,
-                "Good Win %": 4,
-                "Good Wins": 5,
-                "Good Games": 6,
-                "Evil Win %": 7,
-                "Evil Wins": 8,
-                "Evil Games": 9,
+                "Games": 2,
+                "Good Win %": 3,
+                "Good Games": 4,
+                "Evil Win %": 5,
+                "Evil Games": 6,
             }
             reverse = getattr(sort_by, "reverse", False)
             rows = [tree.item(i)["values"] for i in tree.get_children() if tree.item(i)["values"]]
