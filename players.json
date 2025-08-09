@@ -1,7 +1,7 @@
 [
   {
     "name": "Ross_Williams",
-    "current_rating": 1596.3886407443279,
+    "current_rating": 1596.428891834788,
     "rating_history": [
       {
         "game_number": 1,
@@ -206,7 +206,7 @@
       {
         "game_number": 33,
         "date": "2025-08-09 00:47:37",
-        "rating": 1596.3886407443279,
+        "rating": 1596.428891834788,
         "overall_win_pct": 61.53846153846154,
         "good_win_pct": 58.82352941176471,
         "evil_win_pct": 66.66666666666666
@@ -546,7 +546,7 @@
         "role": "Drunk",
         "win": true,
         "rating_before": 1582.200597356694,
-        "rating_after": 1596.3886407443279,
+        "rating_after": 1596.428891834788,
         "initial_team": "Good",
         "roles": [
           "Drunk"
@@ -774,7 +774,7 @@
   },
   {
     "name": "Sam_Reissing",
-    "current_rating": 1455.3835323574217,
+    "current_rating": 1455.3432812669616,
     "rating_history": [
       {
         "game_number": 1,
@@ -923,7 +923,7 @@
       {
         "game_number": 33,
         "date": "2025-08-09 00:47:37",
-        "rating": 1455.3835323574217,
+        "rating": 1455.3432812669616,
         "overall_win_pct": 42.10526315789473,
         "good_win_pct": 42.857142857142854,
         "evil_win_pct": 40.0
@@ -1171,7 +1171,7 @@
         "role": "Imp",
         "win": false,
         "rating_before": 1469.5715757450555,
-        "rating_after": 1455.3835323574217,
+        "rating_after": 1455.3432812669616,
         "initial_team": "Evil",
         "roles": [
           "Imp"
@@ -1181,7 +1181,7 @@
   },
   {
     "name": "Alex_West",
-    "current_rating": 1480.5329404822019,
+    "current_rating": 1480.4926893917418,
     "rating_history": [
       {
         "game_number": 1,
@@ -1266,7 +1266,7 @@
       {
         "game_number": 33,
         "date": "2025-08-09 00:47:37",
-        "rating": 1480.5329404822019,
+        "rating": 1480.4926893917418,
         "overall_win_pct": 45.45454545454545,
         "good_win_pct": 50.0,
         "evil_win_pct": 40.0
@@ -1410,7 +1410,7 @@
         "role": "Baron",
         "win": false,
         "rating_before": 1494.7209838698357,
-        "rating_after": 1480.5329404822019,
+        "rating_after": 1480.4926893917418,
         "initial_team": "Evil",
         "roles": [
           "Baron"
@@ -1554,7 +1554,7 @@
   },
   {
     "name": "Zoe_Diamond",
-    "current_rating": 1493.1099872358825,
+    "current_rating": 1493.1502383263426,
     "rating_history": [
       {
         "game_number": 1,
@@ -1775,7 +1775,7 @@
       {
         "game_number": 33,
         "date": "2025-08-09 00:47:37",
-        "rating": 1493.1099872358825,
+        "rating": 1493.1502383263426,
         "overall_win_pct": 50.0,
         "good_win_pct": 50.0,
         "evil_win_pct": 50.0
@@ -2138,7 +2138,7 @@
         "role": "Klutz",
         "win": true,
         "rating_before": 1478.9219438482487,
-        "rating_after": 1493.1099872358825,
+        "rating_after": 1493.1502383263426,
         "initial_team": "Good",
         "roles": [
           "Klutz"
@@ -2367,7 +2367,7 @@
   },
   {
     "name": "Rachel_West",
-    "current_rating": 1496.459428182786,
+    "current_rating": 1510.68772266088,
     "rating_history": [
       {
         "game_number": 1,
@@ -2431,6 +2431,14 @@
         "rating": 1496.459428182786,
         "overall_win_pct": 50.0,
         "good_win_pct": 60.0,
+        "evil_win_pct": 33.33333333333333
+      },
+      {
+        "game_number": 33,
+        "date": "2025-08-09 00:47:37",
+        "rating": 1510.68772266088,
+        "overall_win_pct": 55.55555555555556,
+        "good_win_pct": 66.66666666666666,
         "evil_win_pct": 33.33333333333333
       }
     ],
@@ -2538,12 +2546,25 @@
         "roles": [
           "Virgin"
         ]
+      },
+      {
+        "game_number": 33,
+        "date": "2025-08-09 00:47:37",
+        "team": "Good",
+        "role": "Clockmaker",
+        "win": true,
+        "rating_before": 1496.459428182786,
+        "rating_after": 1510.68772266088,
+        "initial_team": "Good",
+        "roles": [
+          "Clockmaker"
+        ]
       }
     ]
   },
   {
     "name": "Michael_Dell",
-    "current_rating": 1539.7132145041082,
+    "current_rating": 1539.7534655945683,
     "rating_history": [
       {
         "game_number": 1,
@@ -2724,7 +2745,7 @@
       {
         "game_number": 33,
         "date": "2025-08-09 00:47:37",
-        "rating": 1539.7132145041082,
+        "rating": 1539.7534655945683,
         "overall_win_pct": 56.52173913043478,
         "good_win_pct": 56.25,
         "evil_win_pct": 57.14285714285714
@@ -3024,7 +3045,7 @@
         "role": "Empath",
         "win": true,
         "rating_before": 1525.5251711164744,
-        "rating_after": 1539.7132145041082,
+        "rating_after": 1539.7534655945683,
         "initial_team": "Good",
         "roles": [
           "Empath"
@@ -7425,31 +7446,8 @@
   },
   {
     "name": "Rachael_West",
-    "current_rating": 1514.1880433876338,
-    "rating_history": [
-      {
-        "game_number": 33,
-        "date": "2025-08-09 00:47:37",
-        "rating": 1514.1880433876338,
-        "overall_win_pct": 100.0,
-        "good_win_pct": 100.0,
-        "evil_win_pct": null
-      }
-    ],
-    "game_history": [
-      {
-        "game_number": 33,
-        "date": "2025-08-09 00:47:37",
-        "team": "Good",
-        "role": "Clockmaker",
-        "win": true,
-        "rating_before": 1500,
-        "rating_after": 1514.1880433876338,
-        "initial_team": "Good",
-        "roles": [
-          "Clockmaker"
-        ]
-      }
-    ]
+    "current_rating": 1500,
+    "rating_history": [],
+    "game_history": []
   }
 ]
