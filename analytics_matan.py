@@ -61,7 +61,6 @@ NORMAL_SCRIPTS = {
     "bad moon rising",
     "sects & violets",
     "trouble in violets",
-    "trouble in legion"
 }
 
 # Names of JSON files; these must exist in the working directory. Only
@@ -126,12 +125,18 @@ class MatanAnalytics:
     """
 
     def __init__(self, games: List[Dict[str, Any]]) -> None:
-        self.games: List[Dict[str, Any]] = [
-            g
-            for g in games
-            if normalize_script_name(g.get("story_teller", ""))
-            == normalize_script_name(TARGET_STORYTELLER)
-        ]
+        # Filter games to include those where the storyteller list contains the target
+        # storyteller.  A game may have multiple storytellers separated by '+' (e.g.
+        # "Marlie_Horewitz+Matan_Diamond").  We treat the game as belonging to the
+        # target storyteller if one of the names, case‑insensitively, matches
+        # TARGET_STORYTELLER.
+        target = normalize_script_name(TARGET_STORYTELLER)
+        def has_target_storyteller(st_val: str) -> bool:
+            if not st_val:
+                return False
+            parts = [p.strip().lower() for p in st_val.split('+') if p.strip()]
+            return target in parts
+        self.games: List[Dict[str, Any]] = [g for g in games if has_target_storyteller(g.get("story_teller", ""))]
         self.script_stats: Dict[str, Dict[str, Any]] = {}
         self.category_totals: Dict[str, Dict[str, Any]] = {}
         self.player_stats: Dict[str, Dict[str, Any]] = {}
