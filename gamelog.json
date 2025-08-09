@@ -3008,5 +3008,293 @@
     "winning_team": "Good",
     "game_mode": "No Greater Joy",
     "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 31,
+    "date": "2025-08-09 00:42:18",
+    "players": [
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Undertaker"
+        ],
+        "role": "Undertaker",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Alex_West",
+        "roles": [
+          "Fortune_Teller"
+        ],
+        "role": "Fortune_Teller",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Eitan_Ghelman",
+        "roles": [
+          "Slayer"
+        ],
+        "role": "Slayer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Ravenkeeper"
+        ],
+        "role": "Ravenkeeper",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Rachel_West",
+        "roles": [
+          "Recluse"
+        ],
+        "role": "Recluse",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Jaylen_Spears",
+        "roles": [
+          "Legion"
+        ],
+        "role": "Legion",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Ham_Liu",
+        "roles": [
+          "Legion"
+        ],
+        "role": "Legion",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Tahlee_Yichye",
+        "roles": [
+          "Legion"
+        ],
+        "role": "Legion",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Legion"
+        ],
+        "role": "Legion",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Marlie_Horewitz",
+        "roles": [
+          "Legion"
+        ],
+        "role": "Legion",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Simone_Jarvis",
+        "roles": [
+          "Legion"
+        ],
+        "role": "Legion",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Sam_Reissing",
+        "roles": [
+          "Legion"
+        ],
+        "role": "Legion",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Michael_Dell",
+        "roles": [
+          "Legion"
+        ],
+        "role": "Legion",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Lee_Margolit",
+        "roles": [
+          "Legion"
+        ],
+        "role": "Legion",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Tony_Liu",
+        "roles": [
+          "Legion"
+        ],
+        "role": "Legion",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Evil",
+    "game_mode": "Trouble in Legion",
+    "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 32,
+    "date": "2025-08-09 00:45:53",
+    "players": [
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Sam_Reissing",
+        "roles": [
+          "Spy"
+        ],
+        "role": "Spy",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Monk"
+        ],
+        "role": "Monk",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ham_Liu",
+        "roles": [
+          "Empath"
+        ],
+        "role": "Empath",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Tony_Liu",
+        "roles": [
+          "Slayer"
+        ],
+        "role": "Slayer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Alex_West",
+        "roles": [
+          "Drunk"
+        ],
+        "role": "Drunk",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Michael_Dell",
+        "roles": [
+          "Washerwoman"
+        ],
+        "role": "Washerwoman",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Rachel_West",
+        "roles": [
+          "Virgin"
+        ],
+        "role": "Virgin",
+        "initial_team": "Good",
+        "team": "Good"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Trouble in Legion",
+    "story_teller": "Matan_Diamond+Marlie_Horewitz"
+  },
+  {
+    "game_id": 33,
+    "date": "2025-08-09 00:47:37",
+    "players": [
+      {
+        "name": "Alex_West",
+        "roles": [
+          "Baron"
+        ],
+        "role": "Baron",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Sam_Reissing",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Drunk"
+        ],
+        "role": "Drunk",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Michael_Dell",
+        "roles": [
+          "Empath"
+        ],
+        "role": "Empath",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Rachael_West",
+        "roles": [
+          "Clockmaker"
+        ],
+        "role": "Clockmaker",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Klutz"
+        ],
+        "role": "Klutz",
+        "initial_team": "Good",
+        "team": "Good"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "No Greater Joy",
+    "story_teller": "Matan_Diamond"
   }
 ]
