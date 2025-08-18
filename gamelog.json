@@ -3296,5 +3296,311 @@
     "winning_team": "Good",
     "game_mode": "No Greater Joy",
     "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 34,
+    "date": "2025-08-18 11:46:06",
+    "players": [
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Vigormortis"
+        ],
+        "role": "Vigormortis",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Levi_Durham",
+        "roles": [
+          "Cerenovus"
+        ],
+        "role": "Cerenovus",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Alex_Heller",
+        "roles": [
+          "Godfather"
+        ],
+        "role": "Godfather",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Pixie"
+        ],
+        "role": "Pixie",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Sam_Frischling",
+        "roles": [
+          "Mezepheles"
+        ],
+        "role": "Mezepheles",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Seamstress"
+        ],
+        "role": "Seamstress",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Hannah_Swanner",
+        "roles": [
+          "Librarian"
+        ],
+        "role": "Librarian",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Alex_West",
+        "roles": [
+          "Damsel"
+        ],
+        "role": "Damsel",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Geoffery_Dodd",
+        "roles": [
+          "Oracle"
+        ],
+        "role": "Oracle",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Kevin_Stankiewicz",
+        "roles": [
+          "Dreamer"
+        ],
+        "role": "Dreamer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Rachel_West",
+        "roles": [
+          "Preacher"
+        ],
+        "role": "Preacher",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Michael_Dell",
+        "roles": [
+          "Virgin"
+        ],
+        "role": "Virgin",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Sam_Reissing",
+        "roles": [
+          "Huntsman"
+        ],
+        "role": "Huntsman",
+        "initial_team": "Good",
+        "team": "Good"
+      }
+    ],
+    "winning_team": "Evil",
+    "game_mode": "Hide & Seek",
+    "story_teller": "Electra_Szmukler+Matan_Diamond"
+  },
+  {
+    "game_id": 35,
+    "date": "2025-08-18 11:50:02",
+    "players": [
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Noble"
+        ],
+        "role": "Noble",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Sam_Reissing",
+        "roles": [
+          "Seamstress"
+        ],
+        "role": "Seamstress",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Artist"
+        ],
+        "role": "Artist",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Alex_West",
+        "roles": [
+          "Undertaker"
+        ],
+        "role": "Undertaker",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Levi_Durham",
+        "roles": [
+          "Huntsman"
+        ],
+        "role": "Huntsman",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Damsel"
+        ],
+        "role": "Damsel",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Sam_Frischling",
+        "roles": [
+          "Ravenkeeper"
+        ],
+        "role": "Ravenkeeper",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Rachel_West",
+        "roles": [
+          "Mezepheles"
+        ],
+        "role": "Mezepheles",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Geoffery_Dodd",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Hannah_Swanner",
+        "roles": [
+          "Poisoner"
+        ],
+        "role": "Poisoner",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Hide & Seek",
+    "story_teller": "Michael_Dell+Matan_Diamond"
+  },
+  {
+    "game_id": 36,
+    "date": "2025-08-18 11:53:44",
+    "players": [
+      {
+        "name": "Geoffery_Dodd",
+        "roles": [
+          "Artist"
+        ],
+        "role": "Artist",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Hannah_Swanner",
+        "roles": [
+          "Pixie"
+        ],
+        "role": "Pixie",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Levi_Durham",
+        "roles": [
+          "Damsel"
+        ],
+        "role": "Damsel",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Seamstress"
+        ],
+        "role": "Seamstress",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Sam_Reissing",
+        "roles": [
+          "Drunk"
+        ],
+        "role": "Drunk",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Oracle"
+        ],
+        "role": "Oracle",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Sam_Frischling",
+        "roles": [
+          "Godfather"
+        ],
+        "role": "Godfather",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Ojo"
+        ],
+        "role": "Ojo",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Evil",
+    "game_mode": "Hide & Seek",
+    "story_teller": "Michael_Dell+Matan_Diamond"
   }
 ]

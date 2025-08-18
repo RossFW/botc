@@ -301,7 +301,8 @@ class EloTrackerApp:
             "No Greater Joy",
             "Over the River",
             "Laissez un Faire",
-            "Trouble in Legion"
+            "Trouble in Legion",
+            "Hide & Seek"
         ]
         # Game Mode selection
         frame_game_mode = tk.LabelFrame(self.frame_submit, text="Game Mode")

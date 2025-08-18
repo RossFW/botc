@@ -61,6 +61,8 @@ NORMAL_SCRIPTS = {
     "bad moon rising",
     "sects & violets",
     "trouble in violets",
+    "trouble in legion",
+    "hide & seek"
 }
 
 # Names of JSON files; these must exist in the working directory. Only
