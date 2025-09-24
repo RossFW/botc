@@ -3602,5 +3602,500 @@
     "winning_team": "Evil",
     "game_mode": "Hide & Seek",
     "story_teller": "Michael_Dell+Matan_Diamond"
+  },
+  {
+    "game_id": 37,
+    "date": "2025-09-03 23:23:44",
+    "players": [
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Preacher"
+        ],
+        "role": "Preacher",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Marlie_Horewitz",
+        "roles": [
+          "Artist"
+        ],
+        "role": "Artist",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Sam_Reissing",
+        "roles": [
+          "Ravenkeeper"
+        ],
+        "role": "Ravenkeeper",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Noble"
+        ],
+        "role": "Noble",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Hannah_Swanner",
+        "roles": [
+          "Virgin"
+        ],
+        "role": "Virgin",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Geoffery_Dodd",
+        "roles": [
+          "Dreamer"
+        ],
+        "role": "Dreamer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Justin_Cobb",
+        "roles": [
+          "Vigormortis"
+        ],
+        "role": "Vigormortis",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Michael_Dell",
+        "roles": [
+          "Poisoner"
+        ],
+        "role": "Poisoner",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Hide & Seek",
+    "story_teller": "Eliza_Kang+Matan_Diamond"
+  },
+  {
+    "game_id": 38,
+    "date": "2025-09-03 23:26:42",
+    "players": [
+      {
+        "name": "Marlie_Horewitz",
+        "roles": [
+          "Mezepheles"
+        ],
+        "role": "Mezepheles",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Pixie"
+        ],
+        "role": "Pixie",
+        "initial_team": "Good",
+        "team": "Evil"
+      },
+      {
+        "name": "Hannah_Swanner",
+        "roles": [
+          "Pukka"
+        ],
+        "role": "Pukka",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Sam_Reissing",
+        "roles": [
+          "Goon"
+        ],
+        "role": "Goon",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Michael_Dell",
+        "roles": [
+          "Dreamer"
+        ],
+        "role": "Dreamer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Geoffery_Dodd",
+        "roles": [
+          "Drunk"
+        ],
+        "role": "Drunk",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Justin_Cobb",
+        "roles": [
+          "Librarian"
+        ],
+        "role": "Librarian",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Eliza_Kang",
+        "roles": [
+          "Noble"
+        ],
+        "role": "Noble",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Undertaker"
+        ],
+        "role": "Undertaker",
+        "initial_team": "Good",
+        "team": "Good"
+      }
+    ],
+    "winning_team": "Evil",
+    "game_mode": "Hide & Seek",
+    "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 39,
+    "date": "2025-09-15 23:53:34",
+    "players": [
+      {
+        "name": "Brett_Ringel",
+        "roles": [
+          "Virgin"
+        ],
+        "role": "Virgin",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Harry_Haber",
+        "roles": [
+          "Slayer"
+        ],
+        "role": "Slayer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Harrison",
+        "roles": [
+          "Smajovits"
+        ],
+        "role": "Smajovits",
+        "initial_team": "Fortune_teller",
+        "team": "Good"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Washerwoman"
+        ],
+        "role": "Washerwoman",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Josh_Landsman",
+        "roles": [
+          "Soldier"
+        ],
+        "role": "Soldier",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Andrea_Zhang",
+        "roles": [
+          "Mayor"
+        ],
+        "role": "Mayor",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Sydney_Munster",
+        "roles": [
+          "Undertaker"
+        ],
+        "role": "Undertaker",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Miles_Marks",
+        "roles": [
+          "Monk"
+        ],
+        "role": "Monk",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Tali_Eplen-Frankel",
+        "roles": [
+          "Recluse"
+        ],
+        "role": "Recluse",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Lissie_Levitt",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Marin_Londe",
+        "roles": [
+          "Baron"
+        ],
+        "role": "Baron",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Tristan_Neumann",
+        "roles": [
+          "Spy"
+        ],
+        "role": "Spy",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Francesco_Costa",
+        "roles": [
+          "Poisoner"
+        ],
+        "role": "Poisoner",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Trouble Brewing",
+    "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 40,
+    "date": "2025-09-15 23:57:59",
+    "players": [
+      {
+        "name": "Sam_Frischling",
+        "roles": [
+          "Monk"
+        ],
+        "role": "Monk",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Marin_Londe",
+        "roles": [
+          "Fortune_Teller"
+        ],
+        "role": "Fortune_Teller",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Lissie_Levitt",
+        "roles": [
+          "Undertaker"
+        ],
+        "role": "Undertaker",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Sydney_Munster",
+        "roles": [
+          "Virgin"
+        ],
+        "role": "Virgin",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Miles_Marks",
+        "roles": [
+          "Investigator"
+        ],
+        "role": "Investigator",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Brett_Ringel",
+        "roles": [
+          "Librarian"
+        ],
+        "role": "Librarian",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Josh_Landsman",
+        "roles": [
+          "Soldier"
+        ],
+        "role": "Soldier",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Matan_Diamond",
+        "roles": [
+          "Saint"
+        ],
+        "role": "Saint",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Francesco_Costa",
+        "roles": [
+          "Chef"
+        ],
+        "role": "Chef",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Andrea_Zhang",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Harrison",
+        "roles": [
+          "Smajovits"
+        ],
+        "role": "Smajovits",
+        "initial_team": "Poisoner",
+        "team": "Evil"
+      },
+      {
+        "name": "Tristan_Neumann",
+        "roles": [
+          "Scarlet_Woman"
+        ],
+        "role": "Scarlet_Woman",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Trouble Brewing",
+    "story_teller": "Simon_Miller"
+  },
+  {
+    "game_id": 41,
+    "date": "2025-09-16 00:01:03",
+    "players": [
+      {
+        "name": "Brett_Ringel",
+        "roles": [
+          "Washerwoman"
+        ],
+        "role": "Washerwoman",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Matan_Diamond",
+        "roles": [
+          "Librarian"
+        ],
+        "role": "Librarian",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Slayer"
+        ],
+        "role": "Slayer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Tristan_Neumann",
+        "roles": [
+          "Undetaker"
+        ],
+        "role": "Undetaker",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Andrea_Zhang",
+        "roles": [
+          "Virgin"
+        ],
+        "role": "Virgin",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Lissie_Levitt",
+        "roles": [
+          "Ravenkeeper"
+        ],
+        "role": "Ravenkeeper",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Miles_Marks",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Sam_Frischling",
+        "roles": [
+          "Spy"
+        ],
+        "role": "Spy",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Evil",
+    "game_mode": "Trouble Brewing",
+    "story_teller": "Simon_Miller"
   }
 ]

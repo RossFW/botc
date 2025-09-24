@@ -1,7 +1,7 @@
 [
   {
     "name": "Ross_Williams",
-    "current_rating": 1610.1063940497863,
+    "current_rating": 1638.360112492569,
     "rating_history": [
       {
         "game_number": 1,
@@ -234,6 +234,22 @@
         "overall_win_pct": 62.06896551724138,
         "good_win_pct": 57.89473684210527,
         "evil_win_pct": 70.0
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "rating": 1625.733165049111,
+        "overall_win_pct": 63.33333333333333,
+        "good_win_pct": 60.0,
+        "evil_win_pct": 70.0
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "rating": 1638.360112492569,
+        "overall_win_pct": 64.51612903225806,
+        "good_win_pct": 60.0,
+        "evil_win_pct": 72.72727272727273
       }
     ],
     "game_history": [
@@ -614,6 +630,32 @@
         "roles": [
           "Oracle"
         ]
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "team": "Good",
+        "role": "Noble",
+        "win": true,
+        "rating_before": 1610.1063940497863,
+        "rating_after": 1625.733165049111,
+        "initial_team": "Good",
+        "roles": [
+          "Noble"
+        ]
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "team": "Evil",
+        "role": "Pixie",
+        "win": true,
+        "rating_before": 1625.733165049111,
+        "rating_after": 1638.360112492569,
+        "initial_team": "Good",
+        "roles": [
+          "Pixie"
+        ]
       }
     ]
   },
@@ -837,7 +879,7 @@
   },
   {
     "name": "Sam_Reissing",
-    "current_rating": 1439.5653202466344,
+    "current_rating": 1442.565143802501,
     "rating_history": [
       {
         "game_number": 1,
@@ -1013,6 +1055,22 @@
         "rating": 1439.5653202466344,
         "overall_win_pct": 40.909090909090914,
         "good_win_pct": 41.17647058823529,
+        "evil_win_pct": 40.0
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "rating": 1455.192091245959,
+        "overall_win_pct": 43.47826086956522,
+        "good_win_pct": 44.44444444444444,
+        "evil_win_pct": 40.0
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "rating": 1442.565143802501,
+        "overall_win_pct": 41.66666666666667,
+        "good_win_pct": 42.10526315789473,
         "evil_win_pct": 40.0
       }
     ],
@@ -1302,6 +1360,32 @@
         "roles": [
           "Drunk"
         ]
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "team": "Good",
+        "role": "Ravenkeeper",
+        "win": true,
+        "rating_before": 1439.5653202466344,
+        "rating_after": 1455.192091245959,
+        "initial_team": "Good",
+        "roles": [
+          "Ravenkeeper"
+        ]
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "team": "Good",
+        "role": "Goon",
+        "win": false,
+        "rating_before": 1455.192091245959,
+        "rating_after": 1442.565143802501,
+        "initial_team": "Good",
+        "roles": [
+          "Goon"
+        ]
       }
     ]
   },
@@ -1588,7 +1672,7 @@
   },
   {
     "name": "Justin_Cobb",
-    "current_rating": 1468.9154268049826,
+    "current_rating": 1440.6617083622,
     "rating_history": [
       {
         "game_number": 1,
@@ -1636,6 +1720,22 @@
         "rating": 1468.9154268049826,
         "overall_win_pct": 33.33333333333333,
         "good_win_pct": 40.0,
+        "evil_win_pct": 0.0
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "rating": 1453.288655805658,
+        "overall_win_pct": 28.57142857142857,
+        "good_win_pct": 40.0,
+        "evil_win_pct": 0.0
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "rating": 1440.6617083622,
+        "overall_win_pct": 25.0,
+        "good_win_pct": 33.33333333333333,
         "evil_win_pct": 0.0
       }
     ],
@@ -1717,12 +1817,38 @@
         "roles": [
           "Undertaker"
         ]
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "team": "Evil",
+        "role": "Vigormortis",
+        "win": false,
+        "rating_before": 1468.9154268049826,
+        "rating_after": 1453.288655805658,
+        "initial_team": "Evil",
+        "roles": [
+          "Vigormortis"
+        ]
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "team": "Good",
+        "role": "Librarian",
+        "win": false,
+        "rating_before": 1453.288655805658,
+        "rating_after": 1440.6617083622,
+        "initial_team": "Good",
+        "roles": [
+          "Librarian"
+        ]
       }
     ]
   },
   {
     "name": "Zoe_Diamond",
-    "current_rating": 1506.827740541341,
+    "current_rating": 1495.5212237960843,
     "rating_history": [
       {
         "game_number": 1,
@@ -1970,6 +2096,30 @@
         "rating": 1506.827740541341,
         "overall_win_pct": 51.61290322580645,
         "good_win_pct": 50.0,
+        "evil_win_pct": 60.0
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "rating": 1522.4545115406656,
+        "overall_win_pct": 53.125,
+        "good_win_pct": 51.85185185185185,
+        "evil_win_pct": 60.0
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "rating": 1509.8275640972076,
+        "overall_win_pct": 51.515151515151516,
+        "good_win_pct": 50.0,
+        "evil_win_pct": 60.0
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "rating": 1495.5212237960843,
+        "overall_win_pct": 50.0,
+        "good_win_pct": 48.275862068965516,
         "evil_win_pct": 60.0
       }
     ],
@@ -2373,6 +2523,45 @@
         "initial_team": "Good",
         "roles": [
           "Seamstress"
+        ]
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "team": "Good",
+        "role": "Preacher",
+        "win": true,
+        "rating_before": 1506.827740541341,
+        "rating_after": 1522.4545115406656,
+        "initial_team": "Good",
+        "roles": [
+          "Preacher"
+        ]
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "team": "Good",
+        "role": "Undertaker",
+        "win": false,
+        "rating_before": 1522.4545115406656,
+        "rating_after": 1509.8275640972076,
+        "initial_team": "Good",
+        "roles": [
+          "Undertaker"
+        ]
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "team": "Good",
+        "role": "Slayer",
+        "win": false,
+        "rating_before": 1509.8275640972076,
+        "rating_after": 1495.5212237960843,
+        "initial_team": "Good",
+        "roles": [
+          "Slayer"
         ]
       }
     ]
@@ -2837,7 +3026,7 @@
   },
   {
     "name": "Michael_Dell",
-    "current_rating": 1525.0257339769055,
+    "current_rating": 1496.7720155341228,
     "rating_history": [
       {
         "game_number": 1,
@@ -3030,6 +3219,22 @@
         "overall_win_pct": 54.166666666666664,
         "good_win_pct": 52.94117647058824,
         "evil_win_pct": 57.14285714285714
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "rating": 1509.3989629775808,
+        "overall_win_pct": 52.0,
+        "good_win_pct": 52.94117647058824,
+        "evil_win_pct": 50.0
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "rating": 1496.7720155341228,
+        "overall_win_pct": 50.0,
+        "good_win_pct": 50.0,
+        "evil_win_pct": 50.0
       }
     ],
     "game_history": [
@@ -3344,6 +3549,32 @@
         "roles": [
           "Virgin"
         ]
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "team": "Evil",
+        "role": "Poisoner",
+        "win": false,
+        "rating_before": 1525.0257339769055,
+        "rating_after": 1509.3989629775808,
+        "initial_team": "Evil",
+        "roles": [
+          "Poisoner"
+        ]
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "team": "Good",
+        "role": "Dreamer",
+        "win": false,
+        "rating_before": 1509.3989629775808,
+        "rating_after": 1496.7720155341228,
+        "initial_team": "Good",
+        "roles": [
+          "Dreamer"
+        ]
       }
     ]
   },
@@ -3547,7 +3778,7 @@
   },
   {
     "name": "Eliza_Kang",
-    "current_rating": 1526.9218366969799,
+    "current_rating": 1514.294889253522,
     "rating_history": [
       {
         "game_number": 2,
@@ -3595,6 +3826,14 @@
         "rating": 1526.9218366969799,
         "overall_win_pct": 66.66666666666666,
         "good_win_pct": 60.0,
+        "evil_win_pct": 100.0
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "rating": 1514.294889253522,
+        "overall_win_pct": 57.14285714285714,
+        "good_win_pct": 50.0,
         "evil_win_pct": 100.0
       }
     ],
@@ -3676,12 +3915,25 @@
         "roles": [
           "Artist"
         ]
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "team": "Good",
+        "role": "Noble",
+        "win": false,
+        "rating_before": 1526.9218366969799,
+        "rating_after": 1514.294889253522,
+        "initial_team": "Good",
+        "roles": [
+          "Noble"
+        ]
       }
     ]
   },
   {
     "name": "Marlie_Horewitz",
-    "current_rating": 1567.286290589563,
+    "current_rating": 1595.5400090323456,
     "rating_history": [
       {
         "game_number": 3,
@@ -3761,6 +4013,22 @@
         "rating": 1567.286290589563,
         "overall_win_pct": 70.0,
         "good_win_pct": 62.5,
+        "evil_win_pct": 100.0
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "rating": 1582.9130615888876,
+        "overall_win_pct": 72.72727272727273,
+        "good_win_pct": 66.66666666666666,
+        "evil_win_pct": 100.0
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "rating": 1595.5400090323456,
+        "overall_win_pct": 75.0,
+        "good_win_pct": 66.66666666666666,
         "evil_win_pct": 100.0
       }
     ],
@@ -3895,12 +4163,38 @@
         "roles": [
           "Legion"
         ]
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "team": "Good",
+        "role": "Artist",
+        "win": true,
+        "rating_before": 1567.286290589563,
+        "rating_after": 1582.9130615888876,
+        "initial_team": "Good",
+        "roles": [
+          "Artist"
+        ]
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "team": "Evil",
+        "role": "Mezepheles",
+        "win": true,
+        "rating_before": 1582.9130615888876,
+        "rating_after": 1595.5400090323456,
+        "initial_team": "Evil",
+        "roles": [
+          "Mezepheles"
+        ]
       }
     ]
   },
   {
     "name": "Simon_Miller",
-    "current_rating": 1504.9906281945878,
+    "current_rating": 1520.79699650124,
     "rating_history": [
       {
         "game_number": 3,
@@ -3980,6 +4274,14 @@
         "rating": 1504.9906281945878,
         "overall_win_pct": 50.0,
         "good_win_pct": 33.33333333333333,
+        "evil_win_pct": 75.0
+      },
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1520.79699650124,
+        "overall_win_pct": 54.54545454545454,
+        "good_win_pct": 42.857142857142854,
         "evil_win_pct": 75.0
       }
     ],
@@ -4113,6 +4415,19 @@
         "initial_team": "Evil",
         "roles": [
           "Ojo"
+        ]
+      },
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Good",
+        "role": "Washerwoman",
+        "win": true,
+        "rating_before": 1504.9906281945878,
+        "rating_after": 1520.79699650124,
+        "initial_team": "Good",
+        "roles": [
+          "Washerwoman"
         ]
       }
     ]
@@ -5534,7 +5849,7 @@
   },
   {
     "name": "Hannah_Swanner",
-    "current_rating": 1462.3900078831075,
+    "current_rating": 1490.6437263258902,
     "rating_history": [
       {
         "game_number": 5,
@@ -5663,6 +5978,22 @@
         "overall_win_pct": 43.75,
         "good_win_pct": 45.45454545454545,
         "evil_win_pct": 40.0
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "rating": 1478.0167788824322,
+        "overall_win_pct": 47.05882352941176,
+        "good_win_pct": 50.0,
+        "evil_win_pct": 40.0
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "rating": 1490.6437263258902,
+        "overall_win_pct": 50.0,
+        "good_win_pct": 50.0,
+        "evil_win_pct": 50.0
       }
     ],
     "game_history": [
@@ -5872,6 +6203,32 @@
         "initial_team": "Good",
         "roles": [
           "Pixie"
+        ]
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "team": "Good",
+        "role": "Virgin",
+        "win": true,
+        "rating_before": 1462.3900078831075,
+        "rating_after": 1478.0167788824322,
+        "initial_team": "Good",
+        "roles": [
+          "Virgin"
+        ]
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "team": "Evil",
+        "role": "Pukka",
+        "win": true,
+        "rating_before": 1478.0167788824322,
+        "rating_after": 1490.6437263258902,
+        "initial_team": "Evil",
+        "roles": [
+          "Pukka"
         ]
       }
     ]
@@ -6557,7 +6914,7 @@
   },
   {
     "name": "Geoffery_Dodd",
-    "current_rating": 1444.2839405985528,
+    "current_rating": 1447.2837641544195,
     "rating_history": [
       {
         "game_number": 13,
@@ -6669,6 +7026,22 @@
         "rating": 1444.2839405985528,
         "overall_win_pct": 35.714285714285715,
         "good_win_pct": 37.5,
+        "evil_win_pct": 33.33333333333333
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "rating": 1459.9107115978775,
+        "overall_win_pct": 40.0,
+        "good_win_pct": 44.44444444444444,
+        "evil_win_pct": 33.33333333333333
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "rating": 1447.2837641544195,
+        "overall_win_pct": 37.5,
+        "good_win_pct": 40.0,
         "evil_win_pct": 33.33333333333333
       }
     ],
@@ -6853,6 +7226,32 @@
         "initial_team": "Good",
         "roles": [
           "Artist"
+        ]
+      },
+      {
+        "game_number": 37,
+        "date": "2025-09-03 23:23:44",
+        "team": "Good",
+        "role": "Dreamer",
+        "win": true,
+        "rating_before": 1444.2839405985528,
+        "rating_after": 1459.9107115978775,
+        "initial_team": "Good",
+        "roles": [
+          "Dreamer"
+        ]
+      },
+      {
+        "game_number": 38,
+        "date": "2025-09-03 23:26:42",
+        "team": "Good",
+        "role": "Drunk",
+        "win": false,
+        "rating_before": 1459.9107115978775,
+        "rating_after": 1447.2837641544195,
+        "initial_team": "Good",
+        "roles": [
+          "Drunk"
         ]
       }
     ]
@@ -7448,7 +7847,7 @@
   },
   {
     "name": "Matan_Diamond",
-    "current_rating": 1532.5652779177692,
+    "current_rating": 1533.8519416371248,
     "rating_history": [
       {
         "game_number": 27,
@@ -7464,6 +7863,22 @@
         "rating": 1532.5652779177692,
         "overall_win_pct": 100.0,
         "good_win_pct": 100.0,
+        "evil_win_pct": null
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "rating": 1548.1582819382481,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "rating": 1533.8519416371248,
+        "overall_win_pct": 75.0,
+        "good_win_pct": 75.0,
         "evil_win_pct": null
       }
     ],
@@ -7493,12 +7908,38 @@
         "roles": [
           "Recluse"
         ]
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "team": "Good",
+        "role": "Saint",
+        "win": true,
+        "rating_before": 1532.5652779177692,
+        "rating_after": 1548.1582819382481,
+        "initial_team": "Good",
+        "roles": [
+          "Saint"
+        ]
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "team": "Good",
+        "role": "Librarian",
+        "win": false,
+        "rating_before": 1548.1582819382481,
+        "rating_after": 1533.8519416371248,
+        "initial_team": "Good",
+        "roles": [
+          "Librarian"
+        ]
       }
     ]
   },
   {
     "name": "Josh_Landsman",
-    "current_rating": 1532.5652779177692,
+    "current_rating": 1563.9646502449004,
     "rating_history": [
       {
         "game_number": 27,
@@ -7512,6 +7953,22 @@
         "game_number": 28,
         "date": "2025-07-28 11:03:03",
         "rating": 1532.5652779177692,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      },
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1548.3716462244215,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "rating": 1563.9646502449004,
         "overall_win_pct": 100.0,
         "good_win_pct": 100.0,
         "evil_win_pct": null
@@ -7542,6 +7999,32 @@
         "initial_team": "Good",
         "roles": [
           "Empath"
+        ]
+      },
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Good",
+        "role": "Soldier",
+        "win": true,
+        "rating_before": 1532.5652779177692,
+        "rating_after": 1548.3716462244215,
+        "initial_team": "Good",
+        "roles": [
+          "Soldier"
+        ]
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "team": "Good",
+        "role": "Soldier",
+        "win": true,
+        "rating_before": 1548.3716462244215,
+        "rating_after": 1563.9646502449004,
+        "initial_team": "Good",
+        "roles": [
+          "Soldier"
         ]
       }
     ]
@@ -7954,7 +8437,7 @@
   },
   {
     "name": "Marin_Londe",
-    "current_rating": 1499.8720574928263,
+    "current_rating": 1499.658693206653,
     "rating_history": [
       {
         "game_number": 27,
@@ -7968,6 +8451,22 @@
         "game_number": 28,
         "date": "2025-07-28 11:03:03",
         "rating": 1499.8720574928263,
+        "overall_win_pct": 50.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": 0.0
+      },
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1484.065689186174,
+        "overall_win_pct": 33.33333333333333,
+        "good_win_pct": 100.0,
+        "evil_win_pct": 0.0
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "rating": 1499.658693206653,
         "overall_win_pct": 50.0,
         "good_win_pct": 100.0,
         "evil_win_pct": 0.0
@@ -7999,6 +8498,32 @@
         "initial_team": "Good",
         "roles": [
           "Monk"
+        ]
+      },
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Evil",
+        "role": "Baron",
+        "win": false,
+        "rating_before": 1499.8720574928263,
+        "rating_after": 1484.065689186174,
+        "initial_team": "Evil",
+        "roles": [
+          "Baron"
+        ]
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "team": "Good",
+        "role": "Fortune_Teller",
+        "win": true,
+        "rating_before": 1484.065689186174,
+        "rating_after": 1499.658693206653,
+        "initial_team": "Good",
+        "roles": [
+          "Fortune_Teller"
         ]
       }
     ]
@@ -8034,7 +8559,7 @@
   },
   {
     "name": "Sam_Frischling",
-    "current_rating": 1546.1675341786602,
+    "current_rating": 1576.0668785002624,
     "rating_history": [
       {
         "game_number": 34,
@@ -8056,6 +8581,22 @@
         "game_number": 36,
         "date": "2025-08-18 11:53:44",
         "rating": 1546.1675341786602,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": 100.0
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "rating": 1561.760538199139,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": 100.0
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "rating": 1576.0668785002624,
         "overall_win_pct": 100.0,
         "good_win_pct": 100.0,
         "evil_win_pct": 100.0
@@ -8099,6 +8640,595 @@
         "initial_team": "Evil",
         "roles": [
           "Godfather"
+        ]
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "team": "Good",
+        "role": "Monk",
+        "win": true,
+        "rating_before": 1546.1675341786602,
+        "rating_after": 1561.760538199139,
+        "initial_team": "Good",
+        "roles": [
+          "Monk"
+        ]
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "team": "Evil",
+        "role": "Spy",
+        "win": true,
+        "rating_before": 1561.760538199139,
+        "rating_after": 1576.0668785002624,
+        "initial_team": "Evil",
+        "roles": [
+          "Spy"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Brett_Ringel",
+    "current_rating": 1517.093032026008,
+    "rating_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1515.8063683066523,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "rating": 1531.3993723271312,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "rating": 1517.093032026008,
+        "overall_win_pct": 66.66666666666666,
+        "good_win_pct": 66.66666666666666,
+        "evil_win_pct": null
+      }
+    ],
+    "game_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Good",
+        "role": "Virgin",
+        "win": true,
+        "rating_before": 1500,
+        "rating_after": 1515.8063683066523,
+        "initial_team": "Good",
+        "roles": [
+          "Virgin"
+        ]
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "team": "Good",
+        "role": "Librarian",
+        "win": true,
+        "rating_before": 1515.8063683066523,
+        "rating_after": 1531.3993723271312,
+        "initial_team": "Good",
+        "roles": [
+          "Librarian"
+        ]
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "team": "Good",
+        "role": "Washerwoman",
+        "win": false,
+        "rating_before": 1531.3993723271312,
+        "rating_after": 1517.093032026008,
+        "initial_team": "Good",
+        "roles": [
+          "Washerwoman"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Harry_Haber",
+    "current_rating": 1515.8063683066523,
+    "rating_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1515.8063683066523,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      }
+    ],
+    "game_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Good",
+        "role": "Slayer",
+        "win": true,
+        "rating_before": 1500,
+        "rating_after": 1515.8063683066523,
+        "initial_team": "Good",
+        "roles": [
+          "Slayer"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Harrison",
+    "current_rating": 1500.2133642861734,
+    "rating_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1515.8063683066523,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "rating": 1500.2133642861734,
+        "overall_win_pct": 50.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": 0.0
+      }
+    ],
+    "game_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Good",
+        "role": "Smajovits",
+        "win": true,
+        "rating_before": 1500,
+        "rating_after": 1515.8063683066523,
+        "initial_team": "Fortune_teller",
+        "roles": [
+          "Smajovits"
+        ]
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "team": "Evil",
+        "role": "Smajovits",
+        "win": false,
+        "rating_before": 1515.8063683066523,
+        "rating_after": 1500.2133642861734,
+        "initial_team": "Poisoner",
+        "roles": [
+          "Smajovits"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Andrea_Zhang",
+    "current_rating": 1485.90702398505,
+    "rating_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1515.8063683066523,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "rating": 1500.2133642861734,
+        "overall_win_pct": 50.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": 0.0
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "rating": 1485.90702398505,
+        "overall_win_pct": 33.33333333333333,
+        "good_win_pct": 50.0,
+        "evil_win_pct": 0.0
+      }
+    ],
+    "game_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Good",
+        "role": "Mayor",
+        "win": true,
+        "rating_before": 1500,
+        "rating_after": 1515.8063683066523,
+        "initial_team": "Good",
+        "roles": [
+          "Mayor"
+        ]
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "team": "Evil",
+        "role": "Imp",
+        "win": false,
+        "rating_before": 1515.8063683066523,
+        "rating_after": 1500.2133642861734,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "team": "Good",
+        "role": "Virgin",
+        "win": false,
+        "rating_before": 1500.2133642861734,
+        "rating_after": 1485.90702398505,
+        "initial_team": "Good",
+        "roles": [
+          "Virgin"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Sydney_Munster",
+    "current_rating": 1531.3993723271312,
+    "rating_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1515.8063683066523,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "rating": 1531.3993723271312,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      }
+    ],
+    "game_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Good",
+        "role": "Undertaker",
+        "win": true,
+        "rating_before": 1500,
+        "rating_after": 1515.8063683066523,
+        "initial_team": "Good",
+        "roles": [
+          "Undertaker"
+        ]
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "team": "Good",
+        "role": "Virgin",
+        "win": true,
+        "rating_before": 1515.8063683066523,
+        "rating_after": 1531.3993723271312,
+        "initial_team": "Good",
+        "roles": [
+          "Virgin"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Miles_Marks",
+    "current_rating": 1545.7057126282546,
+    "rating_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1515.8063683066523,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "rating": 1531.3993723271312,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "rating": 1545.7057126282546,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": 100.0
+      }
+    ],
+    "game_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Good",
+        "role": "Monk",
+        "win": true,
+        "rating_before": 1500,
+        "rating_after": 1515.8063683066523,
+        "initial_team": "Good",
+        "roles": [
+          "Monk"
+        ]
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "team": "Good",
+        "role": "Investigator",
+        "win": true,
+        "rating_before": 1515.8063683066523,
+        "rating_after": 1531.3993723271312,
+        "initial_team": "Good",
+        "roles": [
+          "Investigator"
+        ]
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "team": "Evil",
+        "role": "Imp",
+        "win": true,
+        "rating_before": 1531.3993723271312,
+        "rating_after": 1545.7057126282546,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Tali_Eplen-Frankel",
+    "current_rating": 1515.8063683066523,
+    "rating_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1515.8063683066523,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      }
+    ],
+    "game_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Good",
+        "role": "Recluse",
+        "win": true,
+        "rating_before": 1500,
+        "rating_after": 1515.8063683066523,
+        "initial_team": "Good",
+        "roles": [
+          "Recluse"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Lissie_Levitt",
+    "current_rating": 1485.4802954127033,
+    "rating_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1484.1936316933477,
+        "overall_win_pct": 0.0,
+        "good_win_pct": null,
+        "evil_win_pct": 0.0
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "rating": 1499.7866357138266,
+        "overall_win_pct": 50.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": 0.0
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "rating": 1485.4802954127033,
+        "overall_win_pct": 33.33333333333333,
+        "good_win_pct": 50.0,
+        "evil_win_pct": 0.0
+      }
+    ],
+    "game_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Evil",
+        "role": "Imp",
+        "win": false,
+        "rating_before": 1500,
+        "rating_after": 1484.1936316933477,
+        "initial_team": "Evil",
+        "roles": [
+          "Imp"
+        ]
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "team": "Good",
+        "role": "Undertaker",
+        "win": true,
+        "rating_before": 1484.1936316933477,
+        "rating_after": 1499.7866357138266,
+        "initial_team": "Good",
+        "roles": [
+          "Undertaker"
+        ]
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "team": "Good",
+        "role": "Ravenkeeper",
+        "win": false,
+        "rating_before": 1499.7866357138266,
+        "rating_after": 1485.4802954127033,
+        "initial_team": "Good",
+        "roles": [
+          "Ravenkeeper"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Tristan_Neumann",
+    "current_rating": 1454.2942873717454,
+    "rating_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1484.1936316933477,
+        "overall_win_pct": 0.0,
+        "good_win_pct": null,
+        "evil_win_pct": 0.0
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "rating": 1468.6006276728688,
+        "overall_win_pct": 0.0,
+        "good_win_pct": null,
+        "evil_win_pct": 0.0
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "rating": 1454.2942873717454,
+        "overall_win_pct": 0.0,
+        "good_win_pct": 0.0,
+        "evil_win_pct": 0.0
+      }
+    ],
+    "game_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Evil",
+        "role": "Spy",
+        "win": false,
+        "rating_before": 1500,
+        "rating_after": 1484.1936316933477,
+        "initial_team": "Evil",
+        "roles": [
+          "Spy"
+        ]
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "team": "Evil",
+        "role": "Scarlet_Woman",
+        "win": false,
+        "rating_before": 1484.1936316933477,
+        "rating_after": 1468.6006276728688,
+        "initial_team": "Evil",
+        "roles": [
+          "Scarlet_Woman"
+        ]
+      },
+      {
+        "game_number": 41,
+        "date": "2025-09-16 00:01:03",
+        "team": "Good",
+        "role": "Undetaker",
+        "win": false,
+        "rating_before": 1468.6006276728688,
+        "rating_after": 1454.2942873717454,
+        "initial_team": "Good",
+        "roles": [
+          "Undetaker"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Francesco_Costa",
+    "current_rating": 1499.7866357138266,
+    "rating_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1484.1936316933477,
+        "overall_win_pct": 0.0,
+        "good_win_pct": null,
+        "evil_win_pct": 0.0
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "rating": 1499.7866357138266,
+        "overall_win_pct": 50.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": 0.0
+      }
+    ],
+    "game_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Evil",
+        "role": "Poisoner",
+        "win": false,
+        "rating_before": 1500,
+        "rating_after": 1484.1936316933477,
+        "initial_team": "Evil",
+        "roles": [
+          "Poisoner"
+        ]
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "team": "Good",
+        "role": "Chef",
+        "win": true,
+        "rating_before": 1484.1936316933477,
+        "rating_after": 1499.7866357138266,
+        "initial_team": "Good",
+        "roles": [
+          "Chef"
         ]
       }
     ]

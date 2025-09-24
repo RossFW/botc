@@ -97,7 +97,7 @@ def main() -> None:
     games = load_games(gamelog_path)
 
     player_a = "Ross_Williams"
-    player_b = "Eitan_Ghelman"
+    player_b = "Justin_Cobb"
 
     results = analyze_pair(games, player_a, player_b)
 
