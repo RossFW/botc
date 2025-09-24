@@ -62,7 +62,11 @@ NORMAL_SCRIPTS = {
     "sects & violets",
     "trouble in violets",
     "trouble in legion",
-    "hide & seek"
+    "hide & seek",
+    "trouble brewing on expert mode",
+    "trained killer",
+    "irrational behavior",
+    "binary supernovae"
 }
 
 # Names of JSON files; these must exist in the working directory. Only

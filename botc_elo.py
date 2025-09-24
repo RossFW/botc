@@ -302,7 +302,13 @@ class EloTrackerApp:
             "Over the River",
             "Laissez un Faire",
             "Trouble in Legion",
-            "Hide & Seek"
+            "Hide & Seek",
+            "Trouble Brewing on Expert Mode",
+            "Trained Killer",
+            "Irrational Behavior",
+            "Binary Supernovae",
+            "A Leech of Distrust"
+
         ]
         # Game Mode selection
         frame_game_mode = tk.LabelFrame(self.frame_submit, text="Game Mode")
