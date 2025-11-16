@@ -1,0 +1,4 @@
+two words= Snake_charmer
+
+Changed roles: Snake_charmer+Witch
+Good->Evil you would put in the evil section
