@@ -542,8 +542,8 @@ class EloTrackerApp:
             else:
                 overall_pct, good_pct, evil_pct = None, None, None
             games_played = player.games_overall
-            # if games_played < 5:
-            #     continue
+            if games_played < 5:
+                continue
             # Insert row with the following columns: Rank, Name, Rating, Overall Win %, Good Win %, Evil Win %, Games Played.
             self.tree.insert(
                 "",

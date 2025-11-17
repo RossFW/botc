@@ -5593,5 +5593,303 @@
     "winning_team": "Good",
     "game_mode": "Irrational Behavior",
     "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 57,
+    "date": "2025-11-17 11:37:13",
+    "players": [
+      {
+        "name": "Aashka_Shah",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Lissie_Levitt",
+        "roles": [
+          "Spy"
+        ],
+        "role": "Spy",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Michelle_Jones",
+        "roles": [
+          "Poisoner"
+        ],
+        "role": "Poisoner",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Sam_Frischling",
+        "roles": [
+          "Bureaucrat"
+        ],
+        "role": "Bureaucrat",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Chef"
+        ],
+        "role": "Chef",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Nick_Frias",
+        "roles": [
+          "Washerwoman"
+        ],
+        "role": "Washerwoman",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Monk"
+        ],
+        "role": "Monk",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Levi_Durham",
+        "roles": [
+          "Empath"
+        ],
+        "role": "Empath",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Miles_Marks",
+        "roles": [
+          "Librarian"
+        ],
+        "role": "Librarian",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Virgin"
+        ],
+        "role": "Virgin",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Josh_Landsman",
+        "roles": [
+          "Soldier"
+        ],
+        "role": "Soldier",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Marin_Londe",
+        "roles": [
+          "Butler"
+        ],
+        "role": "Butler",
+        "initial_team": "Good",
+        "team": "Good"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Trouble Brewing",
+    "story_teller": "Michael_Dell+Matan_Diamond"
+  },
+  {
+    "game_id": 58,
+    "date": "2025-11-17 11:38:04",
+    "players": [
+      {
+        "name": "Nick_Frias",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Marin_Londe",
+        "roles": [
+          "Scarlet_Woman",
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Miles_Marks",
+        "roles": [
+          "Spy"
+        ],
+        "role": "Spy",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Slayer"
+        ],
+        "role": "Slayer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Levi_Durham",
+        "roles": [
+          "Soldier"
+        ],
+        "role": "Soldier",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Aashka_Shah",
+        "roles": [
+          "Chef"
+        ],
+        "role": "Chef",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Ravenkeeper"
+        ],
+        "role": "Ravenkeeper",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Michael_Dell",
+        "roles": [
+          "Saint"
+        ],
+        "role": "Saint",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Josh_Landsman",
+        "roles": [
+          "Mayor"
+        ],
+        "role": "Mayor",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Michelle_Jones",
+        "roles": [
+          "Recluse"
+        ],
+        "role": "Recluse",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Sam_Frischling",
+        "roles": [
+          "Investigator"
+        ],
+        "role": "Investigator",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Undertaker"
+        ],
+        "role": "Undertaker",
+        "initial_team": "Good",
+        "team": "Good"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Trouble Brewing",
+    "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 59,
+    "date": "2025-11-17 11:38:58",
+    "players": [
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Marionette"
+        ],
+        "role": "Marionette",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Sam_Frischling",
+        "roles": [
+          "Leech"
+        ],
+        "role": "Leech",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Undertaker"
+        ],
+        "role": "Undertaker",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Nick_Frias",
+        "roles": [
+          "Juggler"
+        ],
+        "role": "Juggler",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Levi_Durham",
+        "roles": [
+          "Exorcist"
+        ],
+        "role": "Exorcist",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Miles_Marks",
+        "roles": [
+          "Drunk"
+        ],
+        "role": "Drunk",
+        "initial_team": "Good",
+        "team": "Good"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "A Leech of Distrust",
+    "story_teller": "Matan_Diamond+Ross_Williams"
   }
 ]
