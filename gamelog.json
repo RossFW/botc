@@ -5891,5 +5891,352 @@
     "winning_team": "Good",
     "game_mode": "A Leech of Distrust",
     "story_teller": "Matan_Diamond+Ross_Williams"
+  },
+  {
+    "game_id": 60,
+    "date": "2025-12-18 10:02:34",
+    "players": [
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Pithag",
+          "Barber"
+        ],
+        "role": "Barber",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Witch"
+        ],
+        "role": "Witch",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Hannah_Swanner",
+        "roles": [
+          "Vigormortis"
+        ],
+        "role": "Vigormortis",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Flowergirl"
+        ],
+        "role": "Flowergirl",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Kat_Minor",
+        "roles": [
+          "Sage"
+        ],
+        "role": "Sage",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Brooke_Titshaw",
+        "roles": [
+          "Seamstress",
+          "Sweetheart"
+        ],
+        "role": "Sweetheart",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Jimmy_Minor",
+        "roles": [
+          "Savant"
+        ],
+        "role": "Savant",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Darius_Fiallo",
+        "roles": [
+          "Clockmaker"
+        ],
+        "role": "Clockmaker",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Kevin_Hopper",
+        "roles": [
+          "Bone_Collector"
+        ],
+        "role": "Bone_Collector",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Geoffrey_Dodd",
+        "roles": [
+          "Snake_Charmer"
+        ],
+        "role": "Snake_Charmer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Miles_Marks",
+        "roles": [
+          "Mathematician"
+        ],
+        "role": "Mathematician",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Matt_Kalin",
+        "roles": [
+          "Juggler"
+        ],
+        "role": "Juggler",
+        "initial_team": "Good",
+        "team": "Good"
+      }
+    ],
+    "winning_team": "Evil",
+    "game_mode": "Sects & Violets",
+    "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 61,
+    "date": "2025-12-18 10:09:12",
+    "players": [
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Juggler",
+          "Dreamer"
+        ],
+        "role": "Dreamer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Dreamer",
+          "Juggler"
+        ],
+        "role": "Juggler",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Barber"
+        ],
+        "role": "Barber",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Kat_Minor",
+        "roles": [
+          "Oracle"
+        ],
+        "role": "Oracle",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Jimmy_Minor",
+        "roles": [
+          "Snake_Charmer"
+        ],
+        "role": "Snake_Charmer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Darius_Fiallo",
+        "roles": [
+          "Town_Crier"
+        ],
+        "role": "Town_Crier",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Kevin_Hopper",
+        "roles": [
+          "Bone_Collector"
+        ],
+        "role": "Bone_Collector",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Geoffrey_Dodd",
+        "roles": [
+          "Seamstress"
+        ],
+        "role": "Seamstress",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Miles_Marks",
+        "roles": [
+          "Philospher"
+        ],
+        "role": "Philospher",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Matt_Kalin",
+        "roles": [
+          "Pit-hag"
+        ],
+        "role": "Pit-hag",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Brooke_Titshaw",
+        "roles": [
+          "Evil_Twin",
+          "Witch"
+        ],
+        "role": "Witch",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Kevin_Hopper",
+        "roles": [
+          "No_Dashi"
+        ],
+        "role": "No_Dashi",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Sects & Violets",
+    "story_teller": "Hannah_Swanner+Matan_Diamond"
+  },
+  {
+    "game_id": 62,
+    "date": "2025-12-18 10:12:12",
+    "players": [
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Lunatic"
+        ],
+        "role": "Lunatic",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Darius_Fiallo",
+        "roles": [
+          "Fisherman"
+        ],
+        "role": "Fisherman",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Brooke_Titshaw",
+        "roles": [
+          "Slayer"
+        ],
+        "role": "Slayer",
+        "initial_team": "Slayer",
+        "team": "Good"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Marionette"
+        ],
+        "role": "Marionette",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Kevin_Hopper",
+        "roles": [
+          "Lleech"
+        ],
+        "role": "Lleech",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "A Leech of Distrust",
+    "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 63,
+    "date": "2025-12-18 10:14:54",
+    "players": [
+      {
+        "name": "Kevin_Hopper",
+        "roles": [
+          "Pixie"
+        ],
+        "role": "Pixie",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Undertaker"
+        ],
+        "role": "Undertaker",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Exorcist"
+        ],
+        "role": "Exorcist",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Darius_Fiallo",
+        "roles": [
+          "Marionette"
+        ],
+        "role": "Marionette",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Brooke_Titshaw",
+        "roles": [
+          "Lleech"
+        ],
+        "role": "Lleech",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "A Leech of Distrust",
+    "story_teller": "Matan_Diamond"
   }
 ]
