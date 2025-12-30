@@ -6238,5 +6238,347 @@
     "winning_team": "Good",
     "game_mode": "A Leech of Distrust",
     "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 64,
+    "date": "2025-12-30 10:22:12",
+    "players": [
+      {
+        "name": "Colin_Calvert",
+        "roles": [
+          "Fool"
+        ],
+        "role": "Fool",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Levi_Durham",
+        "roles": [
+          "Courtier"
+        ],
+        "role": "Courtier",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Innkeeper"
+        ],
+        "role": "Innkeeper",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Gambler"
+        ],
+        "role": "Gambler",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Exorcist"
+        ],
+        "role": "Exorcist",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Josh_Lipton",
+        "roles": [
+          "Professor"
+        ],
+        "role": "Professor",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Michael_Dell",
+        "roles": [
+          "Gossip"
+        ],
+        "role": "Gossip",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Kat_Minor",
+        "roles": [
+          "Grandmother"
+        ],
+        "role": "Grandmother",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Lissie_Levitt",
+        "roles": [
+          "Minstrel"
+        ],
+        "role": "Minstrel",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Dever_Johnson",
+        "roles": [
+          "Devil's_Advocate"
+        ],
+        "role": "Devil's_Advocate",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Brooke_Titshaw",
+        "roles": [
+          "Mastermind"
+        ],
+        "role": "Mastermind",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Darius_Fiallo",
+        "roles": [
+          "Shabaloth"
+        ],
+        "role": "Shabaloth",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Hannah_Swanner",
+        "roles": [
+          "Assassin"
+        ],
+        "role": "Assassin",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Bad Moon Rising",
+    "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 65,
+    "date": "2025-12-30 10:26:04",
+    "players": [
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Courtier"
+        ],
+        "role": "Courtier",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Professor"
+        ],
+        "role": "Professor",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Lunatic"
+        ],
+        "role": "Lunatic",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Kat_Minor",
+        "roles": [
+          "Tea_Lady"
+        ],
+        "role": "Tea_Lady",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Darius_Fiallo",
+        "roles": [
+          "Chambermaid"
+        ],
+        "role": "Chambermaid",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Dever_Johnson",
+        "roles": [
+          "Grandmother"
+        ],
+        "role": "Grandmother",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Brooke_Titshaw",
+        "roles": [
+          "Minstrel"
+        ],
+        "role": "Minstrel",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Colin_Calvert",
+        "roles": [
+          "Moonchild"
+        ],
+        "role": "Moonchild",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Hannah_Swanner",
+        "roles": [
+          "Assassin"
+        ],
+        "role": "Assassin",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Levi_Durham",
+        "roles": [
+          "Pukka"
+        ],
+        "role": "Pukka",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Michael_Dell",
+        "roles": [
+          "Godfather"
+        ],
+        "role": "Godfather",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Bad Moon Rising",
+    "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 66,
+    "date": "2025-12-30 10:29:27",
+    "players": [
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Gambler"
+        ],
+        "role": "Gambler",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Michael_Dell",
+        "roles": [
+          "Tea_Lady"
+        ],
+        "role": "Tea_Lady",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Kat_Minor",
+        "roles": [
+          "Pacifist"
+        ],
+        "role": "Pacifist",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Darius_Fiallo",
+        "roles": [
+          "Professor"
+        ],
+        "role": "Professor",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Dever_Johnson",
+        "roles": [
+          "Minstrel"
+        ],
+        "role": "Minstrel",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Brooke_Titshaw",
+        "roles": [
+          "Goon"
+        ],
+        "role": "Goon",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Levi_Durham",
+        "roles": [
+          "Courtier"
+        ],
+        "role": "Courtier",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Sailor"
+        ],
+        "role": "Sailor",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Hannah_Swanner",
+        "roles": [
+          "Po"
+        ],
+        "role": "Po",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Mastermind"
+        ],
+        "role": "Mastermind",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Colin_Calvert",
+        "roles": [
+          "Devil's_Advocate"
+        ],
+        "role": "Devil's_Advocate",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Evil",
+    "game_mode": "Bad Moon Rising",
+    "story_teller": "Matan_Diamond"
   }
 ]
