@@ -2401,10 +2401,10 @@
       },
       {
         "name": "Max_Friedman",
-        "role": "Cerenovous",
+        "role": "Cerenovus",
         "team": "Evil",
         "roles": [
-          "Cerenovous"
+          "Cerenovus"
         ],
         "initial_team": "Evil"
       },
@@ -4051,9 +4051,9 @@
       {
         "name": "Tristan_Neumann",
         "roles": [
-          "Undetaker"
+          "Undertaker"
         ],
-        "role": "Undetaker",
+        "role": "Undertaker",
         "initial_team": "Good",
         "team": "Good"
       },
@@ -4340,9 +4340,9 @@
       {
         "name": "Alex_West",
         "roles": [
-          "Villag_Idiot"
+          "Village_Idiot"
         ],
-        "role": "Villag_Idiot",
+        "role": "Village_Idiot",
         "initial_team": "Good",
         "team": "Good"
       },
@@ -5845,9 +5845,9 @@
       {
         "name": "Sam_Frischling",
         "roles": [
-          "Leech"
+          "Lleech"
         ],
-        "role": "Leech",
+        "role": "Lleech",
         "initial_team": "Evil",
         "team": "Evil"
       },
@@ -6092,9 +6092,9 @@
       {
         "name": "Miles_Marks",
         "roles": [
-          "Philospher"
+          "Philosopher"
         ],
-        "role": "Philospher",
+        "role": "Philosopher",
         "initial_team": "Good",
         "team": "Good"
       },
@@ -6580,5 +6580,289 @@
     "winning_team": "Evil",
     "game_mode": "Bad Moon Rising",
     "story_teller": "Matan_Diamond"
+  },
+  {
+    "game_id": 67,
+    "date": "2026-01-12 15:48:24",
+    "players": [
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Recluse"
+        ],
+        "role": "Recluse",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Seth_Schuhardt",
+        "roles": [
+          "Apprentice"
+        ],
+        "role": "Apprentice",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Brendan_Alee",
+        "roles": [
+          "Gambler"
+        ],
+        "role": "Gambler",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Matan_Diamond",
+        "roles": [
+          "Fortune_Teller"
+        ],
+        "role": "Fortune_Teller",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Damaris_Fiallo",
+        "roles": [
+          "Clockmaker"
+        ],
+        "role": "Clockmaker",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Brooke_Titshaw",
+        "roles": [
+          "Artist"
+        ],
+        "role": "Artist",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Kat_Minor",
+        "roles": [
+          "Fool"
+        ],
+        "role": "Fool",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ian_Ibruji",
+        "roles": [
+          "Drunk"
+        ],
+        "role": "Drunk",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Chris_Knittel",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Mitch_Bowman",
+        "roles": [
+          "Poisoner"
+        ],
+        "role": "Poisoner",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Everybody Can Play",
+    "story_teller": "Darius_Fiallo"
+  },
+  {
+    "game_id": 68,
+    "date": "2026-01-12 15:54:42",
+    "players": [
+      {
+        "name": "Chris_Knittel",
+        "roles": [
+          "Fortune_Teller"
+        ],
+        "role": "Fortune_Teller",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Moonchild"
+        ],
+        "role": "Moonchild",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Mitch_Bowman",
+        "roles": [
+          "Grandmother"
+        ],
+        "role": "Grandmother",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Seth_Schuhardt",
+        "roles": [
+          "Saint"
+        ],
+        "role": "Saint",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ellie_La-Rocca-Pitts",
+        "roles": [
+          "Monk"
+        ],
+        "role": "Monk",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Matan_Diamond",
+        "roles": [
+          "Empath"
+        ],
+        "role": "Empath",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Kat_Minor",
+        "roles": [
+          "Mayor"
+        ],
+        "role": "Mayor",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ian_Ibruji",
+        "roles": [
+          "Imp"
+        ],
+        "role": "Imp",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Brooke_Titshaw",
+        "roles": [
+          "Spy"
+        ],
+        "role": "Spy",
+        "initial_team": "Evil",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Everybody Can Play",
+    "story_teller": "Darius_Fiallo"
+  },
+  {
+    "game_id": 69,
+    "date": "2026-01-12 16:05:21",
+    "players": [
+      {
+        "name": "Chris_Knittel",
+        "roles": [
+          "Barber"
+        ],
+        "role": "Barber",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Mitch_Bowman",
+        "roles": [
+          "Philosopher"
+        ],
+        "role": "Philosopher",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Seth_Schuhardt",
+        "roles": [
+          "Town_Crier"
+        ],
+        "role": "Town_Crier",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ellie_La-Rocca-Pitts",
+        "roles": [
+          "Sage"
+        ],
+        "role": "Sage",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Kat_Minor",
+        "roles": [
+          "Dreamer"
+        ],
+        "role": "Dreamer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Matan_Diamond",
+        "roles": [
+          "No_Dashi",
+          "Snake_Charmer"
+        ],
+        "role": "Snake_Charmer",
+        "initial_team": "Evil",
+        "team": "Good"
+      },
+      {
+        "name": "Ian_Ibruji",
+        "roles": [
+          "Bureaucrat"
+        ],
+        "role": "Bureaucrat",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Brooke_Titshaw",
+        "roles": [
+          "Pithag",
+          "Klutz",
+          "No_Dashi"
+        ],
+        "role": "No_Dashi",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Snake_Charmer",
+          "No_Dashi",
+          "Klutz"
+        ],
+        "role": "Klutz",
+        "initial_team": "Good",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Sects & Violets",
+    "story_teller": "Darius_Fiallo"
   }
 ]
