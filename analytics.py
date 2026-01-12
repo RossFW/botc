@@ -2,11 +2,16 @@
 Analytics Dashboard for Blood on the Clocktower (BOTC) games.
 
 This standalone script reads the existing ``gamelog.json`` produced by the
-``botc_elo.py`` application and surfaces a number of aggregated statistics
-for all games in the log.
+``botc_elo.py`` application and surfaces aggregated statistics for all games
+or games run by a specific storyteller. The storyteller can be selected via
+a search interface, with "All" as the default option to view all games.
 
 Features
 --------
+* **Storyteller selection:** Select "All" to view all games, or search and select
+  any specific storyteller from the game log
+* **Overall statistics:** Total games, Good vs Evil winrates for the selected
+  storyteller (or all games)
 * **Script statistics:** breakdown of games played, Good and Evil wins and
   win percentages for each script. Scripts are categorised into
   ``Normal`` or ``Teensyville`` depending on whether they are one of the
@@ -20,10 +25,10 @@ Features
   associated with victories or defeats.
 
 * **Player statistics:** aggregated win rates for each player across all
-  games. For every player you can see their total games,
-  wins, Good games/wins, Evil games/wins and the corresponding win
-  percentages. Double‑clicking on a player row opens a detail window
-  showing per‑script win rates as well as the player's personal record
+  games (or games run by the selected storyteller). For every player you can
+  see their total games, wins, Good games/wins, Evil games/wins and the
+  corresponding win percentages. Double‑clicking on a player row opens a detail
+  window showing per‑script win rates as well as the player's personal record
   with each role.
 
 To run the dashboard simply execute this file in the same directory as
@@ -33,7 +38,8 @@ To run the dashboard simply execute this file in the same directory as
 python3 analytics.py
 ```
 
-This will open a Tkinter window with tabs for the different analytics views.
+This will open a Tkinter window with storyteller selection (defaulting to "All")
+and tabs for the different analytics views.
 """
 
 from __future__ import annotations
@@ -43,7 +49,7 @@ import os
 import tkinter as tk
 from tkinter import ttk
 
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Set
 
 # Import centralized configuration
 from botc_config import categorize_script, normalize_script_name
@@ -77,23 +83,57 @@ def load_gamelog() -> List[Dict[str, Any]]:
             return []
 
 
+def normalize_name(name: str) -> str:
+    """Return a lowercase stripped version of a name for comparison."""
+    return (name or "").strip().lower()
+
+
+def extract_storytellers(games: List[Dict[str, Any]]) -> Set[str]:
+    """Extract all unique storyteller names from the game log."""
+    storytellers: Set[str] = set()
+    for game in games:
+        st_val = game.get("story_teller", "")
+        if st_val:
+            # Split on '+' to handle multiple storytellers
+            parts = [p.strip() for p in st_val.split('+') if p.strip()]
+            storytellers.update(parts)
+    return storytellers
+
+
+def has_storyteller(game: Dict[str, Any], storyteller_name: str) -> bool:
+    """Check if a game was storytold by the given storyteller (case-insensitive, partial match)."""
+    st_val = game.get("story_teller", "")
+    if not st_val:
+        return False
+    # Split on '+' to handle multiple storytellers
+    parts = [normalize_name(p.strip()) for p in st_val.split('+') if p.strip()]
+    target = normalize_name(storyteller_name)
+    # Check if any storyteller name contains the target (for partial matching)
+    return any(target in part or part in target for part in parts)
+
+
 # ---------------------------------------------------------------------------
 # Analytics classes
 # ---------------------------------------------------------------------------
 
-class Analytics:
+class StorytellerAnalytics:
     """
-    Compute statistics for all games in the game log.
+    Compute statistics for games run by a specific storyteller.
 
     Parameters
     ----------
     games : list of dict
-        The entire list of games from ``gamelog.json``. All games are included.
+        The entire list of games from ``gamelog.json``. Only games whose
+        ``story_teller`` field matches the target storyteller are considered.
+    storyteller_name : str
+        The name of the storyteller to analyze.
 
     Attributes
     ----------
+    storyteller_name : str
+        The name of the storyteller being analyzed.
     games : list of dict
-        All games from the game log.
+        Filtered list of games run by the target storyteller.
     script_stats : dict
         Mapping of script name to a dict with ``category``, ``games``,
         ``good_wins`` and ``evil_wins`` for that script.
@@ -103,9 +143,19 @@ class Analytics:
         Mapping of player name to aggregated statistics across all games.
     """
 
-    def __init__(self, games: List[Dict[str, Any]]) -> None:
-        # Include all games without filtering
-        self.games: List[Dict[str, Any]] = games
+    def __init__(self, games: List[Dict[str, Any]], storyteller_name: str) -> None:
+        self.storyteller_name = storyteller_name
+        # If "All" is selected, use all games without filtering
+        if storyteller_name == "All":
+            self.games: List[Dict[str, Any]] = games
+        else:
+            # Filter games to include those where the storyteller list contains the target
+            # storyteller.  A game may have multiple storytellers separated by '+' (e.g.
+            # "Marlie_Horewitz+Matan_Diamond").  We treat the game as belonging to the
+            # target storyteller if one of the names matches (case-insensitive, partial match).
+            self.games: List[Dict[str, Any]] = [
+                g for g in games if has_storyteller(g, storyteller_name)
+            ]
         self.script_stats: Dict[str, Dict[str, Any]] = {}
         self.category_totals: Dict[str, Dict[str, Any]] = {}
         self.player_stats: Dict[str, Dict[str, Any]] = {}
@@ -148,7 +198,7 @@ class Analytics:
         self.category_totals = totals
 
     def _compute_player_stats(self) -> None:
-        """Build aggregated statistics for each player across all games."""
+        """Build aggregated statistics for each player across filtered games."""
         ps: Dict[str, Dict[str, Any]] = {}
         for game in self.games:
             winning_team = game.get("winning_team")
@@ -216,26 +266,166 @@ class Analytics:
 class AnalyticsUI:
     """Main window for displaying analytics across multiple tabs."""
 
-    def __init__(self, root: tk.Tk, analytics: Analytics) -> None:
+    def __init__(self, root: tk.Tk, all_games: List[Dict[str, Any]]) -> None:
         self.root = root
-        self.analytics = analytics
+        self.all_games = all_games
+        self.analytics: StorytellerAnalytics | None = None
+        
+        # Extract all unique storytellers and add "All" option
+        storytellers_list = sorted(extract_storytellers(all_games))
+        self.all_storytellers = ["All"] + storytellers_list
+        
         root.title("BOTC Analytics")
-        root.geometry("1000x650")
+        root.geometry("1000x700")
+        
+        # Storyteller selection frame at the top
+        selection_frame = tk.Frame(root)
+        selection_frame.pack(fill="x", padx=5, pady=5)
+        
+        tk.Label(selection_frame, text="Storyteller:", font=("Arial", 12, "bold")).pack(side="left", padx=5)
+        
+        # Combobox for selection (editable with autocomplete)
+        self.storyteller_var = tk.StringVar(value="All")
+        self.combobox = ttk.Combobox(
+            selection_frame,
+            textvariable=self.storyteller_var,
+            values=self.all_storytellers,
+            state="normal",  # Make it editable
+            width=40,
+            font=("Arial", 11)
+        )
+        self.combobox.pack(side="left", padx=5)
+        self.combobox.bind("<<ComboboxSelected>>", lambda e: self._on_storyteller_selected())
+        self.combobox.bind("<KeyRelease>", self._on_search_change)
+        self.combobox.bind("<Return>", lambda e: self._select_storyteller())
+        
+        # Summary frame for overall stats
+        self.summary_frame = tk.LabelFrame(root, text="Summary", font=("Arial", 11, "bold"))
+        self.summary_frame.pack(fill="x", padx=5, pady=5)
+        
+        self.summary_labels = {}
+        for i, label_text in enumerate([
+            "Storyteller: All",
+            "Total Games: 0",
+            "Good Wins: 0 (0.0%)",
+            "Evil Wins: 0 (0.0%)"
+        ]):
+            lbl = tk.Label(self.summary_frame, text=label_text, font=("Arial", 10))
+            lbl.grid(row=i // 2, column=i % 2, sticky="w", padx=10, pady=5)
+            self.summary_labels[i] = lbl
+        
         # Build notebook with three tabs
-        notebook = ttk.Notebook(root)
-        notebook.pack(fill="both", expand=True)
+        self.notebook = ttk.Notebook(root)
+        self.notebook.pack(fill="both", expand=True)
+        
         # Scripts tab
-        frame_scripts = ttk.Frame(notebook)
-        notebook.add(frame_scripts, text="Scripts")
-        self._build_scripts_tab(frame_scripts)
+        self.frame_scripts = ttk.Frame(self.notebook)
+        self.notebook.add(self.frame_scripts, text="Scripts")
+        
         # Characters tab
-        frame_characters = ttk.Frame(notebook)
-        notebook.add(frame_characters, text="Characters")
-        self._build_characters_tab(frame_characters)
+        self.frame_characters = ttk.Frame(self.notebook)
+        self.notebook.add(self.frame_characters, text="Characters")
+        
         # Players tab
-        frame_players = ttk.Frame(notebook)
-        notebook.add(frame_players, text="Players")
-        self._build_players_tab(frame_players)
+        self.frame_players = ttk.Frame(self.notebook)
+        self.notebook.add(self.frame_players, text="Players")
+        
+        # Initialize with "All" selected
+        self._on_storyteller_selected()
+
+    def _on_search_change(self, event=None) -> None:
+        """Filter combobox options based on search text as user types."""
+        search_text = self.storyteller_var.get().lower()
+        if search_text:
+            # Always include "All" in filtered results if it matches
+            filtered = ["All"] if "all" in search_text else []
+            # Add matching storytellers (excluding "All" from the base list)
+            storytellers_only = [st for st in self.all_storytellers if st != "All"]
+            filtered.extend([st for st in storytellers_only if search_text in st.lower()])
+            self.combobox['values'] = filtered
+        else:
+            self.combobox['values'] = self.all_storytellers
+
+    def _select_storyteller(self) -> None:
+        """Select storyteller from combobox."""
+        selected = self.combobox.get().strip()
+        if not selected:
+            return
+        
+        # Check for "All" first (case-insensitive)
+        if normalize_name(selected) == "all":
+            self.combobox.set("All")
+            self.storyteller_var.set("All")
+            self._on_storyteller_selected()
+            return
+        
+        # Try to find exact match first
+        exact_match = None
+        for st in self.all_storytellers:
+            if normalize_name(st) == normalize_name(selected):
+                exact_match = st
+                break
+        
+        if exact_match:
+            self.combobox.set(exact_match)
+            self.storyteller_var.set(exact_match)
+            self._on_storyteller_selected()
+        else:
+            # Try to find partial match
+            search_text = normalize_name(selected)
+            matches = [st for st in self.all_storytellers if search_text in normalize_name(st)]
+            if matches:
+                self.combobox.set(matches[0])
+                self.storyteller_var.set(matches[0])
+                self._on_storyteller_selected()
+
+    def _on_storyteller_selected(self) -> None:
+        """Handle storyteller selection and update analytics."""
+        storyteller_name = self.storyteller_var.get()
+        if not storyteller_name:
+            return
+        
+        # Create analytics for selected storyteller
+        self.analytics = StorytellerAnalytics(self.all_games, storyteller_name)
+        
+        # Update summary
+        self._update_summary()
+        
+        # Rebuild tabs with new data
+        self._rebuild_tabs()
+
+    def _update_summary(self) -> None:
+        """Update the summary frame with current storyteller stats."""
+        if not self.analytics:
+            return
+        
+        games = len(self.analytics.games)
+        good_wins = sum(1 for g in self.analytics.games if g.get("winning_team") == "Good")
+        evil_wins = games - good_wins
+        good_pct = (good_wins / games) * 100 if games > 0 else 0.0
+        evil_pct = (evil_wins / games) * 100 if games > 0 else 0.0
+        
+        # Display "All Games" when "All" is selected, otherwise show storyteller name
+        display_name = "All Games" if self.analytics.storyteller_name == "All" else self.analytics.storyteller_name
+        self.summary_labels[0].config(text=f"Storyteller: {display_name}")
+        self.summary_labels[1].config(text=f"Total Games: {games}")
+        self.summary_labels[2].config(text=f"Good Wins: {good_wins} ({good_pct:.1f}%)")
+        self.summary_labels[3].config(text=f"Evil Wins: {evil_wins} ({evil_pct:.1f}%)")
+
+    def _rebuild_tabs(self) -> None:
+        """Rebuild all tabs with current analytics data."""
+        # Clear existing widgets
+        for widget in self.frame_scripts.winfo_children():
+            widget.destroy()
+        for widget in self.frame_characters.winfo_children():
+            widget.destroy()
+        for widget in self.frame_players.winfo_children():
+            widget.destroy()
+        
+        # Rebuild tabs
+        self._build_scripts_tab(self.frame_scripts)
+        self._build_characters_tab(self.frame_characters)
+        self._build_players_tab(self.frame_players)
 
     # ---------------------------------------------------------------------
     # Scripts Tab
@@ -249,6 +439,9 @@ class AnalyticsUI:
 
         Clicking a column header will sort the table by that column.
         """
+        if not self.analytics:
+            return
+        
         cols = (
             "Script",
             "Category",
@@ -365,6 +558,9 @@ class AnalyticsUI:
     # Characters Tab
     # ---------------------------------------------------------------------
     def _build_characters_tab(self, frame: ttk.Frame) -> None:
+        if not self.analytics:
+            return
+        
         # Dropdown options: All, each script, category totals
         options: List[str] = ["All"]
         # Unique script names
@@ -479,6 +675,9 @@ class AnalyticsUI:
         mirror those in the scripts and characters tabs (Win %, Wins, Games and
         corresponding Good/Evil breakdowns) to provide consistency.
         """
+        if not self.analytics:
+            return
+        
         # Player selection combobox
         players = sorted(self.analytics.player_stats.keys())
         sel_var = tk.StringVar()
@@ -795,17 +994,15 @@ class PlayerDetailWindow:
 
 def main() -> None:
     gamelog = load_gamelog()
-    analytics = Analytics(gamelog)
     root = tk.Tk()
     # Attempt to maximize window if supported
     try:
         root.state("zoomed")
     except Exception:
         pass
-    AnalyticsUI(root, analytics)
+    AnalyticsUI(root, gamelog)
     root.mainloop()
 
 
 if __name__ == "__main__":
     main()
-
