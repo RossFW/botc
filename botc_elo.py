@@ -292,24 +292,9 @@ class EloTrackerApp:
         )
         # ----- Additional Inputs: Game Mode and Story Teller -----
         # Define available game modes
-        # Predefined game modes. The combobox is editable so you can type your own script name directly
-        self.game_modes = [
-            "Trouble Brewing",
-            "Bad Moon Rising",
-            "Sects & Violets",
-            "Trouble in Violets",
-            "No Greater Joy",
-            "Over the River",
-            "Laissez un Faire",
-            "Trouble in Legion",
-            "Hide & Seek",
-            "Trouble Brewing on Expert Mode",
-            "Trained Killer",
-            "Irrational Behavior",
-            "Binary Supernovae",
-            "A Leech of Distrust"
-
-        ]
+        # Import from centralized config - users can still type custom script names
+        from botc_config import COMMON_SCRIPTS
+        self.game_modes = COMMON_SCRIPTS
         # Game Mode selection
         frame_game_mode = tk.LabelFrame(self.frame_submit, text="Game Mode")
         frame_game_mode.grid(row=2, column=0, padx=5, pady=5, sticky="w")

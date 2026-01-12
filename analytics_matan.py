@@ -45,6 +45,9 @@ from tkinter import ttk
 
 from typing import Dict, List, Any
 
+# Import centralized configuration
+from botc_config import categorize_script, normalize_script_name
+
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -53,21 +56,6 @@ from typing import Dict, List, Any
 # The storyteller whose games we analyse. Adjust this constant to focus
 # analytics on a different storyteller.
 TARGET_STORYTELLER = "Matan_Diamond"
-
-# Scripts considered part of the normal rotation. All other scripts are
-# considered Teensyville (small‑player) scripts.
-NORMAL_SCRIPTS = {
-    "trouble brewing",
-    "bad moon rising",
-    "sects & violets",
-    "trouble in violets",
-    "trouble in legion",
-    "hide & seek",
-    "trouble brewing on expert mode",
-    "trained killer",
-    "irrational behavior",
-    "binary supernovae"
-}
 
 # Names of JSON files; these must exist in the working directory. Only
 # ``gamelog.json`` is required – ``players.json`` is not needed for the
@@ -91,16 +79,6 @@ def load_gamelog() -> List[Dict[str, Any]]:
             return data
         except Exception:
             return []
-
-
-def normalize_script_name(name: str) -> str:
-    """Return a lowercase stripped version of a script name for comparison."""
-    return (name or "").strip().lower()
-
-
-def categorize_script(name: str) -> str:
-    """Return ``Normal`` if the script is in NORMAL_SCRIPTS, else ``Teensyville``."""
-    return "Normal" if normalize_script_name(name) in NORMAL_SCRIPTS else "Teensyville"
 
 
 # ---------------------------------------------------------------------------
