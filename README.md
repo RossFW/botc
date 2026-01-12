@@ -1,10 +1,10 @@
 # Blood on the Clocktower Elo
 
-A simple desktop app to track player Elo ratings and win percentages for Blood on the Clocktower (BOTC) games, plus a separate analytics dashboard focused on games run by a specific storyteller.
+A simple desktop app to track player Elo ratings and win percentages for Blood on the Clocktower (BOTC) games, plus a separate analytics dashboard for analyzing games by storyteller.
 
 ## Contents
 - `botc_elo.py`: Tkinter app to enter games, compute Elo, and visualize per‑player history
-- `analytics_matan.py`: Tkinter dashboard surfacing script/character/player stats for a storyteller (default: `Matan_Diamond`)
+- `analytics.py`: Tkinter dashboard surfacing script/character/player stats for all games or filtered by storyteller
 - `gamelog.json`: Append‑only list of games submitted in the app
 - `players.json`: Snapshot of computed player states and histories
 - `naming convention.txt`: Short notes on text entry format
@@ -33,7 +33,7 @@ python3 -m pip install matplotlib numpy
 3. Optionally, open the analytics dashboard (read‑only, uses `gamelog.json`):
 
    ```bash
-   python3 analytics_matan.py
+   python3 analytics.py
    ```
 
 Both apps read/write `players.json` and `gamelog.json` in the current directory.
@@ -83,21 +83,21 @@ Tips:
 
 You can back up or version these JSON files; the app will rebuild player stats from `gamelog.json` if needed.
 
-## Analytics Dashboard (analytics_matan.py)
+## Analytics Dashboard (analytics.py)
 Run:
 
 ```bash
-python3 analytics_matan.py
+python3 analytics.py
 ```
 
 Features:
+- Storyteller selection: Defaults to "All" to show all games, or search and select any specific storyteller from the game log
 - Scripts tab: Good/Evil win rates and totals per script, plus category totals
 - Characters tab: role appearance and win rates across selected scripts/categories
 - Players tab: per‑player overall and per‑script win rates; double‑click for role/script details
 
 Configuration:
-- Target storyteller is set by `TARGET_STORYTELLER` at the top of `analytics_matan.py` (default: `Matan_Diamond`).
-- Scripts categorized as “Normal” vs “Teensyville” by the `NORMAL_SCRIPTS` set.
+- Scripts categorized as "Normal" vs "Teensyville" by the `NORMAL_SCRIPTS` set in `botc_config.py`.
 
 ## Troubleshooting
 - Tkinter on macOS: If the UI fails to launch, install Python from python.org (which bundles Tk) or ensure a recent Tcl/Tk is installed.
