@@ -3797,12 +3797,12 @@
         "team": "Good"
       },
       {
-        "name": "Harrison",
+        "name": "Harrison_Smajovits",
         "roles": [
-          "Smajovits"
+          "Fortune_Teller->good"
         ],
-        "role": "Smajovits",
-        "initial_team": "Fortune_teller",
+        "role": "Fortune_Teller->good",
+        "initial_team": "Good",
         "team": "Good"
       },
       {
@@ -3995,12 +3995,12 @@
         "team": "Evil"
       },
       {
-        "name": "Harrison",
+        "name": "Harrison_Smajovits",
         "roles": [
-          "Smajovits"
+          "Poisoner->evil"
         ],
-        "role": "Smajovits",
-        "initial_team": "Poisoner",
+        "role": "Poisoner->evil",
+        "initial_team": "Evil",
         "team": "Evil"
       },
       {
@@ -4556,9 +4556,9 @@
       {
         "name": "Levi_Durham",
         "roles": [
-          "No_Dashi->evil"
+          "No_Dashi"
         ],
-        "role": "No_Dashi->evil",
+        "role": "No_Dashi",
         "initial_team": "Evil",
         "team": "Evil"
       },

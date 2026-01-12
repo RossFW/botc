@@ -9291,13 +9291,13 @@
         "game_number": 47,
         "date": "2025-11-16 10:31:50",
         "team": "Evil",
-        "role": "No_Dashi->evil",
+        "role": "No_Dashi",
         "win": false,
         "rating_before": 1527.2861143633713,
         "rating_after": 1513.3037030707615,
         "initial_team": "Evil",
         "roles": [
-          "No_Dashi->evil"
+          "No_Dashi"
         ]
       },
       {
@@ -13022,56 +13022,6 @@
     ]
   },
   {
-    "name": "Harrison",
-    "current_rating": 1500.2133642861734,
-    "rating_history": [
-      {
-        "game_number": 39,
-        "date": "2025-09-15 23:53:34",
-        "rating": 1515.8063683066523,
-        "overall_win_pct": 100.0,
-        "good_win_pct": 100.0,
-        "evil_win_pct": null
-      },
-      {
-        "game_number": 40,
-        "date": "2025-09-15 23:57:59",
-        "rating": 1500.2133642861734,
-        "overall_win_pct": 50.0,
-        "good_win_pct": 100.0,
-        "evil_win_pct": 0.0
-      }
-    ],
-    "game_history": [
-      {
-        "game_number": 39,
-        "date": "2025-09-15 23:53:34",
-        "team": "Good",
-        "role": "Smajovits",
-        "win": true,
-        "rating_before": 1500,
-        "rating_after": 1515.8063683066523,
-        "initial_team": "Fortune_teller",
-        "roles": [
-          "Smajovits"
-        ]
-      },
-      {
-        "game_number": 40,
-        "date": "2025-09-15 23:57:59",
-        "team": "Evil",
-        "role": "Smajovits",
-        "win": false,
-        "rating_before": 1515.8063683066523,
-        "rating_after": 1500.2133642861734,
-        "initial_team": "Poisoner",
-        "roles": [
-          "Smajovits"
-        ]
-      }
-    ]
-  },
-  {
     "name": "Andrea_Zhang",
     "current_rating": 1485.90702398505,
     "rating_history": [
@@ -15216,6 +15166,56 @@
         "initial_team": "Good",
         "roles": [
           "Sage"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Harrison_Smajovits",
+    "current_rating": 1500.2133642861734,
+    "rating_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "rating": 1515.8063683066523,
+        "overall_win_pct": 100.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": null
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "rating": 1500.2133642861734,
+        "overall_win_pct": 50.0,
+        "good_win_pct": 100.0,
+        "evil_win_pct": 0.0
+      }
+    ],
+    "game_history": [
+      {
+        "game_number": 39,
+        "date": "2025-09-15 23:53:34",
+        "team": "Good",
+        "role": "Fortune_Teller->good",
+        "win": true,
+        "rating_before": 1500,
+        "rating_after": 1515.8063683066523,
+        "initial_team": "Good",
+        "roles": [
+          "Fortune_Teller->good"
+        ]
+      },
+      {
+        "game_number": 40,
+        "date": "2025-09-15 23:57:59",
+        "team": "Evil",
+        "role": "Poisoner->evil",
+        "win": false,
+        "rating_before": 1515.8063683066523,
+        "rating_after": 1500.2133642861734,
+        "initial_team": "Evil",
+        "roles": [
+          "Poisoner->evil"
         ]
       }
     ]
