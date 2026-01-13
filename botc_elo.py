@@ -2,8 +2,27 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 import json
 import os
+import platform
+import subprocess
+import tempfile
 from datetime import datetime
 import matplotlib.pyplot as plt
+import io
+try:
+    from PIL import Image, ImageDraw, ImageFont
+    HAS_PIL = True
+except ImportError:
+    HAS_PIL = False
+try:
+    import pyperclip
+    HAS_PYPERCLIP = True
+except ImportError:
+    HAS_PYPERCLIP = False
+try:
+    import AppKit
+    HAS_APPKIT = True
+except ImportError:
+    HAS_APPKIT = False
 
 # ---------------------------
 # Constants and Defaults
@@ -321,8 +340,18 @@ class EloTrackerApp:
         # ----- Bottom Frame: Players Table -----
         self.frame_table = tk.LabelFrame(master, text="Players Elo & Win Percentages")
         self.frame_table.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
-        self.frame_table.rowconfigure(0, weight=1)
+        self.frame_table.rowconfigure(1, weight=1)
         self.frame_table.columnconfigure(0, weight=1)
+        
+        # Game range input frame
+        range_frame = tk.Frame(self.frame_table)
+        range_frame.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
+        tk.Label(range_frame, text="Game Range (e.g., 67-69 or leave blank):").pack(side=tk.LEFT, padx=5)
+        self.game_range_entry = tk.Entry(range_frame, width=20)
+        self.game_range_entry.pack(side=tk.LEFT, padx=5)
+        self.game_range_entry.bind("<KeyRelease>", lambda e: self.refresh_player_table())
+        tk.Button(range_frame, text="Clear Range", command=self.clear_game_range).pack(side=tk.LEFT, padx=5)
+        
         # Create the Treeview using grid
         self.tree = ttk.Treeview(
             self.frame_table,
@@ -330,6 +359,7 @@ class EloTrackerApp:
                 "Rank",
                 "Name",
                 "Rating",
+                "Delta Rating",
                 "Overall Win %",
                 "Good Win %",
                 "Evil Win %",
@@ -341,6 +371,7 @@ class EloTrackerApp:
         self.tree.column("Rank", width=50, anchor="center")
         self.tree.heading("Name", text="Name")
         self.tree.heading("Rating", text="Rating")
+        self.tree.heading("Delta Rating", text="Δ Rating")
         self.tree.heading("Overall Win %", text="Overall Win %")
         self.tree.heading("Good Win %", text="Good Win %")
         self.tree.heading("Evil Win %", text="Evil Win %")
@@ -348,22 +379,34 @@ class EloTrackerApp:
         # Set column widths and anchors
         self.tree.column("Name", width=100, anchor="w")
         self.tree.column("Rating", width=80, anchor="center")
+        self.tree.column("Delta Rating", width=90, anchor="center")
         self.tree.column("Overall Win %", width=100, anchor="center")
         self.tree.column("Good Win %", width=100, anchor="center")
         self.tree.column("Evil Win %", width=100, anchor="center")
         self.tree.column("Games", width=80, anchor="center")
-        self.tree.grid(row=0, column=0, sticky="nsew")
+        self.tree.grid(row=1, column=0, sticky="nsew")
+        
+        # Configure tags for delta rating colors (color blind friendly)
+        self.tree.tag_configure("delta_positive", background="#b3d9ff")  # Light blue
+        self.tree.tag_configure("delta_negative", background="#ffcc99")  # Light orange
+        self.tree.tag_configure("delta_neutral", background="")
+        
         # Vertical scrollbar for the Treeview
         scrollbar = ttk.Scrollbar(
             self.frame_table, orient="vertical", command=self.tree.yview
         )
-        scrollbar.grid(row=0, column=1, sticky="ns")
+        scrollbar.grid(row=1, column=1, sticky="ns")
         self.tree.configure(yscrollcommand=scrollbar.set)
         # Bind double-click on Treeview rows to show graphs
         self.tree.bind("<Double-Button-1>", self.on_player_double_click)
-        # Button to open the Edit Game Log window
-        btn_edit = tk.Button(master, text="Edit Game Log", command=self.open_edit_window)
-        btn_edit.grid(row=2, column=0, pady=5)
+        
+        # Button frame for actions
+        btn_frame = tk.Frame(master)
+        btn_frame.grid(row=2, column=0, pady=5)
+        btn_edit = tk.Button(btn_frame, text="Edit Game Log", command=self.open_edit_window)
+        btn_edit.pack(side=tk.LEFT, padx=5)
+        btn_screenshot = tk.Button(btn_frame, text="Copy Table as Image", command=self.copy_table_as_image)
+        btn_screenshot.pack(side=tk.LEFT, padx=5)
         # ----- Load Data and Refresh Table -----
         load_data()
         recalc_all()
@@ -373,6 +416,82 @@ class EloTrackerApp:
             self.next_game_id = 1
         self.refresh_player_table()
 
+    def clear_game_range(self) -> None:
+        """Clear the game range input field."""
+        self.game_range_entry.delete(0, tk.END)
+        self.refresh_player_table()
+    
+    def parse_game_range(self) -> tuple[int | None, int | None]:
+        """
+        Parse the game range input.
+        Returns (start_game, end_game) or (None, None) if invalid/empty.
+        Supports formats: "67-69", "67", "67-", "-69"
+        """
+        range_str = self.game_range_entry.get().strip()
+        if not range_str:
+            return None, None
+        
+        try:
+            if "-" in range_str:
+                parts = range_str.split("-")
+                if len(parts) == 2:
+                    start_str, end_str = parts[0].strip(), parts[1].strip()
+                    start = int(start_str) if start_str else None
+                    end = int(end_str) if end_str else None
+                    return start, end
+            else:
+                # Single number
+                game_num = int(range_str)
+                return game_num, game_num
+        except ValueError:
+            return None, None
+    
+    def get_rating_delta(self, player: Player, start_game: int | None, end_game: int | None) -> float | None:
+        """
+        Calculate the rating delta for a player over a game range.
+        Returns rating_after_end - rating_before_start, or None if range is invalid.
+        """
+        if start_game is None or end_game is None:
+            return None
+        
+        if not player.rating_history:
+            # Player has no history, can't calculate delta
+            return None
+        
+        # Find rating before start_game (rating at the end of the last game before start_game)
+        # If player hasn't played before start_game, use DEFAULT_RATING
+        rating_before = DEFAULT_RATING
+        for entry in player.rating_history:
+            if entry["game_number"] < start_game:
+                rating_before = entry["rating"]
+            else:
+                # We've reached games >= start_game, stop looking
+                break
+        
+        # Find rating after end_game (rating at the end of end_game)
+        # We need to find the rating at the end of end_game specifically
+        rating_after = None
+        for entry in player.rating_history:
+            if entry["game_number"] == end_game:
+                rating_after = entry["rating"]
+                break
+            elif entry["game_number"] > end_game:
+                # We've passed end_game, use the last rating before it
+                break
+        
+        # If we didn't find a rating at end_game, try to find the closest one <= end_game
+        if rating_after is None:
+            for entry in reversed(player.rating_history):
+                if entry["game_number"] <= end_game:
+                    rating_after = entry["rating"]
+                    break
+        
+        # If player didn't play up to end_game, can't calculate delta
+        if rating_after is None:
+            return None
+        
+        return rating_after - rating_before
+    
     def open_edit_window(self) -> None:
         EditGameWindow(self.master)
 
@@ -514,6 +633,9 @@ class EloTrackerApp:
             self.tree.delete(row)
         # Initialize ranking counter
         rank = 1
+        # Parse game range
+        start_game, end_game = self.parse_game_range()
+        
         # Sort players by current rating (highest first)
         for pname, player in sorted(
             players.items(), key=lambda x: x[1].current_rating, reverse=True
@@ -527,9 +649,26 @@ class EloTrackerApp:
             else:
                 overall_pct, good_pct, evil_pct = None, None, None
             games_played = player.games_overall
-            # if games_played < 5:
-            #     continue
-            # Insert row with the following columns: Rank, Name, Rating, Overall Win %, Good Win %, Evil Win %, Games Played.
+
+            if games_played < 5:
+                continue
+
+            # Calculate delta rating
+            delta = self.get_rating_delta(player, start_game, end_game)
+            if delta is not None:
+                delta_str = f"{delta:+.1f}"
+                # Determine tag based on delta value
+                if delta > 0:
+                    tag = "delta_positive"
+                elif delta < 0:
+                    tag = "delta_negative"
+                else:
+                    tag = "delta_neutral"
+            else:
+                delta_str = "-"
+                tag = "delta_neutral"
+            
+            # Insert row with the following columns: Rank, Name, Rating, Delta Rating, Overall Win %, Good Win %, Evil Win %, Games Played.
             self.tree.insert(
                 "",
                 "end",
@@ -538,11 +677,13 @@ class EloTrackerApp:
                     rank,
                     pname,
                     round(player.current_rating, 1),
+                    delta_str,
                     pct_to_str(overall_pct),
                     pct_to_str(good_pct),
                     pct_to_str(evil_pct),
                     games_played,
                 ),
+                tags=(tag,),
             )
             rank += 1
 
@@ -554,6 +695,199 @@ class EloTrackerApp:
         if pname in players:
             self.show_player_graph(players[pname])
 
+    def copy_table_as_image(self) -> None:
+        """Copy the table as an image to clipboard (if pyperclip available) or save to file."""
+        if not HAS_PIL:
+            messagebox.showerror(
+                "Missing Dependency",
+                "PIL/Pillow is required for image generation.\n"
+                "Please install it with: pip install Pillow"
+            )
+            return
+        try:
+            # Get all table data with tags for delta coloring
+            rows = []
+            row_tags = []  # Store tags for each row to determine delta column color
+            # Get headers
+            headers = ["Rank", "Name", "Rating", "Δ Rating", "Overall Win %", "Good Win %", "Evil Win %", "Games"]
+            rows.append(headers)
+            row_tags.append([])  # No tags for header
+            
+            # Get all rows
+            for item_id in self.tree.get_children():
+                values = self.tree.item(item_id, "values")
+                tags = self.tree.item(item_id, "tags")
+                rows.append(list(values))
+                row_tags.append(tags)
+            
+            if not rows:
+                messagebox.showwarning("No Data", "No data to copy.")
+                return
+            
+            # Calculate image dimensions
+            num_cols = len(headers)
+            num_rows = len(rows)
+            
+            # Font sizes for phone readability
+            header_font_size = 18
+            cell_font_size = 16
+            padding = 10
+            row_height = 35
+            col_widths = [60, 120, 80, 90, 110, 110, 110, 80]  # Adjusted for readability
+            
+            # Calculate total dimensions
+            total_width = sum(col_widths) + padding * (num_cols + 1)
+            total_height = row_height * num_rows + padding * (num_rows + 1) + 40  # Extra space for title
+            
+            # Create image
+            img = Image.new("RGB", (total_width, total_height), color="white")
+            draw = ImageDraw.Draw(img)
+            
+            # Try to use a nice font, fallback to default
+            try:
+                header_font = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", header_font_size)
+                cell_font = ImageFont.truetype("/System/Library/Fonts/Helvetica.ttc", cell_font_size)
+            except:
+                try:
+                    header_font = ImageFont.truetype("arial.ttf", header_font_size)
+                    cell_font = ImageFont.truetype("arial.ttf", cell_font_size)
+                except:
+                    header_font = ImageFont.load_default()
+                    cell_font = ImageFont.load_default()
+            
+            # Draw title
+            title = "Blood on the Clocktower Elo Tracker"
+            title_bbox = draw.textbbox((0, 0), title, font=header_font)
+            title_width = title_bbox[2] - title_bbox[0]
+            title_x = (total_width - title_width) // 2
+            draw.text((title_x, padding), title, fill="black", font=header_font)
+            
+            y_offset = padding * 2 + 30
+            
+            # Draw table
+            for row_idx, row_data in enumerate(rows):
+                x_offset = padding
+                is_header = row_idx == 0
+                font = header_font if is_header else cell_font
+                
+                for col_idx, cell_text in enumerate(row_data):
+                    cell_width = col_widths[col_idx]
+                    
+                    # Background color for entire row based on delta
+                    if is_header:
+                        bg_color = (240, 240, 240)  # Light gray for header
+                    elif row_idx < len(row_tags):
+                        # Get the tag for this row to determine color
+                        tags = row_tags[row_idx]
+                        if "delta_positive" in tags:
+                            bg_color = (179, 217, 255)  # Light blue for entire row
+                        elif "delta_negative" in tags:
+                            bg_color = (255, 204, 153)  # Light orange for entire row
+                        else:
+                            bg_color = (255, 255, 255)  # White
+                    else:
+                        bg_color = (255, 255, 255)  # White
+                    
+                    # Draw cell background
+                    draw.rectangle(
+                        [x_offset, y_offset, x_offset + cell_width, y_offset + row_height],
+                        fill=bg_color,
+                        outline="black",
+                        width=1
+                    )
+                    
+                    # Draw cell text
+                    text_color = "black"
+                    # Center align for numeric columns
+                    if col_idx in [0, 2, 3, 4, 5, 6, 7]:  # Numeric columns
+                        text_bbox = draw.textbbox((0, 0), str(cell_text), font=font)
+                        text_width = text_bbox[2] - text_bbox[0]
+                        text_x = x_offset + (cell_width - text_width) // 2
+                    else:  # Left align for name
+                        text_x = x_offset + 5
+                    
+                    text_y = y_offset + (row_height - header_font_size) // 2
+                    draw.text((text_x, text_y), str(cell_text), fill=text_color, font=font)
+                    
+                    x_offset += cell_width + padding
+                
+                y_offset += row_height + padding
+            
+            # Convert to bytes
+            img_bytes = io.BytesIO()
+            img.save(img_bytes, format="PNG")
+            img_bytes.seek(0)
+            img_data = img_bytes.read()
+            
+            # Try to copy to clipboard (macOS preferred method)
+            clipboard_success = False
+            error_msg = None
+            
+            # Method 1: Use AppKit on macOS (most reliable)
+            if platform.system() == "Darwin" and HAS_APPKIT:
+                try:
+                    pasteboard = AppKit.NSPasteboard.generalPasteboard()
+                    pasteboard.clearContents()
+                    ns_image = AppKit.NSImage.alloc().initWithData_(img_data)
+                    pasteboard.writeObjects_([ns_image])
+                    clipboard_success = True
+                except Exception as e:
+                    error_msg = str(e)
+            
+            # Method 2: Use AppleScript on macOS (fallback)
+            if not clipboard_success and platform.system() == "Darwin":
+                try:
+                    # Save to temporary file
+                    with tempfile.NamedTemporaryFile(delete=False, suffix='.png') as tmp_file:
+                        tmp_file.write(img_data)
+                        tmp_path = tmp_file.name
+                    
+                    # Use AppleScript to copy image to clipboard
+                    script = f'''
+                    set the clipboard to (read file POSIX file "{tmp_path}" as «class PNGf»)
+                    '''
+                    result = subprocess.run(
+                        ['osascript', '-e', script],
+                        capture_output=True,
+                        text=True
+                    )
+                    
+                    # Clean up temp file
+                    try:
+                        os.unlink(tmp_path)
+                    except:
+                        pass
+                    
+                    if result.returncode == 0:
+                        clipboard_success = True
+                    else:
+                        error_msg = result.stderr
+                except Exception as e:
+                    if error_msg is None:
+                        error_msg = str(e)
+            
+            # Show success message
+            if clipboard_success:
+                messagebox.showinfo(
+                    "Image Copied!",
+                    "Table image copied to clipboard!\n"
+                    "You can now paste it (Cmd+V) into any app."
+                )
+            else:
+                # Fallback: save to file
+                filename = "botc_table_screenshot.png"
+                with open(filename, "wb") as f:
+                    f.write(img_data)
+                error_text = f"Table image saved as '{filename}' in the current directory."
+                if error_msg:
+                    error_text += f"\n\nNote: Could not copy to clipboard ({error_msg})"
+                elif platform.system() != "Darwin":
+                    error_text += "\n\nNote: Clipboard copying is optimized for macOS."
+                messagebox.showinfo("Image Saved", error_text)
+        
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to create image: {e}")
+    
     def show_player_graph(self, player: Player) -> None:
         import numpy as np
         if not player.rating_history:

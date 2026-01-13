@@ -3799,9 +3799,9 @@
       {
         "name": "Harrison_Smajovits",
         "roles": [
-          "Fortune_Teller->good"
+          "Fortune_Teller"
         ],
-        "role": "Fortune_Teller->good",
+        "role": "Fortune_Teller",
         "initial_team": "Good",
         "team": "Good"
       },
@@ -3997,9 +3997,9 @@
       {
         "name": "Harrison_Smajovits",
         "roles": [
-          "Poisoner->evil"
+          "Poisoner"
         ],
-        "role": "Poisoner->evil",
+        "role": "Poisoner",
         "initial_team": "Evil",
         "team": "Evil"
       },
