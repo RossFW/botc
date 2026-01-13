@@ -52,7 +52,7 @@ from tkinter import ttk
 from typing import Dict, List, Any, Set
 
 # Import centralized configuration
-from botc_config import categorize_script, normalize_script_name
+from botc_config import categorize_script, normalize_script_name, get_character_role_type
 
 
 # ---------------------------------------------------------------------------
@@ -561,46 +561,67 @@ class AnalyticsUI:
         if not self.analytics:
             return
         
-        # Dropdown options: All, each script, category totals
-        options: List[str] = ["All"]
+        # Filter frame for script and role type filters
+        filter_frame = tk.Frame(frame)
+        filter_frame.pack(fill="x", padx=5, pady=5)
+        
+        # Script filter dropdown
+        tk.Label(filter_frame, text="Script:", font=("Arial", 10)).pack(side="left", padx=(0, 5))
+        script_options: List[str] = ["All"]
         # Unique script names
-        options.extend(
+        script_options.extend(
             sorted(self.analytics.script_stats.keys(), key=lambda s: s.lower())
         )
-        options.append("Normal Total")
-        options.append("Teensyville Total")
-        sel_var = tk.StringVar(value="All")
-        combobox = ttk.Combobox(
-            frame, textvariable=sel_var, values=options, state="readonly"
+        script_options.append("Normal Total")
+        script_options.append("Teensyville Total")
+        script_sel_var = tk.StringVar(value="All")
+        script_combobox = ttk.Combobox(
+            filter_frame, textvariable=script_sel_var, values=script_options, state="readonly", width=25
         )
-        combobox.pack(padx=5, pady=5, anchor="w")
+        script_combobox.pack(side="left", padx=(0, 15))
+        
+        # Role type filter dropdown
+        tk.Label(filter_frame, text="Role Type:", font=("Arial", 10)).pack(side="left", padx=(0, 5))
+        role_type_options = ["All", "Townsfolk", "Outsiders", "Minions", "Demons", "Travellers"]
+        role_type_sel_var = tk.StringVar(value="All")
+        role_type_combobox = ttk.Combobox(
+            filter_frame, textvariable=role_type_sel_var, values=role_type_options, state="readonly", width=15
+        )
+        role_type_combobox.pack(side="left")
+        
         # Treeview to display character stats
-        # Columns are ordered consistently: Win %, Wins, Games
-        cols = ("Character", "Win %", "Wins", "Games")
+        # Columns: Character, Role Type, Win %, Wins, Games
+        cols = ("Character", "Role Type", "Win %", "Wins", "Games")
         tree = ttk.Treeview(frame, columns=cols, show="headings")
         for col in cols:
             tree.heading(col, text=col)
             if col == "Character":
-                tree.column(col, anchor="w", width=200)
+                tree.column(col, anchor="w", width=180)
+            elif col == "Role Type":
+                tree.column(col, anchor="w", width=100)
             else:
-                tree.column(col, anchor="center", width=90)
+                tree.column(col, anchor="center", width=80)
         tree.pack(fill="both", expand=True)
 
         def update_character_stats(*args) -> None:
             """Recompute and display character statistics for the selected set of games."""
-            # Determine which games to analyse based on selection
-            selection = sel_var.get()
-            if selection == "All":
+            # Determine which games to analyse based on script selection
+            script_selection = script_sel_var.get()
+            if script_selection == "All":
                 games = self.analytics.games
-            elif selection == "Normal Total":
+            elif script_selection == "Normal Total":
                 games = [g for g in self.analytics.games if categorize_script(g.get("game_mode", "")) == "Normal"]
-            elif selection == "Teensyville Total":
+            elif script_selection == "Teensyville Total":
                 games = [g for g in self.analytics.games if categorize_script(g.get("game_mode", "")) == "Teensyville"]
             else:
-                games = [g for g in self.analytics.games if (g.get("game_mode", "") or "") == selection]
+                games = [g for g in self.analytics.games if (g.get("game_mode", "") or "") == script_selection]
+            
+            # Get role type filter
+            role_type_filter = role_type_sel_var.get()
+            
             # Aggregate statistics per character
             # Use a set to ensure a role is counted only once per game, even if multiple players have the same role (e.g. Legion)
-            char_stats: Dict[str, Dict[str, float]] = {}
+            char_stats: Dict[str, Dict[str, Any]] = {}
             for game in games:
                 winning_team = game.get("winning_team")
                 # Map each role in this game to the list of teams for players with that role
@@ -612,29 +633,45 @@ class AnalyticsUI:
                     role_teams.setdefault(role, []).append(p.get("team"))
                 # Update stats per unique role
                 for role, teams in role_teams.items():
-                    entry = char_stats.setdefault(role, {"games": 0, "wins": 0})
+                    entry = char_stats.setdefault(role, {"games": 0, "wins": 0, "role_type": None})
                     entry["games"] += 1
                     # Count a win if any instance of the role was on the winning team
                     if winning_team in teams:
                         entry["wins"] += 1
-            # Build data list: (role, win_pct, wins, games)
+                    # Look up role type (only need to do this once per character)
+                    if entry["role_type"] is None:
+                        try:
+                            entry["role_type"] = get_character_role_type(role)
+                        except KeyError:
+                            entry["role_type"] = "Unknown"
+            
+            # Build data list: (role, role_type, win_pct, wins, games)
             data_list = []
             for role, stats in char_stats.items():
                 g_count = stats["games"]
                 w_count = stats["wins"]
                 win_pct = (w_count / g_count) * 100 if g_count > 0 else 0.0
-                data_list.append((role, win_pct, w_count, g_count))
+                role_type = stats["role_type"] or "Unknown"
+                
+                # Apply role type filter
+                if role_type_filter != "All" and role_type != role_type_filter:
+                    continue
+                
+                data_list.append((role, role_type, win_pct, w_count, g_count))
+            
             # Sort descending by Win %
-            data_list.sort(key=lambda x: x[1], reverse=True)
+            data_list.sort(key=lambda x: x[2], reverse=True)
+            
             # Clear and repopulate the tree
             tree.delete(*tree.get_children())
-            for role, pct, wins, games_cnt in data_list:
-                tree.insert("", "end", values=(role, f"{pct:.1f}%", wins, games_cnt))
+            for role, role_type, pct, wins, games_cnt in data_list:
+                tree.insert("", "end", values=(role, role_type, f"{pct:.1f}%", wins, games_cnt))
 
         # Sorting function for column clicks
         def sort_by(col: str) -> None:
             # Column index mapping within displayed values
-            idx_map = {"Win %": 1, "Wins": 2, "Games": 3}
+            # Columns are now: Character (0), Role Type (1), Win % (2), Wins (3), Games (4)
+            idx_map = {"Role Type": 1, "Win %": 2, "Wins": 3, "Games": 4}
             reverse = getattr(sort_by, "reverse", False)
             # Retrieve current rows
             rows = [tree.item(i)["values"] for i in tree.get_children() if tree.item(i)["values"]]
@@ -646,10 +683,13 @@ class AnalyticsUI:
                             return float(val[:-1])
                         except Exception:
                             return 0.0
-                    return float(val)
+                    try:
+                        return float(val)
+                    except (ValueError, TypeError):
+                        return str(val)
                 rows.sort(key=lambda v: conv(v[idx]), reverse=not reverse)
             else:
-                # Sort by character name
+                # Sort by character name (column 0)
                 rows.sort(key=lambda v: v[0], reverse=not reverse)
             setattr(sort_by, "reverse", not reverse)
             # Reinsert rows
@@ -660,7 +700,8 @@ class AnalyticsUI:
         for col in cols:
             tree.heading(col, text=col, command=lambda c=col: sort_by(c))
         # Trigger initial population and update on selection change
-        combobox.bind("<<ComboboxSelected>>", update_character_stats)
+        script_combobox.bind("<<ComboboxSelected>>", update_character_stats)
+        role_type_combobox.bind("<<ComboboxSelected>>", update_character_stats)
         update_character_stats()
 
     # ---------------------------------------------------------------------

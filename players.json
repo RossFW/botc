@@ -15196,26 +15196,26 @@
         "game_number": 39,
         "date": "2025-09-15 23:53:34",
         "team": "Good",
-        "role": "Fortune_Teller->good",
+        "role": "Fortune_Teller",
         "win": true,
         "rating_before": 1500,
         "rating_after": 1515.8063683066523,
         "initial_team": "Good",
         "roles": [
-          "Fortune_Teller->good"
+          "Fortune_Teller"
         ]
       },
       {
         "game_number": 40,
         "date": "2025-09-15 23:57:59",
         "team": "Evil",
-        "role": "Poisoner->evil",
+        "role": "Poisoner",
         "win": false,
         "rating_before": 1515.8063683066523,
         "rating_after": 1500.2133642861734,
         "initial_team": "Evil",
         "roles": [
-          "Poisoner->evil"
+          "Poisoner"
         ]
       }
     ]
