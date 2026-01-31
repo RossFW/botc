@@ -3,12 +3,36 @@
  * Handles the game submission form and Supabase integration
  */
 
-import { validateAccessCode, submitGame, getStoredCode, storeCode } from './supabase.js';
+import {
+    validateAccessCode,
+    validateAccessCodeWithLevel,
+    submitGame,
+    updateGame,
+    getStoredCode,
+    storeCode,
+    getStoredPermissionLevel,
+    storePermissionLevel,
+    searchGames as searchGamesApi,
+    getGameById,
+    fetchScripts
+} from './supabase.js';
 
-// DOM Elements
+// Cache for scripts
+let scriptsCache = null;
+
+// DOM Elements - Game Entry Modal
 let modal, codeStep, formStep, codeInput, verifyBtn, codeError;
 let team1Input, team2Input, evilTeamRadios, winnerRadios;
 let scriptSelect, storytellerInput, submitBtn, submitError, submitSuccess;
+let formTitle, formSubtitle;
+
+// DOM Elements - Game Search Modal
+let searchModal, editCodeStep, searchStep, editCodeInput, verifyEditCodeBtn, editCodeError;
+let gameSearchInput, searchGamesBtn, searchResults;
+
+// Edit mode state
+let editMode = false;
+let currentEditGameId = null;
 
 /**
  * Initialize the game entry module
@@ -31,6 +55,19 @@ export function initGameEntry(onGameAdded) {
     submitBtn = document.getElementById('submit-game-btn');
     submitError = document.getElementById('submit-error');
     submitSuccess = document.getElementById('submit-success');
+    formTitle = document.getElementById('form-title');
+    formSubtitle = document.getElementById('form-subtitle');
+
+    // Game Search Modal elements
+    searchModal = document.getElementById('game-search-modal');
+    editCodeStep = document.getElementById('edit-code-step');
+    searchStep = document.getElementById('search-step');
+    editCodeInput = document.getElementById('edit-confirmation-code');
+    verifyEditCodeBtn = document.getElementById('verify-edit-code-btn');
+    editCodeError = document.getElementById('edit-code-error');
+    gameSearchInput = document.getElementById('game-search-input');
+    searchGamesBtn = document.getElementById('search-games-btn');
+    searchResults = document.getElementById('search-results');
 
     // Store callback
     window._onGameAdded = onGameAdded;
@@ -40,7 +77,34 @@ export function initGameEntry(onGameAdded) {
 
     // Check for stored code
     checkStoredCode();
+
+    // Load scripts from database
+    loadScripts();
 }
+
+/**
+ * Load scripts from the database and populate the dropdown
+ */
+async function loadScripts() {
+    try {
+        const scripts = await fetchScripts();
+        if (scripts && scripts.length > 0) {
+            scriptsCache = scripts;
+
+            // Clear existing options and populate with database scripts
+            scriptSelect.innerHTML = '';
+            scripts.forEach(script => {
+                const option = document.createElement('option');
+                option.value = script.name;
+                option.textContent = script.name;
+                scriptSelect.appendChild(option);
+            });
+        }
+        // If no scripts from database, keep the hardcoded options
+    } catch (error) {
+        console.warn('Could not load scripts from database, using defaults:', error);
+        // Keep hardcoded options as fallback
+    }
 
 /**
  * Set up event listeners
@@ -65,10 +129,14 @@ function setupEventListeners() {
         }
     });
 
-    // ESC key to close
+    // ESC key to close modals
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeModal();
+        if (e.key === 'Escape') {
+            if (searchModal && searchModal.classList.contains('active')) {
+                closeSearchModal();
+            } else if (modal.classList.contains('active')) {
+                closeModal();
+            }
         }
     });
 
@@ -84,6 +152,65 @@ function setupEventListeners() {
 
     // Submit game button
     submitBtn.addEventListener('click', submitGameForm);
+
+    // Help toggle button
+    const helpToggleBtn = document.getElementById('help-toggle-btn');
+    const helpContent = document.getElementById('help-content');
+    if (helpToggleBtn && helpContent) {
+        helpToggleBtn.addEventListener('click', () => {
+            helpToggleBtn.classList.toggle('active');
+            helpContent.classList.toggle('show');
+        });
+    }
+
+    // Edit Game button
+    const editGameBtn = document.getElementById('edit-game-btn');
+    if (editGameBtn) {
+        editGameBtn.addEventListener('click', openSearchModal);
+    }
+
+    // Search modal close button
+    if (searchModal) {
+        const searchCloseBtn = searchModal.querySelector('.modal-close');
+        if (searchCloseBtn) {
+            searchCloseBtn.addEventListener('click', closeSearchModal);
+        }
+
+        // Click outside to close
+        searchModal.addEventListener('click', (e) => {
+            if (e.target === searchModal) {
+                closeSearchModal();
+            }
+        });
+    }
+
+    // Verify edit code button
+    if (verifyEditCodeBtn) {
+        verifyEditCodeBtn.addEventListener('click', verifyEditCode);
+    }
+
+    // Enter key on edit code input
+    if (editCodeInput) {
+        editCodeInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                verifyEditCode();
+            }
+        });
+    }
+
+    // Search games button
+    if (searchGamesBtn) {
+        searchGamesBtn.addEventListener('click', performGameSearch);
+    }
+
+    // Enter key on search input
+    if (gameSearchInput) {
+        gameSearchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                performGameSearch();
+            }
+        });
+    }
 }
 
 /**
@@ -100,9 +227,12 @@ async function checkStoredCode() {
 }
 
 /**
- * Open the game entry modal
+ * Open the game entry modal (for adding new games)
  */
 function openModal() {
+    // Reset to add mode
+    resetToAddMode();
+
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 
@@ -126,6 +256,11 @@ function openModal() {
 function closeModal() {
     modal.classList.remove('active');
     document.body.style.overflow = '';
+
+    // Reset edit mode if closing
+    if (editMode) {
+        resetToAddMode();
+    }
 }
 
 /**
@@ -310,18 +445,26 @@ async function submitGameForm() {
         story_teller: storyteller
     };
 
-    // Submit
+    // Submit or Update
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Submitting...';
+    submitBtn.textContent = editMode ? 'Updating...' : 'Submitting...';
 
     try {
         const code = getStoredCode();
-        await submitGame(gameData, code);
 
-        showSuccess(submitSuccess, 'Game submitted successfully!');
+        if (editMode && currentEditGameId) {
+            // Update existing game
+            await updateGame(currentEditGameId, gameData, code);
+            showSuccess(submitSuccess, `Game #${currentEditGameId} updated successfully!`);
+        } else {
+            // Submit new game
+            await submitGame(gameData, code);
+            showSuccess(submitSuccess, 'Game submitted successfully!');
+        }
 
-        // Clear form
+        // Clear form and reset mode
         clearForm();
+        resetToAddMode();
 
         // Refresh the leaderboard
         if (window._onGameAdded) {
@@ -339,7 +482,7 @@ async function submitGameForm() {
         console.error('Submit error:', error);
     } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Game';
+        submitBtn.textContent = editMode ? 'Update Game' : 'Submit Game';
     }
 }
 
@@ -383,4 +526,249 @@ function showSuccess(element, message) {
  */
 function hideSuccess(element) {
     element.style.display = 'none';
+}
+
+// ==========================================
+// EDIT MODE FUNCTIONS
+// ==========================================
+
+/**
+ * Open the game search modal
+ */
+function openSearchModal() {
+    searchModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Check if we have edit permission stored
+    const level = getStoredPermissionLevel();
+    if (level === 'edit') {
+        showSearchStep();
+    } else {
+        showEditCodeStep();
+    }
+
+    // Clear any previous errors
+    if (editCodeError) hideError(editCodeError);
+    if (searchResults) searchResults.innerHTML = '';
+}
+
+/**
+ * Close the game search modal
+ */
+function closeSearchModal() {
+    searchModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+/**
+ * Show the edit code input step
+ */
+function showEditCodeStep() {
+    editCodeStep.style.display = 'block';
+    searchStep.style.display = 'none';
+    editCodeInput.value = '';
+    editCodeInput.focus();
+}
+
+/**
+ * Show the search step
+ */
+function showSearchStep() {
+    editCodeStep.style.display = 'none';
+    searchStep.style.display = 'block';
+    gameSearchInput.value = '';
+    gameSearchInput.focus();
+}
+
+/**
+ * Verify the edit confirmation code
+ */
+async function verifyEditCode() {
+    const code = editCodeInput.value.trim();
+
+    if (!code) {
+        showError(editCodeError, 'Please enter a code');
+        return;
+    }
+
+    verifyEditCodeBtn.disabled = true;
+    verifyEditCodeBtn.textContent = 'Verifying...';
+
+    try {
+        const level = await validateAccessCodeWithLevel(code);
+
+        if (level === 'edit') {
+            storeCode(code);
+            storePermissionLevel(level);
+            hideError(editCodeError);
+            showSearchStep();
+        } else if (level === 'submit') {
+            showError(editCodeError, 'This code only allows adding games, not editing. Use the edit code.');
+        } else {
+            showError(editCodeError, 'Invalid code. Please try again.');
+        }
+    } catch (error) {
+        showError(editCodeError, 'Error verifying code. Please try again.');
+        console.error('Edit code verification error:', error);
+    } finally {
+        verifyEditCodeBtn.disabled = false;
+        verifyEditCodeBtn.textContent = 'Verify';
+    }
+}
+
+/**
+ * Perform game search
+ */
+async function performGameSearch() {
+    const query = gameSearchInput.value.trim();
+
+    if (!query) {
+        searchResults.innerHTML = '<div class="no-results">Please enter a search term</div>';
+        return;
+    }
+
+    searchGamesBtn.disabled = true;
+    searchGamesBtn.textContent = 'Searching...';
+
+    try {
+        const games = await searchGamesApi(query);
+
+        if (games.length === 0) {
+            searchResults.innerHTML = '<div class="no-results">No games found matching your search</div>';
+        } else {
+            searchResults.innerHTML = games.map(game => `
+                <div class="game-result-card" data-game-id="${game.game_id}">
+                    <div class="game-result-header">
+                        <span class="game-result-id">Game #${game.game_id}</span>
+                        <span class="game-result-winner ${game.winning_team.toLowerCase()}">${game.winning_team} Won</span>
+                    </div>
+                    <div class="game-result-details">
+                        <span>${game.game_mode || 'Unknown Script'}</span>
+                        <span>ST: ${game.story_teller || 'Unknown'}</span>
+                        <span>${game.date ? new Date(game.date).toLocaleDateString() : ''}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add click handlers to result cards
+            searchResults.querySelectorAll('.game-result-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const gameId = parseInt(card.dataset.gameId);
+                    loadGameForEdit(gameId);
+                });
+            });
+        }
+    } catch (error) {
+        searchResults.innerHTML = '<div class="no-results">Error searching games. Please try again.</div>';
+        console.error('Search error:', error);
+    } finally {
+        searchGamesBtn.disabled = false;
+        searchGamesBtn.textContent = 'Search';
+    }
+}
+
+/**
+ * Load a game for editing
+ */
+async function loadGameForEdit(gameId) {
+    try {
+        const game = await getGameById(gameId);
+
+        // Set edit mode
+        editMode = true;
+        currentEditGameId = gameId;
+
+        // Close search modal and open game entry modal
+        closeSearchModal();
+
+        // Populate the form
+        populateFormWithGame(game);
+
+        // Update form title
+        formTitle.innerHTML = `Edit Game #${gameId} <span class="edit-mode-badge">EDITING</span>`;
+        formSubtitle.textContent = 'Modify the game details below';
+        formStep.classList.add('edit-mode');
+        submitBtn.textContent = 'Update Game';
+
+        // Show the game entry modal
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        codeStep.style.display = 'none';
+        formStep.style.display = 'block';
+
+    } catch (error) {
+        console.error('Error loading game:', error);
+        alert('Failed to load game for editing. Please try again.');
+    }
+}
+
+/**
+ * Populate the form with existing game data
+ */
+function populateFormWithGame(game) {
+    // Separate players by team
+    const evilPlayers = game.players.filter(p => p.team === 'Evil');
+    const goodPlayers = game.players.filter(p => p.team === 'Good');
+
+    // Determine which team is team 1 (Evil team)
+    const team1IsEvil = true; // We'll put Evil in Team 1
+    const team1Players = evilPlayers;
+    const team2Players = goodPlayers;
+
+    // Format players for textarea
+    team1Input.value = formatPlayersForTextarea(team1Players);
+    team2Input.value = formatPlayersForTextarea(team2Players);
+
+    // Set evil team radio (Team 1 = Evil)
+    evilTeamRadios.forEach(r => {
+        r.checked = r.value === '1';
+    });
+
+    // Set winner radio
+    const winnerTeamNum = game.winning_team === 'Evil' ? '1' : '2';
+    winnerRadios.forEach(r => {
+        r.checked = r.value === winnerTeamNum;
+    });
+
+    // Set script
+    scriptSelect.value = game.game_mode || 'Trouble Brewing';
+
+    // Set storyteller
+    storytellerInput.value = game.story_teller || '';
+}
+
+/**
+ * Format players array for textarea display
+ */
+function formatPlayersForTextarea(players) {
+    return players.map(p => {
+        let line = p.name;
+
+        // Add roles
+        if (p.roles && p.roles.length > 0) {
+            line += ' ' + p.roles.join('+');
+        } else if (p.role) {
+            line += ' ' + p.role;
+        }
+
+        // Add team hint if initial team differs from final team
+        if (p.initial_team && p.initial_team !== p.team) {
+            line += ' ' + p.initial_team + '->' + p.team;
+        }
+
+        return line;
+    }).join('\n');
+}
+
+/**
+ * Reset to add mode (not edit mode)
+ */
+function resetToAddMode() {
+    editMode = false;
+    currentEditGameId = null;
+    formTitle.textContent = 'Add New Game';
+    formSubtitle.textContent = 'Enter game details below';
+    formStep.classList.remove('edit-mode');
+    submitBtn.textContent = 'Submit Game';
+    clearForm();
 }
