@@ -1,0 +1,504 @@
+/**
+ * Blood on the Clocktower Stats - Dark Theme Styles
+ */
+
+/* CSS Variables for theming */
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-card: #0f3460;
+    --bg-table-header: #1a1a2e;
+    --bg-table-row: #16213e;
+    --bg-table-row-alt: #1a1a2e;
+
+    --text-primary: #eaeaea;
+    --text-secondary: #a0a0a0;
+    --text-muted: #6c757d;
+
+    --accent-good: #4ade80;
+    --accent-evil: #f87171;
+    --accent-blue: #60a5fa;
+    --accent-purple: #a78bfa;
+
+    --delta-positive: rgba(74, 222, 128, 0.2);
+    --delta-negative: rgba(248, 113, 113, 0.2);
+
+    --border-color: #2d3748;
+    --border-radius: 8px;
+
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--accent-good), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Stats summary cards */
+.stats-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.stat-card .value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-card .label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-card.good .value {
+    color: var(--accent-good);
+}
+
+.stat-card.evil .value {
+    color: var(--accent-evil);
+}
+
+/* Table container */
+.table-container {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.table-header h2 {
+    font-size: 1.5rem;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.controls label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.controls input {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    width: 120px;
+}
+
+.controls input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+}
+
+.controls button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background: var(--accent-blue);
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.controls button:hover {
+    background: #3b82f6;
+}
+
+.controls button.secondary {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.controls button.secondary:hover {
+    background: var(--border-color);
+}
+
+/* Leaderboard table */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.leaderboard-table th {
+    background: var(--bg-table-header);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+}
+
+.leaderboard-table th:hover {
+    background: var(--border-color);
+}
+
+.leaderboard-table th.sorted-asc::after {
+    content: ' \2191';
+}
+
+.leaderboard-table th.sorted-desc::after {
+    content: ' \2193';
+}
+
+.leaderboard-table tbody tr {
+    background: var(--bg-table-row);
+    transition: background 0.2s;
+}
+
+.leaderboard-table tbody tr:nth-child(even) {
+    background: var(--bg-table-row-alt);
+}
+
+.leaderboard-table tbody tr:hover {
+    background: var(--border-color);
+}
+
+.leaderboard-table tbody tr.clickable {
+    cursor: pointer;
+}
+
+/* Numeric columns alignment */
+.leaderboard-table td.rank,
+.leaderboard-table td.rating,
+.leaderboard-table td.delta,
+.leaderboard-table td.pct,
+.leaderboard-table td.games {
+    text-align: center;
+}
+
+/* Delta coloring */
+.leaderboard-table tr.delta-positive {
+    background: var(--delta-positive) !important;
+}
+
+.leaderboard-table tr.delta-negative {
+    background: var(--delta-negative) !important;
+}
+
+.delta-positive-text {
+    color: var(--accent-good);
+}
+
+.delta-negative-text {
+    color: var(--accent-evil);
+}
+
+/* Rank styling */
+.rank-1 {
+    color: gold;
+    font-weight: bold;
+}
+
+.rank-2 {
+    color: silver;
+    font-weight: bold;
+}
+
+.rank-3 {
+    color: #cd7f32;
+    font-weight: bold;
+}
+
+/* Player name styling */
+.player-name {
+    font-weight: 500;
+}
+
+/* Win percentage bars */
+.pct-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pct-bar .bar {
+    width: 60px;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.pct-bar .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+}
+
+.pct-bar .bar-fill.good {
+    background: var(--accent-good);
+}
+
+.pct-bar .bar-fill.evil {
+    background: var(--accent-evil);
+}
+
+.pct-bar .bar-fill.overall {
+    background: var(--accent-blue);
+}
+
+/* Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    max-width: 800px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.modal-close:hover {
+    color: var(--text-primary);
+}
+
+.modal h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+/* Chart container */
+.chart-container {
+    background: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Loading spinner */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--accent-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error message */
+.error-message {
+    background: rgba(248, 113, 113, 0.2);
+    border: 1px solid var(--accent-evil);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    text-align: center;
+    color: var(--accent-evil);
+}
+
+/* Add Game Button (Phase 2) */
+.add-game-btn {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 12px 24px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.add-game-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(167, 139, 250, 0.4);
+}
+
+.add-game-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: var(--accent-blue);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .table-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .controls {
+        width: 100%;
+    }
+
+    .leaderboard-table {
+        font-size: 0.85rem;
+    }
+
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 8px 10px;
+    }
+
+    .pct-bar .bar {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    header {
+        padding: 20px 15px;
+    }
+
+    .stats-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .leaderboard-table th:nth-child(4),
+    .leaderboard-table td:nth-child(4),
+    .leaderboard-table th:nth-child(6),
+    .leaderboard-table td:nth-child(6),
+    .leaderboard-table th:nth-child(7),
+    .leaderboard-table td:nth-child(7) {
+        display: none;
+    }
+}
