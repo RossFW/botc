@@ -4,6 +4,7 @@
 
 import { recalcAll, getLeaderboard, pctToStr, getRatingDelta } from './elo.js';
 import { fetchGames, isUsingSupabase } from './supabase.js';
+import { initGameEntry } from './gameEntry.js';
 
 // Global state
 let gameLog = [];
@@ -50,6 +51,9 @@ async function init() {
         // Set up event listeners
         setupEventListeners();
 
+        // Initialize game entry module with refresh callback
+        initGameEntry(refreshData);
+
         showContent();
     } catch (error) {
         console.error('Failed to initialize:', error);
@@ -83,6 +87,28 @@ function showContent() {
     loadingEl.style.display = 'none';
     errorEl.style.display = 'none';
     contentEl.style.display = 'block';
+}
+
+/**
+ * Refresh data from the database (called after game is added)
+ */
+async function refreshData() {
+    try {
+        // Refetch games
+        gameLog = await fetchGames();
+
+        // Recalculate ELO ratings
+        players = recalcAll(gameLog);
+
+        // Regenerate leaderboard
+        leaderboard = getLeaderboard(players);
+
+        // Update display
+        updateStatsSummary();
+        renderLeaderboard();
+    } catch (error) {
+        console.error('Failed to refresh data:', error);
+    }
 }
 
 /**
