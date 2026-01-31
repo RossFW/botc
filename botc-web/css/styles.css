@@ -75,6 +75,32 @@ header p {
     font-size: 1.1rem;
 }
 
+/* Header Navigation */
+.header-nav {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.header-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.header-nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.header-nav a.active {
+    background: var(--accent-blue);
+    color: white;
+}
+
 /* Stats summary cards */
 .stats-summary {
     display: grid;
