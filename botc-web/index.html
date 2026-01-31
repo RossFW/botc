@@ -61,8 +61,7 @@
                         <label for="game-range">Game Range:</label>
                         <input type="text" id="game-range" placeholder="e.g., 67-69">
                         <button id="clear-range" class="secondary">Clear</button>
-                        <!-- Add Game button (Phase 2) -->
-                        <!-- <button class="add-game-btn" id="add-game-btn">+ Add Game</button> -->
+                        <button class="add-game-btn" id="add-game-btn">+ Add Game</button>
                     </div>
                 </div>
 
@@ -103,6 +102,101 @@
             <h3>Player Name - Rating History</h3>
             <div class="chart-container" style="height: 400px;">
                 <canvas id="rating-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Entry Modal -->
+    <div class="modal-overlay" id="game-entry-modal">
+        <div class="modal game-entry-modal">
+            <button class="modal-close">&times;</button>
+
+            <!-- Step 1: Confirmation Code -->
+            <div id="code-step" class="modal-step">
+                <h3>Enter Confirmation Code</h3>
+                <p class="modal-subtitle">Enter the code to add games</p>
+                <div class="code-input-container">
+                    <input type="password" id="confirmation-code" placeholder="Enter code..." autocomplete="off">
+                    <button id="verify-code-btn" class="primary-btn">Verify</button>
+                </div>
+                <p id="code-error" class="error-text" style="display: none;">Invalid code. Please try again.</p>
+            </div>
+
+            <!-- Step 2: Game Entry Form -->
+            <div id="form-step" class="modal-step" style="display: none;">
+                <h3>Add New Game</h3>
+                <p class="modal-subtitle">Enter game details below</p>
+
+                <div class="game-form">
+                    <div class="form-row teams-row">
+                        <div class="form-group">
+                            <label for="team1-input">Team 1 Players</label>
+                            <textarea id="team1-input" rows="6" placeholder="Name Role&#10;e.g., Ross_Williams Imp&#10;Alex_West Poisoner"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="team2-input">Team 2 Players</label>
+                            <textarea id="team2-input" rows="6" placeholder="Name Role&#10;e.g., Sam_Reissing Chef&#10;Zoe_Diamond Empath"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Which team is Evil?</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="evil-team" value="1"> Team 1
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="evil-team" value="2"> Team 2
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Which team won?</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="winner" value="1"> Team 1
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="winner" value="2"> Team 2
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="script-select">Script</label>
+                            <select id="script-select">
+                                <option value="Trouble Brewing">Trouble Brewing</option>
+                                <option value="Bad Moon Rising">Bad Moon Rising</option>
+                                <option value="Sects & Violets">Sects & Violets</option>
+                                <option value="Trouble in Violets">Trouble in Violets</option>
+                                <option value="No Greater Joy">No Greater Joy</option>
+                                <option value="Over the River">Over the River</option>
+                                <option value="Laissez un Faire">Laissez un Faire</option>
+                                <option value="Trouble in Legion">Trouble in Legion</option>
+                                <option value="Hide & Seek">Hide & Seek</option>
+                                <option value="Trouble Brewing on Expert Mode">Trouble Brewing on Expert Mode</option>
+                                <option value="Trained Killer">Trained Killer</option>
+                                <option value="Irrational Behavior">Irrational Behavior</option>
+                                <option value="Binary Supernovae">Binary Supernovae</option>
+                                <option value="A Leech of Distrust">A Leech of Distrust</option>
+                                <option value="Everybody Can Play">Everybody Can Play</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="storyteller-input">Storyteller</label>
+                            <input type="text" id="storyteller-input" placeholder="e.g., Matan_Diamond">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button id="submit-game-btn" class="primary-btn">Submit Game</button>
+                        <p id="submit-error" class="error-text" style="display: none;"></p>
+                        <p id="submit-success" class="success-text" style="display: none;"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
