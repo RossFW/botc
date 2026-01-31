@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood on the Clocktower Stats</title>
+    <meta name="description" content="ELO ratings and statistics for Blood on the Clocktower games">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Chart.js for graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Blood on the Clocktower</h1>
+            <p>ELO Rankings & Game Statistics</p>
+        </header>
+
+        <!-- Loading State -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Error State -->
+        <div id="error" class="error-message" style="display: none;">
+            <p class="error-text">Failed to load data</p>
+            <button onclick="location.reload()">Retry</button>
+        </div>
+
+        <!-- Main Content -->
+        <div id="content" style="display: none;">
+            <!-- Stats Summary -->
+            <div class="stats-summary">
+                <div class="stat-card">
+                    <div class="value" id="total-games">0</div>
+                    <div class="label">Total Games</div>
+                </div>
+                <div class="stat-card">
+                    <div class="value" id="total-players">0</div>
+                    <div class="label">Players</div>
+                </div>
+                <div class="stat-card good">
+                    <div class="value" id="good-wins">0</div>
+                    <div class="label">Good Wins</div>
+                </div>
+                <div class="stat-card evil">
+                    <div class="value" id="evil-wins">0</div>
+                    <div class="label">Evil Wins</div>
+                </div>
+            </div>
+
+            <!-- Leaderboard -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>Player Rankings</h2>
+                    <div class="controls">
+                        <label for="game-range">Game Range:</label>
+                        <input type="text" id="game-range" placeholder="e.g., 67-69">
+                        <button id="clear-range" class="secondary">Clear</button>
+                        <!-- Add Game button (Phase 2) -->
+                        <!-- <button class="add-game-btn" id="add-game-btn">+ Add Game</button> -->
+                    </div>
+                </div>
+
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th data-sort="rank">Rank</th>
+                            <th data-sort="name">Name</th>
+                            <th data-sort="rating">Rating</th>
+                            <th>Delta</th>
+                            <th data-sort="overall">Overall Win %</th>
+                            <th data-sort="good">Good Win %</th>
+                            <th data-sort="evil">Evil Win %</th>
+                            <th data-sort="games">Games</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body">
+                        <!-- Rows populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>
+                Data tracked with love for the Town.
+                <br>
+                <a href="https://github.com/RossFW/botc" target="_blank">View on GitHub</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Player Modal -->
+    <div class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close">&times;</button>
+            <h3>Player Name - Rating History</h3>
+            <div class="chart-container" style="height: 400px;">
+                <canvas id="rating-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application Script -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

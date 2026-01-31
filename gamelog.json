@@ -6864,5 +6864,247 @@
     "winning_team": "Good",
     "game_mode": "Sects & Violets",
     "story_teller": "Darius_Fiallo"
+  },
+  {
+    "game_id": 70,
+    "date": "2026-01-15 01:20:51",
+    "players": [
+      {
+        "name": "Darius_Fiallo",
+        "roles": [
+          "Sage"
+        ],
+        "role": "Sage",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Savant"
+        ],
+        "role": "Savant",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Matthew_Sidewater",
+        "roles": [
+          "Juggler"
+        ],
+        "role": "Juggler",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Josh_Landsman",
+        "roles": [
+          "Clockmaker"
+        ],
+        "role": "Clockmaker",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Lissie_Levitt",
+        "roles": [
+          "Seamstress"
+        ],
+        "role": "Seamstress",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Miles_Marks",
+        "roles": [
+          "Snake_Charmer"
+        ],
+        "role": "Snake_Charmer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Brooke_Titshaw",
+        "roles": [
+          "Artist"
+        ],
+        "role": "Artist",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Hannah_Swanner",
+        "roles": [
+          "Mathematician"
+        ],
+        "role": "Mathematician",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Jimmy_Minor",
+        "roles": [
+          "Sweetheart"
+        ],
+        "role": "Sweetheart",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Klutz"
+        ],
+        "role": "Klutz",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Kat_Minor",
+        "roles": [
+          "Pit-hag"
+        ],
+        "role": "Pit-hag",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Kevin_Hopper",
+        "roles": [
+          "Gunslinger"
+        ],
+        "role": "Gunslinger",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Matt_Kalin",
+        "roles": [
+          "Vortox",
+          "Vigormortis"
+        ],
+        "role": "Vigormortis",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Sam_Frischling",
+        "roles": [
+          "Cerenovous"
+        ],
+        "role": "Cerenovous",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Marin_Londe",
+        "roles": [
+          "Witch",
+          "Fang_Gu"
+        ],
+        "role": "Fang_Gu",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Geoffrey_Dodd",
+        "roles": [
+          "Mutant",
+          "Fang_Gu"
+        ],
+        "role": "Fang_Gu",
+        "initial_team": "Good",
+        "team": "Evil"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Sects & Violets",
+    "story_teller": "Matan_Diamond+Zoe_Diamond"
+  },
+  {
+    "game_id": 71,
+    "date": "2026-01-15 01:21:34",
+    "players": [
+      {
+        "name": "Ross_Williams",
+        "roles": [
+          "Evil_Twin"
+        ],
+        "role": "Evil_Twin",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Sam_Frischling",
+        "roles": [
+          "Fang_Gu"
+        ],
+        "role": "Fang_Gu",
+        "initial_team": "Evil",
+        "team": "Evil"
+      },
+      {
+        "name": "Kevin_Hopper",
+        "roles": [
+          "Philospher",
+          "Fang_Gu",
+          "Philosopher"
+        ],
+        "role": "Philosopher",
+        "initial_team": "Good",
+        "team": "Evil"
+      },
+      {
+        "name": "Zoe_Diamond",
+        "roles": [
+          "Snake_Charmer"
+        ],
+        "role": "Snake_Charmer",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Kat_Minor",
+        "roles": [
+          "Juggler"
+        ],
+        "role": "Juggler",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Chair-tan",
+        "roles": [
+          "Sage"
+        ],
+        "role": "Sage",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Darius_Fiallo",
+        "roles": [
+          "Klutz",
+          "Fang_Gu",
+          "Philosopher",
+          "Fang_Gu"
+        ],
+        "role": "Fang_Gu",
+        "initial_team": "Good",
+        "team": "Good"
+      },
+      {
+        "name": "Simon_Miller",
+        "roles": [
+          "Barber"
+        ],
+        "role": "Barber",
+        "initial_team": "Good",
+        "team": "Good"
+      }
+    ],
+    "winning_team": "Good",
+    "game_mode": "Sects & Violets",
+    "story_teller": "Matan_Diamond"
   }
 ]
