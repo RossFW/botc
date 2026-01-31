@@ -105,6 +105,7 @@ async function loadScripts() {
         console.warn('Could not load scripts from database, using defaults:', error);
         // Keep hardcoded options as fallback
     }
+}
 
 /**
  * Set up event listeners
