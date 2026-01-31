@@ -62,6 +62,7 @@
                         <input type="text" id="game-range" placeholder="e.g., 67-69">
                         <button id="clear-range" class="secondary">Clear</button>
                         <button class="add-game-btn" id="add-game-btn">+ Add Game</button>
+                        <button class="edit-game-btn secondary" id="edit-game-btn">Edit Game</button>
                     </div>
                 </div>
 
@@ -124,10 +125,35 @@
 
             <!-- Step 2: Game Entry Form -->
             <div id="form-step" class="modal-step" style="display: none;">
-                <h3>Add New Game</h3>
-                <p class="modal-subtitle">Enter game details below</p>
+                <h3 id="form-title">Add New Game</h3>
+                <p class="modal-subtitle" id="form-subtitle">Enter game details below</p>
 
                 <div class="game-form">
+                    <!-- Input Format Help -->
+                    <div class="format-help">
+                        <button class="help-toggle" type="button" id="help-toggle-btn">
+                            <span class="help-icon">?</span> Input Format Help
+                        </button>
+                        <div class="help-content" id="help-content">
+                            <p><strong>Format:</strong> <code>Name Role [TeamHint]</code></p>
+                            <div class="help-examples">
+                                <div class="help-example">
+                                    <code>Ross_Williams Imp</code>
+                                    <span>Basic entry</span>
+                                </div>
+                                <div class="help-example">
+                                    <code>Alex_West Snake_charmer+Witch</code>
+                                    <span>Multiple roles (use +)</span>
+                                </div>
+                                <div class="help-example">
+                                    <code>Sam_Reissing Chef Good->Evil</code>
+                                    <span>Team change (use ->)</span>
+                                </div>
+                            </div>
+                            <p class="help-note"><em>Note: Put team-changers in their FINAL team's section</em></p>
+                        </div>
+                    </div>
+
                     <div class="form-row teams-row">
                         <div class="form-group">
                             <label for="team1-input">Team 1 Players</label>
@@ -196,6 +222,39 @@
                         <p id="submit-error" class="error-text" style="display: none;"></p>
                         <p id="submit-success" class="success-text" style="display: none;"></p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Search Modal (for editing) -->
+    <div class="modal-overlay" id="game-search-modal">
+        <div class="modal game-search-modal">
+            <button class="modal-close">&times;</button>
+
+            <!-- Step 1: Edit Code Verification -->
+            <div id="edit-code-step" class="modal-step">
+                <h3>Enter Edit Code</h3>
+                <p class="modal-subtitle">Edit access requires a special code</p>
+                <div class="code-input-container">
+                    <input type="password" id="edit-confirmation-code" placeholder="Enter edit code..." autocomplete="off">
+                    <button id="verify-edit-code-btn" class="primary-btn">Verify</button>
+                </div>
+                <p id="edit-code-error" class="error-text" style="display: none;">Invalid code. Edit access required.</p>
+            </div>
+
+            <!-- Step 2: Game Search -->
+            <div id="search-step" class="modal-step" style="display: none;">
+                <h3>Search for Game to Edit</h3>
+                <p class="modal-subtitle">Search by game number, storyteller, or script</p>
+
+                <div class="search-container">
+                    <input type="text" id="game-search-input" placeholder="e.g., 42 or Matan or Trouble Brewing">
+                    <button id="search-games-btn" class="primary-btn">Search</button>
+                </div>
+
+                <div id="search-results" class="search-results">
+                    <!-- Results populated by JavaScript -->
                 </div>
             </div>
         </div>

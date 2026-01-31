@@ -228,4 +228,221 @@ export function storeCode(code) {
  */
 export function clearStoredCode() {
     localStorage.removeItem('botc_access_code');
+    localStorage.removeItem('botc_permission_level');
+}
+
+/**
+ * Get stored permission level.
+ * @returns {string|null} 'submit', 'edit', or null
+ */
+export function getStoredPermissionLevel() {
+    return localStorage.getItem('botc_permission_level');
+}
+
+/**
+ * Store permission level in localStorage.
+ * @param {string} level - 'submit' or 'edit'
+ */
+export function storePermissionLevel(level) {
+    localStorage.setItem('botc_permission_level', level);
+}
+
+// ==========================================
+// PHASE 4B: GAME EDITING FUNCTIONS
+// ==========================================
+
+/**
+ * Validate access code and return permission level.
+ * @param {string} code - The confirmation code to validate
+ * @returns {Promise<string|null>} 'submit', 'edit', or null if invalid
+ */
+export async function validateAccessCodeWithLevel(code) {
+    if (USE_SUPABASE) {
+        await initSupabase();
+        const { data, error } = await supabase
+            .from('access_codes')
+            .select('code, permission_level')
+            .eq('code', code)
+            .single();
+
+        if (error || !data) return null;
+        return data.permission_level || 'submit';
+    } else {
+        // For local testing
+        if (code === 'test123') return 'submit';
+        if (code === 'edit123') return 'edit';
+        return null;
+    }
+}
+
+/**
+ * Search games by game ID, storyteller, or script.
+ * @param {string} query - Search query
+ * @returns {Promise<Array>} Array of matching games (summary only)
+ */
+export async function searchGames(query) {
+    if (!USE_SUPABASE) {
+        throw new Error('Search requires Supabase');
+    }
+
+    await initSupabase();
+
+    const trimmedQuery = query.trim();
+    const gameIdNum = parseInt(trimmedQuery);
+
+    // Build search - try game_id first if it's a number
+    let searchQuery = supabase
+        .from('games')
+        .select('game_id, date, game_mode, story_teller, winning_team')
+        .order('game_id', { ascending: false })
+        .limit(20);
+
+    if (!isNaN(gameIdNum) && trimmedQuery === String(gameIdNum)) {
+        // Search by game ID
+        searchQuery = searchQuery.eq('game_id', gameIdNum);
+    } else {
+        // Search by storyteller or script name
+        searchQuery = searchQuery.or(`story_teller.ilike.%${trimmedQuery}%,game_mode.ilike.%${trimmedQuery}%`);
+    }
+
+    const { data, error } = await searchQuery;
+
+    if (error) {
+        console.error('Error searching games:', error);
+        throw error;
+    }
+
+    return data || [];
+}
+
+/**
+ * Get full game data by game_id.
+ * @param {number} gameId - The game ID
+ * @returns {Promise<Object>} Full game object
+ */
+export async function getGameById(gameId) {
+    if (!USE_SUPABASE) {
+        throw new Error('Requires Supabase');
+    }
+
+    await initSupabase();
+    const { data, error } = await supabase
+        .from('games')
+        .select('*')
+        .eq('game_id', gameId)
+        .single();
+
+    if (error) {
+        console.error('Error fetching game:', error);
+        throw error;
+    }
+
+    return data;
+}
+
+/**
+ * Update an existing game.
+ * @param {number} gameId - The game ID to update
+ * @param {Object} gameData - Updated game data
+ * @param {string} code - The edit confirmation code
+ * @returns {Promise<Object>} The updated game record
+ */
+export async function updateGame(gameId, gameData, code) {
+    // Validate code has edit permission
+    const level = await validateAccessCodeWithLevel(code);
+    if (level !== 'edit') {
+        throw new Error('Edit access required. Use the edit code.');
+    }
+
+    if (!USE_SUPABASE) {
+        throw new Error('Update requires Supabase');
+    }
+
+    await initSupabase();
+    const { data, error } = await supabase
+        .from('games')
+        .update({
+            players: gameData.players,
+            winning_team: gameData.winning_team,
+            game_mode: gameData.game_mode,
+            story_teller: gameData.story_teller
+        })
+        .eq('game_id', gameId)
+        .select()
+        .single();
+
+    if (error) {
+        console.error('Error updating game:', error);
+        throw error;
+    }
+
+    return data;
+}
+
+// ==========================================
+// PHASE 4C: SCRIPTS MANAGEMENT FUNCTIONS
+// ==========================================
+
+/**
+ * Fetch all scripts from the database.
+ * @returns {Promise<Array>} Array of script objects
+ */
+export async function fetchScripts() {
+    if (!USE_SUPABASE) {
+        // Return hardcoded list for local testing
+        return [
+            { name: 'Trouble Brewing', category: 'Normal' },
+            { name: 'Bad Moon Rising', category: 'Normal' },
+            { name: 'Sects & Violets', category: 'Normal' }
+        ];
+    }
+
+    await initSupabase();
+    const { data, error } = await supabase
+        .from('scripts')
+        .select('*')
+        .order('name', { ascending: true });
+
+    if (error) {
+        console.error('Error fetching scripts:', error);
+        // Return empty array if scripts table doesn't exist yet
+        return [];
+    }
+
+    return data || [];
+}
+
+/**
+ * Add a new script to the database.
+ * @param {Object} scriptData - { name, category }
+ * @param {string} code - The edit confirmation code
+ * @returns {Promise<Object>} The inserted script
+ */
+export async function addScript(scriptData, code) {
+    // Validate code has edit permission
+    const level = await validateAccessCodeWithLevel(code);
+    if (level !== 'edit') {
+        throw new Error('Edit access required to add scripts');
+    }
+
+    if (!USE_SUPABASE) {
+        throw new Error('Adding scripts requires Supabase');
+    }
+
+    await initSupabase();
+    const { data, error } = await supabase
+        .from('scripts')
+        .insert({
+            name: scriptData.name,
+            category: scriptData.category
+        })
+        .select()
+        .single();
+
+    if (error) {
+        console.error('Error adding script:', error);
+        throw error;
+    }
+
+    return data;
 }
