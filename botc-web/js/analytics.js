@@ -67,7 +67,6 @@ const CHARACTER_ROLE_TYPES = {
     "mezepheles": "Minions",
     "organ_grinder": "Minions",
     "pit-hag": "Minions",
-    "pithag": "Minions",
     "poisoner": "Minions",
     "psychopath": "Minions",
     "scarlet_woman": "Minions",
