@@ -287,5 +287,5 @@ ON CONFLICT (game_id) DO NOTHING;
 
 
 -- Add your confirmation code for friends
--- Change 'clocktower2024' to whatever code you want to give friends
-INSERT INTO access_codes (code, description) VALUES ('clocktower2024', 'Friends access code');
+-- Change 'your-secret-code' to whatever code you want to give friends
+INSERT INTO access_codes (code, description) VALUES ('your-secret-code', 'Friends access code');

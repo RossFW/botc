@@ -955,3 +955,23 @@ footer a:hover {
     font-weight: 600;
     vertical-align: middle;
 }
+
+/* New Script Modal */
+.new-script-modal {
+    max-width: 400px;
+}
+
+.new-script-modal .form-group {
+    margin-bottom: 20px;
+}
+
+.new-script-modal .form-actions {
+    margin-top: 25px;
+}
+
+/* Add New Script option styling */
+.add-new-option {
+    font-style: italic;
+    color: var(--accent-blue) !important;
+    border-top: 1px solid var(--border-color);
+}
