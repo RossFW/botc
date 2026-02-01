@@ -1538,7 +1538,7 @@
         "team": "Evil",
         "roles": [
           "Pit-hag",
-          "No_Dashi"
+          "No_Dashii"
         ],
         "initial_team": "Evil"
       },
@@ -2419,10 +2419,10 @@
       },
       {
         "name": "Electra_Szmukler",
-        "role": "No_Dashi",
+        "role": "No_Dashii",
         "team": "Evil",
         "roles": [
-          "No_Dashi"
+          "No_Dashii"
         ],
         "initial_team": "Evil"
       }
@@ -4556,9 +4556,9 @@
       {
         "name": "Levi_Durham",
         "roles": [
-          "No_Dashi"
+          "No_Dashii"
         ],
-        "role": "No_Dashi",
+        "role": "No_Dashii",
         "initial_team": "Evil",
         "team": "Evil"
       },
@@ -6120,9 +6120,9 @@
       {
         "name": "Kevin_Hopper",
         "roles": [
-          "No_Dashi"
+          "No_Dashii"
         ],
-        "role": "No_Dashi",
+        "role": "No_Dashii",
         "initial_team": "Evil",
         "team": "Evil"
       }
@@ -6822,7 +6822,7 @@
       {
         "name": "Matan_Diamond",
         "roles": [
-          "No_Dashi",
+          "No_Dashii",
           "Snake_Charmer"
         ],
         "role": "Snake_Charmer",
@@ -6843,9 +6843,9 @@
         "roles": [
           "Pit-hag",
           "Klutz",
-          "No_Dashi"
+          "No_Dashii"
         ],
-        "role": "No_Dashi",
+        "role": "No_Dashii",
         "initial_team": "Evil",
         "team": "Evil"
       },
@@ -6853,7 +6853,7 @@
         "name": "Simon_Miller",
         "roles": [
           "Snake_Charmer",
-          "No_Dashi",
+          "No_Dashii",
           "Klutz"
         ],
         "role": "Klutz",
