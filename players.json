@@ -596,7 +596,7 @@
         "initial_team": "Evil",
         "roles": [
           "Pit-hag",
-          "No_Dashi"
+          "No_Dashii"
         ]
       },
       {
@@ -6570,7 +6570,7 @@
         "initial_team": "Good",
         "roles": [
           "Snake_Charmer",
-          "No_Dashi",
+          "No_Dashii",
           "Klutz"
         ]
       },
@@ -8490,13 +8490,13 @@
         "game_number": 24,
         "date": "2025-06-27 13:25:33",
         "team": "Evil",
-        "role": "No_Dashi",
+        "role": "No_Dashii",
         "win": true,
         "rating_before": 1450.444842539621,
         "rating_after": 1469.7428293006994,
         "initial_team": "Evil",
         "roles": [
-          "No_Dashi"
+          "No_Dashii"
         ]
       },
       {
@@ -9439,13 +9439,13 @@
         "game_number": 47,
         "date": "2025-11-16 10:31:50",
         "team": "Evil",
-        "role": "No_Dashi",
+        "role": "No_Dashii",
         "win": false,
         "rating_before": 1527.2861143633713,
         "rating_after": 1513.3037030707615,
         "initial_team": "Evil",
         "roles": [
-          "No_Dashi"
+          "No_Dashii"
         ]
       },
       {
@@ -10033,13 +10033,13 @@
         "game_number": 61,
         "date": "2025-12-18 10:09:12",
         "team": "Evil",
-        "role": "No_Dashi",
+        "role": "No_Dashii",
         "win": false,
         "rating_before": 1551.5891021864559,
         "rating_after": 1536.754280459934,
         "initial_team": "Evil",
         "roles": [
-          "No_Dashi"
+          "No_Dashii"
         ]
       },
       {
@@ -11786,7 +11786,7 @@
         "rating_after": 1577.4342704616981,
         "initial_team": "Evil",
         "roles": [
-          "No_Dashi",
+          "No_Dashii",
           "Snake_Charmer"
         ]
       }
@@ -14880,7 +14880,7 @@
         "game_number": 69,
         "date": "2026-01-12 16:05:21",
         "team": "Evil",
-        "role": "No_Dashi",
+        "role": "No_Dashii",
         "win": false,
         "rating_before": 1462.4841669275747,
         "rating_after": 1445.911625943655,
@@ -14888,7 +14888,7 @@
         "roles": [
           "Pit-hag",
           "Klutz",
-          "No_Dashi"
+          "No_Dashii"
         ]
       },
       {
