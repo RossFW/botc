@@ -815,6 +815,9 @@ function averageRating(characters, ratings) {
 
 /**
  * Get detailed breakdown of a character's performance by script.
+ * Handles characters that can appear multiple times in a game (e.g., Legion, Village Idiot).
+ * Each game counts as 1 game regardless of how many players had the character.
+ *
  * @param {Array} games - Array of game objects
  * @param {string} characterName - Name of the character to analyze
  * @returns {Object} Breakdown with wins/losses by script and players who played it
@@ -822,7 +825,7 @@ function averageRating(characters, ratings) {
 export function getCharacterScriptBreakdown(games, characterName) {
     const winsByScript = {};   // script -> count
     const lossesByScript = {}; // script -> count
-    const playerCounts = {};   // player -> count
+    const playerCounts = {};   // player -> count (for "Played By" - still counts each player)
     let totalWins = 0;
     let totalGames = 0;
 
@@ -831,25 +834,29 @@ export function getCharacterScriptBreakdown(games, characterName) {
         const winningTeam = game.winning_team;
         const script = game.game_mode || 'Unknown';
 
-        // Find players who played this character in this game
-        for (const player of players) {
-            if (player.role === characterName) {
-                totalGames++;
+        // Find all players who played this character in this game
+        const playersWithChar = players.filter(p => p.role === characterName);
 
-                // Track player
-                const playerName = player.name;
-                playerCounts[playerName] = (playerCounts[playerName] || 0) + 1;
+        // Skip games where this character doesn't appear
+        if (playersWithChar.length === 0) continue;
 
-                // Did this character win?
-                const charWon = player.team === winningTeam;
+        // Count this as ONE game (not per player)
+        totalGames++;
 
-                if (charWon) {
-                    totalWins++;
-                    winsByScript[script] = (winsByScript[script] || 0) + 1;
-                } else {
-                    lossesByScript[script] = (lossesByScript[script] || 0) + 1;
-                }
-            }
+        // Track each player who played this character (for "Played By" section)
+        for (const player of playersWithChar) {
+            playerCounts[player.name] = (playerCounts[player.name] || 0) + 1;
+        }
+
+        // Did the character win? Check if any player with this character was on winning team
+        // (For Legion/Village Idiot, they should all be on same team anyway)
+        const charWon = playersWithChar.some(p => p.team === winningTeam);
+
+        if (charWon) {
+            totalWins++;
+            winsByScript[script] = (winsByScript[script] || 0) + 1;
+        } else {
+            lossesByScript[script] = (lossesByScript[script] || 0) + 1;
         }
     }
 
