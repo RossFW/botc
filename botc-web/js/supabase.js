@@ -126,20 +126,24 @@ export async function fetchGames() {
 }
 
 /**
- * Validate an access code.
+ * Validate an access code using secure RPC function.
  * @param {string} code - The confirmation code to validate
  * @returns {Promise<boolean>} True if code is valid
  */
 export async function validateAccessCode(code) {
     if (USE_SUPABASE) {
         await initSupabase();
+        // Use RPC function to validate code securely (codes are not exposed)
         const { data, error } = await supabase
-            .from('access_codes')
-            .select('code')
-            .eq('code', code)
-            .single();
+            .rpc('validate_access_code', { input_code: code });
 
-        return !error && data !== null;
+        if (error) {
+            console.error('Error validating code:', error);
+            return false;
+        }
+
+        // RPC returns array with {is_valid, permission_level}
+        return data && data.length > 0 && data[0].is_valid === true;
     } else {
         // For local testing, accept a hardcoded test code
         // In production, this should always use Supabase
@@ -252,21 +256,27 @@ export function storePermissionLevel(level) {
 // ==========================================
 
 /**
- * Validate access code and return permission level.
+ * Validate access code and return permission level using secure RPC function.
  * @param {string} code - The confirmation code to validate
  * @returns {Promise<string|null>} 'submit', 'edit', or null if invalid
  */
 export async function validateAccessCodeWithLevel(code) {
     if (USE_SUPABASE) {
         await initSupabase();
+        // Use RPC function to validate code securely (codes are not exposed)
         const { data, error } = await supabase
-            .from('access_codes')
-            .select('code, permission_level')
-            .eq('code', code)
-            .single();
+            .rpc('validate_access_code', { input_code: code });
 
-        if (error || !data) return null;
-        return data.permission_level || 'submit';
+        if (error) {
+            console.error('Error validating code:', error);
+            return null;
+        }
+
+        // RPC returns array with {is_valid, permission_level}
+        if (data && data.length > 0 && data[0].is_valid === true) {
+            return data[0].permission_level || 'submit';
+        }
+        return null;
     } else {
         // For local testing
         if (code === 'test123') return 'submit';

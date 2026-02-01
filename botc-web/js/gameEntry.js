@@ -618,7 +618,17 @@ async function verifyEditCode() {
 }
 
 /**
- * Perform game search
+ * Escape HTML to prevent XSS attacks
+ */
+function escapeHtml(text) {
+    if (!text) return '';
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+/**
+ * Perform game search (XSS-safe)
  */
 async function performGameSearch() {
     const query = gameSearchInput.value.trim();
@@ -637,26 +647,54 @@ async function performGameSearch() {
         if (games.length === 0) {
             searchResults.innerHTML = '<div class="no-results">No games found matching your search</div>';
         } else {
-            searchResults.innerHTML = games.map(game => `
-                <div class="game-result-card" data-game-id="${game.game_id}">
-                    <div class="game-result-header">
-                        <span class="game-result-id">Game #${game.game_id}</span>
-                        <span class="game-result-winner ${game.winning_team.toLowerCase()}">${game.winning_team} Won</span>
-                    </div>
-                    <div class="game-result-details">
-                        <span>${game.game_mode || 'Unknown Script'}</span>
-                        <span>ST: ${game.story_teller || 'Unknown'}</span>
-                        <span>${game.date ? new Date(game.date).toLocaleDateString() : ''}</span>
-                    </div>
-                </div>
-            `).join('');
+            // Clear previous results
+            searchResults.innerHTML = '';
 
-            // Add click handlers to result cards
-            searchResults.querySelectorAll('.game-result-card').forEach(card => {
+            // Build results safely using DOM methods to prevent XSS
+            games.forEach(game => {
+                const card = document.createElement('div');
+                card.className = 'game-result-card';
+                card.dataset.gameId = game.game_id;
+
+                const header = document.createElement('div');
+                header.className = 'game-result-header';
+
+                const gameIdSpan = document.createElement('span');
+                gameIdSpan.className = 'game-result-id';
+                gameIdSpan.textContent = `Game #${game.game_id}`;
+
+                const winnerSpan = document.createElement('span');
+                winnerSpan.className = `game-result-winner ${(game.winning_team || '').toLowerCase()}`;
+                winnerSpan.textContent = `${game.winning_team} Won`;
+
+                header.appendChild(gameIdSpan);
+                header.appendChild(winnerSpan);
+
+                const details = document.createElement('div');
+                details.className = 'game-result-details';
+
+                const scriptSpan = document.createElement('span');
+                scriptSpan.textContent = game.game_mode || 'Unknown Script';
+
+                const stSpan = document.createElement('span');
+                stSpan.textContent = `ST: ${game.story_teller || 'Unknown'}`;
+
+                const dateSpan = document.createElement('span');
+                dateSpan.textContent = game.date ? new Date(game.date).toLocaleDateString() : '';
+
+                details.appendChild(scriptSpan);
+                details.appendChild(stSpan);
+                details.appendChild(dateSpan);
+
+                card.appendChild(header);
+                card.appendChild(details);
+
+                // Add click handler
                 card.addEventListener('click', () => {
-                    const gameId = parseInt(card.dataset.gameId);
-                    loadGameForEdit(gameId);
+                    loadGameForEdit(game.game_id);
                 });
+
+                searchResults.appendChild(card);
             });
         }
     } catch (error) {
