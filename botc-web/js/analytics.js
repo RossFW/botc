@@ -708,3 +708,103 @@ export function analyzeHeadToHead(games, playerA, playerB) {
         game_ids: togetherGames.map(g => g.game_id)
     };
 }
+
+// ==========================================
+// CHARACTER ELO CALCULATION
+// ==========================================
+
+// K-factor for ELO calculation (same as player ELO)
+const CHARACTER_K_FACTOR = 32;
+const CHARACTER_INITIAL_RATING = 1500;
+
+/**
+ * Calculate ELO ratings for all characters based on game outcomes.
+ * Uses team average approach - each character's ELO change is based on
+ * their team's average rating vs the opposing team's average rating.
+ *
+ * @param {Array} games - Array of game objects (sorted by game_id)
+ * @returns {Object} Map of character name to {rating, games, wins}
+ */
+export function calculateCharacterElo(games) {
+    const ratings = {};  // character_name -> { rating, games, wins }
+
+    // Sort games by game_id to ensure consistent chronological order
+    const sortedGames = [...games].sort((a, b) => a.game_id - b.game_id);
+
+    for (const game of sortedGames) {
+        const players = game.players || [];
+        const winningTeam = game.winning_team;
+
+        // Get unique characters by team (handles duplicates like Legion)
+        const goodChars = [...new Set(
+            players.filter(p => p.team === 'Good').map(p => p.role).filter(r => r)
+        )];
+        const evilChars = [...new Set(
+            players.filter(p => p.team === 'Evil').map(p => p.role).filter(r => r)
+        )];
+
+        // Skip games with no characters on either team
+        if (goodChars.length === 0 || evilChars.length === 0) continue;
+
+        // Initialize ratings for new characters
+        for (const char of [...goodChars, ...evilChars]) {
+            if (!ratings[char]) {
+                ratings[char] = {
+                    rating: CHARACTER_INITIAL_RATING,
+                    games: 0,
+                    wins: 0
+                };
+            }
+        }
+
+        // Calculate team average ratings
+        const goodAvg = averageRating(goodChars, ratings);
+        const evilAvg = averageRating(evilChars, ratings);
+
+        // Calculate expected scores using ELO formula
+        const expGood = 1 / (1 + Math.pow(10, (evilAvg - goodAvg) / 400));
+        const expEvil = 1 - expGood;
+
+        // Determine actual results
+        const resultGood = winningTeam === 'Good' ? 1 : 0;
+        const resultEvil = 1 - resultGood;
+
+        // Update ratings for all characters on Good team
+        for (const char of goodChars) {
+            const delta = CHARACTER_K_FACTOR * (resultGood - expGood);
+            ratings[char].rating += delta;
+            ratings[char].games++;
+            if (winningTeam === 'Good') {
+                ratings[char].wins++;
+            }
+        }
+
+        // Update ratings for all characters on Evil team
+        for (const char of evilChars) {
+            const delta = CHARACTER_K_FACTOR * (resultEvil - expEvil);
+            ratings[char].rating += delta;
+            ratings[char].games++;
+            if (winningTeam === 'Evil') {
+                ratings[char].wins++;
+            }
+        }
+    }
+
+    return ratings;
+}
+
+/**
+ * Calculate average rating for a list of characters.
+ * @param {Array} characters - Array of character names
+ * @param {Object} ratings - Map of character name to rating object
+ * @returns {number} Average rating
+ */
+function averageRating(characters, ratings) {
+    if (characters.length === 0) return CHARACTER_INITIAL_RATING;
+
+    const sum = characters.reduce((acc, char) => {
+        return acc + (ratings[char]?.rating || CHARACTER_INITIAL_RATING);
+    }, 0);
+
+    return sum / characters.length;
+}

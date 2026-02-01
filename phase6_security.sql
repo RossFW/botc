@@ -37,10 +37,10 @@ GRANT EXECUTE ON FUNCTION validate_access_code(TEXT) TO authenticated;
 -- Verification: Test the function works
 -- ==========================================
 -- This should return: is_valid=true, permission_level='submit' (for your submit code)
--- SELECT * FROM validate_access_code('REDACTED_CODE');
+-- SELECT * FROM validate_access_code('your-submit-code');
 
 -- This should return: is_valid=true, permission_level='edit' (for your edit code)
--- SELECT * FROM validate_access_code('REDACTED_CODE');
+-- SELECT * FROM validate_access_code('your-edit-code');
 
 -- This should return: is_valid=false, permission_level=null
 -- SELECT * FROM validate_access_code('wrongcode');

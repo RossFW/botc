@@ -5,12 +5,12 @@
 -- Add permission_level column to access_codes
 ALTER TABLE access_codes ADD COLUMN IF NOT EXISTS permission_level TEXT DEFAULT 'submit';
 
--- Update existing submit code
-UPDATE access_codes SET permission_level = 'submit' WHERE code = 'REDACTED_CODE';
+-- Update existing submit code (replace 'your-submit-code' with your actual code)
+UPDATE access_codes SET permission_level = 'submit' WHERE code = 'your-submit-code';
 
--- Add new edit access code
+-- Add new edit access code (replace 'your-edit-code' with your desired edit code)
 INSERT INTO access_codes (code, description, permission_level)
-VALUES ('REDACTED_CODE', 'Edit access', 'edit')
+VALUES ('your-edit-code', 'Edit access', 'edit')
 ON CONFLICT (code) DO UPDATE SET permission_level = 'edit';
 
 -- Add UPDATE policy for games table

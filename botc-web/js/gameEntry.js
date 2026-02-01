@@ -14,7 +14,8 @@ import {
     storePermissionLevel,
     searchGames as searchGamesApi,
     getGameById,
-    fetchScripts
+    fetchScripts,
+    addScript
 } from './supabase.js';
 
 // Cache for scripts
@@ -29,6 +30,10 @@ let formTitle, formSubtitle;
 // DOM Elements - Game Search Modal
 let searchModal, editCodeStep, searchStep, editCodeInput, verifyEditCodeBtn, editCodeError;
 let gameSearchInput, searchGamesBtn, searchResults;
+
+// DOM Elements - New Script Modal
+let newScriptModal, newScriptName, newScriptCategory, saveNewScriptBtn;
+let newScriptError, newScriptSuccess;
 
 // Edit mode state
 let editMode = false;
@@ -69,6 +74,14 @@ export function initGameEntry(onGameAdded) {
     searchGamesBtn = document.getElementById('search-games-btn');
     searchResults = document.getElementById('search-results');
 
+    // New Script Modal elements
+    newScriptModal = document.getElementById('new-script-modal');
+    newScriptName = document.getElementById('new-script-name');
+    newScriptCategory = document.getElementById('new-script-category');
+    saveNewScriptBtn = document.getElementById('save-new-script-btn');
+    newScriptError = document.getElementById('new-script-error');
+    newScriptSuccess = document.getElementById('new-script-success');
+
     // Store callback
     window._onGameAdded = onGameAdded;
 
@@ -99,6 +112,13 @@ async function loadScripts() {
                 option.textContent = script.name;
                 scriptSelect.appendChild(option);
             });
+
+            // Add "Add New Script" option at the end
+            const addNewOption = document.createElement('option');
+            addNewOption.value = '__NEW__';
+            addNewOption.textContent = '+ Add New Script...';
+            addNewOption.className = 'add-new-option';
+            scriptSelect.appendChild(addNewOption);
         }
         // If no scripts from database, keep the hardcoded options
     } catch (error) {
@@ -133,7 +153,9 @@ function setupEventListeners() {
     // ESC key to close modals
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            if (searchModal && searchModal.classList.contains('active')) {
+            if (newScriptModal && newScriptModal.classList.contains('active')) {
+                closeNewScriptModal();
+            } else if (searchModal && searchModal.classList.contains('active')) {
                 closeSearchModal();
             } else if (modal.classList.contains('active')) {
                 closeModal();
@@ -209,6 +231,43 @@ function setupEventListeners() {
         gameSearchInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 performGameSearch();
+            }
+        });
+    }
+
+    // Script select - detect "Add New Script" selection
+    if (scriptSelect) {
+        scriptSelect.addEventListener('change', () => {
+            if (scriptSelect.value === '__NEW__') {
+                openNewScriptModal();
+                // Reset to first option so user can re-select "Add New" later
+                scriptSelect.selectedIndex = 0;
+            }
+        });
+    }
+
+    // New Script Modal event listeners
+    if (newScriptModal) {
+        const closeBtn = newScriptModal.querySelector('.modal-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeNewScriptModal);
+        }
+
+        newScriptModal.addEventListener('click', (e) => {
+            if (e.target === newScriptModal) {
+                closeNewScriptModal();
+            }
+        });
+    }
+
+    if (saveNewScriptBtn) {
+        saveNewScriptBtn.addEventListener('click', saveNewScript);
+    }
+
+    if (newScriptName) {
+        newScriptName.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                saveNewScript();
             }
         });
     }
@@ -810,4 +869,97 @@ function resetToAddMode() {
     formStep.classList.remove('edit-mode');
     submitBtn.textContent = 'Submit Game';
     clearForm();
+}
+
+// ==========================================
+// NEW SCRIPT MODAL FUNCTIONS
+// ==========================================
+
+/**
+ * Open the new script modal
+ */
+function openNewScriptModal() {
+    if (!newScriptModal) return;
+
+    newScriptModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Clear previous values and errors
+    if (newScriptName) newScriptName.value = '';
+    if (newScriptCategory) newScriptCategory.selectedIndex = 0;
+    hideError(newScriptError);
+    hideSuccess(newScriptSuccess);
+
+    // Focus on the name input
+    if (newScriptName) newScriptName.focus();
+}
+
+/**
+ * Close the new script modal
+ */
+function closeNewScriptModal() {
+    if (!newScriptModal) return;
+    newScriptModal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+/**
+ * Save the new script to the database
+ */
+async function saveNewScript() {
+    // Clear previous messages
+    hideError(newScriptError);
+    hideSuccess(newScriptSuccess);
+
+    const name = newScriptName.value.trim();
+    const category = newScriptCategory.value;
+
+    if (!name) {
+        showError(newScriptError, 'Please enter a script name');
+        return;
+    }
+
+    // Check if script already exists
+    if (scriptsCache && scriptsCache.some(s => s.name.toLowerCase() === name.toLowerCase())) {
+        showError(newScriptError, 'A script with this name already exists');
+        return;
+    }
+
+    // Need edit permission to add scripts
+    const storedCode = getStoredCode();
+    const level = getStoredPermissionLevel();
+
+    if (!storedCode || level !== 'edit') {
+        showError(newScriptError, 'Edit access required. Please use edit code via "Edit Game" first.');
+        return;
+    }
+
+    saveNewScriptBtn.disabled = true;
+    saveNewScriptBtn.textContent = 'Saving...';
+
+    try {
+        await addScript({ name, category }, storedCode);
+
+        showSuccess(newScriptSuccess, `Script "${name}" added successfully!`);
+
+        // Reload scripts to update the dropdown
+        await loadScripts();
+
+        // Select the newly added script
+        if (scriptSelect) {
+            scriptSelect.value = name;
+        }
+
+        // Close modal after a short delay
+        setTimeout(() => {
+            closeNewScriptModal();
+        }, 1000);
+
+    } catch (error) {
+        console.error('Error adding script:', error);
+        showError(newScriptError, error.message || 'Failed to add script. Please try again.');
+    } finally {
+        saveNewScriptBtn.disabled = false;
+        saveNewScriptBtn.textContent = 'Save Script';
+    }
 }

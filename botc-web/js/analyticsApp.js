@@ -8,7 +8,8 @@ import {
     extractStorytellers,
     categorizeScript,
     getCharacterRoleType,
-    analyzeHeadToHead
+    analyzeHeadToHead,
+    calculateCharacterElo
 } from './analytics.js';
 
 // ==========================================
@@ -17,6 +18,7 @@ import {
 
 let allGames = [];
 let currentAnalytics = null;
+let characterEloRatings = {};  // Global character ELO ratings
 let currentSortColumn = {};
 let currentSortAscending = {};
 
@@ -43,6 +45,9 @@ async function loadData() {
 
     // Initialize analytics with all games
     currentAnalytics = new StorytellerAnalytics(allGames, 'All');
+
+    // Calculate character ELO ratings (uses all games for global rating)
+    characterEloRatings = calculateCharacterElo(allGames);
 
     // Populate storyteller dropdown
     populateStorytellerDropdown();
@@ -342,11 +347,32 @@ function updateCharactersTab() {
 
     const characters = currentAnalytics.getCharacterStats(scriptFilter, roleTypeFilter);
 
-    for (const char of characters) {
+    // Add ELO ratings to each character
+    const charactersWithElo = characters.map(char => {
+        const eloData = characterEloRatings[char.character];
+        return {
+            ...char,
+            elo: eloData ? Math.round(eloData.rating) : 1500
+        };
+    });
+
+    // Sort by ELO by default if current sort is elo
+    const sortCol = currentSortColumn['characters-table'];
+    if (sortCol === 'elo') {
+        const ascending = currentSortAscending['characters-table'];
+        charactersWithElo.sort((a, b) => ascending ? a.elo - b.elo : b.elo - a.elo);
+    }
+
+    for (const char of charactersWithElo) {
         const row = document.createElement('tr');
+
+        // Color-code ELO: green if above 1500, red if below
+        const eloClass = char.elo >= 1500 ? 'elo-positive' : 'elo-negative';
+
         row.innerHTML = `
             <td>${char.character}</td>
             <td><span class="role-type-badge ${char.role_type.toLowerCase()}">${char.role_type}</span></td>
+            <td class="${eloClass}">${char.elo}</td>
             <td>${char.win_pct.toFixed(1)}%</td>
             <td>${char.wins}</td>
             <td>${char.games}</td>
@@ -604,9 +630,10 @@ function sortCharactersTable(sortKey, ascending) {
     const colIndex = {
         'character': 0,
         'role_type': 1,
-        'win_pct': 2,
-        'wins': 3,
-        'games': 4
+        'elo': 2,
+        'win_pct': 3,
+        'wins': 4,
+        'games': 5
     }[sortKey];
 
     rows.sort((a, b) => {

@@ -91,6 +91,16 @@
     color: var(--evil);
 }
 
+.elo-positive {
+    color: var(--good);
+    font-weight: 600;
+}
+
+.elo-negative {
+    color: var(--evil);
+    font-weight: 600;
+}
+
 /* ==========================================
    TABS
    ========================================== */
