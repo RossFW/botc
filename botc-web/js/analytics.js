@@ -808,3 +808,68 @@ function averageRating(characters, ratings) {
 
     return sum / characters.length;
 }
+
+// ==========================================
+// CHARACTER DETAIL BREAKDOWN
+// ==========================================
+
+/**
+ * Get detailed breakdown of a character's performance by script.
+ * @param {Array} games - Array of game objects
+ * @param {string} characterName - Name of the character to analyze
+ * @returns {Object} Breakdown with wins/losses by script and players who played it
+ */
+export function getCharacterScriptBreakdown(games, characterName) {
+    const winsByScript = {};   // script -> count
+    const lossesByScript = {}; // script -> count
+    const playerCounts = {};   // player -> count
+    let totalWins = 0;
+    let totalGames = 0;
+
+    for (const game of games) {
+        const players = game.players || [];
+        const winningTeam = game.winning_team;
+        const script = game.game_mode || 'Unknown';
+
+        // Find players who played this character in this game
+        for (const player of players) {
+            if (player.role === characterName) {
+                totalGames++;
+
+                // Track player
+                const playerName = player.name;
+                playerCounts[playerName] = (playerCounts[playerName] || 0) + 1;
+
+                // Did this character win?
+                const charWon = player.team === winningTeam;
+
+                if (charWon) {
+                    totalWins++;
+                    winsByScript[script] = (winsByScript[script] || 0) + 1;
+                } else {
+                    lossesByScript[script] = (lossesByScript[script] || 0) + 1;
+                }
+            }
+        }
+    }
+
+    // Sort scripts by count (descending)
+    const sortedWins = Object.entries(winsByScript)
+        .sort((a, b) => b[1] - a[1]);
+    const sortedLosses = Object.entries(lossesByScript)
+        .sort((a, b) => b[1] - a[1]);
+
+    // Sort players by games played (descending)
+    const sortedPlayers = Object.entries(playerCounts)
+        .sort((a, b) => b[1] - a[1]);
+
+    return {
+        totalGames,
+        totalWins,
+        totalLosses: totalGames - totalWins,
+        winPct: totalGames > 0 ? (totalWins / totalGames * 100).toFixed(1) : '0.0',
+        winsByScript: sortedWins,
+        lossesByScript: sortedLosses,
+        players: sortedPlayers
+    };
+}

@@ -9,7 +9,8 @@ import {
     categorizeScript,
     getCharacterRoleType,
     analyzeHeadToHead,
-    calculateCharacterElo
+    calculateCharacterElo,
+    getCharacterScriptBreakdown
 } from './analytics.js';
 
 // ==========================================
@@ -89,6 +90,13 @@ function setupEventListeners() {
     // Table sorting
     document.querySelectorAll('.analytics-table th[data-sort]').forEach(th => {
         th.addEventListener('click', () => handleSort(th));
+    });
+
+    // ESC key to close modals
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeCharacterDetail();
+        }
     });
 }
 
@@ -365,6 +373,9 @@ function updateCharactersTab() {
 
     for (const char of charactersWithElo) {
         const row = document.createElement('tr');
+        row.dataset.character = char.character;
+        row.dataset.roleType = char.role_type;
+        row.dataset.elo = char.elo;
 
         // Color-code ELO: green if above 1500, red if below
         const eloClass = char.elo >= 1500 ? 'elo-positive' : 'elo-negative';
@@ -377,6 +388,12 @@ function updateCharactersTab() {
             <td>${char.wins}</td>
             <td>${char.games}</td>
         `;
+
+        // Add click handler to show character detail
+        row.addEventListener('click', () => {
+            showCharacterDetail(char.character, char.role_type, char.elo);
+        });
+
         tbody.appendChild(row);
     }
 }
@@ -702,4 +719,117 @@ function sortGenericTable(table, sortKey, ascending) {
     tbody.innerHTML = '';
     totalRows.forEach(row => tbody.appendChild(row));
     rows.forEach(row => tbody.appendChild(row));
+}
+
+// ==========================================
+// CHARACTER DETAIL MODAL
+// ==========================================
+
+/**
+ * Show the character detail modal with breakdown data.
+ * @param {string} characterName - Name of the character
+ * @param {string} roleType - Role type (Townsfolk, Minion, etc.)
+ * @param {number} elo - Current ELO rating
+ */
+function showCharacterDetail(characterName, roleType, elo) {
+    const modal = document.getElementById('character-detail-modal');
+    if (!modal) return;
+
+    // Get detailed breakdown from current filtered games
+    const breakdown = getCharacterScriptBreakdown(currentAnalytics.games, characterName);
+
+    // Populate header
+    document.getElementById('char-detail-name').textContent = characterName.replace(/_/g, ' ');
+
+    const typeEl = document.getElementById('char-detail-type');
+    typeEl.textContent = roleType;
+    typeEl.className = `role-type-badge ${roleType.toLowerCase()}`;
+
+    // Populate summary stats
+    document.getElementById('char-detail-elo').textContent = elo;
+    document.getElementById('char-detail-winpct').textContent = `${breakdown.winPct}%`;
+    document.getElementById('char-detail-record').textContent = `${breakdown.totalWins}-${breakdown.totalLosses}`;
+    document.getElementById('char-detail-games').textContent = breakdown.totalGames;
+
+    // Populate wins by script
+    const winsList = document.getElementById('char-detail-wins-list');
+    winsList.innerHTML = '';
+    if (breakdown.winsByScript.length === 0) {
+        const li = document.createElement('li');
+        li.className = 'no-data';
+        li.textContent = 'No wins yet';
+        winsList.appendChild(li);
+    } else {
+        for (const [script, count] of breakdown.winsByScript) {
+            const li = document.createElement('li');
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'script-name';
+            nameSpan.textContent = script;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'script-count';
+            countSpan.textContent = count;
+            li.appendChild(nameSpan);
+            li.appendChild(countSpan);
+            winsList.appendChild(li);
+        }
+    }
+
+    // Populate losses by script
+    const lossesList = document.getElementById('char-detail-losses-list');
+    lossesList.innerHTML = '';
+    if (breakdown.lossesByScript.length === 0) {
+        const li = document.createElement('li');
+        li.className = 'no-data';
+        li.textContent = 'No losses yet';
+        lossesList.appendChild(li);
+    } else {
+        for (const [script, count] of breakdown.lossesByScript) {
+            const li = document.createElement('li');
+            const nameSpan = document.createElement('span');
+            nameSpan.className = 'script-name';
+            nameSpan.textContent = script;
+            const countSpan = document.createElement('span');
+            countSpan.className = 'script-count';
+            countSpan.textContent = count;
+            li.appendChild(nameSpan);
+            li.appendChild(countSpan);
+            lossesList.appendChild(li);
+        }
+    }
+
+    // Populate players who played this character
+    const playersDiv = document.getElementById('char-detail-players');
+    playersDiv.innerHTML = '';
+    if (breakdown.players.length === 0) {
+        playersDiv.textContent = 'No players found';
+    } else {
+        for (const [player, count] of breakdown.players) {
+            const tag = document.createElement('span');
+            tag.className = 'char-player-tag';
+            tag.innerHTML = `${player.replace(/_/g, ' ')}<span class="play-count">(${count})</span>`;
+            playersDiv.appendChild(tag);
+        }
+    }
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Set up close handlers
+    const closeBtn = modal.querySelector('.modal-close');
+    closeBtn.onclick = closeCharacterDetail;
+    modal.onclick = (e) => {
+        if (e.target === modal) closeCharacterDetail();
+    };
+}
+
+/**
+ * Close the character detail modal.
+ */
+function closeCharacterDetail() {
+    const modal = document.getElementById('character-detail-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }
