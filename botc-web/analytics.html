@@ -324,6 +324,66 @@
         </footer>
     </div>
 
+    <!-- Character Detail Modal -->
+    <div class="modal-overlay" id="character-detail-modal">
+        <div class="modal character-detail-modal">
+            <button class="modal-close">&times;</button>
+
+            <!-- Character Header -->
+            <div class="char-detail-header">
+                <h2 id="char-detail-name">Character Name</h2>
+                <span class="role-type-badge" id="char-detail-type">Townsfolk</span>
+            </div>
+
+            <!-- Summary Stats -->
+            <div class="char-detail-summary">
+                <div class="char-stat-card">
+                    <div class="stat-value" id="char-detail-elo">1500</div>
+                    <div class="stat-label">ELO Rating</div>
+                </div>
+                <div class="char-stat-card">
+                    <div class="stat-value" id="char-detail-winpct">0%</div>
+                    <div class="stat-label">Win Rate</div>
+                </div>
+                <div class="char-stat-card">
+                    <div class="stat-value" id="char-detail-record">0-0</div>
+                    <div class="stat-label">W-L Record</div>
+                </div>
+                <div class="char-stat-card">
+                    <div class="stat-value" id="char-detail-games">0</div>
+                    <div class="stat-label">Games</div>
+                </div>
+            </div>
+
+            <!-- Script Breakdown -->
+            <div class="char-detail-section">
+                <h3>Performance by Script</h3>
+                <div class="char-script-breakdown">
+                    <div class="char-script-col wins">
+                        <h4 class="good-text">Wins</h4>
+                        <ul id="char-detail-wins-list">
+                            <li>Loading...</li>
+                        </ul>
+                    </div>
+                    <div class="char-script-col losses">
+                        <h4 class="evil-text">Losses</h4>
+                        <ul id="char-detail-losses-list">
+                            <li>Loading...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Players who played this character -->
+            <div class="char-detail-section">
+                <h3>Played By</h3>
+                <div id="char-detail-players" class="char-players-list">
+                    Loading...
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Application Script -->
     <script type="module" src="js/analyticsApp.js"></script>
 </body>
