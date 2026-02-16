@@ -18,6 +18,8 @@ import {
     addScript
 } from './supabase.js';
 
+import { initAutocomplete } from './autocomplete.js';
+
 // Cache for scripts
 let scriptsCache = null;
 
@@ -42,7 +44,7 @@ let currentEditGameId = null;
 /**
  * Initialize the game entry module
  */
-export function initGameEntry(onGameAdded) {
+export function initGameEntry(onGameAdded, playerNames) {
     // Get DOM elements
     modal = document.getElementById('game-entry-modal');
     codeStep = document.getElementById('code-step');
@@ -93,7 +95,16 @@ export function initGameEntry(onGameAdded) {
 
     // Load scripts from database
     loadScripts();
+
+    // Initialize autocomplete on team textareas and storyteller input
+    const names = playerNames || [];
+    initAutocomplete(team1Input, { playerNames: names, multiline: true });
+    initAutocomplete(team2Input, { playerNames: names, multiline: true });
+    initAutocomplete(storytellerInput, { playerNames: names, multiline: false });
 }
+
+// Re-export for app.js to call on refresh
+export { updatePlayerNames } from './autocomplete.js';
 
 /**
  * Load scripts from the database and populate the dropdown
