@@ -975,3 +975,66 @@ footer a:hover {
     color: var(--accent-blue) !important;
     border-top: 1px solid var(--border-color);
 }
+
+/* ==========================================
+   Autocomplete Dropdown
+   ========================================== */
+
+.autocomplete-wrapper {
+    position: relative;
+}
+
+.autocomplete-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 220px;
+    overflow-y: auto;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    z-index: 1100;
+    display: none;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.autocomplete-dropdown.visible {
+    display: block;
+}
+
+.autocomplete-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    transition: background 0.1s;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.selected {
+    background: var(--bg-card);
+}
+
+.autocomplete-item .ac-name {
+    flex: 1;
+}
+
+.autocomplete-item .ac-role-type {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: var(--bg-secondary);
+    white-space: nowrap;
+}
+
+.autocomplete-item .ac-role-type.demons { color: var(--accent-evil); }
+.autocomplete-item .ac-role-type.minions { color: var(--accent-evil); opacity: 0.8; }
+.autocomplete-item .ac-role-type.townsfolk { color: var(--accent-good); }
+.autocomplete-item .ac-role-type.outsiders { color: var(--accent-blue); }
+.autocomplete-item .ac-role-type.travellers { color: var(--accent-purple); }

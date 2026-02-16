@@ -4,7 +4,7 @@
 
 import { recalcAll, getLeaderboard, pctToStr, getRatingDelta } from './elo.js';
 import { fetchGames, isUsingSupabase } from './supabase.js';
-import { initGameEntry } from './gameEntry.js';
+import { initGameEntry, updatePlayerNames } from './gameEntry.js';
 
 // Global state
 let gameLog = [];
@@ -51,8 +51,9 @@ async function init() {
         // Set up event listeners
         setupEventListeners();
 
-        // Initialize game entry module with refresh callback
-        initGameEntry(refreshData);
+        // Initialize game entry module with refresh callback and player names from Supabase
+        const playerNames = [...new Set(gameLog.flatMap(g => g.players.map(p => p.name)))].sort();
+        initGameEntry(refreshData, playerNames);
 
         showContent();
     } catch (error) {
@@ -106,6 +107,10 @@ async function refreshData() {
         // Update display
         updateStatsSummary();
         renderLeaderboard();
+
+        // Update autocomplete with any new player names from Supabase
+        const updatedNames = [...new Set(gameLog.flatMap(g => g.players.map(p => p.name)))].sort();
+        updatePlayerNames(updatedNames);
     } catch (error) {
         console.error('Failed to refresh data:', error);
     }
