@@ -983,6 +983,13 @@ footer a:hover {
 
 .autocomplete-wrapper {
     position: relative;
+    width: 100%;
+}
+
+.autocomplete-wrapper textarea,
+.autocomplete-wrapper input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .autocomplete-dropdown {
