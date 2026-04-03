@@ -23,10 +23,120 @@
     --delta-positive: rgba(74, 222, 128, 0.2);
     --delta-negative: rgba(248, 113, 113, 0.2);
 
+    --accent-yellow: #fbbf24;
+
     --border-color: #2d3748;
     --border-radius: 8px;
 
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+    /* Skill axis colors (identity, not alignment) */
+    --bg-panel: #162447;
+    --color-deception: #f87171;
+    --color-persuasion: #60a5fa;
+    --color-social-insight: #a78bfa;
+    --color-game-knowledge: #4ade80;
+    --color-logic: #fbbf24;
+
+    /* Tier colors */
+    --tier-1: #60a5fa;
+    --tier-2: #a78bfa;
+    --tier-3: #f472b6;
+    --tier-4: #fb923c;
+    --tier-5: #fbbf24;
+}
+
+/* Colorblind-friendly overrides (Good=blue, Evil=orange) */
+html[data-colorblind="true"] {
+    --accent-good: #60a5fa;
+    --accent-evil: #f97316;
+    --delta-positive: rgba(96, 165, 250, 0.2);
+    --delta-negative: rgba(249, 115, 22, 0.2);
+}
+
+/* Override hardcoded good/evil rgba in analytics when colorblind */
+html[data-colorblind="true"] .game-result-winner.good { background: rgba(96, 165, 250, 0.2); }
+html[data-colorblind="true"] .game-result-winner.evil { background: rgba(249, 115, 22, 0.2); }
+html[data-colorblind="true"] .player-stat-card.good { background: rgba(96, 165, 250, 0.1); }
+html[data-colorblind="true"] .player-stat-card.evil { background: rgba(249, 115, 22, 0.1); }
+html[data-colorblind="true"] .h2h-stat-card.good { background: rgba(96, 165, 250, 0.1); border-color: rgba(96, 165, 250, 0.3); }
+html[data-colorblind="true"] .h2h-stat-card.evil { background: rgba(249, 115, 22, 0.1); border-color: rgba(249, 115, 22, 0.3); }
+html[data-colorblind="true"] .toggle-btn.active[data-alignment="good"] { background: rgba(96, 165, 250, 0.2); box-shadow: 0 0 15px rgba(96, 165, 250, 0.15); }
+html[data-colorblind="true"] .toggle-btn.active[data-alignment="evil"] { background: rgba(249, 115, 22, 0.2); box-shadow: 0 0 15px rgba(249, 115, 22, 0.15); }
+html[data-colorblind="true"] .alignment-good .alignment-summary { background: rgba(96, 165, 250, 0.08); }
+html[data-colorblind="true"] .alignment-evil .alignment-summary { background: rgba(249, 115, 22, 0.08); }
+html[data-colorblind="true"] .alignment-good .example-list li { border-left-color: rgba(96, 165, 250, 0.3); }
+html[data-colorblind="true"] .alignment-evil .example-list li { border-left-color: rgba(249, 115, 22, 0.3); }
+html[data-colorblind="true"] .filter-btn.active[data-align="good"] { background: rgba(96, 165, 250, 0.15); }
+html[data-colorblind="true"] .filter-btn.active[data-align="evil"] { background: rgba(249, 115, 22, 0.15); }
+html[data-colorblind="true"] .align-good { background: rgba(96, 165, 250, 0.1); }
+html[data-colorblind="true"] .align-evil { background: rgba(249, 115, 22, 0.1); }
+html[data-colorblind="true"] .odd-card { border-color: rgba(96, 165, 250, 0.3); }
+html[data-colorblind="true"] .pct-bar .bar-fill.overall { background: var(--accent-purple); }
+html[data-colorblind="true"] .strategy-dropdown[data-alignment="good"] { border-left-color: var(--accent-good); }
+html[data-colorblind="true"] .strategy-dropdown[data-alignment="evil"] { border-left-color: var(--accent-evil); }
+
+/* Settings gear */
+.settings-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.settings-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    transition: all 0.2s;
+}
+
+.settings-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+}
+
+.settings-panel {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 14px 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    min-width: 200px;
+}
+
+.settings-panel.open {
+    display: block;
+}
+
+.settings-panel label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.settings-panel input[type="checkbox"] {
+    accent-color: var(--accent-blue);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
 }
 
 /* Reset and base styles */
@@ -101,42 +211,79 @@ header p {
     color: white;
 }
 
-/* Stats summary cards */
-.stats-summary {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.stat-card {
+/* Win Percentages Bar */
+.win-bar-container {
     background: var(--bg-card);
-    padding: 20px;
     border-radius: var(--border-radius);
-    text-align: center;
+    padding: 20px 24px;
+    margin-bottom: 30px;
     box-shadow: var(--shadow);
 }
 
-.stat-card .value {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 5px;
+.win-bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
 }
 
-.stat-card .label {
+.win-bar-header h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.win-bar-meta {
     color: var(--text-secondary);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 1rem;
 }
 
-.stat-card.good .value {
+.win-bar {
+    display: flex;
+    border-radius: 6px;
+    overflow: hidden;
+    min-height: 64px;
+}
+
+.win-bar-good {
+    background: rgba(74, 222, 128, 0.35);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px 16px;
+    transition: width 0.6s ease;
+}
+
+.win-bar-evil {
+    background: rgba(248, 113, 113, 0.35);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 8px 16px;
+    transition: width 0.6s ease;
+}
+
+.win-bar-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.win-bar-pct {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.win-bar-good .win-bar-pct {
     color: var(--accent-good);
 }
 
-.stat-card.evil .value {
+.win-bar-evil .win-bar-pct {
     color: var(--accent-evil);
 }
+
+/* Colorblind overrides for win bar */
+html[data-colorblind="true"] .win-bar-good { background: rgba(96, 165, 250, 0.35); }
+html[data-colorblind="true"] .win-bar-evil { background: rgba(249, 115, 22, 0.35); }
 
 /* Table container */
 .table-container {

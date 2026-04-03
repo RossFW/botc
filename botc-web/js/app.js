@@ -25,6 +25,10 @@ const totalGamesEl = document.getElementById('total-games');
 const totalPlayersEl = document.getElementById('total-players');
 const goodWinsEl = document.getElementById('good-wins');
 const evilWinsEl = document.getElementById('evil-wins');
+const goodWinsCountEl = document.getElementById('good-wins-count');
+const evilWinsCountEl = document.getElementById('evil-wins-count');
+const winBarGoodEl = document.getElementById('win-bar-good');
+const winBarEvilEl = document.getElementById('win-bar-evil');
 
 /**
  * Initialize the application
@@ -127,8 +131,14 @@ function updateStatsSummary() {
 
     totalGamesEl.textContent = totalGames;
     totalPlayersEl.textContent = uniquePlayers;
-    goodWinsEl.textContent = `${goodWins} (${totalGames > 0 ? ((goodWins / totalGames) * 100).toFixed(1) : 0}%)`;
-    evilWinsEl.textContent = `${evilWins} (${totalGames > 0 ? ((evilWins / totalGames) * 100).toFixed(1) : 0}%)`;
+    const goodPct = totalGames > 0 ? ((goodWins / totalGames) * 100).toFixed(1) : 0;
+    const evilPct = totalGames > 0 ? ((evilWins / totalGames) * 100).toFixed(1) : 0;
+    goodWinsEl.textContent = `${goodPct}%`;
+    evilWinsEl.textContent = `${evilPct}%`;
+    if (goodWinsCountEl) goodWinsCountEl.textContent = goodWins;
+    if (evilWinsCountEl) evilWinsCountEl.textContent = evilWins;
+    if (winBarGoodEl) winBarGoodEl.style.width = `${goodPct}%`;
+    if (winBarEvilEl) winBarEvilEl.style.width = `${evilPct}%`;
 }
 
 /**
