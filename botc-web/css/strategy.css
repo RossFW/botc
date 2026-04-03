@@ -1,0 +1,426 @@
+/**
+ * BotC Strategy — Tree + Sidebar Layout
+ */
+
+/* === Full-page layout === */
+.strategy-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+}
+
+/* === Left panel: tree === */
+.tree-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow-y: auto;
+}
+
+/* Compact header: title left, nav right, single row */
+.strategy-header-compact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: var(--bg-card);
+    box-shadow: var(--shadow);
+    flex-shrink: 0;
+}
+
+.strategy-header-compact h1 {
+    font-size: 1.1rem;
+    margin: 0;
+    background: linear-gradient(135deg, var(--accent-good), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+}
+
+.strategy-header-compact .header-nav {
+    margin-top: 0;
+}
+
+/* === Controls row === */
+.tree-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.phase-filter-inline {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.phase-pill {
+    padding: 4px 10px;
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.phase-pill:hover:not(.active) {
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.phase-pill.active {
+    color: var(--text-primary);
+    background: rgba(96, 165, 250, 0.12);
+}
+
+/* === Graph fills remaining space === */
+.tree-panel .graph-container {
+    flex: 1;
+    min-height: 400px;
+}
+
+.tree-panel .legend {
+    flex-shrink: 0;
+    border-radius: 0;
+    padding: 8px 16px;
+    gap: 14px;
+}
+
+/* === Right panel: sidebar === */
+.detail-sidebar {
+    width: 420px;
+    flex-shrink: 0;
+    background: var(--bg-card);
+    border-left: 1px solid var(--border-color);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+}
+
+.sidebar-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    padding: 40px;
+    text-align: center;
+}
+
+.sidebar-content {
+    padding: 24px;
+    position: relative;
+}
+
+.sidebar-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.4rem;
+    cursor: pointer;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.sidebar-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+    padding-right: 30px;
+}
+
+.sidebar-header .detail-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.sidebar-header h2 {
+    font-size: 1.3rem;
+    margin-bottom: 2px;
+}
+
+.sidebar-content .detail-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+
+.sidebar-content .detail-parents h3,
+.sidebar-content .detail-alignment h3,
+.sidebar-content .detail-fusions h3,
+.sidebar-content .detail-growth h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.sidebar-content .alignment-summary {
+    padding: 12px 14px;
+    border-radius: var(--border-radius);
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+.sidebar-content .example-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+}
+
+.sidebar-content .example-list li {
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+    border-left: 2px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.sidebar-content .detail-growth {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.sidebar-content .detail-growth p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.sidebar-content .detail-fusions {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.sidebar-content .parent-tags,
+.sidebar-content .fusion-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+/* === Collapsible sections === */
+.collapsible-section {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+
+.collapsible-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.collapsible-header:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.collapsible-arrow {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    transition: transform 0.2s;
+}
+
+.collapsible-section.open .collapsible-arrow {
+    transform: rotate(180deg);
+}
+
+.collapsible-body {
+    display: none;
+    padding: 0 14px 12px;
+}
+
+.collapsible-section.open .collapsible-body {
+    display: block;
+}
+
+/* Alignment-specific collapsible accents */
+.collapsible-section.alignment-good .collapsible-header {
+    border-left: 3px solid var(--accent-good);
+}
+
+.collapsible-section.alignment-evil .collapsible-header {
+    border-left: 3px solid var(--accent-evil);
+}
+
+/* Alignment content inside collapsibles */
+.detail-alignment {
+    margin-bottom: 0;
+}
+
+.alignment-good .alignment-summary {
+    background: rgba(74, 222, 128, 0.08);
+    border-left: 3px solid var(--accent-good);
+    color: var(--accent-good);
+}
+
+.alignment-evil .alignment-summary {
+    background: rgba(248, 113, 113, 0.08);
+    border-left: 3px solid var(--accent-evil);
+    color: var(--accent-evil);
+}
+
+.alignment-good .example-list li {
+    border-left-color: rgba(74, 222, 128, 0.3);
+}
+
+.alignment-evil .example-list li {
+    border-left-color: rgba(248, 113, 113, 0.3);
+}
+
+/* === Article content inside sidebar === */
+.detail-article {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 2px solid rgba(150, 160, 180, 0.3);
+}
+
+.detail-article h3 {
+    font-size: 1rem;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.detail-article h4 {
+    font-size: 0.9rem;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+}
+
+.detail-article p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.detail-article ul {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    padding-left: 18px;
+    margin-bottom: 10px;
+}
+
+.detail-article strong {
+    color: var(--text-primary);
+}
+
+.detail-article em {
+    color: var(--accent-blue);
+}
+
+/* === Skill tags (reused) === */
+.skill-tag {
+    padding: 3px 12px;
+    border-radius: 14px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+}
+
+.skill-tag:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.skill-tag.deception { background: rgba(248, 113, 113, 0.15); color: var(--color-deception); border-color: rgba(248, 113, 113, 0.3); }
+.skill-tag.persuasion { background: rgba(96, 165, 250, 0.15); color: var(--color-persuasion); border-color: rgba(96, 165, 250, 0.3); }
+.skill-tag.social-insight { background: rgba(167, 139, 250, 0.15); color: var(--color-social-insight); border-color: rgba(167, 139, 250, 0.3); }
+.skill-tag.game-knowledge { background: rgba(74, 222, 128, 0.15); color: var(--color-game-knowledge); border-color: rgba(74, 222, 128, 0.3); }
+.skill-tag.logic { background: rgba(251, 191, 36, 0.15); color: var(--color-logic); border-color: rgba(251, 191, 36, 0.3); }
+.skill-tag.fusion { background: rgba(244, 114, 182, 0.15); color: #f472b6; border-color: rgba(244, 114, 182, 0.3); }
+
+/* === Tier badges === */
+.detail-tier {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.detail-tier.tier-1 { background: rgba(96, 165, 250, 0.2); color: var(--tier-1); }
+.detail-tier.tier-2 { background: rgba(167, 139, 250, 0.2); color: var(--tier-2); }
+.detail-tier.tier-3 { background: rgba(244, 114, 182, 0.2); color: var(--tier-3); }
+.detail-tier.tier-4 { background: rgba(251, 146, 60, 0.2); color: var(--tier-4); }
+.detail-tier.tier-5 { background: rgba(251, 191, 36, 0.2); color: var(--tier-5); }
+
+/* === Responsive: stack on small screens === */
+@media (max-width: 900px) {
+    .strategy-layout {
+        flex-direction: column;
+        height: auto;
+        overflow: auto;
+    }
+
+    .tree-panel {
+        overflow: visible;
+    }
+
+    .detail-sidebar {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+        min-height: 300px;
+    }
+}
+
+/* === Colorblind overrides === */
+html[data-colorblind="true"] .alignment-good .alignment-summary { background: rgba(96, 165, 250, 0.08); border-left-color: var(--accent-blue); color: var(--accent-blue); }
+html[data-colorblind="true"] .alignment-evil .alignment-summary { background: rgba(249, 115, 22, 0.08); border-left-color: #f97316; color: #f97316; }
+html[data-colorblind="true"] .alignment-good .example-list li { border-left-color: rgba(96, 165, 250, 0.3); }
+html[data-colorblind="true"] .alignment-evil .example-list li { border-left-color: rgba(249, 115, 22, 0.3); }

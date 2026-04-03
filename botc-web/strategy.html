@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood on the Clocktower — Strategy</title>
+    <meta name="description" content="Skill mastery tree and strategy for Blood on the Clocktower">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dimensions.css">
+    <link rel="stylesheet" href="css/strategy.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="strategy-layout">
+        <!-- Left: Header + Controls + Tree -->
+        <div class="tree-panel">
+            <!-- Compact header bar -->
+            <header class="strategy-header-compact">
+                <h1>Blood on the Clocktower</h1>
+                <nav class="header-nav">
+                    <a href="index.html">Leaderboard</a>
+                    <a href="analytics.html">Analytics</a>
+                    <a href="strategy.html" class="active">Strategy</a>
+                </nav>
+            </header>
+
+            <!-- Controls row (reserved for future filters) -->
+            <div class="tree-controls"></div>
+
+            <!-- Skill Tree -->
+            <div class="graph-container">
+                <canvas id="skill-graph"></canvas>
+                <div id="tooltip" class="tooltip" style="display: none;">
+                    <div class="tooltip-name"></div>
+                    <div class="tooltip-tier"></div>
+                </div>
+            </div>
+
+            <!-- Legend -->
+            <div class="legend">
+                <div class="legend-item"><span class="legend-dot" style="background: #f87171"></span> Deception</div>
+                <div class="legend-item"><span class="legend-dot" style="background: #60a5fa"></span> Persuasion</div>
+                <div class="legend-item"><span class="legend-dot" style="background: #a78bfa"></span> Social Insight</div>
+                <div class="legend-item"><span class="legend-dot" style="background: #4ade80"></span> Game Knowledge</div>
+                <div class="legend-item"><span class="legend-dot" style="background: #fbbf24"></span> Logic</div>
+            </div>
+        </div>
+
+        <!-- Right: Sidebar detail panel -->
+        <div class="detail-sidebar" id="detail-sidebar">
+            <div class="sidebar-empty" id="sidebar-empty">
+                <p>Click a node to explore</p>
+            </div>
+            <div class="sidebar-content" id="sidebar-content" style="display: none;">
+                <button class="sidebar-close" id="sidebar-close">&times;</button>
+                <div class="sidebar-header">
+                    <span class="detail-icon" id="detail-icon"></span>
+                    <div>
+                        <h2 id="detail-name"></h2>
+                        <span class="detail-tier" id="detail-tier"></span>
+                    </div>
+                </div>
+                <p class="detail-description" id="detail-description"></p>
+
+                <!-- Parent skills -->
+                <div id="detail-parents" class="detail-parents" style="display: none;">
+                    <h3>Combines</h3>
+                    <div id="parent-tags" class="parent-tags"></div>
+                </div>
+
+                <!-- Alignment content (both sides) -->
+                <div id="detail-alignments"></div>
+
+                <!-- Connected skills / subskills -->
+                <div id="detail-fusions" class="detail-fusions" style="display: none;">
+                    <h3>Skill Fusions</h3>
+                    <div id="fusion-tags" class="fusion-tags"></div>
+                </div>
+
+                <!-- Article content (rich HTML for nodes that have articles) -->
+                <div id="detail-article" class="detail-article" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/skillTree.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>
