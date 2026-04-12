@@ -1021,7 +1021,7 @@ function updateGameSizeTab() {
         const evilPct = data.games > 0 ? (data.evil_wins / data.games * 100).toFixed(1) : '0.0';
         const expectedGood = EXPECTED_GOOD_WIN_PCT[size];
         const expectedEvil = expectedGood ? (100 - expectedGood) : null;
-        const evilTeam = EVIL_TEAM_BY_SIZE[size] || '?';
+        const evilTeam = EVIL_TEAM_BY_SIZE[size] || (size >= 15 ? '1 Demon, 3 Minions' : '?');
 
         const row = document.createElement('tr');
         row.style.cursor = 'pointer';
