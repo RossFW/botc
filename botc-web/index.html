@@ -45,6 +45,7 @@
                     <span class="win-bar-meta"><span id="total-games">0</span> games | <span id="total-players">0</span> players</span>
                 </div>
                 <div class="win-bar">
+                    <div class="no-games-msg" id="no-games-msg" style="display: none;">No games logged yet</div>
                     <div class="win-bar-good" id="win-bar-good">
                         <span class="win-bar-label"><span id="good-wins-count">0</span> good wins</span>
                         <span class="win-bar-pct" id="good-wins">0%</span>
@@ -138,33 +139,52 @@
                             <span class="help-icon">?</span> Input Format Help
                         </button>
                         <div class="help-content" id="help-content">
-                            <p><strong>Format:</strong> <code>Name Role [TeamHint]</code></p>
+                            <p><strong>Player format:</strong> <code>Name Role [TeamHint]</code></p>
+                            <p class="help-detail">One player per line. Autocomplete suggests names and roles as you type.</p>
+
+                            <p class="help-detail" style="margin-top: 8px;"><strong>Names:</strong> Names can be anything — just be consistent so stats track correctly. Use underscores for spaces.</p>
                             <div class="help-examples">
                                 <div class="help-example">
-                                    <code>Ross_Williams Imp</code>
-                                    <span>Basic entry</span>
+                                    <code>Jane Imp</code>
+                                    <span>First name only</span>
                                 </div>
                                 <div class="help-example">
-                                    <code>Alex_West Snake_charmer+Witch</code>
-                                    <span>Multiple roles (use +)</span>
+                                    <code>Jane_Doe Imp</code>
+                                    <span>Full name (underscore = space)</span>
                                 </div>
                                 <div class="help-example">
-                                    <code>Sam_Reissing Chef Good->Evil</code>
-                                    <span>Team change (use ->)</span>
+                                    <code>JaneD Imp</code>
+                                    <span>Nickname — whatever your group uses</span>
                                 </div>
                             </div>
-                            <p class="help-note"><em>Note: Put team-changers in their FINAL team's section</em></p>
+
+                            <p class="help-detail" style="margin-top: 8px;"><strong>Roles &amp; team changes:</strong></p>
+                            <div class="help-examples">
+                                <div class="help-example">
+                                    <code>John Snake_Charmer+Witch</code>
+                                    <span>Multiple roles (use <strong>+</strong>)</span>
+                                </div>
+                                <div class="help-example">
+                                    <code>Mike Chef Good->Evil</code>
+                                    <span>Team change (use <strong>-></strong>)</span>
+                                </div>
+                            </div>
+                            <p class="help-note"><em>Put team-changers in their FINAL team's section.</em></p>
+
+                            <p class="help-detail" style="margin-top: 8px;"><strong>Storyteller:</strong> Multiple storytellers? Use <strong>+</strong> (e.g., <code>Jane+Mike</code>).</p>
+
+                            <p class="help-detail" style="margin-top: 4px;"><strong>Fabled &amp; Lorics:</strong> Optional comma-separated fields below the script. These are game-level modifiers, not player roles.</p>
                         </div>
                     </div>
 
                     <div class="form-row teams-row">
                         <div class="form-group">
                             <label for="team1-input">Team 1 Players</label>
-                            <textarea id="team1-input" rows="10" placeholder="Name Role&#10;e.g., Ross_Williams Imp&#10;Alex_West Poisoner"></textarea>
+                            <textarea id="team1-input" rows="10" placeholder="Name Role&#10;e.g., Sarah_Lin Imp&#10;Tom_Nguyen Poisoner"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="team2-input">Team 2 Players</label>
-                            <textarea id="team2-input" rows="10" placeholder="Name Role&#10;e.g., Sam_Reissing Chef&#10;Zoe_Diamond Empath"></textarea>
+                            <textarea id="team2-input" rows="10" placeholder="Name Role&#10;e.g., Mike_Chen Chef&#10;Priya_Patel Empath"></textarea>
                         </div>
                     </div>
 
@@ -216,12 +236,24 @@
                         </div>
                         <div class="form-group">
                             <label for="storyteller-input">Storyteller</label>
-                            <input type="text" id="storyteller-input" placeholder="e.g., Matan_Diamond">
+                            <input type="text" id="storyteller-input" placeholder="e.g., Alex_Rivera">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fabled-input">Fabled <span class="label-hint">(optional)</span></label>
+                            <input type="text" id="fabled-input" placeholder="e.g., Djinn, Angel">
+                        </div>
+                        <div class="form-group">
+                            <label for="lorics-input">Lorics <span class="label-hint">(optional)</span></label>
+                            <input type="text" id="lorics-input" placeholder="e.g., Bootlegger">
                         </div>
                     </div>
 
                     <div class="form-actions">
                         <button id="submit-game-btn" class="primary-btn">Submit Game</button>
+                        <button id="delete-game-btn" class="danger-btn" style="display: none;">Delete Game</button>
                         <p id="submit-error" class="error-text" style="display: none;"></p>
                         <p id="submit-success" class="success-text" style="display: none;"></p>
                     </div>
@@ -252,7 +284,7 @@
                 <p class="modal-subtitle">Search by game number, storyteller, or script</p>
 
                 <div class="search-container">
-                    <input type="text" id="game-search-input" placeholder="e.g., 42 or Matan or Trouble Brewing">
+                    <input type="text" id="game-search-input" placeholder="e.g., 42 or Trouble Brewing">
                     <button id="search-games-btn" class="primary-btn">Search</button>
                 </div>
 
@@ -287,6 +319,12 @@
                 <button id="save-new-script-btn" class="primary-btn">Save Script</button>
                 <p id="new-script-error" class="error-text" style="display: none;"></p>
                 <p id="new-script-success" class="success-text" style="display: none;"></p>
+            </div>
+
+            <div id="script-manage-section" style="display: none;">
+                <hr style="border-color: var(--border-color); margin: 1.5rem 0;">
+                <h4>Existing Scripts</h4>
+                <div id="script-manage-list" class="script-manage-list"></div>
             </div>
         </div>
     </div>

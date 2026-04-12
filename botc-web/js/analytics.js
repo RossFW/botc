@@ -40,7 +40,6 @@ const CHARACTER_ROLE_TYPES = {
     "lleech": "Demons",
     "lord_of_typhon": "Demons",
     "no_dashii": "Demons",
-    "no_dashi": "Demons",
     "ojo": "Demons",
     "po": "Demons",
     "pukka": "Demons",
@@ -299,22 +298,67 @@ function hasStoryteller(game, storytellerName) {
 // ==========================================
 
 /**
+ * Check if a game has any modifiers (Fabled or Lorics).
+ */
+function gameHasModifiers(game) {
+    if (!game.modifiers) return false;
+    const f = game.modifiers.fabled || [];
+    const l = game.modifiers.lorics || [];
+    return f.length > 0 || l.length > 0;
+}
+
+/**
+ * Check if a game has Fabled.
+ */
+function gameHasFabled(game) {
+    return game.modifiers && (game.modifiers.fabled || []).length > 0;
+}
+
+/**
+ * Check if a game has Lorics.
+ */
+function gameHasLorics(game) {
+    return game.modifiers && (game.modifiers.lorics || []).length > 0;
+}
+
+/**
+ * Filter games by modifier setting.
+ * @param {Array} games - Games to filter
+ * @param {string} modifierFilter - 'all', 'none', 'any', 'fabled', 'lorics'
+ */
+function filterByModifier(games, modifierFilter) {
+    switch (modifierFilter) {
+        case 'none': return games.filter(g => !gameHasModifiers(g));
+        case 'any': return games.filter(g => gameHasModifiers(g));
+        case 'fabled': return games.filter(g => gameHasFabled(g));
+        case 'lorics': return games.filter(g => gameHasLorics(g));
+        default: return games;
+    }
+}
+
+/**
  * Compute statistics for games run by a specific storyteller.
  */
 export class StorytellerAnalytics {
     /**
      * @param {Array} allGames - All games from database
      * @param {string} storytellerName - Storyteller to filter by ('All' for all games)
+     * @param {string} modifierFilter - Modifier filter: 'all', 'none', 'any', 'fabled', 'lorics'
      */
-    constructor(allGames, storytellerName = 'All') {
+    constructor(allGames, storytellerName = 'All', modifierFilter = 'all') {
         this.storytellerName = storytellerName;
+        this.modifierFilter = modifierFilter;
 
-        // Filter games
+        // Filter games by storyteller
+        let games;
         if (storytellerName === 'All') {
-            this.games = allGames;
+            games = allGames;
         } else {
-            this.games = allGames.filter(g => hasStoryteller(g, storytellerName));
+            games = allGames.filter(g => hasStoryteller(g, storytellerName));
         }
+
+        // Filter by modifier
+        this.games = filterByModifier(games, modifierFilter);
 
         this.scriptStats = {};
         this.categoryTotals = {
@@ -322,9 +366,11 @@ export class StorytellerAnalytics {
             Teensyville: { games: 0, good_wins: 0, evil_wins: 0 }
         };
         this.playerStats = {};
+        this.modifierStats = { fabled: {}, lorics: {} };
 
         this._computeScriptStats();
         this._computePlayerStats();
+        this._computeModifierStats(allGames, storytellerName);
     }
 
     /**
@@ -340,11 +386,15 @@ export class StorytellerAnalytics {
                     category,
                     games: 0,
                     good_wins: 0,
-                    evil_wins: 0
+                    evil_wins: 0,
+                    mod_games: 0
                 };
             }
 
             this.scriptStats[script].games++;
+            if (gameHasModifiers(game)) {
+                this.scriptStats[script].mod_games++;
+            }
             if (game.winning_team === 'Good') {
                 this.scriptStats[script].good_wins++;
             } else {
@@ -449,6 +499,65 @@ export class StorytellerAnalytics {
                 }
             }
         }
+    }
+
+    /**
+     * Compute per-modifier statistics (always from full storyteller-filtered set, ignoring modifier filter).
+     */
+    _computeModifierStats(allGames, storytellerName) {
+        // Use storyteller-filtered but NOT modifier-filtered games
+        let games;
+        if (storytellerName === 'All') {
+            games = allGames;
+        } else {
+            games = allGames.filter(g => hasStoryteller(g, storytellerName));
+        }
+
+        for (const game of games) {
+            if (!game.modifiers) continue;
+
+            const fabled = game.modifiers.fabled || [];
+            const lorics = game.modifiers.lorics || [];
+            const won = game.winning_team;
+
+            for (const name of fabled) {
+                if (!this.modifierStats.fabled[name]) {
+                    this.modifierStats.fabled[name] = { games: 0, good_wins: 0, evil_wins: 0 };
+                }
+                this.modifierStats.fabled[name].games++;
+                if (won === 'Good') this.modifierStats.fabled[name].good_wins++;
+                else this.modifierStats.fabled[name].evil_wins++;
+            }
+
+            for (const name of lorics) {
+                if (!this.modifierStats.lorics[name]) {
+                    this.modifierStats.lorics[name] = { games: 0, good_wins: 0, evil_wins: 0 };
+                }
+                this.modifierStats.lorics[name].games++;
+                if (won === 'Good') this.modifierStats.lorics[name].good_wins++;
+                else this.modifierStats.lorics[name].evil_wins++;
+            }
+        }
+    }
+
+    /**
+     * Get modifier stats summary (total counts).
+     */
+    getModifierSummary(allGames, storytellerName) {
+        let games;
+        if (storytellerName === 'All') {
+            games = allGames;
+        } else {
+            games = allGames.filter(g => hasStoryteller(g, storytellerName));
+        }
+
+        let totalMod = 0, fabledCount = 0, loricsCount = 0;
+        for (const g of games) {
+            if (gameHasModifiers(g)) totalMod++;
+            if (gameHasFabled(g)) fabledCount++;
+            if (gameHasLorics(g)) loricsCount++;
+        }
+        return { totalMod, fabledCount, loricsCount };
     }
 
     /**

@@ -2,7 +2,8 @@
  * Analytics Application - Main entry point for the analytics dashboard.
  */
 
-import { fetchGames } from './supabase.js';
+import { fetchGames, isDemoMode } from './supabase.js';
+import SITE_CONFIG from './site-config.js';
 import {
     StorytellerAnalytics,
     extractStorytellers,
@@ -42,6 +43,20 @@ document.addEventListener('DOMContentLoaded', async () => {
  * Load game data from Supabase.
  */
 async function loadData() {
+    // Apply community name from config
+    const h1 = document.querySelector('header h1');
+    if (h1 && SITE_CONFIG.communityName) {
+        h1.textContent = SITE_CONFIG.communityName + ' Analytics';
+    }
+
+    // Show demo banner if in demo mode
+    if (isDemoMode()) {
+        const banner = document.createElement('div');
+        banner.className = 'demo-banner';
+        banner.innerHTML = 'Demo Mode — showing sample data. <a href="https://github.com/RossFW/botc-stats#quick-start-5-steps" target="_blank">Set up your own</a>';
+        document.querySelector('.container').prepend(banner);
+    }
+
     allGames = await fetchGames();
 
     // Initialize analytics with all games
@@ -58,11 +73,14 @@ async function loadData() {
 
     // Populate script filter dropdown
     populateScriptFilterDropdown();
+    populateGameSizePlayerFilter();
 
     // Update all displays
     updateSummary();
     updateScriptsTab();
     updateCharactersTab();
+    updateModifiersTab();
+    updateGameSizeTab();
 }
 
 /**
@@ -75,7 +93,10 @@ function setupEventListeners() {
     });
 
     // Storyteller filter
-    document.getElementById('storyteller-filter').addEventListener('change', onStorytellerChange);
+    document.getElementById('storyteller-filter').addEventListener('change', onFilterChange);
+
+    // Modifier filter
+    document.getElementById('modifier-filter').addEventListener('change', onFilterChange);
 
     // Character filters
     document.getElementById('script-filter').addEventListener('change', updateCharactersTab);
@@ -87,6 +108,10 @@ function setupEventListeners() {
     // Head-to-head analyze button
     document.getElementById('h2h-analyze-btn').addEventListener('click', analyzeH2H);
 
+    // Game size player filter
+    const gameSizeFilter = document.getElementById('game-size-player-filter');
+    if (gameSizeFilter) gameSizeFilter.addEventListener('change', updateGameSizeTab);
+
     // Table sorting
     document.querySelectorAll('.analytics-table th[data-sort]').forEach(th => {
         th.addEventListener('click', () => handleSort(th));
@@ -95,9 +120,29 @@ function setupEventListeners() {
     // ESC key to close modals
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
+            closeGameDetail();
+            closeScriptDetail();
             closeCharacterDetail();
         }
     });
+
+    // Script detail modal close
+    const scriptModal = document.getElementById('script-detail-modal');
+    if (scriptModal) {
+        scriptModal.querySelector('.modal-close').onclick = closeScriptDetail;
+        scriptModal.addEventListener('click', (e) => {
+            if (e.target === scriptModal) closeScriptDetail();
+        });
+    }
+
+    // Game detail modal close
+    const gameModal = document.getElementById('game-detail-modal');
+    if (gameModal) {
+        gameModal.querySelector('.modal-close').onclick = closeGameDetail;
+        gameModal.addEventListener('click', (e) => {
+            if (e.target === gameModal) closeGameDetail();
+        });
+    }
 }
 
 /**
@@ -212,14 +257,18 @@ function populateScriptFilterDropdown() {
 /**
  * Handle storyteller filter change.
  */
-function onStorytellerChange() {
+function onFilterChange() {
     const storyteller = document.getElementById('storyteller-filter').value;
-    currentAnalytics = new StorytellerAnalytics(allGames, storyteller);
+    const modifierFilter = document.getElementById('modifier-filter').value;
+    currentAnalytics = new StorytellerAnalytics(allGames, storyteller, modifierFilter);
 
     // Update all displays
     updateSummary();
     updateScriptsTab();
     updateCharactersTab();
+    updateModifiersTab();
+    updateGameSizeTab();
+    populateGameSizePlayerFilter();
 
     // Reset player tab
     document.getElementById('player-select').value = '';
@@ -299,6 +348,8 @@ function updateScriptsTab() {
     // Add script rows
     for (const [script, stats] of entries) {
         const row = document.createElement('tr');
+        row.style.cursor = 'pointer';
+        const modLabel = stats.mod_games > 0 ? stats.mod_games : '-';
         row.innerHTML = `
             <td>${script || '(Unknown)'}</td>
             <td><span class="category-badge ${stats.category.toLowerCase()}">${stats.category}</span></td>
@@ -307,14 +358,16 @@ function updateScriptsTab() {
             <td>${stats.good_wins}</td>
             <td>${stats.evil_wins}</td>
             <td>${stats.games}</td>
+            <td class="mod-count">${modLabel}</td>
         `;
+        row.addEventListener('click', () => showScriptDetail(script));
         tbody.appendChild(row);
     }
 
     // Add separator
     const sepRow = document.createElement('tr');
     sepRow.className = 'separator-row';
-    sepRow.innerHTML = '<td colspan="7"></td>';
+    sepRow.innerHTML = '<td colspan="8"></td>';
     tbody.appendChild(sepRow);
 
     // Add category totals
@@ -326,6 +379,7 @@ function updateScriptsTab() {
 
         const row = document.createElement('tr');
         row.className = 'total-row';
+        row.style.cursor = 'pointer';
         row.innerHTML = `
             <td><strong>${cat} Total</strong></td>
             <td><span class="category-badge ${cat.toLowerCase()}">${cat}</span></td>
@@ -334,7 +388,15 @@ function updateScriptsTab() {
             <td><strong>${totals.good_wins}</strong></td>
             <td><strong>${totals.evil_wins}</strong></td>
             <td><strong>${totals.games}</strong></td>
+            <td></td>
         `;
+        row.addEventListener('click', () => {
+            const games = currentAnalytics.games.filter(g => {
+                const scriptStats = currentAnalytics.scriptStats[g.game_mode];
+                return scriptStats && scriptStats.category === cat;
+            });
+            showGameHistory(`${cat} Total`, `${games.length} games`, games);
+        });
         tbody.appendChild(row);
     }
 }
@@ -454,8 +516,11 @@ function updatePlayerScriptsTable(stats) {
     const allGoodPct = stats.good_games > 0 ? (stats.good_wins / stats.good_games * 100).toFixed(1) : '0.0';
     const allEvilPct = stats.evil_games > 0 ? (stats.evil_wins / stats.evil_games * 100).toFixed(1) : '0.0';
 
+    const playerName = document.getElementById('player-select').value;
+
     const allRow = document.createElement('tr');
     allRow.className = 'total-row';
+    allRow.style.cursor = 'pointer';
     allRow.innerHTML = `
         <td><strong>All</strong></td>
         <td><strong>${allWinPct}%</strong></td>
@@ -465,6 +530,11 @@ function updatePlayerScriptsTable(stats) {
         <td class="evil-text"><strong>${allEvilPct}%</strong></td>
         <td><strong>${stats.evil_games}</strong></td>
     `;
+    allRow.addEventListener('click', () => {
+        const games = currentAnalytics.games.filter(g =>
+            g.players.some(p => p.name === playerName));
+        showGameHistory(`${playerName.replace(/_/g, ' ')} — All Games`, `${games.length} games`, games);
+    });
     tbody.appendChild(allRow);
 
     // Sort scripts by win percentage
@@ -480,6 +550,7 @@ function updatePlayerScriptsTable(stats) {
         const evilPct = s.evil_games > 0 ? (s.evil_wins / s.evil_games * 100).toFixed(1) : '0.0';
 
         const row = document.createElement('tr');
+        row.style.cursor = 'pointer';
         row.innerHTML = `
             <td>${script || '(Unknown)'}</td>
             <td>${winPct}%</td>
@@ -489,6 +560,11 @@ function updatePlayerScriptsTable(stats) {
             <td class="evil-text">${evilPct}%</td>
             <td>${s.evil_games}</td>
         `;
+        row.addEventListener('click', () => {
+            const games = currentAnalytics.games.filter(g =>
+                g.game_mode === script && g.players.some(p => p.name === playerName));
+            showGameHistory(`${playerName.replace(/_/g, ' ')} — ${script}`, `${games.length} games`, games);
+        });
         tbody.appendChild(row);
     }
 }
@@ -504,11 +580,14 @@ function updatePlayerRolesTable(stats) {
     // Sort roles by games played
     const roleEntries = Object.entries(stats.roles).sort((a, b) => b[1].games - a[1].games);
 
+    const playerName = document.getElementById('player-select').value;
+
     for (const [role, r] of roleEntries) {
         const winPct = r.games > 0 ? (r.wins / r.games * 100).toFixed(1) : '0.0';
         const roleType = getCharacterRoleType(role);
 
         const row = document.createElement('tr');
+        row.style.cursor = 'pointer';
         row.innerHTML = `
             <td>${role}</td>
             <td><span class="role-type-badge ${roleType.toLowerCase()}">${roleType}</span></td>
@@ -516,6 +595,12 @@ function updatePlayerRolesTable(stats) {
             <td>${r.wins}</td>
             <td>${r.games}</td>
         `;
+        row.addEventListener('click', () => {
+            const games = currentAnalytics.games.filter(g =>
+                g.players.some(p => p.name === playerName &&
+                    (p.role === role || (p.roles && p.roles.includes(role)))));
+            showGameHistory(`${playerName.replace(/_/g, ' ')} as ${role.replace(/_/g, ' ')}`, roleType, games);
+        });
         tbody.appendChild(row);
     }
 }
@@ -589,13 +674,404 @@ function analyzeH2H() {
     document.getElementById('p2-evil-pct').textContent = results.opposite_teams[player2].when_evil.win_pct;
 
     // Game IDs
-    document.getElementById('h2h-game-ids-list').textContent = results.game_ids.length > 0
-        ? results.game_ids.join(', ')
-        : '-';
+
+    // Make H2H stat cards clickable
+    const bothIn = g => g.players && g.players.some(p => p.name === player1) && g.players.some(p => p.name === player2);
+    const getTeam = (g, name) => { const p = g.players.find(p => p.name === name); return p ? p.team : null; };
+    const p1Name = player1.replace(/_/g, ' ');
+    const p2Name = player2.replace(/_/g, ' ');
+
+    function makeClickable(el, label, filterFn) {
+        if (!el) return;
+        el.style.cursor = 'pointer';
+        el.onclick = () => {
+            const games = currentAnalytics.games.filter(g => bothIn(g) && filterFn(g));
+            showGameHistory(label, `${games.length} games`, games);
+        };
+    }
+
+    // Same team cards
+    makeClickable(
+        document.querySelector('#h2h-same-team-content .h2h-stats-row .h2h-stat-card:first-child'),
+        `${p1Name} & ${p2Name} — Same Team`,
+        g => getTeam(g, player1) === getTeam(g, player2)
+    );
+    makeClickable(
+        document.querySelector('#h2h-same-team-content .h2h-stat-card.good'),
+        `${p1Name} & ${p2Name} — Both Good`,
+        g => getTeam(g, player1) === 'Good' && getTeam(g, player2) === 'Good'
+    );
+    makeClickable(
+        document.querySelector('#h2h-same-team-content .h2h-stat-card.evil'),
+        `${p1Name} & ${p2Name} — Both Evil`,
+        g => getTeam(g, player1) === 'Evil' && getTeam(g, player2) === 'Evil'
+    );
+
+    // Opposite teams — all cards
+    const oppPlayers = document.querySelectorAll('.h2h-opp-player');
+    const oppFilter = g => getTeam(g, player1) !== getTeam(g, player2);
+
+    // P1 and P2 overall cards
+    if (oppPlayers[0]) {
+        makeClickable(oppPlayers[0].querySelector('.h2h-stat-card:not(.good):not(.evil)'),
+            `${p1Name} vs ${p2Name} — Opposite Teams`, oppFilter);
+    }
+    if (oppPlayers[1]) {
+        makeClickable(oppPlayers[1].querySelector('.h2h-stat-card:not(.good):not(.evil)'),
+            `${p1Name} vs ${p2Name} — Opposite Teams`, oppFilter);
+    }
+
+    // P1 As Good / P2 As Evil (same row = same games: P1 is Good, P2 is Evil)
+    const p1GoodFilter = g => getTeam(g, player1) === 'Good' && getTeam(g, player2) === 'Evil';
+    const p1EvilFilter = g => getTeam(g, player1) === 'Evil' && getTeam(g, player2) === 'Good';
+
+    if (oppPlayers[0]) {
+        makeClickable(oppPlayers[0].querySelector('.h2h-stat-card.good'),
+            `${p1Name} (Good) vs ${p2Name} (Evil)`, p1GoodFilter);
+        makeClickable(oppPlayers[0].querySelector('.h2h-stat-card.evil'),
+            `${p1Name} (Evil) vs ${p2Name} (Good)`, p1EvilFilter);
+    }
+    if (oppPlayers[1]) {
+        // P2's cards are inverted: Evil first (aligns with P1 Good), Good second (aligns with P1 Evil)
+        makeClickable(oppPlayers[1].querySelector('.h2h-stat-card.evil'),
+            `${p1Name} (Good) vs ${p2Name} (Evil)`, p1GoodFilter);
+        makeClickable(oppPlayers[1].querySelector('.h2h-stat-card.good'),
+            `${p1Name} (Evil) vs ${p2Name} (Good)`, p1EvilFilter);
+    }
 
     // Show results
     resultsDiv.style.display = 'block';
     noResultsDiv.style.display = 'none';
+}
+
+// ==========================================
+// SCRIPT DETAIL MODAL
+// ==========================================
+
+/**
+ * Show a game history modal for any filtered set of games.
+ * Reusable across Scripts, Players, Characters, and Modifiers.
+ * @param {string} title - Modal title (e.g., "Trouble Brewing", "Sarah — Imp")
+ * @param {string} badge - Badge text (e.g., "Normal", "Townsfolk", "13 games")
+ * @param {Array} games - Filtered game objects to display
+ */
+function showGameHistory(title, badge, games) {
+    const modal = document.getElementById('script-detail-modal');
+    if (!modal) return;
+
+    document.getElementById('script-detail-name').textContent = title;
+    document.getElementById('script-detail-category').textContent = badge;
+
+    const gamesBody = document.getElementById('script-detail-games-body');
+    gamesBody.innerHTML = '';
+
+    if (games.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = '<td colspan="5" style="text-align:center; opacity:0.5;">No games found</td>';
+        gamesBody.appendChild(row);
+    } else {
+        for (const g of games.sort((a, b) => b.game_id - a.game_id)) {
+            const row = document.createElement('tr');
+            row.style.cursor = 'pointer';
+            const modTags = [];
+            if (g.modifiers) {
+                for (const f of (g.modifiers.fabled || [])) modTags.push(f.replace(/_/g, ' '));
+                for (const l of (g.modifiers.lorics || [])) modTags.push(l.replace(/_/g, ' '));
+            }
+            row.innerHTML = `
+                <td>#${g.game_id}</td>
+                <td>${g.date ? new Date(g.date).toLocaleDateString() : '-'}</td>
+                <td class="${g.winning_team === 'Good' ? 'good-text' : 'evil-text'}">${g.winning_team}</td>
+                <td>${(g.story_teller || '-').replace(/_/g, ' ')}</td>
+                <td>${modTags.length > 0 ? modTags.join(', ') : '-'}</td>
+            `;
+            row.addEventListener('click', () => showGameDetail(g));
+            gamesBody.appendChild(row);
+        }
+    }
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+/**
+ * Show script game history (convenience wrapper).
+ */
+function showScriptDetail(scriptName) {
+    const stats = currentAnalytics.scriptStats[scriptName];
+    const games = currentAnalytics.games.filter(g => g.game_mode === scriptName);
+    showGameHistory(scriptName, stats ? stats.category : 'Unknown', games);
+}
+
+/**
+ * Show the game detail modal with full player/role breakdown.
+ */
+function showGameDetail(game) {
+    const modal = document.getElementById('game-detail-modal');
+    if (!modal || !game) return;
+
+    document.getElementById('game-detail-title').textContent = `Game #${game.game_id}`;
+    document.getElementById('game-detail-script').textContent = game.game_mode || 'Unknown';
+    document.getElementById('game-detail-date').textContent = game.date ? new Date(game.date).toLocaleDateString() : '-';
+    document.getElementById('game-detail-st').textContent = (game.story_teller || '-').replace(/_/g, ' ');
+
+    const winnerEl = document.getElementById('game-detail-winner');
+    winnerEl.textContent = game.winning_team;
+    winnerEl.className = 'stat-value ' + (game.winning_team === 'Good' ? 'good-text' : 'evil-text');
+
+    // Modifiers
+    const modSection = document.getElementById('game-detail-modifiers');
+    const modList = document.getElementById('game-detail-mod-list');
+    const fabled = game.modifiers ? (game.modifiers.fabled || []) : [];
+    const lorics = game.modifiers ? (game.modifiers.lorics || []) : [];
+
+    if (fabled.length === 0 && lorics.length === 0) {
+        modSection.style.display = 'none';
+    } else {
+        modSection.style.display = 'block';
+        const tags = [];
+        for (const f of fabled) tags.push(`<span class="char-player-chip"><small class="mod-type-label">Fabled:</small> ${f.replace(/_/g, ' ')}</span>`);
+        for (const l of lorics) tags.push(`<span class="char-player-chip"><small class="mod-type-label">Loric:</small> ${l.replace(/_/g, ' ')}</span>`);
+        modList.innerHTML = tags.join('');
+    }
+
+    // Render players into a tbody
+    function renderPlayers(tbody, players) {
+        tbody.innerHTML = '';
+        for (const p of players) {
+            const row = document.createElement('tr');
+            const roles = (p.roles && p.roles.length > 0) ? p.roles.join(' → ') : (p.role || '-');
+            let nameHtml = (p.name || '-').replace(/_/g, ' ');
+
+            // Flag team change
+            if (p.initial_team && p.initial_team !== p.team) {
+                nameHtml += ` <span class="team-change-badge">${p.initial_team} → ${p.team}</span>`;
+            }
+
+            // Show role progression if multiple roles
+            let rolesHtml = roles.replace(/_/g, ' ');
+            if (p.roles && p.roles.length > 1) {
+                rolesHtml = p.roles.map(r => r.replace(/_/g, ' ')).join(' <span class="role-arrow">→</span> ');
+            }
+
+            row.innerHTML = `<td>${nameHtml}</td><td>${rolesHtml}</td>`;
+            tbody.appendChild(row);
+        }
+    }
+
+    renderPlayers(document.getElementById('game-detail-good-body'), (game.players || []).filter(p => p.team === 'Good'));
+    renderPlayers(document.getElementById('game-detail-evil-body'), (game.players || []).filter(p => p.team === 'Evil'));
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+/**
+ * Close the game detail modal.
+ */
+function closeGameDetail() {
+    const modal = document.getElementById('game-detail-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+/**
+ * Close the script detail modal.
+ */
+function closeScriptDetail() {
+    const modal = document.getElementById('script-detail-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// ==========================================
+// MODIFIERS TAB
+// ==========================================
+
+/**
+ * Update the modifiers tab.
+ */
+function updateModifiersTab() {
+    const storyteller = document.getElementById('storyteller-filter').value;
+    const summary = currentAnalytics.getModifierSummary(allGames, storyteller);
+    const noData = document.getElementById('modifiers-no-data');
+    const content = document.getElementById('modifiers-content');
+
+    if (summary.totalMod === 0) {
+        noData.style.display = 'block';
+        content.style.display = 'none';
+        return;
+    }
+
+    noData.style.display = 'none';
+    content.style.display = 'block';
+
+    // Summary cards
+    document.getElementById('mod-total-games').textContent = summary.totalMod;
+    document.getElementById('mod-fabled-games').textContent = summary.fabledCount;
+    document.getElementById('mod-lorics-games').textContent = summary.loricsCount;
+
+    // Fabled table
+    renderModifierTable('fabled-body', currentAnalytics.modifierStats.fabled, 'fabled');
+
+    // Lorics table
+    renderModifierTable('lorics-body', currentAnalytics.modifierStats.lorics, 'lorics');
+}
+
+/**
+ * Render a modifier stats table.
+ */
+function renderModifierTable(tbodyId, stats, modType) {
+    const tbody = document.getElementById(tbodyId);
+    tbody.innerHTML = '';
+
+    const entries = Object.entries(stats).sort((a, b) => b[1].games - a[1].games);
+
+    if (entries.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = '<td colspan="6" style="text-align:center; opacity:0.5;">No data yet</td>';
+        tbody.appendChild(row);
+        return;
+    }
+
+    for (const [name, data] of entries) {
+        const goodPct = data.games > 0 ? (data.good_wins / data.games * 100).toFixed(1) : '0.0';
+        const evilPct = data.games > 0 ? (data.evil_wins / data.games * 100).toFixed(1) : '0.0';
+
+        const row = document.createElement('tr');
+        row.style.cursor = 'pointer';
+        row.innerHTML = `
+            <td>${name.replace(/_/g, ' ')}</td>
+            <td class="good-text">${goodPct}%</td>
+            <td class="evil-text">${evilPct}%</td>
+            <td>${data.good_wins}</td>
+            <td>${data.evil_wins}</td>
+            <td>${data.games}</td>
+        `;
+        row.addEventListener('click', () => {
+            const games = currentAnalytics.games.filter(g => {
+                if (!g.modifiers) return false;
+                const list = modType === 'fabled' ? (g.modifiers.fabled || []) : (g.modifiers.lorics || []);
+                return list.includes(name);
+            });
+            const typeLabel = modType === 'fabled' ? 'Fabled' : 'Loric';
+            showGameHistory(name.replace(/_/g, ' '), typeLabel, games);
+        });
+        tbody.appendChild(row);
+    }
+}
+
+// ==========================================
+// GAME SIZE TAB
+// ==========================================
+
+// Expected Good win % from DP toy model (random executions, no abilities)
+// Source: https://github.com/RossFW/BotC_Probability
+const EXPECTED_GOOD_WIN_PCT = {
+    7: 54, 8: 51, 9: 59, 10: 49, 11: 59, 12: 54, 13: 59, 14: 53, 15: 62
+};
+
+// Evil team composition by player count (standard BotC rules)
+const EVIL_TEAM_BY_SIZE = {
+    5: '1 Demon, 1 Minion', 6: '1 Demon, 1 Minion', 7: '1 Demon, 1 Minion', 8: '1 Demon, 1 Minion',
+    9: '1 Demon, 2 Minions', 10: '1 Demon, 2 Minions', 11: '1 Demon, 2 Minions', 12: '1 Demon, 2 Minions',
+    13: '1 Demon, 3 Minions', 14: '1 Demon, 3 Minions', 15: '1 Demon, 3 Minions'
+};
+
+/**
+ * Update the game size tab.
+ */
+function updateGameSizeTab() {
+    const playerFilter = document.getElementById('game-size-player-filter').value;
+    const tbody = document.getElementById('game-size-body');
+    tbody.innerHTML = '';
+
+    // Count games by player count
+    const bySize = {};
+    for (const g of currentAnalytics.games) {
+        if (!g.players) continue;
+
+        // Apply player filter
+        if (playerFilter !== 'All' && !g.players.some(p => p.name === playerFilter)) continue;
+
+        const size = g.players.length;
+        if (!bySize[size]) bySize[size] = { games: 0, good_wins: 0, evil_wins: 0 };
+        bySize[size].games++;
+        if (g.winning_team === 'Good') bySize[size].good_wins++;
+        else bySize[size].evil_wins++;
+    }
+
+    // Sort by player count
+    const sizes = Object.keys(bySize).map(Number).sort((a, b) => a - b);
+
+    if (sizes.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = '<td colspan="7" style="text-align:center; opacity:0.5;">No games found</td>';
+        tbody.appendChild(row);
+        return;
+    }
+
+    for (const size of sizes) {
+        const data = bySize[size];
+        const goodPct = data.games > 0 ? (data.good_wins / data.games * 100).toFixed(1) : '0.0';
+        const evilPct = data.games > 0 ? (data.evil_wins / data.games * 100).toFixed(1) : '0.0';
+        const expectedGood = EXPECTED_GOOD_WIN_PCT[size];
+        const expectedEvil = expectedGood ? (100 - expectedGood) : null;
+        const evilTeam = EVIL_TEAM_BY_SIZE[size] || '?';
+
+        const row = document.createElement('tr');
+        row.style.cursor = 'pointer';
+
+        // Highlight deviation from expected
+        let goodClass = 'good-text';
+        let evilClass = 'evil-text';
+
+        row.innerHTML = `
+            <td><strong>${size}</strong></td>
+            <td>${evilTeam}</td>
+            <td>${data.games}</td>
+            <td class="${goodClass}">${goodPct}%</td>
+            <td class="${evilClass}">${evilPct}%</td>
+            <td style="opacity:0.6">${expectedGood != null ? expectedGood + '%' : '-'}</td>
+            <td style="opacity:0.6">${expectedEvil != null ? expectedEvil + '%' : '-'}</td>
+        `;
+
+        row.addEventListener('click', () => {
+            const games = currentAnalytics.games.filter(g => {
+                if (!g.players || g.players.length !== size) return false;
+                if (playerFilter !== 'All' && !g.players.some(p => p.name === playerFilter)) return false;
+                return true;
+            });
+            const label = playerFilter !== 'All'
+                ? `${playerFilter.replace(/_/g, ' ')} — ${size}-player games`
+                : `${size}-player games`;
+            showGameHistory(label, `${games.length} games`, games);
+        });
+
+        tbody.appendChild(row);
+    }
+}
+
+/**
+ * Populate the game size player filter dropdown.
+ */
+function populateGameSizePlayerFilter() {
+    const select = document.getElementById('game-size-player-filter');
+    if (!select) return;
+
+    const playerNames = currentAnalytics.getPlayerNames();
+    // Keep "All Players" option, clear the rest
+    select.innerHTML = '<option value="All">All Players</option>';
+    playerNames.forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name.replace(/_/g, ' ');
+        select.appendChild(option);
+    });
 }
 
 // ==========================================
@@ -809,6 +1285,18 @@ function showCharacterDetail(characterName, roleType, elo) {
             tag.innerHTML = `${player.replace(/_/g, ' ')}<span class="play-count">(${count})</span>`;
             playersDiv.appendChild(tag);
         }
+    }
+
+    // Wire up game history button — close character modal first
+    const gamesBtn = document.getElementById('char-detail-games-btn');
+    if (gamesBtn) {
+        gamesBtn.onclick = () => {
+            closeCharacterDetail();
+            const games = currentAnalytics.games.filter(g =>
+                g.players && g.players.some(p =>
+                    p.role === characterName || (p.roles && p.roles.includes(characterName))));
+            showGameHistory(characterName.replace(/_/g, ' '), roleType, games);
+        };
     }
 
     // Show modal

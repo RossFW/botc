@@ -3,10 +3,12 @@
  * Ported from botc_elo.py
  */
 
-// Constants
-export const DEFAULT_RATING = 1500;
-export const ELO_K_FACTOR = 32;
-export const MIN_GAMES_FOR_LEADERBOARD = 5;
+import SITE_CONFIG from './site-config.js';
+
+// Constants (from site-config.js)
+export const DEFAULT_RATING = SITE_CONFIG.defaultRating || 1500;
+export const ELO_K_FACTOR = SITE_CONFIG.kFactor || 32;
+export const MIN_GAMES_FOR_LEADERBOARD = SITE_CONFIG.minGamesForLeaderboard || 5;
 
 /**
  * Calculate expected score using ELO formula.

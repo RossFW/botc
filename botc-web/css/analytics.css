@@ -782,3 +782,118 @@
         gap: 1rem;
     }
 }
+
+#scripts-body tr:hover {
+    background: rgba(var(--accent-rgb), 0.1);
+}
+
+#game-detail-modal .character-detail-modal,
+#script-detail-modal .character-detail-modal {
+    max-width: 800px;
+}
+
+.game-detail-teams {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.team-change-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: rgba(249, 115, 22, 0.2);
+    color: #f97316;
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    margin-left: 4px;
+}
+
+.role-arrow {
+    color: var(--text-secondary);
+    font-size: 0.85em;
+}
+
+.mod-type-label {
+    color: var(--text-secondary);
+    font-size: 0.85em;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .game-detail-teams {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
+   MODIFIERS TAB
+   ========================================== */
+
+.modifiers-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.mod-count {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+#modifiers-tab h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .modifiers-summary {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
+   GAME SIZE TAB
+   ========================================== */
+
+.game-size-header {
+    margin-bottom: 1.5rem;
+}
+
+.game-size-filters {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.game-size-filters label {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.game-size-filters select {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    min-width: 200px;
+}
+
+.game-size-explanation {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.game-size-explanation a {
+    color: var(--accent-blue);
+}
+
+#game-size-body tr:hover {
+    background: rgba(var(--accent-rgb), 0.1);
+}

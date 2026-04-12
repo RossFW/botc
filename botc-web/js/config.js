@@ -51,7 +51,6 @@ export const CHARACTER_ROLE_TYPES = {
     "lleech": "Demons",
     "lord_of_typhon": "Demons",
     "no_dashii": "Demons",
-    "no_dashi": "Demons",
     "ojo": "Demons",
     "po": "Demons",
     "pukka": "Demons",
@@ -203,6 +202,39 @@ export const CHARACTER_ROLE_TYPES = {
     "thief": "Travellers",
     "voudon": "Travellers",
 };
+
+// Fabled characters (game-level modifiers, not player roles)
+export const FABLED = [
+    "Angel",
+    "Buddhist",
+    "Deus_Ex_Fiasco",
+    "Djinn",
+    "Doomsayer",
+    "Duchess",
+    "Ferryman",
+    "Fiddler",
+    "Fibbin",
+    "Hell's_Librarian",
+    "Revolutionary",
+    "Sentinel",
+    "Spirit_Of_Ivory",
+    "Toymaker",
+];
+
+// Loric characters (game-level modifiers, not player roles)
+export const LORICS = [
+    "Big_Wig",
+    "Bootlegger",
+    "Gardener",
+    "God_Of_Ug",
+    "Hindu",
+    "Knaves",
+    "Pope",
+    "Storm_Catcher",
+    "Tor",
+    "Ventriloquist",
+    "Zenomancer",
+];
 
 /**
  * Return a lowercase stripped version of a script name for comparison.

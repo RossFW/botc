@@ -3,8 +3,9 @@
  */
 
 import { recalcAll, getLeaderboard, pctToStr, getRatingDelta } from './elo.js';
-import { fetchGames, isUsingSupabase } from './supabase.js';
+import { fetchGames, isDemoMode } from './supabase.js';
 import { initGameEntry, updatePlayerNames } from './gameEntry.js';
+import SITE_CONFIG from './site-config.js';
 
 // Global state
 let gameLog = [];
@@ -36,6 +37,20 @@ const winBarEvilEl = document.getElementById('win-bar-evil');
 async function init() {
     try {
         showLoading();
+
+        // Apply community name from config
+        const h1 = document.querySelector('header h1');
+        if (h1 && SITE_CONFIG.communityName) {
+            h1.textContent = SITE_CONFIG.communityName;
+        }
+
+        // Show demo banner if in demo mode
+        if (isDemoMode()) {
+            const banner = document.createElement('div');
+            banner.className = 'demo-banner';
+            banner.innerHTML = 'Demo Mode — showing sample data. <a href="https://github.com/RossFW/botc-stats#quick-start-5-steps" target="_blank">Set up your own</a>';
+            document.querySelector('.container').prepend(banner);
+        }
 
         // Fetch game data
         gameLog = await fetchGames();
@@ -125,20 +140,42 @@ async function refreshData() {
  */
 function updateStatsSummary() {
     const totalGames = gameLog.length;
+    const noGamesMsg = document.getElementById('no-games-msg');
+
+    if (totalGames === 0) {
+        totalGamesEl.textContent = 0;
+        totalPlayersEl.textContent = 0;
+        if (winBarGoodEl) winBarGoodEl.style.display = 'none';
+        if (winBarEvilEl) winBarEvilEl.style.display = 'none';
+        if (noGamesMsg) noGamesMsg.style.display = 'block';
+        return;
+    }
+
+    // Hide message
+    if (noGamesMsg) noGamesMsg.style.display = 'none';
+
     const goodWins = gameLog.filter(g => g.winning_team === 'Good').length;
     const evilWins = gameLog.filter(g => g.winning_team === 'Evil').length;
     const uniquePlayers = new Set(gameLog.flatMap(g => g.players.map(p => p.name))).size;
 
     totalGamesEl.textContent = totalGames;
     totalPlayersEl.textContent = uniquePlayers;
-    const goodPct = totalGames > 0 ? ((goodWins / totalGames) * 100).toFixed(1) : 0;
-    const evilPct = totalGames > 0 ? ((evilWins / totalGames) * 100).toFixed(1) : 0;
+    const goodPct = ((goodWins / totalGames) * 100).toFixed(1);
+    const evilPct = ((evilWins / totalGames) * 100).toFixed(1);
     goodWinsEl.textContent = `${goodPct}%`;
     evilWinsEl.textContent = `${evilPct}%`;
     if (goodWinsCountEl) goodWinsCountEl.textContent = goodWins;
     if (evilWinsCountEl) evilWinsCountEl.textContent = evilWins;
-    if (winBarGoodEl) winBarGoodEl.style.width = `${goodPct}%`;
-    if (winBarEvilEl) winBarEvilEl.style.width = `${evilPct}%`;
+
+    // Hide bar segment when 0%, show when > 0%
+    if (winBarGoodEl) {
+        winBarGoodEl.style.display = goodWins > 0 ? '' : 'none';
+        winBarGoodEl.style.width = `${goodPct}%`;
+    }
+    if (winBarEvilEl) {
+        winBarEvilEl.style.display = evilWins > 0 ? '' : 'none';
+        winBarEvilEl.style.width = `${evilPct}%`;
+    }
 }
 
 /**

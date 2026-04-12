@@ -1,75 +1,24 @@
 /**
  * Database connection module for Blood on the Clocktower stats
  *
- * This module provides a unified interface for data access.
- * Currently supports:
- * - Local JSON files (for development/testing)
- * - Supabase (for production with live data entry)
- *
- * To switch to Supabase:
- * 1. Create a project at supabase.com
- * 2. Run the SQL schema below in your Supabase SQL editor
- * 3. Update SUPABASE_URL and SUPABASE_ANON_KEY
- * 4. Set USE_SUPABASE = true
+ * Connects to Supabase for all data access.
+ * Falls back to demo data when Supabase is not configured.
  */
 
-// ==========================================
-// CONFIGURATION - Update these for Supabase
-// ==========================================
-const USE_SUPABASE = true;  // Supabase is now configured!
-const SUPABASE_URL = 'https://mfwigdvxwpdemmwwskyk.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1md2lnZHZ4d3BkZW1td3dza3lrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk4NzY3NzMsImV4cCI6MjA4NTQ1Mjc3M30.KKAP1Tovgykk6iM6QHy_0-JHCik2Tp_6ja1T00shIDs';  // Get from: Supabase Dashboard > Settings > API > "anon public"
-
-// Local JSON path - used as fallback or for testing
-// Detect if we're on GitHub Pages or local
-const isGitHubPages = window.location.hostname.includes('github.io');
-const LOCAL_GAMELOG_PATH = isGitHubPages ? '/botc/gamelog.json' : '../gamelog.json';
+import SITE_CONFIG from './site-config.js';
+import { DEMO_GAMES } from './demo-data.js';
 
 // ==========================================
-// SUPABASE SQL SCHEMA
+// DEMO MODE DETECTION
 // ==========================================
-/*
--- Run this in your Supabase SQL Editor to set up the database:
+const IS_DEMO = !SITE_CONFIG.supabaseUrl || SITE_CONFIG.supabaseUrl === 'YOUR_SUPABASE_URL';
 
-CREATE TABLE games (
-    id SERIAL PRIMARY KEY,
-    game_id INTEGER UNIQUE NOT NULL,
-    date TIMESTAMPTZ DEFAULT NOW(),
-    players JSONB NOT NULL,
-    winning_team TEXT NOT NULL CHECK (winning_team IN ('Good', 'Evil')),
-    game_mode TEXT,
-    story_teller TEXT,
-    created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
-CREATE TABLE access_codes (
-    code TEXT PRIMARY KEY,
-    description TEXT,
-    created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
--- Insert your confirmation code (change 'your-secret-code' to your actual code)
-INSERT INTO access_codes (code, description) VALUES ('your-secret-code', 'Friends access');
-
--- Enable Row Level Security
-ALTER TABLE games ENABLE ROW LEVEL SECURITY;
-ALTER TABLE access_codes ENABLE ROW LEVEL SECURITY;
-
--- Allow anyone to read games
-CREATE POLICY "Games are viewable by everyone" ON games
-    FOR SELECT USING (true);
-
--- Allow inserts (validation happens in JavaScript)
-CREATE POLICY "Games can be inserted" ON games
-    FOR INSERT WITH CHECK (true);
-
--- Allow reading access codes for validation
-CREATE POLICY "Access codes can be read for validation" ON access_codes
-    FOR SELECT USING (true);
-
--- Create index for faster queries
-CREATE INDEX idx_games_game_id ON games(game_id);
-*/
+/**
+ * Check if the site is running in demo mode.
+ */
+export function isDemoMode() {
+    return IS_DEMO;
+}
 
 // ==========================================
 // SUPABASE CLIENT
@@ -77,11 +26,10 @@ CREATE INDEX idx_games_game_id ON games(game_id);
 let supabase = null;
 
 async function initSupabase() {
-    if (!USE_SUPABASE) return null;
-
-    // Dynamically import Supabase client from CDN
+    if (IS_DEMO) return null;
+    if (supabase) return supabase;
     const { createClient } = await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
-    supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    supabase = createClient(SITE_CONFIG.supabaseUrl, SITE_CONFIG.supabaseAnonKey);
     return supabase;
 }
 
@@ -91,38 +39,34 @@ async function initSupabase() {
 
 /**
  * Fetch all games from the database.
+ * Returns demo data when Supabase is not configured.
  * @returns {Promise<Array>} Array of game objects
  */
 export async function fetchGames() {
-    if (USE_SUPABASE) {
-        await initSupabase();
-        const { data, error } = await supabase
-            .from('games')
-            .select('*')
-            .order('game_id', { ascending: true });
-
-        if (error) {
-            console.error('Error fetching games:', error);
-            throw error;
-        }
-
-        // Convert Supabase format to match gamelog.json format
-        return data.map(game => ({
-            game_id: game.game_id,
-            date: game.date,
-            players: game.players,
-            winning_team: game.winning_team,
-            game_mode: game.game_mode,
-            story_teller: game.story_teller
-        }));
-    } else {
-        // Fetch from local JSON file
-        const response = await fetch(LOCAL_GAMELOG_PATH);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch gamelog.json: ${response.status}`);
-        }
-        return await response.json();
+    if (IS_DEMO) {
+        return DEMO_GAMES;
     }
+
+    await initSupabase();
+    const { data, error } = await supabase
+        .from('games')
+        .select('*')
+        .order('game_id', { ascending: true });
+
+    if (error) {
+        console.error('Error fetching games:', error);
+        throw error;
+    }
+
+    return data.map(game => ({
+        game_id: game.game_id,
+        date: game.date,
+        players: game.players,
+        winning_team: game.winning_team,
+        game_mode: game.game_mode,
+        story_teller: game.story_teller,
+        modifiers: game.modifiers || null
+    }));
 }
 
 /**
@@ -131,24 +75,18 @@ export async function fetchGames() {
  * @returns {Promise<boolean>} True if code is valid
  */
 export async function validateAccessCode(code) {
-    if (USE_SUPABASE) {
-        await initSupabase();
-        // Use RPC function to validate code securely (codes are not exposed)
-        const { data, error } = await supabase
-            .rpc('validate_access_code', { input_code: code });
+    if (IS_DEMO) return false;
 
-        if (error) {
-            console.error('Error validating code:', error);
-            return false;
-        }
+    await initSupabase();
+    const { data, error } = await supabase
+        .rpc('validate_access_code', { input_code: code });
 
-        // RPC returns array with {is_valid, permission_level}
-        return data && data.length > 0 && data[0].is_valid === true;
-    } else {
-        // For local testing, accept a hardcoded test code
-        // In production, this should always use Supabase
-        return code === 'test123';
+    if (error) {
+        console.error('Error validating code:', error);
+        return false;
     }
+
+    return data && data.length > 0 && data[0].is_valid === true;
 }
 
 /**
@@ -158,57 +96,46 @@ export async function validateAccessCode(code) {
  * @returns {Promise<Object>} The inserted game record
  */
 export async function submitGame(gameData, code) {
+    if (IS_DEMO) throw new Error('Demo mode: Configure Supabase in site-config.js to add games.');
+
     // Validate code first
     const isValid = await validateAccessCode(code);
     if (!isValid) {
         throw new Error('Invalid confirmation code');
     }
 
-    if (USE_SUPABASE) {
-        await initSupabase();
+    await initSupabase();
 
-        // Get the next game_id
-        const { data: maxGame } = await supabase
-            .from('games')
-            .select('game_id')
-            .order('game_id', { ascending: false })
-            .limit(1);
+    // Get the next game_id
+    const { data: maxGame } = await supabase
+        .from('games')
+        .select('game_id')
+        .order('game_id', { ascending: false })
+        .limit(1);
 
-        const nextId = (maxGame && maxGame.length > 0) ? maxGame[0].game_id + 1 : 1;
+    const nextId = (maxGame && maxGame.length > 0) ? maxGame[0].game_id + 1 : 1;
 
-        // Insert the new game
-        const { data, error } = await supabase
-            .from('games')
-            .insert({
-                game_id: nextId,
-                date: new Date().toISOString(),
-                players: gameData.players,
-                winning_team: gameData.winning_team,
-                game_mode: gameData.game_mode,
-                story_teller: gameData.story_teller
-            })
-            .select()
-            .single();
+    // Insert the new game
+    const { data, error } = await supabase
+        .from('games')
+        .insert({
+            game_id: nextId,
+            date: new Date().toISOString(),
+            players: gameData.players,
+            winning_team: gameData.winning_team,
+            game_mode: gameData.game_mode,
+            story_teller: gameData.story_teller,
+            modifiers: gameData.modifiers
+        })
+        .select()
+        .single();
 
-        if (error) {
-            console.error('Error submitting game:', error);
-            throw error;
-        }
-
-        return data;
-    } else {
-        // For local testing, just return a mock response
-        console.log('Local mode: Game would be submitted:', gameData);
-        throw new Error('Game submission requires Supabase. Enable Supabase in supabase.js');
+    if (error) {
+        console.error('Error submitting game:', error);
+        throw error;
     }
-}
 
-/**
- * Check if we're using Supabase or local data.
- * @returns {boolean} True if using Supabase
- */
-export function isUsingSupabase() {
-    return USE_SUPABASE;
+    return data;
 }
 
 /**
@@ -252,7 +179,7 @@ export function storePermissionLevel(level) {
 }
 
 // ==========================================
-// PHASE 4B: GAME EDITING FUNCTIONS
+// GAME EDITING FUNCTIONS
 // ==========================================
 
 /**
@@ -261,28 +188,21 @@ export function storePermissionLevel(level) {
  * @returns {Promise<string|null>} 'submit', 'edit', or null if invalid
  */
 export async function validateAccessCodeWithLevel(code) {
-    if (USE_SUPABASE) {
-        await initSupabase();
-        // Use RPC function to validate code securely (codes are not exposed)
-        const { data, error } = await supabase
-            .rpc('validate_access_code', { input_code: code });
+    if (IS_DEMO) return null;
 
-        if (error) {
-            console.error('Error validating code:', error);
-            return null;
-        }
+    await initSupabase();
+    const { data, error } = await supabase
+        .rpc('validate_access_code', { input_code: code });
 
-        // RPC returns array with {is_valid, permission_level}
-        if (data && data.length > 0 && data[0].is_valid === true) {
-            return data[0].permission_level || 'submit';
-        }
-        return null;
-    } else {
-        // For local testing
-        if (code === 'test123') return 'submit';
-        if (code === 'edit123') return 'edit';
+    if (error) {
+        console.error('Error validating code:', error);
         return null;
     }
+
+    if (data && data.length > 0 && data[0].is_valid === true) {
+        return data[0].permission_level || 'submit';
+    }
+    return null;
 }
 
 /**
@@ -291,8 +211,17 @@ export async function validateAccessCodeWithLevel(code) {
  * @returns {Promise<Array>} Array of matching games (summary only)
  */
 export async function searchGames(query) {
-    if (!USE_SUPABASE) {
-        throw new Error('Search requires Supabase');
+    if (IS_DEMO) {
+        const q = query.trim().toLowerCase();
+        const gameIdNum = parseInt(q);
+        return DEMO_GAMES.filter(g => {
+            if (!isNaN(gameIdNum) && q === String(gameIdNum)) return g.game_id === gameIdNum;
+            return (g.story_teller || '').toLowerCase().includes(q) ||
+                   (g.game_mode || '').toLowerCase().includes(q);
+        }).reverse().slice(0, 20).map(g => ({
+            game_id: g.game_id, date: g.date, game_mode: g.game_mode,
+            story_teller: g.story_teller, winning_team: g.winning_team
+        }));
     }
 
     await initSupabase();
@@ -308,10 +237,8 @@ export async function searchGames(query) {
         .limit(20);
 
     if (!isNaN(gameIdNum) && trimmedQuery === String(gameIdNum)) {
-        // Search by game ID
         searchQuery = searchQuery.eq('game_id', gameIdNum);
     } else {
-        // Search by storyteller or script name
         searchQuery = searchQuery.or(`story_teller.ilike.%${trimmedQuery}%,game_mode.ilike.%${trimmedQuery}%`);
     }
 
@@ -331,9 +258,7 @@ export async function searchGames(query) {
  * @returns {Promise<Object>} Full game object
  */
 export async function getGameById(gameId) {
-    if (!USE_SUPABASE) {
-        throw new Error('Requires Supabase');
-    }
+    if (IS_DEMO) return DEMO_GAMES.find(g => g.game_id === gameId) || null;
 
     await initSupabase();
     const { data, error } = await supabase
@@ -358,14 +283,11 @@ export async function getGameById(gameId) {
  * @returns {Promise<Object>} The updated game record
  */
 export async function updateGame(gameId, gameData, code) {
-    // Validate code has edit permission
+    if (IS_DEMO) throw new Error('Demo mode: Configure Supabase in site-config.js to edit games.');
+
     const level = await validateAccessCodeWithLevel(code);
     if (level !== 'edit') {
         throw new Error('Edit access required. Use the edit code.');
-    }
-
-    if (!USE_SUPABASE) {
-        throw new Error('Update requires Supabase');
     }
 
     await initSupabase();
@@ -375,7 +297,8 @@ export async function updateGame(gameId, gameData, code) {
             players: gameData.players,
             winning_team: gameData.winning_team,
             game_mode: gameData.game_mode,
-            story_teller: gameData.story_teller
+            story_teller: gameData.story_teller,
+            modifiers: gameData.modifiers
         })
         .eq('game_id', gameId)
         .select()
@@ -389,8 +312,33 @@ export async function updateGame(gameId, gameData, code) {
     return data;
 }
 
+/**
+ * Delete a game.
+ * @param {number} gameId - The game ID to delete
+ * @param {string} code - The edit confirmation code
+ */
+export async function deleteGame(gameId, code) {
+    if (IS_DEMO) throw new Error('Demo mode: Configure Supabase in site-config.js to delete games.');
+
+    const level = await validateAccessCodeWithLevel(code);
+    if (level !== 'edit') {
+        throw new Error('Edit access required to delete games.');
+    }
+
+    await initSupabase();
+    const { error } = await supabase
+        .from('games')
+        .delete()
+        .eq('game_id', gameId);
+
+    if (error) {
+        console.error('Error deleting game:', error);
+        throw error;
+    }
+}
+
 // ==========================================
-// PHASE 4C: SCRIPTS MANAGEMENT FUNCTIONS
+// SCRIPTS MANAGEMENT FUNCTIONS
 // ==========================================
 
 /**
@@ -398,14 +346,7 @@ export async function updateGame(gameId, gameData, code) {
  * @returns {Promise<Array>} Array of script objects
  */
 export async function fetchScripts() {
-    if (!USE_SUPABASE) {
-        // Return hardcoded list for local testing
-        return [
-            { name: 'Trouble Brewing', category: 'Normal' },
-            { name: 'Bad Moon Rising', category: 'Normal' },
-            { name: 'Sects & Violets', category: 'Normal' }
-        ];
-    }
+    if (IS_DEMO) return [];
 
     await initSupabase();
     const { data, error } = await supabase
@@ -415,7 +356,6 @@ export async function fetchScripts() {
 
     if (error) {
         console.error('Error fetching scripts:', error);
-        // Return empty array if scripts table doesn't exist yet
         return [];
     }
 
@@ -429,14 +369,11 @@ export async function fetchScripts() {
  * @returns {Promise<Object>} The inserted script
  */
 export async function addScript(scriptData, code) {
-    // Validate code has edit permission
-    const level = await validateAccessCodeWithLevel(code);
-    if (level !== 'edit') {
-        throw new Error('Edit access required to add scripts');
-    }
+    if (IS_DEMO) throw new Error('Demo mode: Configure Supabase in site-config.js to add scripts.');
 
-    if (!USE_SUPABASE) {
-        throw new Error('Adding scripts requires Supabase');
+    const level = await validateAccessCodeWithLevel(code);
+    if (level !== 'edit' && level !== 'submit') {
+        throw new Error('Access code required to add scripts');
     }
 
     await initSupabase();
@@ -455,4 +392,29 @@ export async function addScript(scriptData, code) {
     }
 
     return data;
+}
+
+/**
+ * Delete a script.
+ * @param {string} scriptName - The script name to delete
+ * @param {string} code - The edit confirmation code
+ */
+export async function deleteScript(scriptName, code) {
+    if (IS_DEMO) throw new Error('Demo mode: Configure Supabase in site-config.js to delete scripts.');
+
+    const level = await validateAccessCodeWithLevel(code);
+    if (level !== 'edit') {
+        throw new Error('Edit access required to delete scripts.');
+    }
+
+    await initSupabase();
+    const { error } = await supabase
+        .from('scripts')
+        .delete()
+        .eq('name', scriptName);
+
+    if (error) {
+        console.error('Error deleting script:', error);
+        throw error;
+    }
 }

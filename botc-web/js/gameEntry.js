@@ -8,6 +8,7 @@ import {
     validateAccessCodeWithLevel,
     submitGame,
     updateGame,
+    deleteGame,
     getStoredCode,
     storeCode,
     getStoredPermissionLevel,
@@ -15,10 +16,12 @@ import {
     searchGames as searchGamesApi,
     getGameById,
     fetchScripts,
-    addScript
+    addScript,
+    deleteScript
 } from './supabase.js';
 
 import { initAutocomplete } from './autocomplete.js';
+import { FABLED, LORICS } from './config.js';
 
 // Cache for scripts
 let scriptsCache = null;
@@ -26,7 +29,7 @@ let scriptsCache = null;
 // DOM Elements - Game Entry Modal
 let modal, codeStep, formStep, codeInput, verifyBtn, codeError;
 let team1Input, team2Input, evilTeamRadios, winnerRadios;
-let scriptSelect, storytellerInput, submitBtn, submitError, submitSuccess;
+let scriptSelect, storytellerInput, fabledInput, loricsInput, submitBtn, deleteGameBtn, submitError, submitSuccess;
 let formTitle, formSubtitle;
 
 // DOM Elements - Game Search Modal
@@ -59,7 +62,10 @@ export function initGameEntry(onGameAdded, playerNames) {
     winnerRadios = document.querySelectorAll('input[name="winner"]');
     scriptSelect = document.getElementById('script-select');
     storytellerInput = document.getElementById('storyteller-input');
+    fabledInput = document.getElementById('fabled-input');
+    loricsInput = document.getElementById('lorics-input');
     submitBtn = document.getElementById('submit-game-btn');
+    deleteGameBtn = document.getElementById('delete-game-btn');
     submitError = document.getElementById('submit-error');
     submitSuccess = document.getElementById('submit-success');
     formTitle = document.getElementById('form-title');
@@ -101,6 +107,8 @@ export function initGameEntry(onGameAdded, playerNames) {
     initAutocomplete(team1Input, { playerNames: names, multiline: true });
     initAutocomplete(team2Input, { playerNames: names, multiline: true });
     initAutocomplete(storytellerInput, { playerNames: names, multiline: false });
+    initAutocomplete(fabledInput, { multiline: false, commaSeparated: true, candidates: FABLED });
+    initAutocomplete(loricsInput, { multiline: false, commaSeparated: true, candidates: LORICS });
 }
 
 // Re-export for app.js to call on refresh
@@ -186,6 +194,11 @@ function setupEventListeners() {
 
     // Submit game button
     submitBtn.addEventListener('click', submitGameForm);
+
+    // Delete game button
+    if (deleteGameBtn) {
+        deleteGameBtn.addEventListener('click', confirmDeleteGame);
+    }
 
     // Help toggle button
     const helpToggleBtn = document.getElementById('help-toggle-btn');
@@ -450,6 +463,14 @@ function capitalize(str) {
 }
 
 /**
+ * Parse a comma-separated input into a trimmed array of non-empty strings.
+ */
+function parseCommaSeparated(text) {
+    if (!text || !text.trim()) return [];
+    return text.split(',').map(s => s.trim()).filter(s => s.length > 0);
+}
+
+/**
  * Submit the game form
  */
 async function submitGameForm() {
@@ -508,12 +529,20 @@ async function submitGameForm() {
     const winnerNum = parseInt(winner.value);
     const winningTeam = winnerNum === 1 ? team1Team : team2Team;
 
+    // Parse modifiers
+    const fabled = parseCommaSeparated(fabledInput.value);
+    const lorics = parseCommaSeparated(loricsInput.value);
+    const modifiers = (fabled.length > 0 || lorics.length > 0)
+        ? { fabled, lorics }
+        : null;
+
     // Build game data
     const gameData = {
         players: [...team1Players, ...team2Players],
         winning_team: winningTeam,
         game_mode: scriptSelect.value,
-        story_teller: storyteller
+        story_teller: storyteller,
+        modifiers
     };
 
     // Submit or Update
@@ -567,6 +596,8 @@ function clearForm() {
     winnerRadios.forEach(r => r.checked = false);
     scriptSelect.selectedIndex = 0;
     storytellerInput.value = '';
+    fabledInput.value = '';
+    loricsInput.value = '';
 }
 
 /**
@@ -798,6 +829,9 @@ async function loadGameForEdit(gameId) {
         formSubtitle.textContent = 'Modify the game details below';
         formStep.classList.add('edit-mode');
         submitBtn.textContent = 'Update Game';
+        if (deleteGameBtn && getStoredPermissionLevel() === 'edit') {
+            deleteGameBtn.style.display = 'inline-block';
+        }
 
         // Show the game entry modal
         modal.classList.add('active');
@@ -844,6 +878,15 @@ function populateFormWithGame(game) {
 
     // Set storyteller
     storytellerInput.value = game.story_teller || '';
+
+    // Set modifiers
+    if (game.modifiers) {
+        fabledInput.value = (game.modifiers.fabled || []).join(', ');
+        loricsInput.value = (game.modifiers.lorics || []).join(', ');
+    } else {
+        fabledInput.value = '';
+        loricsInput.value = '';
+    }
 }
 
 /**
@@ -879,6 +922,7 @@ function resetToAddMode() {
     formSubtitle.textContent = 'Enter game details below';
     formStep.classList.remove('edit-mode');
     submitBtn.textContent = 'Submit Game';
+    if (deleteGameBtn) deleteGameBtn.style.display = 'none';
     clearForm();
 }
 
@@ -903,6 +947,9 @@ function openNewScriptModal() {
 
     // Focus on the name input
     if (newScriptName) newScriptName.focus();
+
+    // Render script management list (edit permission only)
+    renderScriptManageList();
 }
 
 /**
@@ -936,12 +983,12 @@ async function saveNewScript() {
         return;
     }
 
-    // Need edit permission to add scripts
+    // Need any access code to add scripts
     const storedCode = getStoredCode();
     const level = getStoredPermissionLevel();
 
-    if (!storedCode || level !== 'edit') {
-        showError(newScriptError, 'Edit access required. Please use edit code via "Edit Game" first.');
+    if (!storedCode || (level !== 'edit' && level !== 'submit')) {
+        showError(newScriptError, 'Access code required. Please enter a code via "Add Game" first.');
         return;
     }
 
@@ -972,5 +1019,104 @@ async function saveNewScript() {
     } finally {
         saveNewScriptBtn.disabled = false;
         saveNewScriptBtn.textContent = 'Save Script';
+    }
+}
+
+// ==========================================
+// DELETE GAME
+// ==========================================
+
+/**
+ * Confirm and delete the current game being edited.
+ */
+async function confirmDeleteGame() {
+    if (!editMode || !currentEditGameId) return;
+
+    const confirmed = window.confirm(`Are you sure you want to delete Game #${currentEditGameId}? This cannot be undone.`);
+    if (!confirmed) return;
+
+    hideError(submitError);
+    hideSuccess(submitSuccess);
+
+    try {
+        const code = getStoredCode();
+        await deleteGame(currentEditGameId, code);
+        showSuccess(submitSuccess, `Game #${currentEditGameId} deleted.`);
+
+        clearForm();
+        resetToAddMode();
+
+        if (window._onGameAdded) {
+            await window._onGameAdded();
+        }
+
+        setTimeout(() => {
+            closeModal();
+            hideSuccess(submitSuccess);
+        }, 1500);
+
+    } catch (error) {
+        showError(submitError, error.message || 'Failed to delete game.');
+        console.error('Delete error:', error);
+    }
+}
+
+// ==========================================
+// SCRIPT MANAGEMENT (DELETE)
+// ==========================================
+
+/**
+ * Render the list of existing scripts with delete buttons (edit permission only).
+ */
+function renderScriptManageList() {
+    const section = document.getElementById('script-manage-section');
+    const list = document.getElementById('script-manage-list');
+    if (!section || !list) return;
+
+    const level = getStoredPermissionLevel();
+    if (level !== 'edit' || !scriptsCache || scriptsCache.length === 0) {
+        section.style.display = 'none';
+        return;
+    }
+
+    section.style.display = 'block';
+    list.innerHTML = '';
+
+    for (const script of scriptsCache) {
+        const item = document.createElement('div');
+        item.className = 'script-manage-item';
+
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = script.name;
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'script-delete-btn';
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.addEventListener('click', () => confirmDeleteScript(script.name));
+
+        item.appendChild(nameSpan);
+        item.appendChild(deleteBtn);
+        list.appendChild(item);
+    }
+}
+
+/**
+ * Confirm and delete a script.
+ */
+async function confirmDeleteScript(scriptName) {
+    const confirmed = window.confirm(`Delete script "${scriptName}"? This cannot be undone.`);
+    if (!confirmed) return;
+
+    try {
+        const code = getStoredCode();
+        await deleteScript(scriptName, code);
+
+        // Reload scripts and re-render
+        await loadScripts();
+        renderScriptManageList();
+
+    } catch (error) {
+        console.error('Error deleting script:', error);
+        alert(error.message || 'Failed to delete script.');
     }
 }

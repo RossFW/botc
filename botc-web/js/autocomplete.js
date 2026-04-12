@@ -61,6 +61,8 @@ class AutocompleteInstance {
     constructor(element, options) {
         this.element = element;
         this.multiline = options.multiline !== false;
+        this.commaSeparated = options.commaSeparated || false;
+        this.customCandidates = options.candidates || null;
         this.playerNames = options.playerNames || [];
         this.suggestions = [];
         this.selectedIndex = -1;
@@ -105,6 +107,22 @@ class AutocompleteInstance {
     getContext() {
         const text = this.element.value;
         const cursor = this.element.selectionStart;
+
+        if (this.commaSeparated) {
+            // Comma-separated input: find the current segment
+            const beforeCursor = text.substring(0, cursor);
+            const lastComma = beforeCursor.lastIndexOf(',');
+            const segmentStart = lastComma + 1;
+            const query = beforeCursor.substring(segmentStart).trim();
+            // replaceStart skips whitespace after the comma
+            const trimmedStart = segmentStart + (beforeCursor.substring(segmentStart).length - beforeCursor.substring(segmentStart).trimStart().length);
+            return {
+                type: 'custom',
+                query,
+                replaceStart: trimmedStart,
+                replaceEnd: cursor
+            };
+        }
 
         if (!this.multiline) {
             // Single-line input: always autocomplete player names
@@ -213,7 +231,13 @@ class AutocompleteInstance {
         }
 
         let filtered;
-        if (ctx.type === 'player') {
+        if (ctx.type === 'custom') {
+            filtered = this.filterCandidates(ctx.query, this.customCandidates || []);
+            if (filtered.length === 1 && filtered[0].toLowerCase() === ctx.query.toLowerCase()) {
+                this.hide();
+                return;
+            }
+        } else if (ctx.type === 'player') {
             filtered = this.filterCandidates(ctx.query, this.playerNames);
             // Don't show if query exactly matches a candidate
             if (filtered.length === 1 && filtered[0].toLowerCase() === ctx.query.toLowerCase()) {
@@ -298,12 +322,13 @@ class AutocompleteInstance {
         const before = text.substring(0, ctx.replaceStart);
         const after = text.substring(ctx.replaceEnd);
 
-        // Add a space after the accepted word
-        const newText = before + displayText + ' ' + after;
+        // Use comma+space separator for comma-separated mode, space otherwise
+        const separator = this.commaSeparated ? ', ' : ' ';
+        const newText = before + displayText + separator + after;
         this.element.value = newText;
 
-        // Set cursor after the inserted text + space
-        const newCursor = ctx.replaceStart + displayText.length + 1;
+        // Set cursor after the inserted text + separator
+        const newCursor = ctx.replaceStart + displayText.length + separator.length;
         this.element.setSelectionRange(newCursor, newCursor);
 
         // Trigger input event so any other listeners are notified
@@ -324,7 +349,7 @@ class AutocompleteInstance {
             const item = document.createElement('div');
             item.className = 'autocomplete-item' + (i === this.selectedIndex ? ' selected' : '');
 
-            if (ctx.type === 'player') {
+            if (ctx.type === 'player' || ctx.type === 'custom') {
                 const nameSpan = document.createElement('span');
                 nameSpan.className = 'ac-name';
                 nameSpan.textContent = suggestion;
