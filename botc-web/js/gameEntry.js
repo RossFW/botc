@@ -778,7 +778,7 @@ async function performGameSearch() {
                 scriptSpan.textContent = game.game_mode || 'Unknown Script';
 
                 const stSpan = document.createElement('span');
-                stSpan.textContent = `ST: ${game.story_teller || 'Unknown'}`;
+                stSpan.textContent = `ST: ${(game.story_teller || 'Unknown').replace(/_/g, ' ').replace(/\+/g, ', ')}`;
 
                 const dateSpan = document.createElement('span');
                 dateSpan.textContent = game.date ? new Date(game.date).toLocaleDateString() : '';

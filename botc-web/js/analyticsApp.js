@@ -782,7 +782,7 @@ function showGameHistory(title, badge, games) {
                 <td>#${g.game_id}</td>
                 <td>${g.date ? new Date(g.date).toLocaleDateString() : '-'}</td>
                 <td class="${g.winning_team === 'Good' ? 'good-text' : 'evil-text'}">${g.winning_team}</td>
-                <td>${(g.story_teller || '-').replace(/_/g, ' ')}</td>
+                <td>${(g.story_teller || '-').replace(/_/g, ' ').replace(/\+/g, ', ')}</td>
                 <td>${modTags.length > 0 ? modTags.join(', ') : '-'}</td>
             `;
             row.addEventListener('click', () => showGameDetail(g));
@@ -813,7 +813,7 @@ function showGameDetail(game) {
     document.getElementById('game-detail-title').textContent = `Game #${game.game_id}`;
     document.getElementById('game-detail-script').textContent = game.game_mode || 'Unknown';
     document.getElementById('game-detail-date').textContent = game.date ? new Date(game.date).toLocaleDateString() : '-';
-    document.getElementById('game-detail-st').textContent = (game.story_teller || '-').replace(/_/g, ' ');
+    document.getElementById('game-detail-st').textContent = (game.story_teller || '-').replace(/_/g, ' ').replace(/\+/g, ', ');
 
     const winnerEl = document.getElementById('game-detail-winner');
     winnerEl.textContent = game.winning_team;
