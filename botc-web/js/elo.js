@@ -4,6 +4,7 @@
  */
 
 import SITE_CONFIG from './site-config.js';
+import { categorizeScript } from './config.js';
 
 // Constants (from site-config.js)
 export const DEFAULT_RATING = SITE_CONFIG.defaultRating || 1500;
@@ -157,6 +158,11 @@ export function recalcAll(gameLog) {
         const resultGood = game.winning_team === "Good" ? 1 : 0;
         const resultEvil = game.winning_team === "Evil" ? 1 : 0;
 
+        // Teensyville games count for half ELO impact
+        const kFactor = categorizeScript(game.game_mode) === 'Teensyville'
+            ? ELO_K_FACTOR * 0.5
+            : ELO_K_FACTOR;
+
         // Update each player's rating
         for (const p of game.players) {
             const player = players[p.name];
@@ -164,9 +170,9 @@ export function recalcAll(gameLog) {
 
             let delta;
             if (p.team === "Good") {
-                delta = ELO_K_FACTOR * (resultGood - expGood);
+                delta = kFactor * (resultGood - expGood);
             } else {
-                delta = ELO_K_FACTOR * (resultEvil - expEvil);
+                delta = kFactor * (resultEvil - expEvil);
             }
 
             const newRating = ratingBefore + delta;
