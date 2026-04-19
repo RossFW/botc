@@ -597,8 +597,8 @@ export class StorytellerAnalytics {
         return Object.values(stats).map(s => {
             const good_pct = s.games > 0 ? (s.good_wins / s.games * 100) : 0;
             const evil_pct = s.games > 0 ? (s.evil_wins / s.games * 100) : 0;
-            // Balance: 100 = perfect (50/50), 0 = totally imbalanced (100% one side)
-            const balance = 100 - 2 * Math.abs(50 - good_pct);
+            // Balance: 100 = perfect (50/50), 50 = totally imbalanced (100% one side)
+            const balance = 100 - Math.abs(50 - good_pct);
             return {
                 ...s,
                 good_pct,

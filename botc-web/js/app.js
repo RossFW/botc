@@ -436,7 +436,9 @@ function showPlayerModal(player) {
     // Render rank chart (uses the `players` global, which has been recalc'd for current filter)
     const rankContainer = document.getElementById('rank-chart');
     const rankHistory = getRankHistory(players, player.name, MIN_GAMES_FOR_LEADERBOARD);
-    renderRankChart(rankHistory, rankContainer);
+    // Pass full ratingHistory gameNumbers so both charts share the same x-axis
+    const allGameNumbers = player.ratingHistory.map(h => h.gameNumber);
+    renderRankChart(rankHistory, allGameNumbers, rankContainer);
 }
 
 /**
@@ -595,8 +597,11 @@ function renderRatingChart(player, container) {
 
 /**
  * Render rank / percentile over time chart
+ * @param {Array} rankHistory - Array of {gameNumber, rank, totalEligible, percentile}
+ * @param {Array} allGameNumbers - All game numbers the player participated in (for x-axis alignment)
+ * @param {HTMLCanvasElement} container - Canvas to render into
  */
-function renderRankChart(rankHistory, container) {
+function renderRankChart(rankHistory, allGameNumbers, container) {
     if (!container) return;
     if (container.chart) {
         container.chart.destroy();
@@ -614,9 +619,17 @@ function renderRankChart(rankHistory, container) {
         return;
     }
 
-    const labels = rankHistory.map(h => h.gameNumber);
-    const ranks = rankHistory.map(h => h.rank);
-    const percentiles = rankHistory.map(h => h.percentile);
+    // Build ranks/percentiles arrays matching allGameNumbers — use null for ineligible games
+    const rankByGame = new Map(rankHistory.map(h => [h.gameNumber, h]));
+    const labels = allGameNumbers;
+    const ranks = allGameNumbers.map(n => {
+        const h = rankByGame.get(n);
+        return h ? h.rank : null;
+    });
+    const percentiles = allGameNumbers.map(n => {
+        const h = rankByGame.get(n);
+        return h ? h.percentile : null;
+    });
     const maxRank = Math.max(...rankHistory.map(h => h.totalEligible));
 
     container.chart = new Chart(ctx, {
@@ -632,6 +645,7 @@ function renderRankChart(rankHistory, container) {
                     yAxisID: 'y',
                     tension: 0.1,
                     pointRadius: 3,
+                    spanGaps: false,
                 },
                 {
                     label: 'Percentile',
@@ -641,6 +655,7 @@ function renderRankChart(rankHistory, container) {
                     yAxisID: 'y1',
                     tension: 0.1,
                     pointRadius: 2,
+                    spanGaps: false,
                 },
             ],
         },
@@ -658,7 +673,9 @@ function renderRankChart(rankHistory, container) {
                     borderWidth: 1,
                     callbacks: {
                         label: (context) => {
-                            const entry = rankHistory[context.dataIndex];
+                            const gameNum = allGameNumbers[context.dataIndex];
+                            const entry = rankByGame.get(gameNum);
+                            if (!entry) return null;
                             if (context.dataset.label.startsWith('Rank')) {
                                 return `Rank: ${entry.rank} of ${entry.totalEligible}`;
                             }
