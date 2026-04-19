@@ -81,6 +81,7 @@ async function loadData() {
     updateCharactersTab();
     updateModifiersTab();
     updateGameSizeTab();
+    updateStorytellersTab();
 }
 
 /**
@@ -94,6 +95,9 @@ function setupEventListeners() {
 
     // Storyteller filter
     document.getElementById('storyteller-filter').addEventListener('change', onFilterChange);
+
+    // Game type filter
+    document.getElementById('game-type-filter').addEventListener('change', onFilterChange);
 
     // Modifier filter
     document.getElementById('modifier-filter').addEventListener('change', onFilterChange);
@@ -123,6 +127,7 @@ function setupEventListeners() {
             closeGameDetail();
             closeScriptDetail();
             closeCharacterDetail();
+            closeStorytellerDetail();
         }
     });
 
@@ -141,6 +146,15 @@ function setupEventListeners() {
         gameModal.querySelector('.modal-close').onclick = closeGameDetail;
         gameModal.addEventListener('click', (e) => {
             if (e.target === gameModal) closeGameDetail();
+        });
+    }
+
+    // Storyteller detail modal close
+    const stModal = document.getElementById('storyteller-detail-modal');
+    if (stModal) {
+        stModal.querySelector('.modal-close').onclick = closeStorytellerDetail;
+        stModal.addEventListener('click', (e) => {
+            if (e.target === stModal) closeStorytellerDetail();
         });
     }
 }
@@ -260,7 +274,8 @@ function populateScriptFilterDropdown() {
 function onFilterChange() {
     const storyteller = document.getElementById('storyteller-filter').value;
     const modifierFilter = document.getElementById('modifier-filter').value;
-    currentAnalytics = new StorytellerAnalytics(allGames, storyteller, modifierFilter);
+    const gameTypeFilter = document.getElementById('game-type-filter').value;
+    currentAnalytics = new StorytellerAnalytics(allGames, storyteller, modifierFilter, gameTypeFilter);
 
     // Update all displays
     updateSummary();
@@ -268,6 +283,7 @@ function onFilterChange() {
     updateCharactersTab();
     updateModifiersTab();
     updateGameSizeTab();
+    updateStorytellersTab();
     populateGameSizePlayerFilter();
 
     // Reset player tab
@@ -813,7 +829,31 @@ function showGameDetail(game) {
     document.getElementById('game-detail-title').textContent = `Game #${game.game_id}`;
     document.getElementById('game-detail-script').textContent = game.game_mode || 'Unknown';
     document.getElementById('game-detail-date').textContent = game.date ? new Date(game.date).toLocaleDateString() : '-';
-    document.getElementById('game-detail-st').textContent = (game.story_teller || '-').replace(/_/g, ' ').replace(/\+/g, ', ');
+
+    // Render storyteller(s) as clickable spans
+    const stEl = document.getElementById('game-detail-st');
+    stEl.innerHTML = '';
+    const stVal = game.story_teller || '';
+    if (!stVal) {
+        stEl.textContent = '-';
+    } else {
+        const names = stVal.split('+').map(p => p.trim()).filter(p => p);
+        names.forEach((name, i) => {
+            const span = document.createElement('span');
+            span.textContent = name.replace(/_/g, ' ');
+            span.className = 'clickable-st';
+            span.style.cursor = 'pointer';
+            span.style.textDecoration = 'underline';
+            span.addEventListener('click', () => {
+                closeGameDetail();
+                showStorytellerDetail(name);
+            });
+            stEl.appendChild(span);
+            if (i < names.length - 1) {
+                stEl.appendChild(document.createTextNode(', '));
+            }
+        });
+    }
 
     const winnerEl = document.getElementById('game-detail-winner');
     winnerEl.textContent = game.winning_team;
@@ -1071,6 +1111,171 @@ function populateGameSizePlayerFilter() {
         option.value = name;
         option.textContent = name.replace(/_/g, ' ');
         select.appendChild(option);
+    });
+}
+
+// ==========================================
+// STORYTELLERS TAB
+// ==========================================
+
+let stWinRateChart = null;
+
+/**
+ * Update the Storytellers tab.
+ */
+function updateStorytellersTab() {
+    const tbody = document.getElementById('storytellers-body');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    const stats = currentAnalytics.getStorytellerStats();
+
+    if (stats.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = '<td colspan="5" style="text-align:center; opacity:0.5;">No storytellers found</td>';
+        tbody.appendChild(row);
+        return;
+    }
+
+    // Apply sort
+    const sortCol = currentSortColumn['storytellers-table'] || 'games';
+    const sortAsc = currentSortAscending['storytellers-table'] || false;
+
+    stats.sort((a, b) => {
+        let aVal = a[sortCol], bVal = b[sortCol];
+        if (sortCol === 'name') {
+            aVal = a.name.toLowerCase();
+            bVal = b.name.toLowerCase();
+        }
+        if (sortAsc) return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+        return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
+    });
+
+    for (const s of stats) {
+        const row = document.createElement('tr');
+        row.style.cursor = 'pointer';
+        row.innerHTML = `
+            <td>${s.name.replace(/_/g, ' ')}</td>
+            <td>${s.games}</td>
+            <td class="good-text">${s.good_pct.toFixed(1)}%</td>
+            <td class="evil-text">${s.evil_pct.toFixed(1)}%</td>
+            <td>${s.balance.toFixed(1)}</td>
+        `;
+        row.addEventListener('click', () => showStorytellerDetail(s.name));
+        tbody.appendChild(row);
+    }
+}
+
+/**
+ * Show the storyteller detail modal.
+ */
+function showStorytellerDetail(storytellerName) {
+    const modal = document.getElementById('storyteller-detail-modal');
+    if (!modal) return;
+
+    const stats = currentAnalytics.getStorytellerStats().find(s => s.name === storytellerName);
+    if (!stats) return;
+
+    document.getElementById('st-detail-name').textContent = storytellerName.replace(/_/g, ' ');
+    document.getElementById('st-detail-badge').textContent = 'Storyteller';
+    document.getElementById('st-detail-games').textContent = stats.games;
+    document.getElementById('st-detail-good').textContent = `${stats.good_pct.toFixed(1)}%`;
+    document.getElementById('st-detail-evil').textContent = `${stats.evil_pct.toFixed(1)}%`;
+    document.getElementById('st-detail-balance').textContent = stats.balance.toFixed(1);
+
+    // Render the Good Win % over time chart
+    const history = currentAnalytics.getStorytellerHistory(storytellerName);
+    renderStorytellerChart(history);
+
+    // Wire up game history button
+    const gamesBtn = document.getElementById('st-detail-games-btn');
+    if (gamesBtn) {
+        gamesBtn.onclick = () => {
+            closeStorytellerDetail();
+            const games = currentAnalytics.games.filter(g => {
+                const stVal = g.story_teller || '';
+                const names = stVal.split('+').map(p => p.trim()).filter(p => p);
+                return names.includes(storytellerName);
+            });
+            showGameHistory(storytellerName.replace(/_/g, ' '), 'Storyteller', games);
+        };
+    }
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+/**
+ * Close the storyteller detail modal.
+ */
+function closeStorytellerDetail() {
+    const modal = document.getElementById('storyteller-detail-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        if (stWinRateChart) {
+            stWinRateChart.destroy();
+            stWinRateChart = null;
+        }
+    }
+}
+
+/**
+ * Render the ST Good Win % over time chart.
+ */
+function renderStorytellerChart(history) {
+    const canvas = document.getElementById('st-winrate-chart');
+    if (!canvas) return;
+
+    if (stWinRateChart) {
+        stWinRateChart.destroy();
+        stWinRateChart = null;
+    }
+
+    const labels = history.map(h => `Game ${h.games_so_far}`);
+    const data = history.map(h => h.good_win_pct);
+
+    stWinRateChart = new Chart(canvas, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: 'Good Win %',
+                data,
+                borderColor: '#4ade80',
+                backgroundColor: 'rgba(74, 222, 128, 0.1)',
+                fill: true,
+                tension: 0.2,
+                pointRadius: 3
+            }, {
+                label: '50% Balance Line',
+                data: labels.map(() => 50),
+                borderColor: 'rgba(167, 139, 250, 0.6)',
+                borderDash: [5, 5],
+                borderWidth: 1,
+                pointRadius: 0,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    min: 0,
+                    max: 100,
+                    ticks: { color: '#a0a0a0', callback: v => v + '%' },
+                    grid: { color: 'rgba(255, 255, 255, 0.05)' }
+                },
+                x: {
+                    ticks: { color: '#a0a0a0' },
+                    grid: { color: 'rgba(255, 255, 255, 0.05)' }
+                }
+            },
+            plugins: {
+                legend: { labels: { color: '#eaeaea' } }
+            }
+        }
     });
 }
 

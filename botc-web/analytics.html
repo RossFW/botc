@@ -45,6 +45,12 @@
                 <select id="storyteller-filter">
                     <option value="All">All Games</option>
                 </select>
+                <label for="game-type-filter">Game Type:</label>
+                <select id="game-type-filter">
+                    <option value="all">All Games</option>
+                    <option value="normal">Normal Only</option>
+                    <option value="teensyville">Teensyville Only</option>
+                </select>
                 <label for="modifier-filter">Modifiers:</label>
                 <select id="modifier-filter">
                     <option value="all">All Games</option>
@@ -70,6 +76,7 @@
                 <button class="tab-btn" data-tab="head-to-head">Head-to-Head</button>
                 <button class="tab-btn" data-tab="modifiers">Modifiers</button>
                 <button class="tab-btn" data-tab="game-size">Game Size</button>
+                <button class="tab-btn" data-tab="storytellers">Storytellers</button>
             </div>
 
             <!-- Scripts Tab -->
@@ -411,6 +418,72 @@
                         <tbody id="game-size-body">
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <!-- Storytellers Tab -->
+            <div id="storytellers-tab" class="tab-content">
+                <p class="st-explanation">
+                    A balanced storyteller creates games where Good and Evil win roughly equally — the lower the <strong>|50% − Good Win %|</strong> score, the more balanced their games.
+                </p>
+                <div class="table-container">
+                    <table class="analytics-table" id="storytellers-table">
+                        <thead>
+                            <tr>
+                                <th data-sort="name">Storyteller</th>
+                                <th data-sort="games">Games Run</th>
+                                <th data-sort="good_pct">Good Win %</th>
+                                <th data-sort="evil_pct">Evil Win %</th>
+                                <th data-sort="balance">Balance Score</th>
+                            </tr>
+                        </thead>
+                        <tbody id="storytellers-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Storyteller Detail Modal -->
+        <div class="modal-overlay" id="storyteller-detail-modal">
+            <div class="modal character-detail-modal">
+                <button class="modal-close">&times;</button>
+
+                <div class="char-detail-header">
+                    <h2 id="st-detail-name">Storyteller</h2>
+                    <span class="role-type-badge" id="st-detail-badge">Storyteller</span>
+                </div>
+
+                <div class="char-detail-summary">
+                    <div class="char-stat-card">
+                        <div class="stat-value" id="st-detail-games">0</div>
+                        <div class="stat-label">Games Run</div>
+                    </div>
+                    <div class="char-stat-card good">
+                        <div class="stat-value" id="st-detail-good">0%</div>
+                        <div class="stat-label">Good Win %</div>
+                    </div>
+                    <div class="char-stat-card evil">
+                        <div class="stat-value" id="st-detail-evil">0%</div>
+                        <div class="stat-label">Evil Win %</div>
+                    </div>
+                    <div class="char-stat-card">
+                        <div class="stat-value" id="st-detail-balance">0</div>
+                        <div class="stat-label">Balance Score</div>
+                    </div>
+                </div>
+
+                <!-- Good Win % over time chart -->
+                <div class="char-detail-section">
+                    <h3>Good Win % Over Time</h3>
+                    <div class="st-chart-container">
+                        <canvas id="st-winrate-chart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Game history button -->
+                <div class="char-detail-section" style="text-align: center;">
+                    <button id="st-detail-games-btn" class="primary-btn" style="font-size: 0.9rem; padding: 8px 20px;">View Game History</button>
                 </div>
             </div>
         </div>

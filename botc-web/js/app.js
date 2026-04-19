@@ -2,9 +2,10 @@
  * Blood on the Clocktower Stats - Main Application
  */
 
-import { recalcAll, getLeaderboard, pctToStr, getRatingDelta } from './elo.js';
+import { recalcAll, getLeaderboard, pctToStr, getRatingDelta, MIN_GAMES_FOR_LEADERBOARD } from './elo.js';
 import { fetchGames, isDemoMode } from './supabase.js';
 import { initGameEntry, updatePlayerNames } from './gameEntry.js';
+import { categorizeScript } from './config.js';
 import SITE_CONFIG from './site-config.js';
 
 // Global state
@@ -12,6 +13,7 @@ let gameLog = [];
 let players = {};
 let leaderboard = [];
 let currentSort = { column: 'rating', ascending: false };
+let currentGameTypeFilter = 'all'; // 'all' | 'normal' | 'teensyville'
 
 // DOM Elements
 const loadingEl = document.getElementById('loading');
@@ -20,6 +22,7 @@ const contentEl = document.getElementById('content');
 const tableBodyEl = document.getElementById('leaderboard-body');
 const gameRangeInput = document.getElementById('game-range');
 const clearRangeBtn = document.getElementById('clear-range');
+const gameTypeFilterEl = document.getElementById('game-type-filter');
 
 // Stats elements
 const totalGamesEl = document.getElementById('total-games');
@@ -55,11 +58,12 @@ async function init() {
         // Fetch game data
         gameLog = await fetchGames();
 
-        // Calculate ELO ratings
-        players = recalcAll(gameLog);
+        // Update min games note in UI
+        const minGamesNote = document.getElementById('min-games-note');
+        if (minGamesNote) minGamesNote.textContent = MIN_GAMES_FOR_LEADERBOARD;
 
-        // Generate leaderboard
-        leaderboard = getLeaderboard(players);
+        // Calculate ELO ratings based on current filter
+        recalcForFilter();
 
         // Update stats summary
         updateStatsSummary();
@@ -117,11 +121,8 @@ async function refreshData() {
         // Refetch games
         gameLog = await fetchGames();
 
-        // Recalculate ELO ratings
-        players = recalcAll(gameLog);
-
-        // Regenerate leaderboard
-        leaderboard = getLeaderboard(players);
+        // Recalculate ELO ratings based on current filter
+        recalcForFilter();
 
         // Update display
         updateStatsSummary();
@@ -136,10 +137,30 @@ async function refreshData() {
 }
 
 /**
+ * Filter games by the current game type filter.
+ * @returns {Array} Filtered game log
+ */
+function getFilteredGames() {
+    if (currentGameTypeFilter === 'all') return gameLog;
+    const targetCategory = currentGameTypeFilter === 'normal' ? 'Normal' : 'Teensyville';
+    return gameLog.filter(g => categorizeScript(g.game_mode) === targetCategory);
+}
+
+/**
+ * Recalculate ELO and leaderboard based on current game type filter.
+ */
+function recalcForFilter() {
+    const filteredGames = getFilteredGames();
+    players = recalcAll(filteredGames);
+    leaderboard = getLeaderboard(players);
+}
+
+/**
  * Update the stats summary cards
  */
 function updateStatsSummary() {
-    const totalGames = gameLog.length;
+    const filteredGames = getFilteredGames();
+    const totalGames = filteredGames.length;
     const noGamesMsg = document.getElementById('no-games-msg');
 
     if (totalGames === 0) {
@@ -154,9 +175,9 @@ function updateStatsSummary() {
     // Hide message
     if (noGamesMsg) noGamesMsg.style.display = 'none';
 
-    const goodWins = gameLog.filter(g => g.winning_team === 'Good').length;
-    const evilWins = gameLog.filter(g => g.winning_team === 'Evil').length;
-    const uniquePlayers = new Set(gameLog.flatMap(g => g.players.map(p => p.name))).size;
+    const goodWins = filteredGames.filter(g => g.winning_team === 'Good').length;
+    const evilWins = filteredGames.filter(g => g.winning_team === 'Evil').length;
+    const uniquePlayers = new Set(filteredGames.flatMap(g => g.players.map(p => p.name))).size;
 
     totalGamesEl.textContent = totalGames;
     totalPlayersEl.textContent = uniquePlayers;
@@ -349,6 +370,16 @@ function setupEventListeners() {
         gameRangeInput.value = '';
         renderLeaderboard();
     });
+
+    // Game type filter
+    if (gameTypeFilterEl) {
+        gameTypeFilterEl.addEventListener('change', () => {
+            currentGameTypeFilter = gameTypeFilterEl.value;
+            recalcForFilter();
+            updateStatsSummary();
+            renderLeaderboard();
+        });
+    }
 
     // Column sorting
     document.querySelectorAll('.leaderboard-table th[data-sort]').forEach(th => {

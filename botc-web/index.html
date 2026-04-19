@@ -62,13 +62,20 @@
                 <div class="table-header">
                     <h2>Player Rankings</h2>
                     <div class="controls">
-                        <label for="game-range">Game Range:</label>
+                        <label for="game-type-filter">Games:</label>
+                        <select id="game-type-filter">
+                            <option value="all">All Games</option>
+                            <option value="normal">Normal Only</option>
+                            <option value="teensyville">Teensyville Only</option>
+                        </select>
+                        <label for="game-range">Range:</label>
                         <input type="text" id="game-range" placeholder="e.g., 67-69">
                         <button id="clear-range" class="secondary">Clear</button>
                         <button class="add-game-btn" id="add-game-btn">+ Add Game</button>
                         <button class="edit-game-btn secondary" id="edit-game-btn">Edit Game</button>
                     </div>
                 </div>
+                <p class="leaderboard-note">* Players need at least <span id="min-games-note">5</span> games to appear on the leaderboard. Teensyville games count for half ELO impact.</p>
 
                 <table class="leaderboard-table">
                     <thead>

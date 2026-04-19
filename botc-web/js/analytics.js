@@ -337,6 +337,17 @@ function filterByModifier(games, modifierFilter) {
 }
 
 /**
+ * Filter games by game type (Normal/Teensyville).
+ * @param {Array} games - Games to filter
+ * @param {string} gameType - 'all', 'normal', 'teensyville'
+ */
+function filterByGameType(games, gameType) {
+    if (gameType === 'normal') return games.filter(g => categorizeScript(g.game_mode) === 'Normal');
+    if (gameType === 'teensyville') return games.filter(g => categorizeScript(g.game_mode) === 'Teensyville');
+    return games;
+}
+
+/**
  * Compute statistics for games run by a specific storyteller.
  */
 export class StorytellerAnalytics {
@@ -345,9 +356,10 @@ export class StorytellerAnalytics {
      * @param {string} storytellerName - Storyteller to filter by ('All' for all games)
      * @param {string} modifierFilter - Modifier filter: 'all', 'none', 'any', 'fabled', 'lorics'
      */
-    constructor(allGames, storytellerName = 'All', modifierFilter = 'all') {
+    constructor(allGames, storytellerName = 'All', modifierFilter = 'all', gameTypeFilter = 'all') {
         this.storytellerName = storytellerName;
         this.modifierFilter = modifierFilter;
+        this.gameTypeFilter = gameTypeFilter;
 
         // Filter games by storyteller
         let games;
@@ -356,6 +368,9 @@ export class StorytellerAnalytics {
         } else {
             games = allGames.filter(g => hasStoryteller(g, storytellerName));
         }
+
+        // Filter by game type (Normal/Teensyville)
+        games = filterByGameType(games, gameTypeFilter);
 
         // Filter by modifier
         this.games = filterByModifier(games, modifierFilter);
@@ -558,6 +573,68 @@ export class StorytellerAnalytics {
             if (gameHasLorics(g)) loricsCount++;
         }
         return { totalMod, fabledCount, loricsCount };
+    }
+
+    /**
+     * Get per-storyteller statistics from the current filtered games.
+     * @returns {Array} Array of { name, games, good_wins, evil_wins, good_pct, evil_pct, balance }
+     */
+    getStorytellerStats() {
+        const stats = {};
+        for (const game of this.games) {
+            const stVal = game.story_teller || '';
+            if (!stVal) continue;
+            // Split on + for multi-storyteller games — each ST gets credit
+            const names = stVal.split('+').map(p => p.trim()).filter(p => p);
+            for (const name of names) {
+                if (!stats[name]) stats[name] = { name, games: 0, good_wins: 0, evil_wins: 0 };
+                stats[name].games++;
+                if (game.winning_team === 'Good') stats[name].good_wins++;
+                else stats[name].evil_wins++;
+            }
+        }
+
+        return Object.values(stats).map(s => {
+            const good_pct = s.games > 0 ? (s.good_wins / s.games * 100) : 0;
+            const evil_pct = s.games > 0 ? (s.evil_wins / s.games * 100) : 0;
+            return {
+                ...s,
+                good_pct,
+                evil_pct,
+                balance: Math.abs(50 - good_pct)
+            };
+        });
+    }
+
+    /**
+     * Get time-series Good Win % for a storyteller, computed after each game they ran.
+     * @param {string} storytellerName
+     * @returns {Array} [{ game_id, date, good_win_pct, games_so_far }, ...]
+     */
+    getStorytellerHistory(storytellerName) {
+        const history = [];
+        let gamesSoFar = 0;
+        let goodWinsSoFar = 0;
+
+        const sortedGames = [...this.games].sort((a, b) => a.game_id - b.game_id);
+        for (const game of sortedGames) {
+            const stVal = game.story_teller || '';
+            if (!stVal) continue;
+            const names = stVal.split('+').map(p => p.trim()).filter(p => p);
+            if (!names.includes(storytellerName)) continue;
+
+            gamesSoFar++;
+            if (game.winning_team === 'Good') goodWinsSoFar++;
+
+            history.push({
+                game_id: game.game_id,
+                date: game.date,
+                good_win_pct: (goodWinsSoFar / gamesSoFar) * 100,
+                games_so_far: gamesSoFar
+            });
+        }
+
+        return history;
     }
 
     /**

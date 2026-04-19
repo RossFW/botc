@@ -897,3 +897,24 @@
 #game-size-body tr:hover {
     background: rgba(var(--accent-rgb), 0.1);
 }
+
+/* ==========================================
+   STORYTELLERS TAB
+   ========================================== */
+
+.st-explanation {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.st-chart-container {
+    position: relative;
+    height: 240px;
+    margin-top: 0.5rem;
+}
+
+#storytellers-body tr:hover {
+    background: rgba(var(--accent-rgb), 0.1);
+}
