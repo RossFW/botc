@@ -75,7 +75,6 @@
                         <button class="edit-game-btn secondary" id="edit-game-btn">Edit Game</button>
                     </div>
                 </div>
-                <p class="leaderboard-note">* Players need at least <span id="min-games-note">5</span> games to appear on the leaderboard. Teensyville games count for half ELO impact.</p>
 
                 <table class="leaderboard-table">
                     <thead>
@@ -114,6 +113,11 @@
             <h3>Player Name - Rating History</h3>
             <div class="chart-container" style="height: 400px;">
                 <canvas id="rating-chart"></canvas>
+            </div>
+            <h4 class="player-chart-heading">Rank Over Time</h4>
+            <p class="player-chart-subtitle">Only shown for games where you had <span class="min-games-inline">5</span>+ games played (eligible for leaderboard).</p>
+            <div class="chart-container" style="height: 280px;">
+                <canvas id="rank-chart"></canvas>
             </div>
         </div>
     </div>

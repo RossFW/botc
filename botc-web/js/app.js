@@ -2,7 +2,7 @@
  * Blood on the Clocktower Stats - Main Application
  */
 
-import { recalcAll, getLeaderboard, pctToStr, getRatingDelta, MIN_GAMES_FOR_LEADERBOARD } from './elo.js';
+import { recalcAll, getLeaderboard, pctToStr, getRatingDelta, getRankHistory, MIN_GAMES_FOR_LEADERBOARD } from './elo.js';
 import { fetchGames, isDemoMode } from './supabase.js';
 import { initGameEntry, updatePlayerNames } from './gameEntry.js';
 import { categorizeScript } from './config.js';
@@ -421,12 +421,22 @@ function showPlayerModal(player) {
 
     modalTitle.textContent = `${formatPlayerName(player.name)} - Rating History`;
 
+    // Update min games inline label
+    document.querySelectorAll('.min-games-inline').forEach(el => {
+        el.textContent = MIN_GAMES_FOR_LEADERBOARD;
+    });
+
     // Show modal
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 
-    // Render chart using Chart.js
+    // Render rating chart
     renderRatingChart(player, chartContainer);
+
+    // Render rank chart (uses the `players` global, which has been recalc'd for current filter)
+    const rankContainer = document.getElementById('rank-chart');
+    const rankHistory = getRankHistory(players, player.name, MIN_GAMES_FOR_LEADERBOARD);
+    renderRankChart(rankHistory, rankContainer);
 }
 
 /**
@@ -437,10 +447,14 @@ function closePlayerModal() {
     modal.classList.remove('active');
     document.body.style.overflow = '';
 
-    // Destroy existing chart
+    // Destroy existing charts
     const chartContainer = document.getElementById('rating-chart');
     if (chartContainer.chart) {
         chartContainer.chart.destroy();
+    }
+    const rankContainer = document.getElementById('rank-chart');
+    if (rankContainer && rankContainer.chart) {
+        rankContainer.chart.destroy();
     }
 }
 
@@ -573,6 +587,112 @@ function renderRatingChart(player, container) {
                     },
                     min: 0,
                     max: 100,
+                },
+            },
+        },
+    });
+}
+
+/**
+ * Render rank / percentile over time chart
+ */
+function renderRankChart(rankHistory, container) {
+    if (!container) return;
+    if (container.chart) {
+        container.chart.destroy();
+    }
+
+    const ctx = container.getContext('2d');
+
+    if (rankHistory.length === 0) {
+        // Show a placeholder message
+        ctx.clearRect(0, 0, container.width, container.height);
+        ctx.fillStyle = '#a0a0a0';
+        ctx.font = '14px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Not enough games — need at least ${MIN_GAMES_FOR_LEADERBOARD} games played.`, container.width / 2, container.height / 2);
+        return;
+    }
+
+    const labels = rankHistory.map(h => h.gameNumber);
+    const ranks = rankHistory.map(h => h.rank);
+    const percentiles = rankHistory.map(h => h.percentile);
+    const maxRank = Math.max(...rankHistory.map(h => h.totalEligible));
+
+    container.chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [
+                {
+                    label: 'Rank (1 = best)',
+                    data: ranks,
+                    borderColor: '#fbbf24',
+                    backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                    yAxisID: 'y',
+                    tension: 0.1,
+                    pointRadius: 3,
+                },
+                {
+                    label: 'Percentile',
+                    data: percentiles,
+                    borderColor: '#a78bfa',
+                    borderDash: [5, 5],
+                    yAxisID: 'y1',
+                    tension: 0.1,
+                    pointRadius: 2,
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { labels: { color: '#eaeaea' } },
+                tooltip: {
+                    backgroundColor: '#1a1a2e',
+                    titleColor: '#eaeaea',
+                    bodyColor: '#a0a0a0',
+                    borderColor: '#2d3748',
+                    borderWidth: 1,
+                    callbacks: {
+                        label: (context) => {
+                            const entry = rankHistory[context.dataIndex];
+                            if (context.dataset.label.startsWith('Rank')) {
+                                return `Rank: ${entry.rank} of ${entry.totalEligible}`;
+                            }
+                            return `Percentile: ${entry.percentile.toFixed(0)}%`;
+                        }
+                    }
+                },
+            },
+            scales: {
+                x: {
+                    title: { display: true, text: 'Game Number', color: '#a0a0a0' },
+                    ticks: { color: '#a0a0a0' },
+                    grid: { color: '#2d3748' },
+                },
+                y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    reverse: true, // 1 is best, so top of chart
+                    min: 1,
+                    max: maxRank,
+                    title: { display: true, text: 'Rank', color: '#fbbf24' },
+                    ticks: { color: '#fbbf24', stepSize: 1 },
+                    grid: { color: '#2d3748' },
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    min: 0,
+                    max: 100,
+                    title: { display: true, text: 'Percentile', color: '#a78bfa' },
+                    ticks: { color: '#a78bfa', callback: v => v + '%' },
+                    grid: { drawOnChartArea: false },
                 },
             },
         },

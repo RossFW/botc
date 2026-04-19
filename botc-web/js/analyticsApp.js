@@ -1232,7 +1232,7 @@ function renderStorytellerChart(history) {
         stWinRateChart = null;
     }
 
-    const labels = history.map(h => `Game ${h.games_so_far}`);
+    const labels = history.map(h => `#${h.game_id}`);
     const data = history.map(h => h.good_win_pct);
 
     stWinRateChart = new Chart(canvas, {

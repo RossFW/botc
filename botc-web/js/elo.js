@@ -301,3 +301,64 @@ export function getRatingDelta(player, startGame, endGame) {
 
     return ratingAfter - ratingBefore;
 }
+
+/**
+ * Compute the target player's rank and percentile over time.
+ * At each checkpoint (game the player participated in), computes where they ranked
+ * among all eligible players (>= minGames played at that point).
+ *
+ * @param {Object} players - Map of player name to Player object (from recalcAll)
+ * @param {string} targetName - Name of the player to track
+ * @param {number} minGames - Minimum games threshold for eligibility
+ * @returns {Array} [{ gameNumber, rank, totalEligible, percentile }, ...]
+ */
+export function getRankHistory(players, targetName, minGames = MIN_GAMES_FOR_LEADERBOARD) {
+    const target = players[targetName];
+    if (!target) return [];
+
+    // Only compute rank for games where the target was eligible (had >= minGames at that point)
+    // target.ratingHistory[i] is the state AFTER game i, so games played = i + 1
+    const history = [];
+
+    for (let i = 0; i < target.ratingHistory.length; i++) {
+        const gamesPlayedByTarget = i + 1;
+        if (gamesPlayedByTarget < minGames) continue;
+
+        const gameNumber = target.ratingHistory[i].gameNumber;
+
+        // For each player, find their rating state at or before this gameNumber
+        // and whether they had >= minGames at that point
+        const ratingsAtPoint = [];
+        for (const [name, p] of Object.entries(players)) {
+            // Find the latest history entry with gameNumber <= current gameNumber
+            let playerGamesPlayed = 0;
+            let playerRating = null;
+            for (let j = 0; j < p.ratingHistory.length; j++) {
+                if (p.ratingHistory[j].gameNumber <= gameNumber) {
+                    playerGamesPlayed = j + 1;
+                    playerRating = p.ratingHistory[j].rating;
+                } else {
+                    break;
+                }
+            }
+            if (playerRating !== null && playerGamesPlayed >= minGames) {
+                ratingsAtPoint.push({ name, rating: playerRating });
+            }
+        }
+
+        // Sort by rating, find target's rank
+        ratingsAtPoint.sort((a, b) => b.rating - a.rating);
+        const totalEligible = ratingsAtPoint.length;
+        const rank = ratingsAtPoint.findIndex(r => r.name === targetName) + 1;
+        if (rank === 0) continue; // shouldn't happen
+
+        // Percentile: % of players the target is better than
+        // If rank 1 of 10, percentile = 100 * (10-1)/10 = 90 (better than 90%)
+        // If rank 10 of 10, percentile = 0
+        const percentile = totalEligible > 1 ? ((totalEligible - rank) / (totalEligible - 1)) * 100 : 100;
+
+        history.push({ gameNumber, rank, totalEligible, percentile });
+    }
+
+    return history;
+}
