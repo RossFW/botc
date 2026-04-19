@@ -431,7 +431,7 @@
                                 <th data-sort="games">Games Run</th>
                                 <th data-sort="good_pct">Good Win %</th>
                                 <th data-sort="evil_pct">Evil Win %</th>
-                                <th data-sort="balance"><span class="help-tip" data-tip="100 = perfectly balanced 50/50 Good/Evil win rate. 50 = totally imbalanced (100% one side). Score = 100 − |50 − Good Win %|">Balance Score <span class="info-icon">&#9432;</span></span></th>
+                                <th data-sort="balance"><span class="help-tip" data-tip="Distance of Good Win % from 50%. Lower = more balanced games. 0 = perfect 50/50 split.">Δ from 50% <span class="info-icon">&#9432;</span></span></th>
                             </tr>
                         </thead>
                         <tbody id="storytellers-body">
@@ -466,7 +466,7 @@
                     </div>
                     <div class="char-stat-card">
                         <div class="stat-value" id="st-detail-balance">0</div>
-                        <div class="stat-label">Balance Score</div>
+                        <div class="stat-label">Δ from 50%</div>
                     </div>
                 </div>
 
