@@ -61,7 +61,6 @@ async function loadData() {
     // Fetch scripts first so categorizeScript() knows custom categories
     try {
         const scripts = await fetchScripts();
-        console.log('[botc-debug] Loaded scripts from Supabase:', scripts);
         setScriptCategories(scripts);
     } catch (e) {
         console.warn('Could not load scripts for categorization:', e);

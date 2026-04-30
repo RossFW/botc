@@ -2,30 +2,15 @@
  * Analytics module for Blood on the Clocktower stats.
  *
  * This module provides:
- * - Script categorization (Normal vs Teensyville)
+ * - Script categorization (re-exported from config.js — single source of truth)
  * - Character role type lookup
  * - StorytellerAnalytics class for computing per-storyteller stats
  * - Player statistics computation
  */
 
-// ==========================================
-// CONFIGURATION (ported from botc_config.py)
-// ==========================================
-
-// Scripts considered part of the normal rotation
-const NORMAL_SCRIPTS = new Set([
-    "trouble brewing",
-    "bad moon rising",
-    "sects & violets",
-    "trouble in violets",
-    "trouble in legion",
-    "hide & seek",
-    "trouble brewing on expert mode",
-    "trained killer",
-    "irrational behavior",
-    "binary supernovae",
-    "everybody can play"
-]);
+// Re-export script helpers from config.js so they share the dynamic category map
+import { categorizeScript, normalizeScriptName } from './config.js';
+export { categorizeScript, normalizeScriptName };
 
 // Character role type mapping
 const CHARACTER_ROLE_TYPES = {
@@ -195,24 +180,6 @@ const CHARACTER_ROLE_TYPES = {
 // ==========================================
 // UTILITY FUNCTIONS
 // ==========================================
-
-/**
- * Normalize a script name for comparison.
- * @param {string} name - Script name
- * @returns {string} Lowercase, trimmed name
- */
-export function normalizeScriptName(name) {
-    return (name || '').trim().toLowerCase();
-}
-
-/**
- * Categorize a script as 'Normal' or 'Teensyville'.
- * @param {string} name - Script name
- * @returns {string} 'Normal' or 'Teensyville'
- */
-export function categorizeScript(name) {
-    return NORMAL_SCRIPTS.has(normalizeScriptName(name)) ? 'Normal' : 'Teensyville';
-}
 
 /**
  * Normalize a character name for lookup.
