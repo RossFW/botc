@@ -3,9 +3,9 @@
  */
 
 import { recalcAll, getLeaderboard, pctToStr, getRatingDelta, getRankHistory, MIN_GAMES_FOR_LEADERBOARD } from './elo.js';
-import { fetchGames, isDemoMode } from './supabase.js';
+import { fetchGames, fetchScripts, isDemoMode } from './supabase.js';
 import { initGameEntry, updatePlayerNames } from './gameEntry.js';
-import { categorizeScript } from './config.js';
+import { categorizeScript, setScriptCategories } from './config.js';
 import SITE_CONFIG from './site-config.js';
 
 // Global state
@@ -53,6 +53,14 @@ async function init() {
             banner.className = 'demo-banner';
             banner.innerHTML = 'Demo Mode — showing sample data. <a href="https://github.com/RossFW/botc-stats#quick-start-5-steps" target="_blank">Set up your own</a>';
             document.querySelector('.container').prepend(banner);
+        }
+
+        // Fetch scripts first so categorizeScript() knows custom categories
+        try {
+            const scripts = await fetchScripts();
+            setScriptCategories(scripts);
+        } catch (e) {
+            console.warn('Could not load scripts for categorization:', e);
         }
 
         // Fetch game data
@@ -118,6 +126,14 @@ function showContent() {
  */
 async function refreshData() {
     try {
+        // Refetch scripts (in case new ones were added) and games
+        try {
+            const scripts = await fetchScripts();
+            setScriptCategories(scripts);
+        } catch (e) {
+            console.warn('Could not refresh scripts:', e);
+        }
+
         // Refetch games
         gameLog = await fetchGames();
 

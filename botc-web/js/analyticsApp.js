@@ -2,7 +2,8 @@
  * Analytics Application - Main entry point for the analytics dashboard.
  */
 
-import { fetchGames, isDemoMode } from './supabase.js';
+import { fetchGames, fetchScripts, isDemoMode } from './supabase.js';
+import { setScriptCategories } from './config.js';
 import SITE_CONFIG from './site-config.js';
 import {
     StorytellerAnalytics,
@@ -55,6 +56,14 @@ async function loadData() {
         banner.className = 'demo-banner';
         banner.innerHTML = 'Demo Mode — showing sample data. <a href="https://github.com/RossFW/botc-stats#quick-start-5-steps" target="_blank">Set up your own</a>';
         document.querySelector('.container').prepend(banner);
+    }
+
+    // Fetch scripts first so categorizeScript() knows custom categories
+    try {
+        const scripts = await fetchScripts();
+        setScriptCategories(scripts);
+    } catch (e) {
+        console.warn('Could not load scripts for categorization:', e);
     }
 
     allGames = await fetchGames();

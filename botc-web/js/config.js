@@ -19,6 +19,24 @@ export const NORMAL_SCRIPTS = new Set([
     "everybody can play"
 ]);
 
+// Dynamic categories loaded from Supabase scripts table.
+// Populated via setScriptCategories() — overrides/augments NORMAL_SCRIPTS hardcoded list.
+const dynamicScriptCategories = new Map();
+
+/**
+ * Update the dynamic script category map from Supabase.
+ * @param {Array} scripts - Array of {name, category} objects from fetchScripts()
+ */
+export function setScriptCategories(scripts) {
+    dynamicScriptCategories.clear();
+    if (!scripts) return;
+    for (const s of scripts) {
+        if (s && s.name && s.category) {
+            dynamicScriptCategories.set(normalizeScriptName(s.name), s.category);
+        }
+    }
+}
+
 // List of commonly used game modes/scripts for dropdown menus
 export const COMMON_SCRIPTS = [
     "Trouble Brewing",
@@ -245,9 +263,14 @@ export function normalizeScriptName(name) {
 
 /**
  * Categorize a script as 'Normal' or 'Teensyville'.
+ * Checks dynamically loaded scripts (from Supabase) first, then falls back to hardcoded list.
  */
 export function categorizeScript(name) {
-    return NORMAL_SCRIPTS.has(normalizeScriptName(name)) ? "Normal" : "Teensyville";
+    const normalized = normalizeScriptName(name);
+    if (dynamicScriptCategories.has(normalized)) {
+        return dynamicScriptCategories.get(normalized);
+    }
+    return NORMAL_SCRIPTS.has(normalized) ? "Normal" : "Teensyville";
 }
 
 /**
