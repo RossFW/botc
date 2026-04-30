@@ -3,6 +3,32 @@
  * Ported from botc_config.py
  */
 
+import SITE_CONFIG from './site-config.js';
+
+// ==========================================
+// PLAYER PRIVACY
+// ==========================================
+const PLAYER_PRIVACY = SITE_CONFIG.playerPrivacy || {};
+
+/**
+ * Check if a player should be hidden from the leaderboard.
+ * Their games still count toward ELO calculations.
+ */
+export function isHiddenFromLeaderboard(name) {
+    const entry = PLAYER_PRIVACY[name];
+    return !!(entry && entry.hideLeaderboard);
+}
+
+/**
+ * Check if a player should be hidden from analytics views
+ * (Player tab, H2H, "Played By", Storyteller stats, etc.).
+ * Their games still count for other players' stats.
+ */
+export function isHiddenFromAnalytics(name) {
+    const entry = PLAYER_PRIVACY[name];
+    return !!(entry && entry.hideAnalytics);
+}
+
 // Scripts considered part of the normal rotation
 // All other scripts are considered Teensyville (small-player scripts)
 export const NORMAL_SCRIPTS = new Set([

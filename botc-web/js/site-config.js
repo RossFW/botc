@@ -28,6 +28,25 @@ const SITE_CONFIG = {
     // ELO settings
     defaultRating: 1500,    // Starting ELO for new players
     kFactor: 32,            // How much each game affects ratings (higher = more volatile)
+
+    // ==========================================
+    // OPTIONAL: Player Privacy
+    // ==========================================
+    // Players listed here have their stats hidden in the UI but their games
+    // STILL count toward ELO calculations (so opponents' stats remain accurate).
+    //
+    // Player names should match how they're stored in Supabase (underscores for spaces).
+    //
+    //   hideLeaderboard: true  → name doesn't appear on leaderboard, ranks adjust
+    //   hideAnalytics: true    → name removed from Player tab, H2H, "Played By", etc.
+    //
+    // Example:
+    //   playerPrivacy: {
+    //       'Some_Player': { hideLeaderboard: true, hideAnalytics: true },
+    //   },
+    playerPrivacy: {
+        'Kat_Minor': { hideLeaderboard: true, hideAnalytics: true },
+    },
 };
 
 // Export for use in other modules

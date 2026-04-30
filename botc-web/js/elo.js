@@ -4,7 +4,7 @@
  */
 
 import SITE_CONFIG from './site-config.js';
-import { categorizeScript } from './config.js';
+import { categorizeScript, isHiddenFromLeaderboard } from './config.js';
 
 // Constants (from site-config.js)
 export const DEFAULT_RATING = SITE_CONFIG.defaultRating || 1500;
@@ -222,6 +222,11 @@ export function getLeaderboard(players, minGames = MIN_GAMES_FOR_LEADERBOARD) {
             continue;
         }
 
+        // Privacy: skip players who opted out of leaderboard
+        if (isHiddenFromLeaderboard(name)) {
+            continue;
+        }
+
         const winPcts = player.getWinPercentages();
 
         leaderboard.push({
@@ -330,6 +335,9 @@ export function getRankHistory(players, targetName, minGames = MIN_GAMES_FOR_LEA
         // and whether they had >= minGames at that point
         const ratingsAtPoint = [];
         for (const [name, p] of Object.entries(players)) {
+            // Privacy: don't count hidden players in the rank pool
+            if (isHiddenFromLeaderboard(name) && name !== targetName) continue;
+
             // Find the latest history entry with gameNumber <= current gameNumber
             let playerGamesPlayed = 0;
             let playerRating = null;

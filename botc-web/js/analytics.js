@@ -9,7 +9,7 @@
  */
 
 // Re-export script helpers from config.js so they share the dynamic category map
-import { categorizeScript, normalizeScriptName } from './config.js';
+import { categorizeScript, normalizeScriptName, isHiddenFromAnalytics } from './config.js';
 export { categorizeScript, normalizeScriptName };
 
 // Character role type mapping
@@ -238,7 +238,10 @@ export function extractStorytellers(games) {
         if (stVal) {
             // Split on '+' to handle multiple storytellers
             const parts = stVal.split('+').map(p => p.trim()).filter(p => p);
-            parts.forEach(p => storytellers.add(p));
+            parts.forEach(p => {
+                // Privacy: skip hidden storytellers
+                if (!isHiddenFromAnalytics(p)) storytellers.add(p);
+            });
         }
     }
     return Array.from(storytellers).sort();
@@ -554,6 +557,8 @@ export class StorytellerAnalytics {
             // Split on + for multi-storyteller games — each ST gets credit
             const names = stVal.split('+').map(p => p.trim()).filter(p => p);
             for (const name of names) {
+                // Privacy: skip hidden storytellers
+                if (isHiddenFromAnalytics(name)) continue;
                 if (!stats[name]) stats[name] = { name, games: 0, good_wins: 0, evil_wins: 0 };
                 stats[name].games++;
                 if (game.winning_team === 'Good') stats[name].good_wins++;
@@ -735,9 +740,9 @@ export class StorytellerAnalytics {
      * @returns {Array} Sorted array of player names
      */
     getPlayerNames() {
-        return Object.keys(this.playerStats).sort((a, b) =>
-            a.toLowerCase().localeCompare(b.toLowerCase())
-        );
+        return Object.keys(this.playerStats)
+            .filter(name => !isHiddenFromAnalytics(name))
+            .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
     }
 
     /**
@@ -746,6 +751,8 @@ export class StorytellerAnalytics {
      * @returns {Object|null} Player stats or null if not found
      */
     getPlayerStats(playerName) {
+        // Privacy: hidden players return null so their detail view can't be opened directly
+        if (isHiddenFromAnalytics(playerName)) return null;
         return this.playerStats[playerName] || null;
     }
 }
@@ -1020,8 +1027,9 @@ export function getCharacterScriptBreakdown(games, characterName) {
     const sortedLosses = Object.entries(lossesByScript)
         .sort((a, b) => b[1] - a[1]);
 
-    // Sort players by games played (descending)
+    // Sort players by games played (descending), filtering out hidden players
     const sortedPlayers = Object.entries(playerCounts)
+        .filter(([name]) => !isHiddenFromAnalytics(name))
         .sort((a, b) => b[1] - a[1]);
 
     return {
