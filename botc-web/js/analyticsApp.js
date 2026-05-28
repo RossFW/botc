@@ -618,6 +618,7 @@ function updatePlayerRolesTable(stats) {
             <td><span class="role-type-badge ${roleType.toLowerCase()}">${roleType}</span></td>
             <td>${winPct}%</td>
             <td>${r.wins}</td>
+            <td>${r.ties || 0}</td>
             <td>${r.games}</td>
         `;
         row.addEventListener('click', () => {
@@ -803,10 +804,12 @@ function showGameHistory(title, badge, games) {
                 for (const f of (g.modifiers.fabled || [])) modTags.push(f.replace(/_/g, ' '));
                 for (const l of (g.modifiers.lorics || [])) modTags.push(l.replace(/_/g, ' '));
             }
+            const winnerClass = g.winning_team === 'Good' ? 'good-text' :
+                                g.winning_team === 'Evil' ? 'evil-text' : 'tie-text';
             row.innerHTML = `
                 <td>#${g.game_id}</td>
                 <td>${g.date ? new Date(g.date).toLocaleDateString() : '-'}</td>
-                <td class="${g.winning_team === 'Good' ? 'good-text' : 'evil-text'}">${g.winning_team}</td>
+                <td class="${winnerClass}">${g.winning_team}</td>
                 <td>${(g.story_teller || '-').replace(/_/g, ' ').replace(/\+/g, ', ')}</td>
                 <td>${modTags.length > 0 ? modTags.join(', ') : '-'}</td>
             `;
@@ -866,7 +869,9 @@ function showGameDetail(game) {
 
     const winnerEl = document.getElementById('game-detail-winner');
     winnerEl.textContent = game.winning_team;
-    winnerEl.className = 'stat-value ' + (game.winning_team === 'Good' ? 'good-text' : 'evil-text');
+    const winnerClassName = game.winning_team === 'Good' ? 'good-text' :
+                            game.winning_team === 'Evil' ? 'evil-text' : 'tie-text';
+    winnerEl.className = 'stat-value ' + winnerClassName;
 
     // Modifiers
     const modSection = document.getElementById('game-detail-modifiers');
@@ -1048,10 +1053,11 @@ function updateGameSizeTab() {
         if (playerFilter !== 'All' && !g.players.some(p => p.name === playerFilter)) continue;
 
         const size = g.players.length;
-        if (!bySize[size]) bySize[size] = { games: 0, good_wins: 0, evil_wins: 0 };
+        if (!bySize[size]) bySize[size] = { games: 0, good_wins: 0, evil_wins: 0, ties: 0 };
         bySize[size].games++;
         if (g.winning_team === 'Good') bySize[size].good_wins++;
-        else bySize[size].evil_wins++;
+        else if (g.winning_team === 'Evil') bySize[size].evil_wins++;
+        else if (g.winning_team === 'Tie') bySize[size].ties++;
     }
 
     // Sort by player count
@@ -1438,7 +1444,10 @@ function showCharacterDetail(characterName, roleType, elo) {
     // Populate summary stats
     document.getElementById('char-detail-elo').textContent = elo;
     document.getElementById('char-detail-winpct').textContent = `${breakdown.winPct}%`;
-    document.getElementById('char-detail-record').textContent = `${breakdown.totalWins}-${breakdown.totalLosses}`;
+    // W-L or W-L-T record (only show ties if present)
+    document.getElementById('char-detail-record').textContent = breakdown.totalTies > 0
+        ? `${breakdown.totalWins}-${breakdown.totalLosses}-${breakdown.totalTies}`
+        : `${breakdown.totalWins}-${breakdown.totalLosses}`;
     document.getElementById('char-detail-games').textContent = breakdown.totalGames;
 
     // Populate wins by script

@@ -525,9 +525,14 @@ async function submitGameForm() {
         if (!p.initial_team) p.initial_team = team2Team;
     }
 
-    // Determine winning team
-    const winnerNum = parseInt(winner.value);
-    const winningTeam = winnerNum === 1 ? team1Team : team2Team;
+    // Determine winning team (or Tie)
+    let winningTeam;
+    if (winner.value === 'tie') {
+        winningTeam = 'Tie';
+    } else {
+        const winnerNum = parseInt(winner.value);
+        winningTeam = winnerNum === 1 ? team1Team : team2Team;
+    }
 
     // Parse modifiers
     const fabled = parseCommaSeparated(fabledInput.value);
@@ -766,7 +771,7 @@ async function performGameSearch() {
 
                 const winnerSpan = document.createElement('span');
                 winnerSpan.className = `game-result-winner ${(game.winning_team || '').toLowerCase()}`;
-                winnerSpan.textContent = `${game.winning_team} Won`;
+                winnerSpan.textContent = game.winning_team === 'Tie' ? 'Tie' : `${game.winning_team} Won`;
 
                 header.appendChild(gameIdSpan);
                 header.appendChild(winnerSpan);
@@ -867,10 +872,15 @@ function populateFormWithGame(game) {
         r.checked = r.value === '1';
     });
 
-    // Set winner radio
-    const winnerTeamNum = game.winning_team === 'Evil' ? '1' : '2';
+    // Set winner radio (handles Tie too)
+    let winnerValue;
+    if (game.winning_team === 'Tie') {
+        winnerValue = 'tie';
+    } else {
+        winnerValue = game.winning_team === 'Evil' ? '1' : '2';
+    }
     winnerRadios.forEach(r => {
-        r.checked = r.value === winnerTeamNum;
+        r.checked = r.value === winnerValue;
     });
 
     // Set script

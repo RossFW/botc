@@ -32,16 +32,20 @@ export class Player {
         this.gameHistory = [];
         this.gamesOverall = 0;
         this.winsOverall = 0;
+        this.tiesOverall = 0;
         this.gamesGood = 0;
         this.winsGood = 0;
+        this.tiesGood = 0;
         this.gamesEvil = 0;
         this.winsEvil = 0;
+        this.tiesEvil = 0;
     }
 
     /**
      * Record a single game for this player.
+     * @param {string} outcome - 'win', 'loss', or 'tie'
      */
-    recordGame(gameNumber, date, team, role, win, ratingBefore, ratingAfter, initialTeam = null, roles = null) {
+    recordGame(gameNumber, date, team, role, outcome, ratingBefore, ratingAfter, initialTeam = null, roles = null) {
         if (roles === null) {
             roles = [role];
         }
@@ -54,7 +58,8 @@ export class Player {
             date,
             team,
             role,
-            win,
+            outcome, // 'win', 'loss', or 'tie'
+            win: outcome === 'win', // legacy boolean for backward compat
             ratingBefore,
             ratingAfter,
             initialTeam,
@@ -62,27 +67,29 @@ export class Player {
         };
         this.gameHistory.push(record);
 
-        // Update win/loss counters
+        // Update overall counters
         this.gamesOverall += 1;
-        if (win) {
-            this.winsOverall += 1;
-        }
+        if (outcome === 'win') this.winsOverall += 1;
+        else if (outcome === 'tie') this.tiesOverall += 1;
+
+        // Update per-team counters
         if (team === "Good") {
             this.gamesGood += 1;
-            if (win) {
-                this.winsGood += 1;
-            }
+            if (outcome === 'win') this.winsGood += 1;
+            else if (outcome === 'tie') this.tiesGood += 1;
         } else if (team === "Evil") {
             this.gamesEvil += 1;
-            if (win) {
-                this.winsEvil += 1;
-            }
+            if (outcome === 'win') this.winsEvil += 1;
+            else if (outcome === 'tie') this.tiesEvil += 1;
         }
 
-        // Calculate percentages for history snapshot
-        const overallPct = this.gamesOverall > 0 ? (this.winsOverall / this.gamesOverall) * 100 : null;
-        const goodPct = this.gamesGood > 0 ? (this.winsGood / this.gamesGood) * 100 : null;
-        const evilPct = this.gamesEvil > 0 ? (this.winsEvil / this.gamesEvil) * 100 : null;
+        // Win % = pure wins / games. Ties tracked separately, ELO uses 0.5 internally.
+        const overallPct = this.gamesOverall > 0
+            ? (this.winsOverall / this.gamesOverall) * 100 : null;
+        const goodPct = this.gamesGood > 0
+            ? (this.winsGood / this.gamesGood) * 100 : null;
+        const evilPct = this.gamesEvil > 0
+            ? (this.winsEvil / this.gamesEvil) * 100 : null;
 
         this.ratingHistory.push({
             gameNumber,
@@ -95,13 +102,17 @@ export class Player {
     }
 
     /**
-     * Get win percentages
+     * Get win percentages — pure wins / games (ties don't count as half-wins for display).
+     * ELO math still uses 0.5 for ties internally.
      */
     getWinPercentages() {
         return {
-            overall: this.gamesOverall > 0 ? (this.winsOverall / this.gamesOverall) * 100 : null,
-            good: this.gamesGood > 0 ? (this.winsGood / this.gamesGood) * 100 : null,
-            evil: this.gamesEvil > 0 ? (this.winsEvil / this.gamesEvil) * 100 : null,
+            overall: this.gamesOverall > 0
+                ? (this.winsOverall / this.gamesOverall) * 100 : null,
+            good: this.gamesGood > 0
+                ? (this.winsGood / this.gamesGood) * 100 : null,
+            evil: this.gamesEvil > 0
+                ? (this.winsEvil / this.gamesEvil) * 100 : null,
         };
     }
 }
@@ -154,9 +165,10 @@ export function recalcAll(gameLog) {
         const expGood = expectedScore(avgGood, avgEvil);
         const expEvil = 1.0 - expGood;
 
-        // Determine results
-        const resultGood = game.winning_team === "Good" ? 1 : 0;
-        const resultEvil = game.winning_team === "Evil" ? 1 : 0;
+        // Determine results — a tie = 0.5 for both teams (chess convention)
+        const isTie = game.winning_team === "Tie";
+        const resultGood = isTie ? 0.5 : (game.winning_team === "Good" ? 1 : 0);
+        const resultEvil = isTie ? 0.5 : (game.winning_team === "Evil" ? 1 : 0);
 
         // Teensyville games count for half ELO impact
         const kFactor = categorizeScript(game.game_mode) === 'Teensyville'
@@ -178,13 +190,18 @@ export function recalcAll(gameLog) {
             const newRating = ratingBefore + delta;
             player.currentRating = newRating;
 
-            const win = p.team === game.winning_team;
+            // Determine outcome: 'win', 'loss', or 'tie'
+            let outcome;
+            if (isTie) outcome = 'tie';
+            else if (p.team === game.winning_team) outcome = 'win';
+            else outcome = 'loss';
+
             player.recordGame(
                 game.game_id,
                 game.date,
                 p.team,
                 p.role || "",
-                win,
+                outcome,
                 ratingBefore,
                 newRating,
                 p.initial_team,

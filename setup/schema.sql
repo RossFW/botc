@@ -10,7 +10,7 @@ CREATE TABLE games (
     game_id INTEGER UNIQUE NOT NULL,
     date TIMESTAMPTZ DEFAULT NOW(),
     players JSONB NOT NULL,
-    winning_team TEXT NOT NULL CHECK (winning_team IN ('Good', 'Evil')),
+    winning_team TEXT NOT NULL CHECK (winning_team IN ('Good', 'Evil', 'Tie')),
     game_mode TEXT,
     story_teller TEXT,
     modifiers JSONB DEFAULT NULL,

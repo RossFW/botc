@@ -347,8 +347,8 @@ export class StorytellerAnalytics {
 
         this.scriptStats = {};
         this.categoryTotals = {
-            Normal: { games: 0, good_wins: 0, evil_wins: 0 },
-            Teensyville: { games: 0, good_wins: 0, evil_wins: 0 }
+            Normal: { games: 0, good_wins: 0, evil_wins: 0, ties: 0 },
+            Teensyville: { games: 0, good_wins: 0, evil_wins: 0, ties: 0 }
         };
         this.playerStats = {};
         this.modifierStats = { fabled: {}, lorics: {} };
@@ -372,6 +372,7 @@ export class StorytellerAnalytics {
                     games: 0,
                     good_wins: 0,
                     evil_wins: 0,
+                    ties: 0,
                     mod_games: 0
                 };
             }
@@ -382,8 +383,10 @@ export class StorytellerAnalytics {
             }
             if (game.winning_team === 'Good') {
                 this.scriptStats[script].good_wins++;
-            } else {
+            } else if (game.winning_team === 'Evil') {
                 this.scriptStats[script].evil_wins++;
+            } else if (game.winning_team === 'Tie') {
+                this.scriptStats[script].ties++;
             }
         }
 
@@ -393,6 +396,7 @@ export class StorytellerAnalytics {
             this.categoryTotals[cat].games += entry.games;
             this.categoryTotals[cat].good_wins += entry.good_wins;
             this.categoryTotals[cat].evil_wins += entry.evil_wins;
+            this.categoryTotals[cat].ties = (this.categoryTotals[cat].ties || 0) + (entry.ties || 0);
         }
     }
 
@@ -402,6 +406,7 @@ export class StorytellerAnalytics {
     _computePlayerStats() {
         for (const game of this.games) {
             const winningTeam = game.winning_team;
+            const isTie = winningTeam === 'Tie';
             const script = game.game_mode || '';
 
             for (const p of (game.players || [])) {
@@ -409,15 +414,19 @@ export class StorytellerAnalytics {
                 if (!name) continue;
 
                 const team = p.team;
+                const playerWon = !isTie && team === winningTeam;
 
                 if (!this.playerStats[name]) {
                     this.playerStats[name] = {
                         games: 0,
                         wins: 0,
+                        ties: 0,
                         good_games: 0,
                         good_wins: 0,
+                        good_ties: 0,
                         evil_games: 0,
                         evil_wins: 0,
+                        evil_ties: 0,
                         scripts: {},
                         roles: {}
                     };
@@ -426,21 +435,18 @@ export class StorytellerAnalytics {
                 const entry = this.playerStats[name];
                 entry.games++;
 
-                if (team === winningTeam) {
-                    entry.wins++;
-                }
+                if (isTie) entry.ties++;
+                else if (playerWon) entry.wins++;
 
                 // Alignment breakdown
                 if (team === 'Good') {
                     entry.good_games++;
-                    if (team === winningTeam) {
-                        entry.good_wins++;
-                    }
+                    if (isTie) entry.good_ties++;
+                    else if (playerWon) entry.good_wins++;
                 } else if (team === 'Evil') {
                     entry.evil_games++;
-                    if (team === winningTeam) {
-                        entry.evil_wins++;
-                    }
+                    if (isTie) entry.evil_ties++;
+                    else if (playerWon) entry.evil_wins++;
                 }
 
                 // Per-script counts
@@ -448,26 +454,26 @@ export class StorytellerAnalytics {
                     entry.scripts[script] = {
                         games: 0,
                         wins: 0,
+                        ties: 0,
                         good_games: 0,
                         good_wins: 0,
+                        good_ties: 0,
                         evil_games: 0,
-                        evil_wins: 0
+                        evil_wins: 0,
+                        evil_ties: 0
                     };
                 }
                 entry.scripts[script].games++;
-                if (team === winningTeam) {
-                    entry.scripts[script].wins++;
-                }
+                if (isTie) entry.scripts[script].ties++;
+                else if (playerWon) entry.scripts[script].wins++;
                 if (team === 'Good') {
                     entry.scripts[script].good_games++;
-                    if (team === winningTeam) {
-                        entry.scripts[script].good_wins++;
-                    }
+                    if (isTie) entry.scripts[script].good_ties++;
+                    else if (playerWon) entry.scripts[script].good_wins++;
                 } else if (team === 'Evil') {
                     entry.scripts[script].evil_games++;
-                    if (team === winningTeam) {
-                        entry.scripts[script].evil_wins++;
-                    }
+                    if (isTie) entry.scripts[script].evil_ties++;
+                    else if (playerWon) entry.scripts[script].evil_wins++;
                 }
 
                 // Role counts
@@ -475,12 +481,11 @@ export class StorytellerAnalytics {
                 for (const role of rolesList) {
                     if (!role) continue;
                     if (!entry.roles[role]) {
-                        entry.roles[role] = { games: 0, wins: 0 };
+                        entry.roles[role] = { games: 0, wins: 0, ties: 0 };
                     }
                     entry.roles[role].games++;
-                    if (team === winningTeam) {
-                        entry.roles[role].wins++;
-                    }
+                    if (isTie) entry.roles[role].ties++;
+                    else if (playerWon) entry.roles[role].wins++;
                 }
             }
         }
@@ -507,20 +512,22 @@ export class StorytellerAnalytics {
 
             for (const name of fabled) {
                 if (!this.modifierStats.fabled[name]) {
-                    this.modifierStats.fabled[name] = { games: 0, good_wins: 0, evil_wins: 0 };
+                    this.modifierStats.fabled[name] = { games: 0, good_wins: 0, evil_wins: 0, ties: 0 };
                 }
                 this.modifierStats.fabled[name].games++;
                 if (won === 'Good') this.modifierStats.fabled[name].good_wins++;
-                else this.modifierStats.fabled[name].evil_wins++;
+                else if (won === 'Evil') this.modifierStats.fabled[name].evil_wins++;
+                else if (won === 'Tie') this.modifierStats.fabled[name].ties++;
             }
 
             for (const name of lorics) {
                 if (!this.modifierStats.lorics[name]) {
-                    this.modifierStats.lorics[name] = { games: 0, good_wins: 0, evil_wins: 0 };
+                    this.modifierStats.lorics[name] = { games: 0, good_wins: 0, evil_wins: 0, ties: 0 };
                 }
                 this.modifierStats.lorics[name].games++;
                 if (won === 'Good') this.modifierStats.lorics[name].good_wins++;
-                else this.modifierStats.lorics[name].evil_wins++;
+                else if (won === 'Evil') this.modifierStats.lorics[name].evil_wins++;
+                else if (won === 'Tie') this.modifierStats.lorics[name].ties++;
             }
         }
     }
@@ -559,18 +566,22 @@ export class StorytellerAnalytics {
             for (const name of names) {
                 // Privacy: skip hidden storytellers
                 if (isHiddenFromAnalytics(name)) continue;
-                if (!stats[name]) stats[name] = { name, games: 0, good_wins: 0, evil_wins: 0 };
+                if (!stats[name]) stats[name] = { name, games: 0, good_wins: 0, evil_wins: 0, ties: 0 };
                 stats[name].games++;
                 if (game.winning_team === 'Good') stats[name].good_wins++;
-                else stats[name].evil_wins++;
+                else if (game.winning_team === 'Evil') stats[name].evil_wins++;
+                else if (game.winning_team === 'Tie') stats[name].ties++;
             }
         }
 
         return Object.values(stats).map(s => {
+            // Pure win rates — ties tracked separately
             const good_pct = s.games > 0 ? (s.good_wins / s.games * 100) : 0;
             const evil_pct = s.games > 0 ? (s.evil_wins / s.games * 100) : 0;
-            // Δ from 50%: 0 = perfectly balanced, 50 = totally imbalanced (100% one side)
-            const balance = Math.abs(50 - good_pct);
+            // Δ from 50%: 0 = perfectly balanced. Ties contribute to balance (count as 0.5 good).
+            // For balance calc only, treat tie as half-good-win.
+            const balanced_good_pct = s.games > 0 ? ((s.good_wins + 0.5 * s.ties) / s.games * 100) : 0;
+            const balance = Math.abs(50 - balanced_good_pct);
             return {
                 ...s,
                 good_pct,
@@ -618,14 +629,17 @@ export class StorytellerAnalytics {
     getSummary() {
         const totalGames = this.games.length;
         const goodWins = this.games.filter(g => g.winning_team === 'Good').length;
-        const evilWins = totalGames - goodWins;
+        const evilWins = this.games.filter(g => g.winning_team === 'Evil').length;
+        const ties = this.games.filter(g => g.winning_team === 'Tie').length;
 
         return {
             totalGames,
             goodWins,
             evilWins,
+            ties,
             goodPct: totalGames > 0 ? (goodWins / totalGames * 100).toFixed(1) : '0.0',
-            evilPct: totalGames > 0 ? (evilWins / totalGames * 100).toFixed(1) : '0.0'
+            evilPct: totalGames > 0 ? (evilWins / totalGames * 100).toFixed(1) : '0.0',
+            tiePct: totalGames > 0 ? (ties / totalGames * 100).toFixed(1) : '0.0'
         };
     }
 
@@ -796,22 +810,33 @@ export function analyzeHeadToHead(games, playerA, playerB) {
     const sameTeamGames = togetherGames.filter(g => g.a_team === g.b_team);
     const oppositeTeamGames = togetherGames.filter(g => g.a_team !== g.b_team);
 
+    // Helpers — a Tie counts as 0 wins for either player but tracked separately
+    const isTeamWin = (g, team) => g.winning_team !== 'Tie' && g.winning_team === team;
+    const isGameTie = (g) => g.winning_team === 'Tie';
+
     // Same team breakdown
     const sameTeamBothGood = sameTeamGames.filter(g => g.a_team === 'Good');
     const sameTeamBothEvil = sameTeamGames.filter(g => g.a_team === 'Evil');
 
-    const sameTeamWinsBothGood = sameTeamBothGood.filter(g => g.winning_team === g.a_team).length;
-    const sameTeamWinsBothEvil = sameTeamBothEvil.filter(g => g.winning_team === g.a_team).length;
+    const sameTeamWinsBothGood = sameTeamBothGood.filter(g => isTeamWin(g, g.a_team)).length;
+    const sameTeamWinsBothEvil = sameTeamBothEvil.filter(g => isTeamWin(g, g.a_team)).length;
+    const sameTeamTiesBothGood = sameTeamBothGood.filter(isGameTie).length;
+    const sameTeamTiesBothEvil = sameTeamBothEvil.filter(isGameTie).length;
+    const sameTeamTies = sameTeamGames.filter(isGameTie).length;
 
     // Opposite teams breakdown
     const oppAGood = oppositeTeamGames.filter(g => g.a_team === 'Good'); // A is Good, B is Evil
     const oppAEvil = oppositeTeamGames.filter(g => g.a_team === 'Evil'); // A is Evil, B is Good
 
-    const aWinsWhenGood = oppAGood.filter(g => g.winning_team === g.a_team).length;
-    const aWinsWhenEvil = oppAEvil.filter(g => g.winning_team === g.a_team).length;
+    const aWinsWhenGood = oppAGood.filter(g => isTeamWin(g, g.a_team)).length;
+    const aWinsWhenEvil = oppAEvil.filter(g => isTeamWin(g, g.a_team)).length;
 
-    const bWinsWhenGood = oppAEvil.filter(g => g.winning_team === g.b_team).length;
-    const bWinsWhenEvil = oppAGood.filter(g => g.winning_team === g.b_team).length;
+    const bWinsWhenGood = oppAEvil.filter(g => isTeamWin(g, g.b_team)).length;
+    const bWinsWhenEvil = oppAGood.filter(g => isTeamWin(g, g.b_team)).length;
+
+    const aTiesWhenGood = oppAGood.filter(isGameTie).length;
+    const aTiesWhenEvil = oppAEvil.filter(isGameTie).length;
+    const aTiesOpp = aTiesWhenGood + aTiesWhenEvil;
 
     const aWinsOpp = aWinsWhenGood + aWinsWhenEvil;
     const bWinsOpp = bWinsWhenGood + bWinsWhenEvil;
@@ -823,15 +848,18 @@ export function analyzeHeadToHead(games, playerA, playerB) {
         same_team: {
             games: sameTeamGames.length,
             wins: sameTeamWinsBothGood + sameTeamWinsBothEvil,
+            ties: sameTeamTies,
             win_pct: pct(sameTeamWinsBothGood + sameTeamWinsBothEvil, sameTeamGames.length),
             both_good: {
                 games: sameTeamBothGood.length,
                 wins: sameTeamWinsBothGood,
+                ties: sameTeamTiesBothGood,
                 win_pct: pct(sameTeamWinsBothGood, sameTeamBothGood.length)
             },
             both_evil: {
                 games: sameTeamBothEvil.length,
                 wins: sameTeamWinsBothEvil,
+                ties: sameTeamTiesBothEvil,
                 win_pct: pct(sameTeamWinsBothEvil, sameTeamBothEvil.length)
             }
         },
@@ -839,29 +867,35 @@ export function analyzeHeadToHead(games, playerA, playerB) {
             games: oppositeTeamGames.length,
             [playerA]: {
                 wins: aWinsOpp,
+                ties: aTiesOpp,
                 win_pct: pct(aWinsOpp, oppositeTeamGames.length),
                 when_good: {
                     games: oppAGood.length,
                     wins: aWinsWhenGood,
+                    ties: aTiesWhenGood,
                     win_pct: pct(aWinsWhenGood, oppAGood.length)
                 },
                 when_evil: {
                     games: oppAEvil.length,
                     wins: aWinsWhenEvil,
+                    ties: aTiesWhenEvil,
                     win_pct: pct(aWinsWhenEvil, oppAEvil.length)
                 }
             },
             [playerB]: {
                 wins: bWinsOpp,
+                ties: aTiesOpp, // same games — both are on opposite teams during ties
                 win_pct: pct(bWinsOpp, oppositeTeamGames.length),
                 when_good: {
                     games: oppAEvil.length, // B is Good when A is Evil
                     wins: bWinsWhenGood,
+                    ties: aTiesWhenEvil, // same games (A evil = B good)
                     win_pct: pct(bWinsWhenGood, oppAEvil.length)
                 },
                 when_evil: {
                     games: oppAGood.length, // B is Evil when A is Good
                     wins: bWinsWhenEvil,
+                    ties: aTiesWhenGood, // same games (A good = B evil)
                     win_pct: pct(bWinsWhenEvil, oppAGood.length)
                 }
             }
@@ -913,7 +947,8 @@ export function calculateCharacterElo(games) {
                 ratings[char] = {
                     rating: CHARACTER_INITIAL_RATING,
                     games: 0,
-                    wins: 0
+                    wins: 0,
+                    ties: 0
                 };
             }
         }
@@ -926,18 +961,18 @@ export function calculateCharacterElo(games) {
         const expGood = 1 / (1 + Math.pow(10, (evilAvg - goodAvg) / 400));
         const expEvil = 1 - expGood;
 
-        // Determine actual results
-        const resultGood = winningTeam === 'Good' ? 1 : 0;
-        const resultEvil = 1 - resultGood;
+        // Determine actual results — tie = 0.5 for both (chess convention)
+        const isTie = winningTeam === 'Tie';
+        const resultGood = isTie ? 0.5 : (winningTeam === 'Good' ? 1 : 0);
+        const resultEvil = isTie ? 0.5 : (winningTeam === 'Evil' ? 1 : 0);
 
         // Update ratings for all characters on Good team
         for (const char of goodChars) {
             const delta = CHARACTER_K_FACTOR * (resultGood - expGood);
             ratings[char].rating += delta;
             ratings[char].games++;
-            if (winningTeam === 'Good') {
-                ratings[char].wins++;
-            }
+            if (isTie) ratings[char].ties++;
+            else if (winningTeam === 'Good') ratings[char].wins++;
         }
 
         // Update ratings for all characters on Evil team
@@ -945,9 +980,8 @@ export function calculateCharacterElo(games) {
             const delta = CHARACTER_K_FACTOR * (resultEvil - expEvil);
             ratings[char].rating += delta;
             ratings[char].games++;
-            if (winningTeam === 'Evil') {
-                ratings[char].wins++;
-            }
+            if (isTie) ratings[char].ties++;
+            else if (winningTeam === 'Evil') ratings[char].wins++;
         }
     }
 
@@ -986,13 +1020,16 @@ function averageRating(characters, ratings) {
 export function getCharacterScriptBreakdown(games, characterName) {
     const winsByScript = {};   // script -> count
     const lossesByScript = {}; // script -> count
+    const tiesByScript = {};   // script -> count
     const playerCounts = {};   // player -> count (for "Played By" - still counts each player)
     let totalWins = 0;
+    let totalTies = 0;
     let totalGames = 0;
 
     for (const game of games) {
         const players = game.players || [];
         const winningTeam = game.winning_team;
+        const isTie = winningTeam === 'Tie';
         const script = game.game_mode || 'Unknown';
 
         // Find all players who played this character in this game
@@ -1009,15 +1046,18 @@ export function getCharacterScriptBreakdown(games, characterName) {
             playerCounts[player.name] = (playerCounts[player.name] || 0) + 1;
         }
 
-        // Did the character win? Check if any player with this character was on winning team
-        // (For Legion/Village Idiot, they should all be on same team anyway)
-        const charWon = playersWithChar.some(p => p.team === winningTeam);
-
-        if (charWon) {
-            totalWins++;
-            winsByScript[script] = (winsByScript[script] || 0) + 1;
+        // Did the character win, tie, or lose?
+        if (isTie) {
+            totalTies++;
+            tiesByScript[script] = (tiesByScript[script] || 0) + 1;
         } else {
-            lossesByScript[script] = (lossesByScript[script] || 0) + 1;
+            const charWon = playersWithChar.some(p => p.team === winningTeam);
+            if (charWon) {
+                totalWins++;
+                winsByScript[script] = (winsByScript[script] || 0) + 1;
+            } else {
+                lossesByScript[script] = (lossesByScript[script] || 0) + 1;
+            }
         }
     }
 
@@ -1025,6 +1065,8 @@ export function getCharacterScriptBreakdown(games, characterName) {
     const sortedWins = Object.entries(winsByScript)
         .sort((a, b) => b[1] - a[1]);
     const sortedLosses = Object.entries(lossesByScript)
+        .sort((a, b) => b[1] - a[1]);
+    const sortedTies = Object.entries(tiesByScript)
         .sort((a, b) => b[1] - a[1]);
 
     // Sort players by games played (descending), filtering out hidden players
@@ -1035,10 +1077,12 @@ export function getCharacterScriptBreakdown(games, characterName) {
     return {
         totalGames,
         totalWins,
-        totalLosses: totalGames - totalWins,
+        totalTies,
+        totalLosses: totalGames - totalWins - totalTies,
         winPct: totalGames > 0 ? (totalWins / totalGames * 100).toFixed(1) : '0.0',
         winsByScript: sortedWins,
         lossesByScript: sortedLosses,
+        tiesByScript: sortedTies,
         players: sortedPlayers
     };
 }

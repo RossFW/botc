@@ -91,6 +91,10 @@
     color: var(--evil);
 }
 
+.tie-text {
+    color: var(--accent-purple, #a78bfa);
+}
+
 .elo-positive {
     color: var(--good);
     font-weight: 600;
