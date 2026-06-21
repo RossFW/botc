@@ -449,12 +449,13 @@ function showPlayerModal(player) {
     // Render rating chart
     renderRatingChart(player, chartContainer);
 
-    // Render rank chart (uses the `players` global, which has been recalc'd for current filter)
-    const rankContainer = document.getElementById('rank-chart');
-    const rankHistory = getRankHistory(players, player.name, MIN_GAMES_FOR_LEADERBOARD);
-    // Pass full ratingHistory gameNumbers so both charts share the same x-axis
-    const allGameNumbers = player.ratingHistory.map(h => h.gameNumber);
-    renderRankChart(rankHistory, allGameNumbers, rankContainer);
+    // Rank Over Time chart temporarily hidden. To re-enable, uncomment below
+    // AND the corresponding HTML block in index.html (Player Modal).
+    // const rankContainer = document.getElementById('rank-chart');
+    // const rankHistory = getRankHistory(players, player.name, MIN_GAMES_FOR_LEADERBOARD);
+    // // Pass full ratingHistory gameNumbers so both charts share the same x-axis
+    // const allGameNumbers = player.ratingHistory.map(h => h.gameNumber);
+    // renderRankChart(rankHistory, allGameNumbers, rankContainer);
 }
 
 /**
